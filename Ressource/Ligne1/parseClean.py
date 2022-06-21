@@ -35,14 +35,15 @@ def Is_Data(data,i):
     return False
 
 if __name__ == "__main__":
-    file = "C:/Users/Leo/Documents/python/Isochrone/Ressource/Ligne3/line.txt"
+    file = "C:/Users/Leocl/Documents/Isochrone/Ressource/Ligne3/line.txt"
+    file2 = "C:/Users/Leocl/Documents/Isochrone/Ressource/Ligne3/liner.txt"
     data = []
     
     CITY_TEMPLATE = ["VIENNE","ESTRABLIN","SEYSSUEL","ST-ROMAIN"]
     with open(file,"r+",encoding="utf-8") as f:
             data = f.readlines()
     line_Length = []
-    for i in range(len(data)-1):
+    for i in range(len(data)):
         line = data[i]
         line=line.replace('|','')
         has_been_popped = False
@@ -70,7 +71,7 @@ if __name__ == "__main__":
         data[i] = line.join(line_list)
     
     max_length = max(line_Length)
-    for i in range(len(data)-1):
+    for i in range(len(data)):
         line = data[i]
         line_list = list(line)
         if i == 29:
@@ -82,7 +83,7 @@ if __name__ == "__main__":
                 line_list.insert(l,' ')
         #remove unwanted space and add dot comma
         l = max_length
-        while l < len(line_list):
+        while l < (len(line_list)-1):
             if(IsNumber(line_list[l]) and IsSpace(line_list[l+1])):
                 line_list[l+1] = ";"
                 l+=1
@@ -92,11 +93,12 @@ if __name__ == "__main__":
                 l+=1
 
         line = ""
+        line_list.insert(-1,';')
         data[i] = line.join(line_list)
     for line in data:
         print(line)
-    #with open(file,"w",encoding="utf-8") as f:
-    #     data = f.writelines(data)
+    with open(file2,"w",encoding="utf-8") as f:
+         data = f.writelines(data)
        
     
         
