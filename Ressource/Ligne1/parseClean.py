@@ -35,7 +35,7 @@ def Is_Data(data,i):
     return False
 
 if __name__ == "__main__":
-    file = "C:/Users/Leocl/Documents/Isochrone/Ressource/Ligne3/line.txt"
+    file = "C:/Users/Leo/Documents/python/Isochrone/Ressource/Ligne3/line.txt"
     data = []
     
     CITY_TEMPLATE = ["VIENNE","ESTRABLIN","SEYSSUEL","ST-ROMAIN"]
@@ -73,15 +73,30 @@ if __name__ == "__main__":
     for i in range(len(data)-1):
         line = data[i]
         line_list = list(line)
+        if i == 29:
+            print('l')
         for l in range(max_length):
             if(not(IsDashPoint(line_list[l]))):
                 continue
             else:
                 line_list.insert(l,' ')
+        #remove unwanted space and add dot comma
+        l = max_length
+        while l < len(line_list):
+            if(IsNumber(line_list[l]) and IsSpace(line_list[l+1])):
+                line_list[l+1] = ";"
+                l+=1
+            elif(IsSpace(line_list[l])):
+                line_list.pop(l)
+            else:
+                l+=1
+
         line = ""
         data[i] = line.join(line_list)
-    with open(file,"w",encoding="utf-8") as f:
-         data = f.writelines(data)
+    for line in data:
+        print(line)
+    #with open(file,"w",encoding="utf-8") as f:
+    #     data = f.writelines(data)
        
     
         
