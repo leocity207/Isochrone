@@ -1,8 +1,6 @@
 import argparse
 import os
 
-from matplotlib import lines
-
 #template inside the string that apear and that we want removed
 CITY_TEMPLATE = ["VIENNE","ESTRABLIN","SEYSSUEL","ST-ROMAIN"]
 
@@ -42,7 +40,7 @@ def Strip_Big_City(lines):
     for i in range(len(lines)):
         for city in CITY_TEMPLATE:
             if city in lines[i]:
-                lines[i].remove(city)
+                lines[i] = lines[i].replace(city, "")
                 break
     return lines
 # Remove unwanted number in front of the lines
@@ -67,7 +65,7 @@ def Get_Station_Lengths(lines):
 #remove the '|' from all the strings
 def Remove_Pipe_Character(lines):
     for i in range(len(lines)):
-        lines[i].replace('|','')
+        lines[i] = lines[i].replace('|','')
     return lines
 
 #equalize the titles to be more readable
@@ -97,16 +95,17 @@ def Separate_Dates(lines):
             else:
                 l+=1
         line_as_list.insert(-1,';')
-        lines = ''.join(line_as_list)
+        lines[i] = ''.join(line_as_list)
     return lines
     
     
 if __name__ == "__main__":
     args = Parse_Args()
+    print(args.String)
     filename = ""
-    if args[filename]:
-        filename = args[filename]
-    filepath = os.join(os.getcwd(),filename)
+    if args.String:
+        filename = args.String
+    filepath = os.path.join(os.getcwd(),filename)
     
     data_list = Get_File_Data(filename)
     
