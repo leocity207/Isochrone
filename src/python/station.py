@@ -15,6 +15,7 @@ class Station:
         self.reached_by_transport = False
         self.base_time_from_start = np.linalg.norm(Station.toolbox["starting coordinate"] - self.coordinate)
 
+ 
     def Get_Travel_Time_Station_Coordinate(self, coordinate):
         return Get_Base_Travel_Time(coordinate,self.coordinate,Station.toolbox)
     

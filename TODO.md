@@ -75,4 +75,20 @@ TODO
 * Programme
   * crée la class IO pour lir les station et les coordone
   * crée l'algorithm pour obtimiser toute les station connaisant le trajet 
+
+07/07/2021
+==========
+DONE
+----
+* algorithm pour trouver les calculer la map fonctionelle cependant il prend beaucoup de temps a s'executer
+
+
+TODO 
+----
+* DATA
+  * remplire les fiche des horraire de bus
+  * crée un fichier contenant localisation des arret de bus 
+* Programme
+  * crée la class IO pour lir les station et les coordone
+  * crée l'algorithm pour obtimiser toute les station connaisant le trajet 
   *  

@@ -2,7 +2,9 @@ import numpy as np
 
 from util import Get_Base_Travel_Time
 
-
+def compute_distance_to_station(station,i,j):
+    return station.Get_Travel_Time_Station_Coordinate((i,j)) + station.Get_Best_Travel_Time_Start_To_Station()
+    
 class Map:
     toolbox = {}
     def __init__(self,toolbox):
@@ -20,13 +22,9 @@ class Map:
         plane = np.zeros((x_range,y_range))
         for i in range(x_range):
             for j in range(y_range):
-                print("{x},{y}".format(x=i,y=j))
                 best_time = Get_Base_Travel_Time(np.array([i,j]),Map.toolbox["starting coordinate"],Map.toolbox)
-                for station in Map.toolbox["station_list"]:
-                    testing_time = station.Get_Travel_Time_Station_Coordinate((i,j)) + station.Get_Best_Travel_Time_Start_To_Station()
-                    if(testing_time < best_time):
-                        best_time = testing_time
-                plane[i,j] = best_time
+                list_value = list(map(lambda station : compute_distance_to_station(station,i,j),Map.toolbox["station_list"]))
+                plane[i,j] = min([best_time]+list_value)
         return plane
 
             
