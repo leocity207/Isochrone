@@ -1,5 +1,7 @@
 from data import *
 from map import *
+import matplotlib.pyplot as plt
+import numpy as np
  
 def Optimize_Station_Travel_Time(stations):
     for station in station_list:
@@ -11,13 +13,17 @@ def Optimize_Station_Travel_Time(stations):
 
 if __name__ == "__main__":
     toolbox = {}
-    toolbox["starting coordinate"] = (4,1)
+    toolbox["starting coordinate"] = np.array([50,50])
     toolbox["starting time"] = 0
     toolbox["speed"] = 5
     station_list = Get_All_Station(toolbox)
-    toolbox["station_list"] = station_list.sort(key = Get_Best_Time)
+    station_list.sort()
+    toolbox["station_list"] = station_list
     map = Map(toolbox)
-
     #Optimize_Station_Travel_Time(toolbox["station_list"])
     planar_value = map.Commpute_Planar_Value()
-    //show_planaer_value()
+
+    plt.figure()
+    bins = np.linspace(np.min(planar_value),np.max(planar_value), 20)
+    plt.imshow(np.digitize(planar_value,bins),cmap='hot')
+    plt.show()

@@ -37,5 +37,7 @@ class Station:
     
     def Update_Station_with_default_Traveling_time():
         pass
+    def __lt__(self, other):
+         return self.Get_Best_Travel_Time_Start_To_Station() < other.Get_Best_Travel_Time_Start_To_Station()
 
 
