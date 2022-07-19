@@ -2,7 +2,17 @@
 import os
 from typing import List
 from station import *
+import csv
 
+def Get_All_Coordinate(toolbox):
+    path_to_cordinate_file = "../../Ressource/Geographie/coordinate.csv"
+    with open(path_to_cordinate_file,"r") as file:
+        coordinate_csv = list(csv.reader(file, delimiter= ';'))
+        for i in range(len(coordinate_csv)):
+            coordinate_csv[i][1]
+        
+
+        
 
 
 def Get_All_Station(toolbox) -> List:
