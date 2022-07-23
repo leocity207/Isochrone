@@ -42,13 +42,23 @@ def Coordinate_String_To_Angulare_Decomposition(the_string: str) -> tuple:
     i+=1
     letter = the_string[i]
     return (int(degree),int(minute),float(second),letter)
-     
+
+#-------------------------------------------------------------------------------------
+# parse the string and give back the angulare value of that string as a decimal
+# - the_string : a string representing the angular value (in degree,minute,second)
+# - return : - angular value : the angular value 
+#            - let: a letter representing in witch hemisphere the angle is represented
 def Parse_String_To_Angular_Decimal(the_string: str) -> tuple():
     deg,min,sec,let = Coordinate_String_To_Angulare_Decomposition(the_string)
     return (To_Decimal(deg,min,sec),let)
 
-
-def Parse_Angular_String_To_Plane(the_string: str,mean_latitude_factor: float,planet_radius: float) -> float:
+#----------------------------------------------------------------------
+# parse a longitude latitude string into two decimal planar coordinate
+# - the_string           : a string representing a longitude and a latitude string
+# - mean_latitude_factor : represente the mean value of the current lattitude
+# - planet_radius        : the planet radius in m
+# - return  : the list containing the two coordinate x and y
+def Parse_Angular_String_To_Plane(the_string: str,mean_latitude_factor: float,planet_radius: float) -> list:
     splited_string = the_string.split()
     assert(len(splited_string) == 2)
     plane_coord = ["",""]
@@ -56,12 +66,16 @@ def Parse_Angular_String_To_Plane(the_string: str,mean_latitude_factor: float,pl
         angle,let = Parse_String_To_Angular_Decimal(splited_string[i])
         if(let == "N" or let == 'S'):
             assert(plane_coord[0] == "")
-            plane_coord[0] = planet_radius*angle
+            plane_coord[0] = planet_radius*angle*np.pi/180
         elif(let == "E" or let == "W"):
             assert(plane_coord[1] == "")
-            plane_coord[1] = planet_radius*angle*mean_latitude_factor
+            plane_coord[1] = planet_radius*angle*mean_latitude_factor*np.pi/180
     return plane_coord
 
+#----------------------------------------------------------------------
+# parse a longitude latitude string into two decimal angular coordinate
+# - the_string           : a string representing a longitude and a latitude string
+# - return  : the list containing the two coordinate of the longitude and lattitude as decimal
 def Parse_Angular_String_To_Decimal(the_string: str) ->float:
     splited_string = the_string.split()
     assert(len(splited_string) == 2)
@@ -76,14 +90,23 @@ def Parse_Angular_String_To_Decimal(the_string: str) ->float:
             angular_coord[1] = angle
     return angular_coord
 
+#----------------------------------------------------------------------------
+# given a list of longitude and latitude strings. give back the mean lattitude
+# - the_string           : a string representing a longitude and a latitude string
+# - return  : the mean value of the lattitude corresponding to all given point
 def Get_Mean_Latitude_Angular_Strings(string_list: list) -> float:
     list_of_decimal_angular_latitude = []
     for string in string_list:
         list_of_decimal_angular_latitude.append(Parse_Angular_String_To_Decimal(string)[0])
-    return np.mean(list_of_decimal_angular_latitude)
+    return np.cos(np.mean(list_of_decimal_angular_latitude)*np.pi/180)
     
-
-
+#----------------------------------------------------------------------------
+# given a list of longitude and latitude strings. give back the coordinate minus their mean value
+# - the_string           : a string representing a longitude and a latitude string
+# - planet_radius        : the planet radius in m
+# - return  : list_coordinate : the list of planar coordinate for each string given in input
+#             mean_x          : the mean value of all the planar coordinate in x
+#             mean_y          : the mean value of all the planar coordinate in y  
 def Parse_Angular_String_To_Plane_List(string_list: list,planet_radius: float) -> tuple:
     mean_latitude_factor = Get_Mean_Latitude_Angular_Strings(string_list)
     list_coordinate = []
