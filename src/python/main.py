@@ -10,7 +10,7 @@ def Optimize_Station_Travel_Time(stations_no_copy):
         stations.sort()
         station = stations.pop(0)
         station.Optimize_Base_Other_Station_Distance(stations)
-        #station.Optimize_Stations_Line(stations)
+        station.Optimize_Stations_Line(stations)
 
 
 if __name__ == "__main__":

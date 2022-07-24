@@ -59,7 +59,10 @@ class Station:
             station.Try_Set_Best_Time(new_test_time)
             
     def Get_Passing_Lines(self):
-        pass
+        passing_lines = []
+        for line in Station.toolbox["line list"]:
+            if(line.Is_Station_In_Line(self)):
+                passing_lines.append(line)
         
     def Get_Closest_Transport_To(self,starting_station,station_starting_time,line):
         pass
@@ -67,8 +70,7 @@ class Station:
     def Optimize_Stations_Line(self,stations):
         lines = self.Get_Passing_Lines()
         for line in lines:
-            stations_in_lines = line.Get_Further_Station(self)
+            stations_in_lines = line.Get_Stations_Excluding(self)
             for station in stations_in_lines:
-                new_best_time = station.Get_Closest_Transport_To(self,self.m_arriving_time,line)
+                new_best_time = line.Get_Best_Time_To_Station(self,station)
                 station.Try_Set_Best_Time(new_best_time)
-        

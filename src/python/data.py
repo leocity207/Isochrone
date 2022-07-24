@@ -66,6 +66,7 @@ def Get_All_Lines(toolbox:dict) -> None:
     path_to_ressource = "../../Ressource"
     lines_folders = ["ligne1"]
     line_list = []
+    toolbox["line list"] = []
     for line_folder in lines_folders:
         path_to_line = os.path.join(path_to_ressource,line_folder)
         a_way = {"scolaire":{"monday":[],"tuesday":[],"wednesday":[],"thushday":[],"friday":[],"saturday":[],"sunday":[]},"holyday":{"monday":[],"tuesday":[],"wednesday":[],"thushday":[],"friday":[],"saturday":[],"sunday":[]}}
@@ -91,7 +92,7 @@ def Get_All_Lines(toolbox:dict) -> None:
                     else:     
                         for weekday in Get_WeekDay(attribute[3]):
                             r_way["holyday"][weekday] = file_data
-        toolbox["line list"] = Line(station_list,toolbox)
+        toolbox["line list"].append(Line(station_list,a_way,r_way,toolbox))
 
 #-------------------------------------------------------------------------------------------
 # given a list of already registered station check if the new station should be added or not
