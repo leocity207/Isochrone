@@ -8,15 +8,17 @@ from util import *
 
 class Station:
     toolbox = {}
-    def __init__(self,coordinate,toolbox):
+    def __init__(self,coordinate,id,toolbox):
         Station.toolbox = toolbox
         self.coordinate = coordinate
         self.best_time = float('inf')
+        self.id = id
         self.reached_by_transport = False
         self.m_has_been_reached_by_transport = False
-        self.base_time_from_start = Get_Base_Travel_Time(Station.toolbox["starting coordinate"] - self.coordinate)
+        self.base_time_from_start = Get_Base_Travel_Time(Station.toolbox["starting coordinate"],self.coordinate,toolbox)
         self.m_arriving_time = Station.toolbox["starting time"] + self.base_time_from_start
-
+    def Get_Coordinate(self):
+        return self.coordinate
  
     def Get_Travel_Time_Station_Coordinate(self, coordinate):
         return Get_Base_Travel_Time(coordinate,self.coordinate,Station.toolbox)

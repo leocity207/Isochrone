@@ -93,7 +93,7 @@ TODO
   * crée l'algorithm pour obtimiser toute les station connaisant le trajet 
 
 
-13/07/2021
+13/07/2022
 ==========
 DONE
 ----
@@ -107,6 +107,25 @@ TODO
   * crée un fichier contenant localisation des arret de bus 
 * Programme
   * crée la class IO pour lir les station et les coordone
+  * crée l'algorithm pour obtimiser toute les station connaisant le trajet 
+    * documentation pour les fonction des differente classes
+    * verifier l'utilisation de chaque fonction
+    * ajout la classe des 'lines' qui doit contenir les diferentes ligne et obtenir les temps entre de station a un heur donné
+  * crée des teste pour valider l'algo d'optimisation
+  * faire plus de recherche sur les diagrames de voronoi weighted additif   
+
+24/07/2022
+==========
+DONE
+----
+* fonctionnement de l'algorithm de base
+
+
+TODO 
+----
+* DATA
+  * remplire les fiche des horraire de bus
+* Programme
   * crée l'algorithm pour obtimiser toute les station connaisant le trajet 
     * documentation pour les fonction des differente classes
     * verifier l'utilisation de chaque fonction

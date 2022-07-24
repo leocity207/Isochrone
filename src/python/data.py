@@ -10,17 +10,30 @@ import matplotlib.pyplot as plt
 from pprint import pprint
 import datetime
 from line import *
-def Get_All_Coordinate(toolbox):
+from station import *
+
+#----------------------------------------------------------------
+# fetch all the station from the ressources files
+# - toolbox: the toolbox containing all the data
+def Get_All_Station(toolbox: dict) -> None:
     path_to_cordinate_file = "..\..\Ressource\Geographie\coordinate.csv"
     with open(path_to_cordinate_file,"r",encoding='utf8') as file:
         coordinate_csv = list(csv.reader(file, delimiter= ';'))
         angular_coord_strings = [e[1] for e in coordinate_csv]
         planar_angular_coordinate,toolbox["mean_x"],toolbox["mean_y"] = Parse_Angular_String_To_Plane_List(angular_coord_strings,toolbox["earth radius"])
-        toolbox["coordinate"] = {}
+        station_list = []
         for i in range(len(coordinate_csv)):
-            toolbox["coordinate"][coordinate_csv[i][0].rstrip()] = planar_angular_coordinate[i]
-
-def Get_WeekDay(letter_list):
+            station_list.append(Station(planar_angular_coordinate[i],coordinate_csv[i][0].rstrip(),toolbox))
+    station_list.sort()
+    toolbox["station_list"] = station_list
+    return
+            
+    
+#-------------------------------------
+#function used to yield all the weekday inside a string containing them
+# - letter_list: the string containing all the weekday letter ('l','ma','me'...)
+# - yield : all the fulname of every week contianied in the letter_list
+def Get_WeekDay(letter_list: str) -> str:
     if 'l' in  letter_list:
         yield "monday"
     if "ma" in letter_list:
@@ -36,16 +49,20 @@ def Get_WeekDay(letter_list):
     if "d" in letter_list:
         yield "sunday"
 
-def Get_File_Attribute(file_name):
+
+#-----------------------------------------------------------
+# give all the attribute of a filename writen as "#_#_#_#.*"
+# - file_name: the file_name that we want to extract the attribute from
+# - return: the list of all attribute (generaly the third and the fourth are used)
+def Get_File_Attribute(file_name: str) -> list:
     file_without_extension = file_name.split('.')[0]
     return file_without_extension.split('_')
-    
-        
+         
 
-        
-
-
-def Get_All_Station(toolbox) -> list:
+#-------------------------------------------------------------------------------------
+# load all the line from the ressource and populate the "line list" insde the toolbox
+# - toolbox : the toolbox containing all the program data
+def Get_All_Lines(toolbox:dict) -> None:
     path_to_ressource = "../../Ressource"
     lines_folders = ["ligne1"]
     line_list = []
@@ -76,20 +93,29 @@ def Get_All_Station(toolbox) -> list:
                             r_way["holyday"][weekday] = file_data
         toolbox["line list"] = Line(station_list,toolbox)
 
-def Update_station_list(station_list, new_file_data):
+#-------------------------------------------------------------------------------------------
+# given a list of already registered station check if the new station should be added or not
+# - station_list  : a list of string containing all the already registered station
+# - new_file_data : all the new station that probably need to be added to the station_list 
+def Update_station_list(station_list: list, new_file_data: list) -> None:
     for row in new_file_data:
         if row[0] in station_list:
             continue
         station_list.append(row[0])
 
-
-def IsNumber(c):
+#----------------------------------------------------
+# check if the charachter given is a number
+# - c : a character
+# - return: true if it's a number and False otherwise
+def IsNumber(c: str) -> bool:
     if c in "1234567890":
         return True
     return False
 
-
-def Is_Date(data):
+#------------------------------------------------------------------------------------------
+# check if the given string is representing a date or note (format should be xx:xx or x:xx)
+# - data: the date as a string representation
+def Is_Date(data:str) -> bool:
     try:
         if(IsNumber(data[0]) and IsNumber(data[1]) and data[2] == ':'):
             return True
@@ -99,8 +125,11 @@ def Is_Date(data):
     except IndexError:
         print(len(data))
 
-
-def Get_CSV_File_As_data(filepath):
+#-----------------------------------------------------------------
+# given a filepath to a schedule,fetch the file data and give it back as a list
+# - filepath: path to the schedule file
+# - return: the schedule file as a list
+def Get_CSV_File_As_data(filepath: str) -> list:
     with open(filepath) as csv_file:
         the_list = list(csv.reader(csv_file, delimiter=';'))
         for row in the_list:
@@ -119,12 +148,12 @@ def Get_CSV_File_As_data(filepath):
 
 
 if __name__ == "__main__":
-    if(True):
+    if(False):
         toolbox = {}
         Get_All_Station(toolbox)
-    if(False): #test get geogrpahic coordinate
+    if(True): #test get geogrpahic coordinate
         toolbox = {"earth radius": 6339000}
-        Get_All_Coordinate(toolbox)
+        Get_All_Station(toolbox)
         pprint(toolbox["coordinate"])
         x = [toolbox["coordinate"][key][0] for key in toolbox["coordinate"]]
         y = [toolbox["coordinate"][key][1] for key in toolbox["coordinate"]]
