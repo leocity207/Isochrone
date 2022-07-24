@@ -1,4 +1,5 @@
 
+from hashlib import new
 import os
 from typing import List
 from station import *
@@ -7,7 +8,8 @@ from coordinate import *
 from pprint import pprint
 import matplotlib.pyplot as plt
 from pprint import pprint
-
+import datetime
+from line import *
 def Get_All_Coordinate(toolbox):
     path_to_cordinate_file = "..\..\Ressource\Geographie\coordinate.csv"
     with open(path_to_cordinate_file,"r",encoding='utf8') as file:
@@ -45,17 +47,19 @@ def Get_File_Attribute(file_name):
 
 def Get_All_Station(toolbox) -> list:
     path_to_ressource = "../../Ressource"
-    lines_folders = ["ligne1","ligne2","ligne3","ligne4","ligne5","ligne6","ligne7","ligne8","ligne134"]
+    lines_folders = ["ligne1"]
     line_list = []
     for line_folder in lines_folders:
         path_to_line = os.path.join(path_to_ressource,line_folder)
         a_way = {"scolaire":{"monday":[],"tuesday":[],"wednesday":[],"thushday":[],"friday":[],"saturday":[],"sunday":[]},"holyday":{"monday":[],"tuesday":[],"wednesday":[],"thushday":[],"friday":[],"saturday":[],"sunday":[]}}
         r_way = {"scolaire":{"monday":[],"tuesday":[],"wednesday":[],"thushday":[],"friday":[],"saturday":[],"sunday":[]},"holyday":{"monday":[],"tuesday":[],"wednesday":[],"thushday":[],"friday":[],"saturday":[],"sunday":[]}}
+        station_list = []
         for root,dir,files in os.walk(path_to_line):
             for file in files:
                 if not(file.endswith(".csv")):
                     continue
                 file_data = Get_CSV_File_As_data(os.path.join(path_to_line,file))
+                Update_station_list(station_list,file_data)
                 attribute = Get_File_Attribute(file)
                 if(attribute[1] == 'a'):
                     for weekday in Get_WeekDay(attribute[2]):
@@ -70,25 +74,63 @@ def Get_All_Station(toolbox) -> list:
                     else:     
                         for weekday in Get_WeekDay(attribute[3]):
                             r_way["holyday"][weekday] = file_data
-                pprint(a_way)
-                pprint(r_way)
-    
+        toolbox["line list"] = Line(station_list,toolbox)
+
+def Update_station_list(station_list, new_file_data):
+    for row in new_file_data:
+        if row[0] in station_list:
+            continue
+        station_list.append(row[0])
+
+
+def IsNumber(c):
+    if c in "1234567890":
+        return True
+    return False
+
+
+def Is_Date(data):
+    try:
+        if(IsNumber(data[0]) and IsNumber(data[1]) and data[2] == ':'):
+            return True
+        if(IsNumber(data[0]) and data[1]==':' and IsNumber(data[2])):
+            return True
+        return False
+    except IndexError:
+        print(len(data))
 
 
 def Get_CSV_File_As_data(filepath):
-    with open('employee_birthday.txt') as csv_file:
-        return list(csv.reader(csv_file, delimiter=';'))
+    with open(filepath) as csv_file:
+        the_list = list(csv.reader(csv_file, delimiter=';'))
+        for row in the_list:
+            row[0] = row[0].rstrip()
+            for i in range(1,len(row)):
+                if(Is_Date(row[i]) and len(row[i])>3):
+                    try:
+                        row[i] = datetime.datetime.strptime(row[i].rstrip(),"%H:%M")
+                    except ValueError:
+                        print("lol" + row[i])                    
+                else:
+                    row[i]= None
+        return the_list
+
+
 
 
 if __name__ == "__main__":
-    toolbox = {"earth radius": 6339000}
-    Get_All_Coordinate(toolbox)
-    pprint(toolbox["coordinate"])
-    x = [toolbox["coordinate"][key][0] for key in toolbox["coordinate"]]
-    y = [toolbox["coordinate"][key][1] for key in toolbox["coordinate"]]
-    plt.figure()
-    plt.scatter(y,x)
-    a = [key for key in toolbox["coordinate"]]
-    for i,label in enumerate(a):
-        plt.annotate(label,(y[i],x[i]))
-    plt.show()
+    if(True):
+        toolbox = {}
+        Get_All_Station(toolbox)
+    if(False): #test get geogrpahic coordinate
+        toolbox = {"earth radius": 6339000}
+        Get_All_Coordinate(toolbox)
+        pprint(toolbox["coordinate"])
+        x = [toolbox["coordinate"][key][0] for key in toolbox["coordinate"]]
+        y = [toolbox["coordinate"][key][1] for key in toolbox["coordinate"]]
+        plt.figure()
+        plt.scatter(y,x)
+        a = [key for key in toolbox["coordinate"]]
+        for i,label in enumerate(a):
+            plt.annotate(label,(y[i],x[i]))
+        plt.show()
