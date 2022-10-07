@@ -1,8 +1,11 @@
 import numpy as np
 
 from util import Get_Base_Travel_Time
-
-def Get_Max_Min_Coordinate(stations):
+#---------------------------------------------------------------------
+# find the min/max coordinate of all the described station in the list
+# - stations : the_list of all the stationns in the model
+# - return : a tuple containing (x_min,x_max,y_min,y_max)
+def Get_Max_Min_Coordinate(stations: list) -> tuple:
     x_min = 0
     x_max = 0
     y_min = 0
@@ -19,17 +22,29 @@ def Get_Max_Min_Coordinate(stations):
             y_max = coordinate[1]
     return (x_min,x_max,y_min,y_max)
 
-def compute_distance_to_station(station,i,j):
+
+#---------------------------------------------------
+# - compute the distante to from the station to the coordinate i,j
+# - station: the station where we are departing
+# - i,j : the coordinate describing a point on the plane
+# - return : the distance (in m) from the station to the given coordinate
+def compute_distance_to_station(station: object,i: int,j: int) -> float:
     return station.Get_Travel_Time_Station_Coordinate((i,j)) + station.Get_Best_Travel_Time_Start_To_Station()
-    
+
+# ---------------------------------------------------------------------------------------------------------------------
+#class depicting the map where we are working with the map itself can be considered by each pixel at a given resolution
 class Map:
     toolbox = {}
-    def __init__(self,toolbox):
+    #-----------------------------------
+    # -toolbox: the toolbox of the model
+    def __init__(self,toolbox: dict):
         self.min_x,self.max_x,self.min_y,self.max_y = Get_Max_Min_Coordinate(toolbox["station_list"])
         self.resolution = 0.1
         if not(Map.toolbox):
             Map.toolbox = toolbox
-    
+
+    #-----------------------------------
+    #
     def Commpute_Planar_Value(self):
         x_range = int(np.round((self.max_x-self.min_x)*self.resolution))
         y_range = int(np.round((self.max_y-self.min_y)*self.resolution))
