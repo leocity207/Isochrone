@@ -132,3 +132,22 @@ TODO
     * ajout la classe des 'lines' qui doit contenir les diferentes ligne et obtenir les temps entre de station a un heur donné
   * crée des teste pour valider l'algo d'optimisation
   * faire plus de recherche sur les diagrames de voronoi weighted additif   
+
+12/10/2022
+==========
+DONE
+----
+* ajout des données pour les stations
+
+
+TODO 
+----
+* DATA
+  * remplire les donnés pour le coordoné des stations
+* Programme
+  * crée l'algorithm pour obtimiser toute les station connaisant le trajet 
+    * documentation pour les fonction des differente classes
+    * verifier l'utilisation de chaque fonction
+    * ajout la classe des 'lines' qui doit contenir les diferentes ligne et obtenir les temps entre de station a un heur donné
+  * crée des teste pour valider l'algo d'optimisation
+  * faire plus de recherche sur les diagrames de voronoi weighted additif   ss
