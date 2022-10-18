@@ -8,7 +8,9 @@ def Optimize_Station_Travel_Time(stations_no_copy):
     stations = stations_no_copy.copy()
     while(len(stations) != 0):
         stations.sort()
+        
         station = stations.pop(0)
+        station.Set_As_Optimized()
         station.Optimize_Base_Other_Station_Distance(stations)
         station.Optimize_Stations_Line(stations)
 

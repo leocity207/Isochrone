@@ -17,6 +17,11 @@ class Station:
         self.m_has_been_reached_by_transport = False
         self.base_time_from_start = Get_Base_Travel_Time(Station.toolbox["starting coordinate"],self.coordinate,toolbox)
         self.m_arriving_time = Station.toolbox["starting time"] + self.base_time_from_start
+        self.m_has_been_optimized = False
+
+    def Set_As_Optimized(self):
+        self.m_has_been_optimized = True
+
     def Get_Coordinate(self):
         return self.coordinate
  
@@ -42,8 +47,9 @@ class Station:
     
     def Update_Station_with_default_Traveling_time():
         pass
+
     def __lt__(self, other):
-         return self.Get_Best_Travel_Time_Start_To_Station() < other.Get_Best_Travel_Time_Start_To_Station()
+        return self.Get_Best_Travel_Time_Start_To_Station() < other.Get_Best_Travel_Time_Start_To_Station()
 
     def Try_Set_Best_Time(self,new_test_time):
         if new_test_time < self.best_time():
@@ -73,4 +79,6 @@ class Station:
             stations_in_lines = line.Get_Stations_Excluding(self)
             for station in stations_in_lines:
                 new_best_time = line.Get_Best_Time_To_Station(self,station)
+                if(new_best_time == -1):
+                    continue
                 station.Try_Set_Best_Time(new_best_time)

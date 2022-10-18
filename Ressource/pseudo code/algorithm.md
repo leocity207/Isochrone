@@ -25,9 +25,9 @@
 
 
 
-3. function needed to answer the problem 
-   * ☐ Get all non closed station
+3. function needed to answer the problem ☐
+   * ☑ Get all non closed station
    * ☑ Compute the time from s* to s
-   * ☐ Get all line passing by a station 
-   * ☐ Get all station from a line that are not closed
-   * ☐ knowing a time T and a line l find the best shuttle to get from s* to s starting at time T
+   * ☑ Get all line passing by a station 
+   * ☑ Get all station from a line that are not closed
+   * ☑ knowing a time T and a line l find the best shuttle to get from s* to s starting at time T
