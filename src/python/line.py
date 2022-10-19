@@ -4,14 +4,15 @@
 
 from decimal import InvalidContext
 from operator import truediv
-
+from file_data import *
 
 class Line:
     toolbox = {}
-    def __init__(self,stations_list,a_way,r_way,toolbox) -> None:
+    def __init__(self,stations_list,a_way,r_way,name,toolbox) -> None:
         self.station_list = stations_list
         self.m_a_way = a_way
         self.m_r_way = r_way
+        self.name = name
         if not(Line.toolbox):
             Line.toolbox = toolbox
             
@@ -68,3 +69,30 @@ class Line:
         if station in self.station_list:
             return True
         return False
+
+    @staticmethod
+    def Clean_Data_Matrix(csv_matrix):
+        station_list = []
+        for line in csv_matrix:
+            station_list.append(line.pop(0))
+        return station_list
+        
+    
+    @staticmethod
+    def Create_Line_From_Schedules(file_datas,csv_matrix,toolbox):
+        assert (len(file_datas) == len(csv_matrix))
+        final_station_list = None
+        name = file_datas[0][0]+" "+file_datas[0][1]
+        schedule_list_a_way = []
+        schedule_list_r_way = []
+        for i in range(len(file_datas)):
+            temp_station_list = Line.Clean_Data_Matrix(csv_matrix[i])
+            list_file_data = File_Date.Create_from_file_data(file_datas[i])
+            if(file_datas[i][3] == 'a'):
+                if(final_station_list is None):
+                    final_station_list = temp_station_list
+                schedule_list_a_way.append([list_file_data,csv_matrix[i]])
+            elif(file_datas[i][3] == 'r'):
+                schedule_list_r_way.append([list_file_data,csv_matrix[i]])
+        return Line(final_station_list,schedule_list_a_way,schedule_list_r_way,name,toolbox)
+        
