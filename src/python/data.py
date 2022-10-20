@@ -13,10 +13,10 @@ from line import *
 from station import *
 
 #----------------------------------------------------------------
-# fetch all the station from the ressources files
+# fetch all the station from the ressources files of coordinate
 # - toolbox: the toolbox containing all the data
 def Get_All_Station(toolbox: dict) -> None:
-    path_to_cordinate_file = "..\..\Ressource\Geographie\coordinate.csv"
+    path_to_cordinate_file = "Ressource\Geographie\coordinate.csv"
     with open(path_to_cordinate_file,"r",encoding='utf8') as file:
         coordinate_csv = list(csv.reader(file, delimiter= ';'))
         angular_coord_strings = [e[1] for e in coordinate_csv]
@@ -63,46 +63,25 @@ def Get_File_Attribute(file_name: str) -> list:
 # load all the line from the ressource and populate the "line list" insde the toolbox
 # - toolbox : the toolbox containing all the program data
 def Get_All_Lines(toolbox:dict) -> None:
-    path_to_ressource = "../../Ressource"
-    lines_folders = ["ligne1"]
-    line_list = []
+    path_to_ressource = "Ressource"
+    lines_folders = ["ligne1","ligne2","ligne3","ligne4","ligne5","ligne6","ligne7","ligne8","ligne134"]
     toolbox["line list"] = []
     for line_folder in lines_folders:
         path_to_line = os.path.join(path_to_ressource,line_folder)
-        a_way = {"scolaire":{"monday":[],"tuesday":[],"wednesday":[],"thushday":[],"friday":[],"saturday":[],"sunday":[]},"holyday":{"monday":[],"tuesday":[],"wednesday":[],"thushday":[],"friday":[],"saturday":[],"sunday":[]}}
-        r_way = {"scolaire":{"monday":[],"tuesday":[],"wednesday":[],"thushday":[],"friday":[],"saturday":[],"sunday":[]},"holyday":{"monday":[],"tuesday":[],"wednesday":[],"thushday":[],"friday":[],"saturday":[],"sunday":[]}}
-        station_list = []
+        schedules = []
+        file_datas = []
         for root,dir,files in os.walk(path_to_line):
             for file in files:
                 if not(file.endswith(".csv")):
                     continue
-                file_data = Get_CSV_File_As_data(os.path.join(path_to_line,file))
-                Update_station_list(station_list,file_data)
-                attribute = Get_File_Attribute(file)
-                if(attribute[1] == 'a'):
-                    for weekday in Get_WeekDay(attribute[2]):
-                        a_way["scolaire"][weekday] = file_data
-                else:     
-                    for weekday in Get_WeekDay(attribute[2]):
-                        r_way["scolaire"][weekday] = file_data
-                if(len(attribute) == 4):
-                    if(attribute[1] == 'a'):
-                        for weekday in Get_WeekDay(attribute[3]):
-                            a_way["holyday"][weekday] = file_data
-                    else:     
-                        for weekday in Get_WeekDay(attribute[3]):
-                            r_way["holyday"][weekday] = file_data
-        toolbox["line list"].append(Line(station_list,a_way,r_way,toolbox))
+                schedule_with_station = Get_CSV_File_As_data(os.path.join(path_to_line,file))
+                file_data = Get_File_Attribute(file)
+                file_datas.append(file_data)
+                schedules.append(schedule_with_station)
+            break
+        new_line = Line.Create_Line_From_Schedules(file_datas,schedules,toolbox)     
+        toolbox["line list"].append(new_line)
 
-#-------------------------------------------------------------------------------------------
-# given a list of already registered station check if the new station should be added or not
-# - station_list  : a list of string containing all the already registered station
-# - new_file_data : all the new station that probably need to be added to the station_list 
-def Update_station_list(station_list: list, new_file_data: list) -> None:
-    for row in new_file_data:
-        if row[0] in station_list:
-            continue
-        station_list.append(row[0])
 
 #----------------------------------------------------
 # check if the charachter given is a number
@@ -131,7 +110,7 @@ def Is_Date(data:str) -> bool:
 # - filepath: path to the schedule file
 # - return: the schedule file as a list
 def Get_CSV_File_As_data(filepath: str) -> list:
-    with open(filepath) as csv_file:
+    with open(filepath,encoding='utf8') as csv_file:
         the_list = list(csv.reader(csv_file, delimiter=';'))
         for row in the_list:
             row[0] = row[0].rstrip()
@@ -149,10 +128,13 @@ def Get_CSV_File_As_data(filepath: str) -> list:
 
 
 if __name__ == "__main__":
+    if(True):
+        toolbox = {}
+        Get_All_Lines(toolbox)
     if(False):
         toolbox = {}
         Get_All_Station(toolbox)
-    if(True): #test get geogrpahic coordinate
+    if(False): #test get geogrpahic coordinate
         toolbox = {"earth radius": 6339000}
         Get_All_Station(toolbox)
         pprint(toolbox["coordinate"])

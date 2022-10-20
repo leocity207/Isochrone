@@ -15,11 +15,18 @@ class DAY_TYPE(Enum):
 class WEEK_DAY(Enum):
     MONDAY    = 1
     TUESDAY   = 2
-    WEDNSEDAY = 3
+    WEDNESDAY = 3
     THURSDAY  = 4
     FRIDAY    = 5
     SATURDAY  = 6
     SUNDAY    = 7
+
+def Int_To_Week_Day(value: int): 
+    for e in WEEK_DAY:
+        if e.value == value:
+            return e
+    raise Exception("weekday is probably not good")
+
 
 class File_Date:
     def __init__(self,day_list: list,type: DAY_TYPE):
@@ -43,7 +50,7 @@ class File_Date:
     # - return : a list of File_Data
     @staticmethod
     def Create_from_file_data(file_data):
-        assert len(file_data>4)
+        assert len(file_data)>=4
         list_of_file_data = []
         for i in range(3,len(file_data)):
 
@@ -52,16 +59,16 @@ class File_Date:
             day_num_found = re.findall("[0-9]", data)
             if(day_num_found == []):
                 day_num_found = "1234567"
-            day_str = [WEEK_DAY(day_num_found[i]) for i in range(len(day_num_found))]
-            type = re.findall("[a-z]", data)
+            day_str = [WEEK_DAY(int(day_num_found[i])) for i in range(len(day_num_found))]
+            type = re.findall("[a-z]", data)[0]
             #find the leter and transfor it into a day type
-            if(type == 't'):
+            if(type == "t"):
                 type = DAY_TYPE.EVERYDAY
-            elif(type == 's'):
+            elif(type == "s"):
                 type = DAY_TYPE.SCHOOL
-            elif(type == 'v'):
+            elif(type == "v"):
                 type = DAY_TYPE.VACTION
-            elif(type == 'f'):
+            elif(type == "f"):
                 type = DAY_TYPE.HOLIDAY
             else:
                 raise Exception("unknown type of day found in file name")

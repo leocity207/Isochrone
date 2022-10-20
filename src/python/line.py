@@ -88,11 +88,13 @@ class Line:
         for i in range(len(file_datas)):
             temp_station_list = Line.Clean_Data_Matrix(csv_matrix[i])
             list_file_data = File_Date.Create_from_file_data(file_datas[i])
-            if(file_datas[i][3] == 'a'):
+            if(file_datas[i][2] == 'a'):
                 if(final_station_list is None):
                     final_station_list = temp_station_list
                 schedule_list_a_way.append([list_file_data,csv_matrix[i]])
-            elif(file_datas[i][3] == 'r'):
+            elif(file_datas[i][2] == 'r'):
                 schedule_list_r_way.append([list_file_data,csv_matrix[i]])
+            else:
+                raise Exception("this should be either a or r")
         return Line(final_station_list,schedule_list_a_way,schedule_list_r_way,name,toolbox)
         
