@@ -79,6 +79,7 @@ def Get_All_Lines(toolbox:dict) -> None:
                 file_datas.append(file_data)
                 schedules.append(schedule_with_station)
             break
+        print("Creating line {0}".format(line_folder))
         new_line = Line.Create_Line_From_Schedules(file_datas,schedules,toolbox)     
         toolbox["line list"].append(new_line)
 
@@ -103,7 +104,7 @@ def Is_Date(data:str) -> bool:
             return True
         return False
     except IndexError:
-        print(len(data))
+        pass
 
 #-----------------------------------------------------------------
 # given a filepath to a schedule,fetch the file data and give it back as a list
