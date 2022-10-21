@@ -129,9 +129,10 @@ def Get_CSV_File_As_data(filepath: str) -> list:
 
 
 if __name__ == "__main__":
-    if(True):
+    if(False):
         toolbox = {}
         Get_All_Lines(toolbox)
+        pprint(toolbox)
     if(False):
         toolbox = {}
         Get_All_Station(toolbox)
@@ -147,3 +148,4 @@ if __name__ == "__main__":
         for i,label in enumerate(a):
             plt.annotate(label,(y[i],x[i]))
         plt.show()
+    

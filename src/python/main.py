@@ -3,6 +3,7 @@ from map import *
 import matplotlib.pyplot as plt
 import numpy as np
 from station import *
+from file_data import *
  
 def Optimize_Station_Travel_Time(stations_no_copy):
     stations = stations_no_copy.copy()
@@ -21,6 +22,7 @@ if __name__ == "__main__":
     toolbox["starting time"] = 0
     toolbox["speed"] = 5
     toolbox["earth radius"]= 6339000
+    toolbox["day info"] = [WEEK_DAY.MONDAY,DAY_TYPE.SCHOOL]
     
     #get all the station and order them
     Get_All_Station(toolbox)

@@ -15,10 +15,25 @@ class Line:
         self.name = name
         if not(Line.toolbox):
             Line.toolbox = toolbox
+    
+    def Get_Correct_Timetable(self,is_a_way):
+        way_list = None
+        if(is_a_way):
+            way_list = self.m_a_way
+        else:
+            way_list = self.m_r_way
+        for schedule_dic in way_list:
+            for meta in schedule_dic["meta_list"]:
+                if meta.Is_Matching(Line.toolbox["day info"][0],Line.toolbox["day info"][1]):
+                    return schedule_dic["schedule"]
+        return None
+                
+            
+
             
     #-----------------------------------------------------------------------
     # give all the station in the line excluding the one given in parameters
-    # - station-to_exclude: the station to exclude from the list
+    # - station_to_exclude: the station to exclude from the list
     # - return: the station list of the line excluding the one given in the parameters 
     def Get_Stations_Excluding(self,station_to_exclude):
         station_list = self.station_list.copy()
@@ -37,11 +52,15 @@ class Line:
         assert index_start != -1
         assert index_end != -1
 
-        timetable = [[]] 
+        timetable = None
         if(index_start>index_end):
-            timetable = self.m_a_way
+            timetable = self.Get_Correct_Timetable(True)
         else:
-            timetable = self.m_r_way
+            timetable = self.Get_Correct_Timetable(False)
+        
+        #if no timetable exist for that day    
+        if timetable is None:
+            return -1
         
         i = 0
         # find the first passing time that is valid
@@ -91,7 +110,7 @@ class Line:
             if(file_datas[i][2] == 'a'):
                 if(final_station_list is None):
                     final_station_list = temp_station_list
-                schedule_list_a_way.append([list_file_data,csv_matrix[i]])
+                schedule_list_a_way.append({"meta_list":list_file_data,"schedule":csv_matrix[i]})
             elif(file_datas[i][2] == 'r'):
                 schedule_list_r_way.append([list_file_data,csv_matrix[i]])
             else:
