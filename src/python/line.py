@@ -6,6 +6,8 @@ from decimal import InvalidContext
 from operator import truediv
 from file_data import *
 
+from pprint import pprint
+
 class Line:
     toolbox = {}
     def __init__(self,stations_list,a_way,r_way,name,toolbox) -> None:
@@ -27,6 +29,10 @@ class Line:
                 if meta.Is_Matching(Line.toolbox["day info"][0],Line.toolbox["day info"][1]):
                     return schedule_dic["schedule"]
         return None
+    
+    def __eq__(self, other):
+        if (other):
+            return self.name == other
                 
             
 
@@ -112,7 +118,7 @@ class Line:
                     final_station_list = temp_station_list
                 schedule_list_a_way.append({"meta_list":list_file_data,"schedule":csv_matrix[i]})
             elif(file_datas[i][2] == 'r'):
-                schedule_list_r_way.append([list_file_data,csv_matrix[i]])
+                schedule_list_r_way.append({"meta_list":list_file_data,"schedule":csv_matrix[i]})
             else:
                 raise Exception("this should be either a or r")
         return Line(final_station_list,schedule_list_a_way,schedule_list_r_way,name,toolbox)
