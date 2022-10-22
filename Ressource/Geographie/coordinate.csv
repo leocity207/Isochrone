@@ -1,42 +1,164 @@
-Collège Grange     ;45°32'50.9"N 4°51'48.6"E      
-Bon Accueil        ;45°32'37.4"N 4°51'58.3"E    
-La Réclusière       ;45°32'29.9"N 4°52'06.3"E      
-Les Charavelles     ;45°32'22.5"N 4°52'14.2"E      
-Jean Jaurès         ;45°32'14.5"N 4°52'22.7"E     
-Place d'Arpot       ;45°32'05.8"N 4°52'28.5"E      
-Diderot             ;45°31'57.5"N 4°52'27.4"E
-Les Portes de Lyon  ;45°32'00.7"N 4°52'24.0"E
-Tuilerie            ;45°31'50.4"N 4°52'26.5"E      
-Jeu de Paume        ;45°31'37.6"N 4°52'23.7"E
-Saint Maurice       ;45°31'27.7"N 4°52'16.0"E
-Jardin de Ville     ;45°31'19.7"N 4°52'13.2"E      
-Gare de Vienne      ;45°31'16.7"N 4°52'26.7"E               
-Lycée E. Fitzgerald ;45°31'47.1"N 4°51'55.7"E      
-Nicolas Chorier     ;45°31'37.2"N 4°52'41.7"E      
-Temple de Cybèle    ;45°31'28.5"N 4°52'36.8"E      
-Les Célestes        ;45°31'27.7"N 4°52'39.6"E      
-Les Tupinières      ;45°31'23.1"N 4°52'51.5"E      
-L'Octroi            ;45°31'13.4"N 4°53'03.4"E      
-La Passardière      ;45°31'02.7"N 4°53'18.9"E      
-La Petite Rente     ;45°30'53.0"N 4°53'28.4"E      
-Saint Benoît        ;45°30'45.8"N 4°53'47.7"E      
-Roche Claire        ;45°30'48.1"N 4°53'56.3"E      
-Collonge            ;45°30'50.2"N 4°54'12.0"E      
-Jean Monnet         ;45°30'52.8"N 4°54'25.0"E      
-Saint Ignace        ;45°30'54.7"N 4°54'30.9"E      
-Les Hauts de Malissol  ;45°30'53.9"N 4°54'39.6"E   
-Les Hameaux de Malissol  ;45°30'54.1"N 4°54'46.5"E 
-Malissol La Ferme       ;45°30'53.1"N 4°54'55.1"E  
-L’Horloge               ;45°30'51.5"N 4°55'03.2"E  
-Les Cèdres              ;45°31'01.0"N 4°55'07.8"E            
-Rond-Point Malissol     ;45°31'08.3"N 4°55'06.7"E 
-Malissol La Gère        ;45°31'04.2"N 4°55'19.1"E  
-L'Abbaye                ;45°31'17.5"N 4°55'15.3"E  
-Frèrejean               ;45°31'26.4"N 4°55'09.9"E  
-Z.A. de Montplaisir Calor ;45°31'27.1"N 4°55'13.8"E      
-Estrablin Bréguet         ;45°31'13.3"N 4°55'33.4"E
-Tabourette Routier        ;45°30'57.1"N 4°56'09.8"E
-Estrablin le Pinay        ;45°30'57.2"N 4°56'40.6"E
-Perrière                  ;45°30'44.9"N 4°57'21.2"E
-Le Village                ;45°31'00.0"N 4°57'53.2"E
-Le Bois Balay             ;45°31'00.8"N 4°57'31.3"E
+Collège Grange               ;45°32'50.9"N 4°51'48.6"E      
+Bon Accueil                  ;45°32'37.4"N 4°51'58.3"E    
+La Réclusière                ;45°32'29.9"N 4°52'06.3"E      
+Les Charavelles              ;45°32'22.5"N 4°52'14.2"E      
+Jean Jaurès                  ;45°32'14.5"N 4°52'22.7"E     
+Place d'Arpot                ;45°32'05.8"N 4°52'28.5"E      
+Diderot                      ;45°31'57.5"N 4°52'27.4"E
+Les Portes de Lyon           ;45°32'00.7"N 4°52'24.0"E
+Tuilerie                     ;45°31'50.4"N 4°52'26.5"E      
+Jeu de Paume                 ;45°31'37.6"N 4°52'23.7"E
+Saint Maurice                ;45°31'27.7"N 4°52'16.0"E
+Jardin de Ville              ;45°31'19.7"N 4°52'13.2"E      
+Gare de Vienne               ;45°31'16.7"N 4°52'26.7"E  3             
+Lycée E. Fitzgerald          ;45°31'47.1"N 4°51'55.7"E   7  
+Nicolas Chorier              ;45°31'37.2"N 4°52'41.7"E      
+Temple de Cybèle             ;45°31'28.5"N 4°52'36.8"E      
+Les Célestes                 ;45°31'27.7"N 4°52'39.6"E      
+Les Tupinières               ;45°31'23.1"N 4°52'51.5"E      
+L'Octroi                     ;45°31'13.4"N 4°53'03.4"E      
+La Passardière               ;45°31'02.7"N 4°53'18.9"E      
+La Petite Rente              ;45°30'53.0"N 4°53'28.4"E      
+Saint Benoît                 ;45°30'45.8"N 4°53'47.7"E      
+Roche Claire                 ;45°30'48.1"N 4°53'56.3"E      
+Collonge                     ;45°30'50.2"N 4°54'12.0"E      
+Jean Monnet                  ;45°30'52.8"N 4°54'25.0"E      
+Saint Ignace                 ;45°30'54.7"N 4°54'30.9"E      
+Les Hauts de Malissol        ;45°30'53.9"N 4°54'39.6"E   
+Les Hameaux de Malissol      ;45°30'54.1"N 4°54'46.5"E 
+Malissol La Ferme            ;45°30'53.1"N 4°54'55.1"E  1
+L’Horloge                    ;45°30'51.5"N 4°55'03.2"E  
+Les Cèdres                   ;45°31'01.0"N 4°55'07.8"E            
+Rond-Point Malissol          ;45°31'08.3"N 4°55'06.7"E 
+Malissol La Gère             ;45°31'04.2"N 4°55'19.1"E  
+L'Abbaye                     ;45°31'17.5"N 4°55'15.3"E  
+Frèrejean                    ;45°31'26.4"N 4°55'09.9"E  2
+Z.A. de Montplaisir Calor    ;45°31'27.1"N 4°55'13.8"E      
+Estrablin Bréguet            ;45°31'13.3"N 4°55'33.4"E
+Tabourette Routier           ;45°30'57.1"N 4°56'09.8"E
+Estrablin le Pinay           ;45°30'57.2"N 4°56'40.6"E
+Perrière                     ;45°30'44.9"N 4°57'21.2"E
+Le Village                   ;45°31'00.0"N 4°57'53.2"E
+Le Bois Balay                ;45°31'00.8"N 4°57'31.3"E
+Stade de Malissol            ;
+Malissol Victor Hugo         ;
+La Ferme                     ; 1
+Frêre Jean                   ; 2
+Champ de Course              ;
+La Feyta                     ;
+Plan des Aures               ;
+Les Gentianes                ;
+Les Mésanges                 ;
+Centre Pont-Evêque           ;
+Les Bleuets                  ;
+Les Froge                    ;
+La Véga                      ;
+Roncevaux                    ;
+Charlemangne                 ;
+La Ravat                     ;
+Gare de Vienne A             ; 3
+Gare de Vienne D             ; 3
+Champs de Mars               ;
+Cours Verdun                 ;
+Michel Servet                ;
+La Pyramide                  ;
+Donfert Rochereau            ;
+La Trente                    ;
+parmentier                   ;
+Jean Moulin                  ;
+Lycée Galilée                ;
+Saint-Avour                  ;
+Notre dame de l'Isle         ;
+Parc Relais Sud de L'Isle    ;
+Collège de l'Isle            ;
+Estressin C. Commercial      ;
+Estressin Z.I.               ;
+Claude Bernard               ;
+Savoie                       ;
+Centre Social                ;
+Pierre et Marie Curie        ;
+Cité Jardin                  ;
+Gare d'Estressin             ;
+Port au Prince               ;
+Étienne Rey                  ;
+Pasteur                      ;
+tullerie                     ;
+Les Portes de Lyon           ;
+Cuvière                      ;
+Place Drapière               ;
+École Maupas                 ;
+Boulevard Maupas             ;
+Maison d'Enfants             ;
+Hameau Guillemottes          ;
+Guillemottes                 ;
+Mont Salomon                 ;
+Hôpital L. Hussel            ;
+Hôpital-Gérontologie         ;
+Rabelais                     ; 
+Victor Faugier               ;
+L. Revol                     ;
+Lafayette                    ;
+Comte Rolland                ;
+Le Pont                      ;
+Rés. de Cancanne             ;
+Cancanne                     ;
+Les Tanneries                ;
+Le St-Georges                ;
+Les Genêts                   ;
+Le St-Georges                ;
+Clair de Lune                ;
+La Revolée                   ;
+Collège Brassens             ;
+Estressin Z.I.               ;
+Z.I. Seyssuel Tuilerie       ;
+Z.I. Seyssuel Les Gardières  ;
+Z.I. Seyssuel Restaurant     ;
+Centre Commercial Escalières ;
+Centre Commercial Devalors   ;
+Place Jules Ferry            ;
+Cimetière de Chasse          ;
+Avenue F. Mitterrand         ;
+Barbières Mendès France      ;
+Barbières 19 mars 1962       ;
+Quartier Gare                ;
+Cité Berquet                 ;
+Rond-Point Flevieu           ;
+Z.I. de l'Islon              ;
+Chemin de la Loge            ;
+Bel Air                      ;
+Hermitage                    ;
+Coupe-Jarret                 ;
+Les Hauts de Vienne          ;
+Les Grands Prés              ;
+Beauregard Le Haut           ;
+Beauregard Le Grillet        ;
+Beauregard                   ;
+Burgondes                    ;
+Gare de Givors-Ville         ;
+Place de la Liberté          ;
+Port de Bief                 ;
+Tour de Bans                 ;
+La Lone                      ;
+Freyssinet Rd386             ;
+Gare Sncf                    ;
+Place Libération             ;
+Capas                        ;
+La Roche Moussy              ;
+Hameau Barlet                ;
+Chemin de la Lone            ;
+Village                      ;
+Lycée Ella Fitzgerald        ; 7
+Mairie                       ;
+Trénel                       ;
+Centre Nautique              ;
+Vérenay                      ;
+La Roche                     ;
+Place de L’Eglise            ;
+Le Goutay                    ;
+Tupin                        ;
+Collège le Bassenon          ;
+Bassenon                     ;
+Centre                       ;
+Salle de L’Arbuel            ;
+Centre Hospitalier           ;
+La Maladière                 ;
