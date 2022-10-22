@@ -10,8 +10,10 @@ Tuilerie                     ;45°31'50.4"N 4°52'26.5"E
 Jeu de Paume                 ;45°31'37.6"N 4°52'23.7"E
 Saint Maurice                ;45°31'27.7"N 4°52'16.0"E
 Jardin de Ville              ;45°31'19.7"N 4°52'13.2"E      
-Gare de Vienne               ;45°31'16.7"N 4°52'26.7"E  3             
-Lycée E. Fitzgerald          ;45°31'47.1"N 4°51'55.7"E   7  
+Gare de Vienne               ;45°31'16.7"N 4°52'26.7"E    
+Gare de Vienne A             ;45°31'16.7"N 4°52'26.7"E
+Gare de Vienne D             ;45°31'16.7"N 4°52'26.7"E       
+Lycée E. Fitzgerald          ;45°31'47.1"N 4°51'55.7"E 
 Nicolas Chorier              ;45°31'37.2"N 4°52'41.7"E      
 Temple de Cybèle             ;45°31'28.5"N 4°52'36.8"E      
 Les Célestes                 ;45°31'27.7"N 4°52'39.6"E      
@@ -26,13 +28,13 @@ Jean Monnet                  ;45°30'52.8"N 4°54'25.0"E
 Saint Ignace                 ;45°30'54.7"N 4°54'30.9"E      
 Les Hauts de Malissol        ;45°30'53.9"N 4°54'39.6"E   
 Les Hameaux de Malissol      ;45°30'54.1"N 4°54'46.5"E 
-Malissol La Ferme            ;45°30'53.1"N 4°54'55.1"E  1
+Malissol La Ferme            ;45°30'53.1"N 4°54'55.1"E
 L’Horloge                    ;45°30'51.5"N 4°55'03.2"E  
 Les Cèdres                   ;45°31'01.0"N 4°55'07.8"E            
 Rond-Point Malissol          ;45°31'08.3"N 4°55'06.7"E 
 Malissol La Gère             ;45°31'04.2"N 4°55'19.1"E  
 L'Abbaye                     ;45°31'17.5"N 4°55'15.3"E  
-Frèrejean                    ;45°31'26.4"N 4°55'09.9"E  2
+Frèrejean                    ;45°31'26.4"N 4°55'09.9"E  
 Z.A. de Montplaisir Calor    ;45°31'27.1"N 4°55'13.8"E      
 Estrablin Bréguet            ;45°31'13.3"N 4°55'33.4"E
 Tabourette Routier           ;45°30'57.1"N 4°56'09.8"E
@@ -40,125 +42,119 @@ Estrablin le Pinay           ;45°30'57.2"N 4°56'40.6"E
 Perrière                     ;45°30'44.9"N 4°57'21.2"E
 Le Village                   ;45°31'00.0"N 4°57'53.2"E
 Le Bois Balay                ;45°31'00.8"N 4°57'31.3"E
-Stade de Malissol            ;
-Malissol Victor Hugo         ;
-La Ferme                     ; 1
-Frêre Jean                   ; 2
-Champ de Course              ;
-La Feyta                     ;
-Plan des Aures               ;
-Les Gentianes                ;
-Les Mésanges                 ;
-Centre Pont-Evêque           ;
-Les Bleuets                  ;
-Les Froge                    ;
-La Véga                      ;
-Roncevaux                    ;
-Charlemangne                 ;
-La Ravat                     ;
-Gare de Vienne A             ; 3
-Gare de Vienne D             ; 3
-Champs de Mars               ;
-Cours Verdun                 ;
-Michel Servet                ;
-La Pyramide                  ;
-Donfert Rochereau            ;
-La Trente                    ;
-parmentier                   ;
-Jean Moulin                  ;
-Lycée Galilée                ;
-Saint-Avour                  ;
-Notre dame de l'Isle         ;
-Parc Relais Sud de L'Isle    ;
-Collège de l'Isle            ;
-Estressin C. Commercial      ;
-Estressin Z.I.               ;
-Claude Bernard               ;
-Savoie                       ;
-Centre Social                ;
-Pierre et Marie Curie        ;
-Cité Jardin                  ;
-Gare d'Estressin             ;
-Port au Prince               ;
-Étienne Rey                  ;
-Pasteur                      ;
-tullerie                     ;
-Les Portes de Lyon           ;
-Cuvière                      ;
-Place Drapière               ;
-École Maupas                 ;
-Boulevard Maupas             ;
-Maison d'Enfants             ;
-Hameau Guillemottes          ;
-Guillemottes                 ;
-Mont Salomon                 ;
-Hôpital L. Hussel            ;
-Hôpital-Gérontologie         ;
-Rabelais                     ; 
-Victor Faugier               ;
-L. Revol                     ;
-Lafayette                    ;
-Comte Rolland                ;
-Le Pont                      ;
-Rés. de Cancanne             ;
-Cancanne                     ;
-Les Tanneries                ;
-Le St-Georges                ;
-Les Genêts                   ;
-Le St-Georges                ;
-Clair de Lune                ;
-La Revolée                   ;
-Collège Brassens             ;
-Estressin Z.I.               ;
-Z.I. Seyssuel Tuilerie       ;
-Z.I. Seyssuel Les Gardières  ;
-Z.I. Seyssuel Restaurant     ;
-Centre Commercial Escalières ;
-Centre Commercial Devalors   ;
-Place Jules Ferry            ;
-Cimetière de Chasse          ;
-Avenue F. Mitterrand         ;
-Barbières Mendès France      ;
-Barbières 19 mars 1962       ;
-Quartier Gare                ;
-Cité Berquet                 ;
-Rond-Point Flevieu           ;
-Z.I. de l'Islon              ;
-Chemin de la Loge            ;
-Bel Air                      ;
-Hermitage                    ;
-Coupe-Jarret                 ;
-Les Hauts de Vienne          ;
-Les Grands Prés              ;
-Beauregard Le Haut           ;
-Beauregard Le Grillet        ;
-Beauregard                   ;
-Burgondes                    ;
-Gare de Givors-Ville         ;
-Place de la Liberté          ;
-Port de Bief                 ;
-Tour de Bans                 ;
-La Lone                      ;
-Freyssinet Rd386             ;
-Gare Sncf                    ;
-Place Libération             ;
-Capas                        ;
-La Roche Moussy              ;
-Hameau Barlet                ;
-Chemin de la Lone            ;
-Village                      ;
-Lycée Ella Fitzgerald        ; 7
-Mairie                       ;
-Trénel                       ;
-Centre Nautique              ;
-Vérenay                      ;
-La Roche                     ;
-Place de L’Eglise            ;
-Le Goutay                    ;
-Tupin                        ;
-Collège le Bassenon          ;
-Bassenon                     ;
-Centre                       ;
-Salle de L’Arbuel            ;
-Centre Hospitalier           ;
-La Maladière                 ;
+Stade de Malissol            ;45°31'00.6"N 4°54'28.6"E
+Malissol Victor Hugo         ;45°30'57.7"N 4°54'42.5"E
+Champ de Course              ;45°31'32.2"N 4°55'32.6"E
+La Feyta                     ;45°31'37.6"N 4°55'37.2"E
+Plan des Aures               ;45°31'40.0"N 4°55'20.8"E
+Les Gentianes                ;45°31'39.4"N 4°55'05.1"E
+Les Mésanges                 ;45°31'38.9"N 4°54'56.8"E
+Centre Pont-Evêque           ;45°31'48.0"N 4°54'43.9"E
+Les Bleuets                  ;45°31'50.5"N 4°54'33.7"E
+Les Froge                    ;45°31'50.4"N 4°54'20.6"E
+La Véga                      ;45°31'47.6"N 4°54'09.6"E
+Roncevaux                    ;45°31'32.3"N 4°54'26.2"E
+Charlemangne                 ;45°31'36.2"N 4°54'13.7"E
+La Ravat                     ;45°31'27.5"N 4°53'31.4"E
+Champs de Mars               ;45°31'17.0"N 4°52'16.1"E
+Cours Verdun                 ;45°31'11.8"N 4°52'14.1"E
+Michel Servet                ;45°31'04.6"N 4°52'10.9"E
+La Pyramide                  ;45°30'59.1"N 4°52'07.4"E
+Donfert Rochereau            ;45°30'54.4"N 4°52'04.4"E
+La Trente                    ;45°30'46.4"N 4°51'56.0"E
+parmentier                   ;45°30'37.1"N 4°51'45.0"E
+Jean Moulin                  ;45°30'28.7"N 4°51'34.3"E
+Lycée Galilée                ;45°30'14.7"N 4°51'16.6"E
+Saint-Avour                  ;45°30'09.1"N 4°51'09.6"E
+Notre dame de l'Isle         ;45°30'13.6"N 4°51'04.6"E
+Parc Relais Sud de L'Isle    ;45°30'07.8"N 4°50'55.5"E
+Collège de l'Isle            ;45°30'20.0"N 4°51'06.9"E
+Estressin C. Commercial      ;45°32'32.2"N 4°51'01.3"E
+Estressin Z.I.               ;45°32'31.5"N 4°51'17.3"E
+Claude Bernard               ;45°32'28.6"N 4°51'24.6"E
+Savoie                       ;45°32'25.7"N 4°51'29.7"E
+Centre Social                ;45°32'25.7"N 4°51'42.4"E
+Pierre et Marie Curie        ;45°32'28.9"N 4°51'44.0"E
+Cité Jardin                  ;45°32'26.2"N 4°51'54.6"E
+Gare d'Estressin             ;45°32'24.7"N 4°52'02.5"E
+Port au Prince               ;45°32'16.6"N 4°52'04.9"E
+Étienne Rey                  ;45°32'13.2"N 4°52'09.2"E
+Pasteur                      ;45°32'08.4"N 4°52'17.3"E
+tullerie                     ;45°31'50.4"N 4°52'26.4"E
+Les Portes de Lyon           ;45°32'00.7"N 4°52'23.8"E
+Cuvière                      ;45°31'44.7"N 4°52'40.8"E
+Place Drapière               ;45°31'40.1"N 4°52'47.4"E
+École Maupas                 ;45°31'47.4"N 4°52'55.7"E
+Boulevard Maupas             ;45°31'55.2"N 4°53'03.3"E
+Maison d'Enfants             ;45°32'05.6"N 4°53'11.6"E
+Hameau Guillemottes          ;45°32'09.7"N 4°53'16.2"E
+Guillemottes                 ;45°32'13.2"N 4°53'10.8"E
+Mont Salomon                 ;45°32'11.8"N 4°52'59.1"E
+Hôpital L. Hussel            ;45°32'07.4"N 4°52'51.9"E
+Hôpital-Gérontologie         ;45°31'57.3"N 4°52'55.4"E
+Rabelais                     ;45°31'37.6"N 4°52'56.7"E
+Victor Faugier               ;45°31'33.0"N 4°53'04.4"E
+L. Revol                     ;45°31'29.7"N 4°53'16.9"E
+Lafayette                    ;45°31'29.2"N 4°53'23.3"E
+Comte Rolland                ;45°31'38.1"N 4°53'52.1"E
+Le Pont                      ;45°31'46.1"N 4°54'06.2"E
+Rés. de Cancanne             ;45°31'52.8"N 4°54'05.2"E
+Cancanne                     ;45°32'01.3"N 4°54'13.0"E
+Les Tanneries                ;45°31'59.8"N 4°54'45.4"E
+Le St-Georges                ;45°31'56.2"N 4°54'36.5"E
+Les Genêts                   ;45°31'52.9"N 4°54'26.7"E
+Clair de Lune                ;45°31'49.6"N 4°55'10.5"E
+La Revolée                   ;45°31'51.7"N 4°55'24.0"E
+Collège Brassens             ;45°31'42.4"N 4°55'33.9"E
+Z.I. Seyssuel Tuilerie       ;45°33'12.7"N 4°49'48.9"E
+Z.I. Seyssuel Les Gardières  ;45°33'19.8"N 4°49'41.8"E
+Z.I. Seyssuel Restaurant     ;45°33'32.4"N 4°49'27.1"E
+Centre Commercial Escalières ;45°34'26.5"N 4°48'41.8"E
+Centre Commercial Devalors   ;45°34'33.0"N 4°48'38.1"E
+Place Jules Ferry            ;45°34'48.5"N 4°48'21.1"E
+Cimetière de Chasse          ;45°35'02.3"N 4°48'10.2"E
+Avenue F. Mitterrand         ;45°34'59.8"N 4°47'52.8"E
+Barbières Mendès France      ;45°35'04.4"N 4°47'44.9"E
+Barbières 19 mars 1962       ;45°35'07.7"N 4°47'53.6"E
+Quartier Gare                ;45°34'52.6"N 4°47'38.6"E
+Cité Berquet                 ;45°35'00.1"N 4°47'30.5"E
+Rond-Point Flevieu           ;45°35'12.6"N 4°47'14.1"E
+Z.I. de l'Islon              ;45°35'01.7"N 4°47'03.0"E
+Chemin de la Loge            ;45°31'12.0"N 4°52'27.0"E
+Bel Air                      ;45°31'01.6"N 4°52'24.4"E
+Hermitage                    ;45°30'50.9"N 4°52'22.4"E
+Coupe-Jarret                 ;45°30'42.3"N 4°52'24.3"E
+Les Hauts de Vienne          ;45°30'50.0"N 4°52'35.8"E
+Les Grands Prés              ;45°30'58.7"N 4°52'46.4"E
+Beauregard Le Haut           ;45°30'31.4"N 4°53'03.3"E
+Beauregard Le Grillet        ;45°30'50.3"N 4°53'03.4"E
+Beauregard                   ;45°31'08.5"N 4°52'42.8"E
+Burgondes                    ;45°31'11.7"N 4°52'42.4"E
+Gare de Givors-Ville         ;45°35'04.8"N 4°45'59.6"E
+Place de la Liberté          ;45°35'06.4"N 4°46'31.1"E
+Port de Bief                 ;45°34'48.9"N 4°46'46.2"E
+Tour de Bans                 ;45°34'38.1"N 4°47'16.6"E
+La Lone                      ;45°34'30.8"N 4°47'26.6"E
+Freyssinet Rd386             ;45°34'04.5"N 4°47'58.2"E
+Gare Sncf                    ;45°33'50.1"N 4°48'15.5"E
+Place Libération             ;45°33'40.4"N 4°48'27.2"E
+Capas                        ;45°33'32.8"N 4°48'36.5"E
+La Roche Moussy              ;45°33'23.7"N 4°48'47.2"E
+Hameau Barlet                ;45°32'26.1"N 4°50'07.5"E
+Chemin de la Lone            ;45°32'15.2"N 4°51'19.1"E
+Village                      ;45°32'05.9"N 4°51'37.3"E
+Lycée Ella Fitzgerald        ;45°31'53.0"N 4°51'49.1"E
+Mairie                       ;45°31'30.1"N 4°52'02.9"E
+Trénel                       ;45°31'22.9"N 4°51'58.5"E
+Centre Nautique              ;45°30'45.5"N 4°51'09.5"E
+Vérenay                      ;45°30'11.8"N 4°50'02.8"E
+La Roche                     ;45°29'26.7"N 4°48'53.8"E
+Place de L’Eglise            ;45°29'19.1"N 4°48'30.4"E
+Le Goutay                    ;45°29'13.6"N 4°47'54.0"E
+Tupin                        ;45°29'01.0"N 4°47'22.6"E
+Collège le Bassenon          ;45°28'15.1"N 4°46'33.3"E
+Bassenon                     ;45°28'07.1"N 4°46'26.2"E
+Centre                       ;45°27'44.5"N 4°46'07.8"E
+Salle de L’Arbuel            ;45°27'38.3"N 4°45'55.4"E
+Centre Hospitalier           ;45°27'30.3"N 4°45'35.8"E
+La Maladière                 ;45°27'26.9"N 4°45'27.1"E
