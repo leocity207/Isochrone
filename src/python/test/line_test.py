@@ -46,13 +46,27 @@ class Line_Test(unittest.TestCase):
         print("test_Get_Correct_Timetable 3 OK")
         
         Line.toolbox["day info"] = [WEEK_DAY.MONDAY,DAY_TYPE.SCHOOL]
-        line_1 = line_list[line_list.index("ligne 1")]
+        line_1 = line_list[line_list.index("line 1")]
         line_1_schedule = line_1.Get_Correct_Timetable(False)
         self.assertEqual(line_1_schedule, line_list[0].m_r_way[0]["schedule"])
         print("test_Get_Correct_Timetable 4 OK")
         
         
+    def test_Get_Stations_Excluding(self):
+        print("")
+        line_list = Line.toolbox["line list"]
         
+        line_7 = line_list[line_list.index("line 7")]
+        
+        station_list = line_7.Get_Stations_Excluding(Line.toolbox["station_list"][0])
+        self.assertEqual(station_list,line_7.station_list)
+        print("test_Get_Stations_Excluding 1 OK")
+        
+        station_list_2 = line_7.Get_Stations_Excluding(Line.toolbox["station_list"][11])
+        copy_line_7_station = line_7.station_list
+        copy_line_7_station.pop(copy_line_7_station.index("Jardin de Ville"))
+        self.assertEqual(station_list_2,copy_line_7_station)
+        print("test_Get_Stations_Excluding 2 OK")
 
 if __name__ == '__main__':
     unittest.main()

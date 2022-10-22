@@ -10,8 +10,14 @@ from pprint import pprint
 
 class Line:
     toolbox = {}
-    def __init__(self,stations_list,a_way,r_way,name,toolbox) -> None:
-        self.station_list = stations_list
+    def __init__(self,stations_list_name,a_way,r_way,name,toolbox) -> None:
+        self.station_list = []
+        for stations_name in stations_list_name:
+            try:
+                station_index = toolbox["station_list"].index(stations_name)
+                self.station_list.append(toolbox["station_list"][station_index])
+            except:
+                raise Exception("Station: {} could not be found inside the station list".format(stations_name))
         self.m_a_way = a_way
         self.m_r_way = r_way
         self.name = name
@@ -43,8 +49,10 @@ class Line:
     # - return: the station list of the line excluding the one given in the parameters 
     def Get_Stations_Excluding(self,station_to_exclude):
         station_list = self.station_list.copy()
-        station_list.remove(station_to_exclude)
-        return station_list
+        try:
+            station_list.remove(station_to_exclude.name)
+        finally:
+            return station_list
     
     #--------------------------------------------------------------
     # give the time at witch you arrive at the next end_station from the starting station
