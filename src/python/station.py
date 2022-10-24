@@ -82,3 +82,10 @@ class Station:
                 if(new_best_time == -1):
                     continue
                 station.Try_Set_Best_Time(new_best_time)
+    
+    @staticmethod
+    def Find_Station_By_Name(station_name):
+        for station in Station.toolbox["station_list"]:
+            if station.name == station_name:
+                return station
+        return None

@@ -131,3 +131,7 @@ class Line:
                 raise Exception("this should be either a or r")
         return Line(final_station_list,schedule_list_a_way,schedule_list_r_way,name,toolbox)
         
+
+    @staticmethod
+    def Get_Line_By_Name(line_name):
+        return Line.toolbox[Line.toolbox.index(line_name)]
