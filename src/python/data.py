@@ -27,6 +27,7 @@ def Get_All_Station(toolbox: dict) -> None:
             station_list.append(Station(planar_angular_coordinate[i],coordinate_csv[i][0].rstrip(),toolbox))
     station_list.sort()
     toolbox["station_list"] = station_list
+    
     return
             
     
@@ -129,14 +130,20 @@ def Get_CSV_File_As_data(filepath: str) -> list:
 
 
 if __name__ == "__main__":
-    if(True):
+    if(False):
         toolbox = {}
         toolbox["Ressource_path"] = "..\.."
         Get_All_Lines(toolbox)
         pprint(toolbox)
-    if(False):
+    if(True):
         toolbox = {}
+        toolbox["starting time"] = datetime.datetime.strptime("7:00","%H:%M")
+        toolbox["speed"] = 1.11 #m/s
+        toolbox["starting coordinate"] = np.array([50,50])
+        toolbox["earth radius"]= 6339000
+        toolbox["Ressource_path"] = ""
         Get_All_Station(toolbox)
+        Station.Find_Station_By_Name("Collège Grange")
     if(False): #test get geogrpahic coordinate
         toolbox = {"earth radius": 6339000}
         Get_All_Station(toolbox)

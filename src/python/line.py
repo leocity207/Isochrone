@@ -8,14 +8,16 @@ from file_data import *
 
 from pprint import pprint
 
+from station import *
+
 class Line:
     toolbox = {}
     def __init__(self,stations_list_name,a_way,r_way,name,toolbox) -> None:
         self.station_list = []
         for stations_name in stations_list_name:
             try:
-                station_index = toolbox["station_list"].index(stations_name)
-                self.station_list.append(toolbox["station_list"][station_index])
+                
+                self.station_list.append(Station.Find_Station_By_Name(stations_name))
             except:
                 raise Exception("Station: {} could not be found inside the station list".format(stations_name))
         self.m_a_way = a_way
@@ -50,7 +52,7 @@ class Line:
     def Get_Stations_Excluding(self,station_to_exclude):
         station_list = self.station_list.copy()
         try:
-            station_list.remove(station_to_exclude.name)
+            station_list.remove(station_to_exclude)
         finally:
             return station_list
     
@@ -78,7 +80,7 @@ class Line:
         
         i = 0
         # find the first passing time that is valid
-        while(i<len(timetable[0])-1 and (timetable[index_start,i] is None or timetable[index_start,i] <start_station.Get_Best_Travel_Time_Start_To_Station()) ):
+        while(i<len(timetable[0])-1 and (timetable[index_start][i] is None or timetable[index_start][i] <start_station.Get_Best_Travel_Time_Start_To_Station()) ):
             i+=1
         #if nothing was found just return nothing 
         if(i == len(timetable[0])-1 ):
@@ -134,4 +136,4 @@ class Line:
 
     @staticmethod
     def Get_Line_By_Name(line_name):
-        return Line.toolbox[Line.toolbox.index(line_name)]
+        return Line.toolbox["line list"][Line.toolbox["line list"].index(line_name)]

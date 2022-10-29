@@ -11,7 +11,7 @@ class Station:
     def __init__(self,coordinate,name,toolbox):
         Station.toolbox = toolbox
         self.coordinate = coordinate
-        self.best_time = float('inf')
+        self.best_time = Station.toolbox["starting time"] + Get_Base_Travel_Time(Station.toolbox["starting coordinate"],self.coordinate,toolbox)
         self.name = name
         self.reached_by_transport = False
         self.m_has_been_reached_by_transport = False
@@ -25,8 +25,8 @@ class Station:
     def Get_Coordinate(self):
         return self.coordinate
  
-    def Get_Travel_Time_Station_Coordinate(self, coordinate):
-        return Get_Base_Travel_Time(coordinate,self.coordinate,Station.toolbox)
+    def Get_Travel_Time_Station_Coordinate(self, station):
+        return Get_Base_Travel_Time(station.coordinate,self.coordinate,Station.toolbox)
     
     def Get_Best_Travel_Time_Start_To_Station(self):
         return self.best_time
@@ -40,7 +40,7 @@ class Station:
         self.best_time = new_best_time
 
     def Get_Time_From_Start(self):
-        return(Get_Base_Travel_Time(self.coordinate,toolbox=["starting coordinate"]))
+        return(Get_Base_Travel_Time(self.coordinate,Station.toolbox["starting coordinate"],Station.toolbox))
     
     def Is_Current_Best_Time_Better_Than_Base_Travel_Time(self):
         return self.best_time < self.Get_Time_From_Start()
@@ -61,7 +61,7 @@ class Station:
         if not(self.m_has_been_reached_by_transport):
             return
         for station in stations:
-            new_test_time = station.Get_Travel_Time_Station_Coordinate(self.coordinate)+self.best_time
+            new_test_time = station.Get_Travel_Time_Station_Coordinate(self)+self.best_time
             station.Try_Set_Best_Time(new_test_time)
             
     def Get_Passing_Lines(self):
@@ -69,9 +69,7 @@ class Station:
         for line in Station.toolbox["line list"]:
             if(line.Is_Station_In_Line(self)):
                 passing_lines.append(line)
-        
-    def Get_Closest_Transport_To(self,starting_station,station_starting_time,line):
-        pass
+        return passing_lines
     
     def Optimize_Stations_Line(self,stations):
         lines = self.Get_Passing_Lines()
