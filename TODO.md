@@ -170,3 +170,24 @@ TODO
     * revoir la manier dont on accede a a_way et r_way qui ne sera pas aussi simple
   * crée des teste pour valider l'algo d'optimisation
   * faire plus de recherche sur les diagrames de voronoi weighted additif   ss
+
+
+31/10/2022
+==========
+DONE
+----
+* ajout des testes
+* coordoné des station rempli et terminer
+* relecture sur l'algorithme 
+* revision de l'architecture des A_ways R_ways pour un acces plus simple
+
+
+TODO 
+----
+* Programme
+  * crée l'algorithm pour obtimiser toute les station connaisant le trajet 
+    * documentation pour les fonction des differente classes
+  * faire plus de recherche sur les diagrames de voronoi weighted additif
+  * lire article sur les carte Isochrone et les transport
+  * tester le programme grandeur nature
+  * evolution vers le language C ?
