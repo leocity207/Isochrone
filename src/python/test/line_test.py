@@ -27,6 +27,7 @@ class Line_Test(unittest.TestCase):
         
     
     def test_Get_Correct_Timetable(self):
+        print(" ")
         line_list = Line.toolbox["line list"]
         
         Line.toolbox["day info"] = [WEEK_DAY.MONDAY,DAY_TYPE.SCHOOL]
@@ -55,7 +56,7 @@ class Line_Test(unittest.TestCase):
         
         
     def test_Get_Stations_Excluding(self):
-        print("")
+        print(" ")
         
         line_7 =  Line.Get_Line_By_Name("line 7")
         
@@ -74,7 +75,7 @@ class Line_Test(unittest.TestCase):
 
     
     def test_Is_Station_In_Line(self):
-        print("")
+        print(" ")
 
         gare_de_vienne = Station.Find_Station_By_Name("Gare de Vienne A")
         
@@ -89,23 +90,29 @@ class Line_Test(unittest.TestCase):
     
 
     def test_Get_Best_Time_To_Station(self):
-        print("")
+        print(" ")
         line_6 = Line.Get_Line_By_Name("line 6")
         Line.toolbox["starting time"] = datetime.datetime.strptime("6:00","%H:%M")
 
         gare_de_vienne = Station.Find_Station_By_Name("Gare de Vienne")
+        gare_de_vienne.best_time = Station.toolbox["starting time"] + Get_Base_Travel_Time(Station.toolbox["starting coordinate"],gare_de_vienne.coordinate,Station.toolbox)
+        Line.toolbox["starting coordinate"] = gare_de_vienne.coordinate
+        
         Claire_de_lune = Station.Find_Station_By_Name("Clair de Lune")
-
+        
         best_time = line_6.Get_Best_Time_To_Station(gare_de_vienne,Claire_de_lune)
 
         self.assertEqual(best_time,datetime.datetime.strptime("7:38","%H:%M"))
+        print("Get_Best_Time_To_Station 1 OK")
 
         #station need to change their best time
-        # Line.toolbox["starting time"] = datetime.datetime.strptime("21:00","%H:%M")
+        Line.toolbox["starting time"] = datetime.datetime.strptime("21:00","%H:%M")
+        gare_de_vienne.best_time = Station.toolbox["starting time"] + Get_Base_Travel_Time(Station.toolbox["starting coordinate"],gare_de_vienne.coordinate,Station.toolbox)
+        
+        best_time = line_6.Get_Best_Time_To_Station(gare_de_vienne,Claire_de_lune)
 
-        # best_time = line_6.Get_Best_Time_To_Station(gare_de_vienne,Claire_de_lune)
-
-        # self.assertEqual(best_time,-1)
+        self.assertEqual(best_time,-1)
+        print("Get_Best_Time_To_Station 2 OK")
 
 
 if __name__ == '__main__':

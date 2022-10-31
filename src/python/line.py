@@ -12,6 +12,7 @@ from station import *
 
 class Line:
     toolbox = {}
+    
     def __init__(self,stations_list_name,a_way,r_way,name,toolbox) -> None:
         self.station_list = []
         for stations_name in stations_list_name:
@@ -41,9 +42,6 @@ class Line:
     def __eq__(self, other):
         if (other):
             return self.name == other
-                
-            
-
             
     #-----------------------------------------------------------------------
     # give all the station in the line excluding the one given in parameters
@@ -70,9 +68,9 @@ class Line:
 
         timetable = None
         if(index_start>index_end):
-            timetable = self.Get_Correct_Timetable(True)
-        else:
             timetable = self.Get_Correct_Timetable(False)
+        else:
+            timetable = self.Get_Correct_Timetable(True)
         
         #if no timetable exist for that day    
         if timetable is None:
@@ -88,19 +86,30 @@ class Line:
 
         #try to find a path from start to end that could match 
         while(i<len(timetable[0])-1):
-            if(not(timetable[index_end,i] is None) and not(timetable[index_start,i] is None)):
-                return timetable[index_end,i] #yes we found a matching path
+            if(not(timetable[index_end][i] is None) and not(timetable[index_start][i] is None)):
+                return timetable[index_end][i] #yes we found a matching path
             i+=1
         
         #if we just don't fidna  path from start to end that mean none exist
         return -1
         
-
     #------------------------------------------
     # get if the given station is in the current line
     # - station: a station object you want to check if in the current line
     # - return : a boolean wich is true if the station is in the line
-    def Is_Station_In_Line(self,station):   
+    def Is_Station_In_Line(self,station):
+        if station.name == "Gare de Vienne" or station.name == "Gare de Vienne A" or station.name == "Gare de Vienne D":
+             G1 = Station.Find_Station_By_Name("Gare de Vienne")
+             G2 = Station.Find_Station_By_Name("Gare de Vienne A")
+             G3 = Station.Find_Station_By_Name("Gare de Vienne D")
+             if G1 in self.station_list:
+                 return True
+             elif G2 in self.station_list:
+                 return True
+             elif G3 in self.station_list:
+                 return True
+             else:
+                 return False
         if station in self.station_list:
             return True
         return False
@@ -111,8 +120,7 @@ class Line:
         for line in csv_matrix:
             station_list.append(line.pop(0))
         return station_list
-        
-    
+
     @staticmethod
     def Create_Line_From_Schedules(file_datas,csv_matrix,toolbox):
         assert (len(file_datas) == len(csv_matrix))
@@ -132,7 +140,6 @@ class Line:
             else:
                 raise Exception("this should be either a or r")
         return Line(final_station_list,schedule_list_a_way,schedule_list_r_way,name,toolbox)
-        
 
     @staticmethod
     def Get_Line_By_Name(line_name):

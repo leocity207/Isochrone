@@ -25,6 +25,7 @@ class Line_Test(unittest.TestCase):
         Get_All_Lines(Line.toolbox)
         
     def test_Get_Coordinate(self):
+        print(" ")
         vienne_station = Station.Find_Station_By_Name("Gare de Vienne")
         lycee_station = Station.Find_Station_By_Name("Lycée Ella Fitzgerald")
         
@@ -33,18 +34,21 @@ class Line_Test(unittest.TestCase):
         print("test_Get_Coordinate: OK")
     
     def test_Get_Travel_Time_Station_Coordinate(self):
+        print(" ")
         college_station = Station.Find_Station_By_Name("Collège Grange")
         gare_vienne = Station.Find_Station_By_Name("Gare de Vienne")
         func_ret = college_station.Get_Travel_Time_Station_Coordinate(gare_vienne)
         college_coordinate = college_station.coordinate
         vienne_coordinate = gare_vienne.coordinate
-        travel_time = Get_Base_Travel_Time(college_coordinate,vienne_coordinate,Station.toolbox)
+        travel_time =   Get_Base_Travel_Time(college_coordinate,vienne_coordinate,Station.toolbox)
         travel_time2 = Get_Base_Travel_Time(vienne_coordinate,college_coordinate,Station.toolbox)
         self.assertEqual(travel_time,func_ret)
-        self.assertEqual(func_ret,travel_time)
+        self.assertEqual(func_ret,travel_time2)
         print("Get_Travel_Time_Station_Coordinate: OK")
+        
     
     def test_Get_Time_From_Start(self):
+        print(" ")
         gare_vienne = Station.Find_Station_By_Name("Gare de Vienne")
         Station.toolbox["starting coordinate"] = gare_vienne.coordinate
         
@@ -59,6 +63,7 @@ class Line_Test(unittest.TestCase):
         print("test_Get_Time_From_Start: OK 2")
     
     def test_Get_Passing_Lines(self):
+        print(" ")
         vienne_station = Station.Find_Station_By_Name("Gare de Vienne")
         lycee_station = Station.Find_Station_By_Name("Lycée Ella Fitzgerald")
         
@@ -68,7 +73,7 @@ class Line_Test(unittest.TestCase):
         for from_get in vienne_lines_list:
             self.assertTrue(from_get in true_vienne_lines_list)
         for true_get in true_vienne_lines_list:
-            self.assertTrue(from_get in vienne_lines_list)
+            self.assertTrue(true_get in vienne_lines_list)
         print("Get_Passing_Lines: OK 1")
         
         lycee_line_list = lycee_station.Get_Passing_Lines()
@@ -76,8 +81,8 @@ class Line_Test(unittest.TestCase):
         true_lycee_line_liste = [Line.Get_Line_By_Name(station_name) for station_name in lycee_station_name_list]
         for from_get in lycee_line_list:
             self.assertTrue(from_get in true_lycee_line_liste)
-        for from_get in true_lycee_line_liste:
-            self.assertTrue(from_get in lycee_line_list)
+        for true_get in true_lycee_line_liste:
+            self.assertTrue(true_get in lycee_line_list)
         print("Get_Passing_Lines: OK 2")
     
 if __name__ == '__main__':

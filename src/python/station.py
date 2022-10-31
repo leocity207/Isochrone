@@ -70,7 +70,10 @@ class Station:
             if(line.Is_Station_In_Line(self)):
                 passing_lines.append(line)
         return passing_lines
-    
+    #-------------------------------------------------------------------------
+    # Try to see if there is a best time from this station to the end station
+    # Knowing that self is the reference and we know the time we arrive at the 
+    # we expect the time when we arrive at the next station 
     def Optimize_Stations_Line(self,stations):
         lines = self.Get_Passing_Lines()
         for line in lines:
