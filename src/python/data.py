@@ -1,6 +1,7 @@
 
 from hashlib import new
 import os
+import sys
 from typing import List
 from station import *
 import csv
@@ -16,7 +17,7 @@ from station import *
 # fetch all the station from the ressources files of coordinate
 # - toolbox: the toolbox containing all the data
 def Get_All_Station(toolbox: dict) -> None:
-    path_to_cordinate_file = "Ressource\Geographie\coordinate.csv"
+    path_to_cordinate_file =  os.path.join(toolbox["Ressource_path"] ,"Ressource\Geographie\coordinate.csv")
     with open(path_to_cordinate_file,"r",encoding='utf8') as file:
         coordinate_csv = list(csv.reader(file, delimiter= ';'))
         angular_coord_strings = [e[1] for e in coordinate_csv]
@@ -26,6 +27,7 @@ def Get_All_Station(toolbox: dict) -> None:
             station_list.append(Station(planar_angular_coordinate[i],coordinate_csv[i][0].rstrip(),toolbox))
     station_list.sort()
     toolbox["station_list"] = station_list
+    
     return
             
     
@@ -63,7 +65,7 @@ def Get_File_Attribute(file_name: str) -> list:
 # load all the line from the ressource and populate the "line list" insde the toolbox
 # - toolbox : the toolbox containing all the program data
 def Get_All_Lines(toolbox:dict) -> None:
-    path_to_ressource = "Ressource"
+    path_to_ressource = os.path.join(toolbox["Ressource_path"] ,"Ressource")
     lines_folders = ["ligne1","ligne2","ligne3","ligne4","ligne5","ligne6","ligne7","ligne8","ligne134"]
     toolbox["line list"] = []
     for line_folder in lines_folders:
@@ -79,7 +81,6 @@ def Get_All_Lines(toolbox:dict) -> None:
                 file_datas.append(file_data)
                 schedules.append(schedule_with_station)
             break
-        print("Creating line {0}".format(line_folder))
         new_line = Line.Create_Line_From_Schedules(file_datas,schedules,toolbox)     
         toolbox["line list"].append(new_line)
 
@@ -131,11 +132,18 @@ def Get_CSV_File_As_data(filepath: str) -> list:
 if __name__ == "__main__":
     if(False):
         toolbox = {}
+        toolbox["Ressource_path"] = "..\.."
         Get_All_Lines(toolbox)
         pprint(toolbox)
-    if(False):
+    if(True):
         toolbox = {}
+        toolbox["starting time"] = datetime.datetime.strptime("7:00","%H:%M")
+        toolbox["speed"] = 1.11 #m/s
+        toolbox["starting coordinate"] = np.array([50,50])
+        toolbox["earth radius"]= 6339000
+        toolbox["Ressource_path"] = ""
         Get_All_Station(toolbox)
+        Station.Find_Station_By_Name("Collège Grange")
     if(False): #test get geogrpahic coordinate
         toolbox = {"earth radius": 6339000}
         Get_All_Station(toolbox)
