@@ -17,7 +17,6 @@ class Line:
         self.station_list = []
         for stations_name in stations_list_name:
             try:
-                
                 self.station_list.append(Station.Find_Station_By_Name(stations_name))
             except:
                 raise Exception("Station: {} could not be found inside the station list".format(stations_name))

@@ -52,7 +52,7 @@ class Station:
         return self.Get_Best_Travel_Time_Start_To_Station() < other.Get_Best_Travel_Time_Start_To_Station()
 
     def Try_Set_Best_Time(self,new_test_time):
-        if new_test_time < self.best_time():
+        if new_test_time < self.best_time:
                 self.best_time = new_test_time
     
     #try to see if we can reach other station faster than 
@@ -89,4 +89,4 @@ class Station:
         for station in Station.toolbox["station_list"]:
             if station.name == station_name:
                 return station
-        return None
+        raise Exception()

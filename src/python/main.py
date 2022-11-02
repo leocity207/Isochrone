@@ -18,17 +18,18 @@ def Optimize_Station_Travel_Time(stations_no_copy):
 
 if __name__ == "__main__":
     toolbox = {}
-    toolbox["starting coordinate"] = np.array([50,50])
-    toolbox["starting time"] = 0
-    toolbox["speed"] = 5
+    toolbox["starting coordinate"] = np.array([0,0])
+    toolbox["starting time"] = datetime.datetime.strptime("7:00","%H:%M")
+    toolbox["speed"] = 1.11 #m/s
     toolbox["earth radius"]= 6339000
+    toolbox["Ressource_path"] = "..\.."
     toolbox["day info"] = [WEEK_DAY.MONDAY,DAY_TYPE.SCHOOL]
     
     #get all the station and order them
     Get_All_Station(toolbox)
     Get_All_Lines(toolbox)
     map = Map(toolbox)
-    
+    print("All data loaded, begining station optimization")
     #optimize all station first
     Optimize_Station_Travel_Time(toolbox["station_list"])
     

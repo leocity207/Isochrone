@@ -55,7 +55,7 @@ class Line_Test(unittest.TestCase):
         self.assertEqual(gare_vienne.Get_Time_From_Start(),datetime.timedelta(0))
         print("test_Get_Time_From_Start: OK 1")
         
-        horloge = Station.Find_Station_By_Name("L’Horloge")
+        horloge = Station.Find_Station_By_Name("L'Horloge")
         time_start_horloge = horloge.Get_Time_From_Start()
         horloge_coordinate = horloge.coordinate
         horloge_computed_time_start = Get_Base_Travel_Time(horloge_coordinate,Station.toolbox["starting coordinate"],Station.toolbox)
