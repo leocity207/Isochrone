@@ -90,3 +90,13 @@ class Station:
             if station.name == station_name:
                 return station
         raise Exception()
+
+    @staticmethod
+    def Station_List_From_Station_Name(station_name_list):
+        final_station_list = []
+        for station_name in station_name_list:
+            try:
+                final_station_list.append(Station.Find_Station_By_Name(station_name))
+            except:
+                raise Exception("Station: {} could not be found inside the station list".format(station_name))
+        return final_station_list
