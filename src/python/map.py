@@ -1,5 +1,6 @@
 import numpy as np
-
+from pprint import pprint
+from tqdm import tqdm
 from util import Get_Base_Travel_Time
 #---------------------------------------------------------------------
 # find the min/max coordinate of all the described station in the list
@@ -54,11 +55,11 @@ class Map:
         x_range = int(np.round((self.max_x-self.min_x)*self.resolution))
         y_range = int(np.round((self.max_y-self.min_y)*self.resolution))
         plane = np.zeros((x_range,y_range))
-        for i in range(x_range):
+        for i in tqdm(range(x_range)):
             for j in range(y_range):
-                best_time = Get_Base_Travel_Time(np.array([(i-self.min_x)/self.resolution,(j-self.min_y)/self.resolution]),Map.toolbox["starting coordinate"],Map.toolbox)
+                best_time = Map.toolbox["starting time"] + Get_Base_Travel_Time(np.array([(i-self.min_x)/self.resolution,(j-self.min_y)/self.resolution]),Map.toolbox["starting coordinate"],Map.toolbox)
                 list_value = list(map(lambda station : compute_distance_to_station(station,i-self.min_x,j-self.min_y),Map.toolbox["station_list"]))
-                plane[i,j] = min([best_time]+list_value)
+                plane[i,j] = (min([best_time]+list_value) - Map.toolbox["starting time"]).total_seconds()
         return plane
 
             

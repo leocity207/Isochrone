@@ -25,7 +25,10 @@ class Station:
     def Get_Coordinate(self):
         return self.coordinate
  
-    def Get_Travel_Time_Station_Coordinate(self, station):
+    def Get_Travel_Time_Station_Coordinate(self, station_coordinate):
+        return Get_Base_Travel_Time(station_coordinate,self.coordinate,Station.toolbox)
+    
+    def Get_Travel_Time_Station_To_Station(self, station):
         return Get_Base_Travel_Time(station.coordinate,self.coordinate,Station.toolbox)
     
     def Get_Best_Travel_Time_Start_To_Station(self):
@@ -61,7 +64,7 @@ class Station:
         if not(self.m_has_been_reached_by_transport):
             return
         for station in stations:
-            new_test_time = station.Get_Travel_Time_Station_Coordinate(self)+self.best_time
+            new_test_time = station.Get_Travel_Time_Station_To_Station(self)+self.best_time
             station.Try_Set_Best_Time(new_test_time)
             
     def Get_Passing_Lines(self):
