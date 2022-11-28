@@ -10,7 +10,7 @@ def Optimize_Station_Travel_Time(stations_no_copy):
     stations = stations_no_copy.copy()
     i = 1
     while(len(stations) != 0):
-        print("{}/{}{}".format(i,len(stations),"!"*i))
+        #print("{}/{}{}".format(i,len(stations),"!"*i))
         i+=1
         stations.sort()
 
@@ -33,10 +33,11 @@ if __name__ == "__main__":
     Get_All_Station(toolbox)
     Get_All_Lines(toolbox)
     map = Map(toolbox)
-    print("All data loaded, begining station optimization")
+    print("All data loaded, beginning station optimization")
     #optimize all station first
     Optimize_Station_Travel_Time(toolbox["station_list"])
     
+    print("Station optimized. Beginning Computation of Voronoi diagram")
     #compute voronoi diagram
     planar_value = map.Commpute_Planar_Value()
 
