@@ -45,20 +45,28 @@ class Map:
         print("max_x : " + str(self.max_x))
         print("min_y : " + str(self.min_y))
         print("max_y : " + str(self.max_y))
-        self.resolution = 0.1
+        self.resolution = 0.01
         if not(Map.toolbox):
             Map.toolbox = toolbox
 
     #-----------------------------------
     #
+    def ToRealCoordinate(self,i,j):
+        x_range = int(np.round((self.max_x-self.min_x)*self.resolution))-1
+        y_range = int(np.round((self.max_y-self.min_y)*self.resolution))-1
+        real_x = ((self.max_x-self.min_x)*i)/x_range + self.min_x
+        real_y = ((self.max_y-self.min_y)*j)/y_range + self.min_y
+        return (real_x,real_y)
+    
     def Commpute_Planar_Value(self):
         x_range = int(np.round((self.max_x-self.min_x)*self.resolution))
         y_range = int(np.round((self.max_y-self.min_y)*self.resolution))
         plane = np.zeros((x_range,y_range))
         for i in tqdm(range(x_range)):
             for j in range(y_range):
-                best_time = Map.toolbox["starting time"] + Get_Base_Travel_Time(np.array([(i-self.min_x)/self.resolution,(j-self.min_y)/self.resolution]),Map.toolbox["starting coordinate"],Map.toolbox)
-                list_value = list(map(lambda station : compute_distance_to_station(station,i-self.min_x,j-self.min_y),Map.toolbox["station_list"]))
+                x,y = self.ToRealCoordinate(i,j)
+                best_time = Map.toolbox["starting time"] + Get_Base_Travel_Time(np.array([x,y]),Map.toolbox["starting coordinate"],Map.toolbox)
+                list_value = list(map(lambda station : compute_distance_to_station(station,x,y),Map.toolbox["station_list"]))
                 plane[i,j] = (min([best_time]+list_value) - Map.toolbox["starting time"]).total_seconds()
         return plane
 

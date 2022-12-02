@@ -23,7 +23,7 @@ def Optimize_Station_Travel_Time(stations_no_copy):
 if __name__ == "__main__":
     toolbox = {}
     toolbox["starting coordinate"] = np.array([0,0])
-    toolbox["starting time"] = datetime.datetime.strptime("7:00","%H:%M")
+    toolbox["starting time"] = datetime.datetime.strptime("3:00","%H:%M")
     toolbox["speed"] = 1.11 #m/s
     toolbox["earth radius"]= 6339000
     toolbox["Ressource_path"] = "c:\\Users\\Leocl\\Documents\\Isochrone"
