@@ -25,7 +25,10 @@ class Station:
     def Get_Coordinate(self):
         return self.coordinate
  
-    def Get_Travel_Time_Station_Coordinate(self, station):
+    def Get_Travel_Time_Station_Coordinate(self, station_coordinate):
+        return Get_Base_Travel_Time(station_coordinate,self.coordinate,Station.toolbox)
+    
+    def Get_Travel_Time_Station_To_Station(self, station):
         return Get_Base_Travel_Time(station.coordinate,self.coordinate,Station.toolbox)
     
     def Get_Best_Travel_Time_Start_To_Station(self):
@@ -52,7 +55,7 @@ class Station:
         return self.Get_Best_Travel_Time_Start_To_Station() < other.Get_Best_Travel_Time_Start_To_Station()
 
     def Try_Set_Best_Time(self,new_test_time):
-        if new_test_time < self.best_time():
+        if new_test_time < self.best_time:
                 self.best_time = new_test_time
     
     #try to see if we can reach other station faster than 
@@ -61,7 +64,7 @@ class Station:
         if not(self.m_has_been_reached_by_transport):
             return
         for station in stations:
-            new_test_time = station.Get_Travel_Time_Station_Coordinate(self)+self.best_time
+            new_test_time = station.Get_Travel_Time_Station_To_Station(self)+self.best_time
             station.Try_Set_Best_Time(new_test_time)
             
     def Get_Passing_Lines(self):
@@ -89,4 +92,14 @@ class Station:
         for station in Station.toolbox["station_list"]:
             if station.name == station_name:
                 return station
-        return None
+        raise Exception()
+
+    @staticmethod
+    def Station_List_From_Station_Name(station_name_list):
+        final_station_list = []
+        for station_name in station_name_list:
+            try:
+                final_station_list.append(Station.Find_Station_By_Name(station_name))
+            except:
+                raise Exception("Station: {} could not be found inside the station list".format(station_name))
+        return final_station_list

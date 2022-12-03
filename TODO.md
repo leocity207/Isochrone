@@ -191,3 +191,20 @@ TODO
   * lire article sur les carte Isochrone et les transport
   * tester le programme grandeur nature
   * evolution vers le language C ?
+
+03/12/2022
+==========
+DONE
+----
+* Working algorithm 
+
+
+TODO 
+----
+* Programme
+  * crée l'algorithm pour obtimiser toute les station connaisant le trajet 
+    * documentation pour les fonction des differente classes
+  * faire plus de recherche sur les diagrames de voronoi weighted additif
+  * lire article sur les carte Isochrone et les transport
+  * tester le programme grandeur nature
+  * evolution vers le language C ?

@@ -33,18 +33,18 @@ class Line_Test(unittest.TestCase):
         self.assertEqual(lycee_station.Get_Coordinate(),lycee_station.coordinate)
         print("test_Get_Coordinate: OK")
     
-    def test_Get_Travel_Time_Station_Coordinate(self):
+    def test_Get_Travel_Time_Station_To_Station(self):
         print(" ")
         college_station = Station.Find_Station_By_Name("Collège Grange")
         gare_vienne = Station.Find_Station_By_Name("Gare de Vienne")
-        func_ret = college_station.Get_Travel_Time_Station_Coordinate(gare_vienne)
+        func_ret = college_station.Get_Travel_Time_Station_To_Station(gare_vienne)
         college_coordinate = college_station.coordinate
         vienne_coordinate = gare_vienne.coordinate
         travel_time =   Get_Base_Travel_Time(college_coordinate,vienne_coordinate,Station.toolbox)
         travel_time2 = Get_Base_Travel_Time(vienne_coordinate,college_coordinate,Station.toolbox)
         self.assertEqual(travel_time,func_ret)
         self.assertEqual(func_ret,travel_time2)
-        print("Get_Travel_Time_Station_Coordinate: OK")
+        print("Get_Travel_Time_Station_To_Station: OK")
         
     
     def test_Get_Time_From_Start(self):
@@ -55,7 +55,7 @@ class Line_Test(unittest.TestCase):
         self.assertEqual(gare_vienne.Get_Time_From_Start(),datetime.timedelta(0))
         print("test_Get_Time_From_Start: OK 1")
         
-        horloge = Station.Find_Station_By_Name("L’Horloge")
+        horloge = Station.Find_Station_By_Name("L'Horloge")
         time_start_horloge = horloge.Get_Time_From_Start()
         horloge_coordinate = horloge.coordinate
         horloge_computed_time_start = Get_Base_Travel_Time(horloge_coordinate,Station.toolbox["starting coordinate"],Station.toolbox)

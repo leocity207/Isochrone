@@ -13,7 +13,7 @@ Jardin de Ville              ;45°31'19.7"N 4°52'13.2"E
 Gare de Vienne               ;45°31'16.7"N 4°52'26.7"E    
 Gare de Vienne A             ;45°31'16.7"N 4°52'26.7"E
 Gare de Vienne D             ;45°31'16.7"N 4°52'26.7"E       
-Lycée E. Fitzgerald          ;45°31'47.1"N 4°51'55.7"E 
+Lycée E.Fitzgerald           ;45°31'47.1"N 4°51'55.7"E 
 Nicolas Chorier              ;45°31'37.2"N 4°52'41.7"E      
 Temple de Cybèle             ;45°31'28.5"N 4°52'36.8"E      
 Les Célestes                 ;45°31'27.7"N 4°52'39.6"E      
@@ -29,13 +29,14 @@ Saint Ignace                 ;45°30'54.7"N 4°54'30.9"E
 Les Hauts de Malissol        ;45°30'53.9"N 4°54'39.6"E   
 Les Hameaux de Malissol      ;45°30'54.1"N 4°54'46.5"E 
 Malissol La Ferme            ;45°30'53.1"N 4°54'55.1"E
-L’Horloge                    ;45°30'51.5"N 4°55'03.2"E  
+L'Horloge                    ;45°30'51.5"N 4°55'03.2"E  
 Les Cèdres                   ;45°31'01.0"N 4°55'07.8"E            
 Rond-Point Malissol          ;45°31'08.3"N 4°55'06.7"E 
 Malissol La Gère             ;45°31'04.2"N 4°55'19.1"E  
 L'Abbaye                     ;45°31'17.5"N 4°55'15.3"E  
 Frèrejean                    ;45°31'26.4"N 4°55'09.9"E  
-Z.A. de Montplaisir Calor    ;45°31'27.1"N 4°55'13.8"E      
+Z.A. de Montplaisir Calor    ;45°31'27.1"N 4°55'13.8"E  
+Z.A de Montplaisir           ;45°31'27.1"N 4°55'13.8"E 
 Estrablin Bréguet            ;45°31'13.3"N 4°55'33.4"E
 Tabourette Routier           ;45°30'57.1"N 4°56'09.8"E
 Estrablin le Pinay           ;45°30'57.2"N 4°56'40.6"E
@@ -51,25 +52,26 @@ Les Gentianes                ;45°31'39.4"N 4°55'05.1"E
 Les Mésanges                 ;45°31'38.9"N 4°54'56.8"E
 Centre Pont-Evêque           ;45°31'48.0"N 4°54'43.9"E
 Les Bleuets                  ;45°31'50.5"N 4°54'33.7"E
-Les Froge                    ;45°31'50.4"N 4°54'20.6"E
+Les Forges                   ;45°31'50.4"N 4°54'20.6"E
 La Véga                      ;45°31'47.6"N 4°54'09.6"E
 Roncevaux                    ;45°31'32.3"N 4°54'26.2"E
 Charlemangne                 ;45°31'36.2"N 4°54'13.7"E
+Le Hameaux de Charlemangne   ;45°31'36.2"N 4°54'13.7"E
 La Ravat                     ;45°31'27.5"N 4°53'31.4"E
 Champs de Mars               ;45°31'17.0"N 4°52'16.1"E
 Cours Verdun                 ;45°31'11.8"N 4°52'14.1"E
 Michel Servet                ;45°31'04.6"N 4°52'10.9"E
 La Pyramide                  ;45°30'59.1"N 4°52'07.4"E
-Donfert Rochereau            ;45°30'54.4"N 4°52'04.4"E
-La Trente                    ;45°30'46.4"N 4°51'56.0"E
-parmentier                   ;45°30'37.1"N 4°51'45.0"E
+Denfert Rochereau            ;45°30'54.4"N 4°52'04.4"E
+Le Trente                    ;45°30'46.4"N 4°51'56.0"E
+Parmentier                   ;45°30'37.1"N 4°51'45.0"E
 Jean Moulin                  ;45°30'28.7"N 4°51'34.3"E
 Lycée Galilée                ;45°30'14.7"N 4°51'16.6"E
 Saint-Avour                  ;45°30'09.1"N 4°51'09.6"E
-Notre dame de l'Isle         ;45°30'13.6"N 4°51'04.6"E
+Notre-Dame de l'Isle         ;45°30'13.6"N 4°51'04.6"E
 Parc Relais Sud de L'Isle    ;45°30'07.8"N 4°50'55.5"E
 Collège de l'Isle            ;45°30'20.0"N 4°51'06.9"E
-Estressin C. Commercial      ;45°32'32.2"N 4°51'01.3"E
+Estressin Centre Commercial  ;45°32'32.2"N 4°51'01.3"E
 Estressin Z.I.               ;45°32'31.5"N 4°51'17.3"E
 Claude Bernard               ;45°32'28.6"N 4°51'24.6"E
 Savoie                       ;45°32'25.7"N 4°51'29.7"E
@@ -158,3 +160,4 @@ Centre                       ;45°27'44.5"N 4°46'07.8"E
 Salle de L’Arbuel            ;45°27'38.3"N 4°45'55.4"E
 Centre Hospitalier           ;45°27'30.3"N 4°45'35.8"E
 La Maladière                 ;45°27'26.9"N 4°45'27.1"E
+IME la Bâtie                 ;45°32'07.1"N 4°52'53.5"E

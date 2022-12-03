@@ -13,7 +13,6 @@ if __name__ == "__main__":
     for i in range(len(data)):
         data[i]=data[i].replace('\n','')
         data[i]=data[i].split(';')
-    print(data)
     X=[]
     Y=[]
     for i in range(len(data)):
