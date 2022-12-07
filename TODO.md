@@ -202,9 +202,8 @@ DONE
 TODO 
 ----
 * Programme
-  * crée l'algorithm pour obtimiser toute les station connaisant le trajet 
-    * documentation pour les fonction des differente classes
-  * faire plus de recherche sur les diagrames de voronoi weighted additif
   * lire article sur les carte Isochrone et les transport
-  * tester le programme grandeur nature
   * evolution vers le language C ?
+    * lecteur CSV.
+    * utiliser le logger (rendre le system de log disponnible dans un autre repo).
+    * metre à jour les données de bus et ajouter les donnée SNCF pour aller à LYON ou valence.
