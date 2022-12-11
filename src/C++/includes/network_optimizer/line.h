@@ -3,23 +3,23 @@
 
 #include <vector>
 
-#include "station.h"
+#include "includes/network_optimizer/schedule.h"
 
 class Line
 {
     private:
-        std::vector<Station&> m_station_list;
         std::string m_name;
-        int m_ID;
-        Schedule m_schedule;
+        int m_id;
+        std::vector<Schedule> m_schedule;
         static int s_count;
     public:
-        Line() noexcept;
-        Line(std::vector<Station&> Schedule);
+        Line() = delete;
+        Line(std::vector<Schedule>&& Schedule,std::string&& name) noexcept;
+        DayTime& Get_Best_Time_To_Station(const Station& start_station,const Station& end_station,const DayTime& current_time,const Day& day_template) const;
+        bool Contain(const Station& station_to_find,const Day& day_template);
         
-        const Planar_Coordinate& GetCoordinate() const ;
-        const float Get_Distance_To(const Station& station) const;
-        const float Get_Distance_To(const Planar_Coordinate& station) const;
+
+    
 };
 
 #endif //LINE_H

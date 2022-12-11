@@ -3,21 +3,25 @@
 
 
 
-struct Sphere_Coordinate
+class Sphere_Coordinate
 {
-    float lattitude;
-    float longitude;
+    public:
+        Sphere_Coordinate(double longitude,double latitude) noexcept;
+        double Get_Distance(const Sphere_Coordinate&) const; 
+    private:
+    double m_latitude;
+    double m_longitude;
     static constexpr int earth_radius = 6339000; 
 };
 
-struct Planar_Coordinate
+class Planar_Coordinate
 {
-    float x;
-    float y;
-    static float mean_x;
-    static float mean_y;
+    double x;
+    double y;
+    static double mean_x;
+    static double mean_y;
 
-    float operator>>(const Planar_Coordinate);
+    double operator>>(const Planar_Coordinate);
 };
 
 #endif //2D_COORDINATE_H

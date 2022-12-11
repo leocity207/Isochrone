@@ -8,16 +8,19 @@
 class Station
 {
     private:
-        Planar_Coordinate m_relative_coordinate;
+        Sphere_Coordinate m_coordinate;
         std::string m_name;
+        int m_id;
         static int s_count;
     public:
-        Station() noexcept;
-        Station(Planar_Coordinate coordiante);
+        Station() = delete;
+        Station(Sphere_Coordinate&& coordinate, std::string&& name) noexcept;
         
-        const Planar_Coordinate& GetCoordinate() const ;
+
+        const Sphere_Coordinate& GetCoordinate() const;
         const float Get_Distance_To(const Station& station) const;
-        const float Get_Distance_To(const Planar_Coordinate& station) const;
+        const float Get_Distance_To(const Sphere_Coordinate& station) const;
+        bool operator==(const Station&) const;
 };
 
 #endif //STATION_H

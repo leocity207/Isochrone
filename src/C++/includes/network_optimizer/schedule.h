@@ -3,24 +3,32 @@
 
 
 #include <vector>
-#include <chrono>
 
-enum DAY_TYPE{
-    SCHOOL_DAYS,
-    VACATION_DAYS,
-    HOLLY_DAY,
-    COUNT
-};
-class Schedule
+//utils
+#include "includes/utils/daytime.h"
+
+//network_optimization
+#include "includes/network_optimizer/station.h"
+#include "includes/network_optimizer/day_info.h"
+
+
+//------------------------------------------------------------------------------------------------------------
+// Schedule class represent transport schedule and meta data about the schedule
+// Basicaly We suppose a schedule is a matrix containing the time at which the transport get to the station
+// Here we suppose that the line represent the station and the column represent the pathway of one transport
+// Needed meta data are as follow:
+
+typedef std::vector<std::vector<DayTime>> TimeTable;
+class Schedule : public DayTemplate
 {
-    private:
-    std::array<bool,7> m_working_days;
-    std::array<bool,static_cast<int>(DAY_TYPE::COUNT)> m_working_types;
-    std::vector<std::vector<std::chrono::hh_mm_ss>> m_schedule;
     public:
+        Schedule() = delete;
+        Schedule(std::vector<Station&>&& station_list, TimeTable&& schedule_tab,DayTemplate&& day_template) noexcept;
 
-    operator==();
-    
-}
+        bool Contain(const Station& station_to_find);
+    private:
+        std::vector<Station&> m_station_list;
+        TimeTable m_schedule;
+};
 
 #endif //SCHEDULE_H
