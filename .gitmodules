@@ -1,0 +1,3 @@
+[submodule "src/C++/submodule/Logger"]
+	path = src/C++/submodule/Logger
+	url = https://github.com/leocity207/Logger-.git

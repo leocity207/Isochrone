@@ -17,6 +17,12 @@ const DAY_TYPE& Day::GetDayType() const noexcept
     return m_day_type;
 }
 
+const std::string Day::Description() const noexcept
+{
+    const std::string weekday[WEEKDAY_COUNT] = { "sunday", "monday", "tuesday", "wednesday","thursday","friday","saturday"};
+    const std::string day_type[DAY_TYPE_COUNT] = {"school day","vacation day","holy day"};
+    return weekday[m_weekday.c_encoding()] + day_type[(int)m_day_type];
+}
 //------------------------------------------
 //
 //

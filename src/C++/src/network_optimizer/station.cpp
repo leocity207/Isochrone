@@ -6,7 +6,7 @@ Station::Station(Sphere_Coordinate&& coordinate, std::string&& name) noexcept : 
 
 }
 
-const Sphere_Coordinate& Station::GetCoordinate() const
+const Sphere_Coordinate& Station::GetCoordinate() noexcept 
 {
     return m_coordinate;
 }
@@ -24,4 +24,9 @@ const float Station::Get_Distance_To(const Sphere_Coordinate& coordinate) const
 bool Station::operator==(const Station& other_station) const
 {
     return m_id == other_station.m_id;
+}
+
+const std::string& Station::GetName() noexcept  
+{
+    return m_name;
 }

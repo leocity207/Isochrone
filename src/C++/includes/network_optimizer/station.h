@@ -16,8 +16,8 @@ class Station
         Station() = delete;
         Station(Sphere_Coordinate&& coordinate, std::string&& name) noexcept;
         
-
-        const Sphere_Coordinate& GetCoordinate() const;
+        const std::string& GetName() noexcept const;
+        const Sphere_Coordinate& GetCoordinate() noexcept const;
         const float Get_Distance_To(const Station& station) const;
         const float Get_Distance_To(const Sphere_Coordinate& station) const;
         bool operator==(const Station&) const;
