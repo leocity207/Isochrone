@@ -10,5 +10,13 @@ Schedule::Schedule(std::vector<Station&>&& station_list, TimeTable&& schedule_ta
 bool Schedule::Contain(const Station& station_to_find)
 {
     return std::find(m_station_list.begin(),m_station_list.end(),station_to_find) != m_station_list.end();
+}
 
+bool Schedule::Order(const Station& first,const Station& second) noexcept const
+{
+    std::vector<Station&>::iterator first_iterator = std::find(m_station_list.begin(),m_station_list.end(),first);
+    std::vector<Station&>::iterator second_iterator = std::find(m_station_list.begin(),m_station_list.end(),second);
+    if(first_iterator<second_iterator)
+        return true;
+    return false;
 }

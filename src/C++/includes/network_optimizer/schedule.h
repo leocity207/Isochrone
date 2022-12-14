@@ -26,6 +26,7 @@ class Schedule : public DayTemplate
         Schedule(std::vector<Station&>&& station_list, TimeTable&& schedule_tab,DayTemplate&& day_template) noexcept;
 
         bool Contain(const Station& station_to_find);
+        bool Order(const Station& first,const Station& second) noexcept const;
     private:
         std::vector<Station&> m_station_list;
         TimeTable m_schedule;
