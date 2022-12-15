@@ -1,4 +1,5 @@
 #include "includes/utils/coordinate_2d.h"
+
 #include <cmath>
 #include <numbers>
 

@@ -2,6 +2,7 @@
 #define DAYTIME_H
 
 #include <chrono>
+#include <functional>
 
 class DayTime
 {
@@ -12,4 +13,6 @@ class DayTime
         std::chrono::minutes m_day_minute; 
 };
 
-#endif
+typedef std::reference_wrapper<const DayTime> DayTime_CRef;
+
+#endif 

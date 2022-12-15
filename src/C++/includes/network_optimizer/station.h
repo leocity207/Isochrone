@@ -2,6 +2,7 @@
 #define STATION_H
 
 #include <string>
+#include <functional>
 #include "includes/utils/coordinate_2d.h"
 
 
@@ -22,5 +23,7 @@ class Station
         const float Get_Distance_To(const Sphere_Coordinate& station) const;
         bool operator==(const Station&) const;
 };
+
+typedef std::reference_wrapper<const Station> Station_CRef;
 
 #endif //STATION_H

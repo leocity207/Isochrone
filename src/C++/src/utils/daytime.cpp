@@ -5,4 +5,3 @@ DayTime::DayTime(std::chrono::hours hours, std::chrono::minutes minutes) noexcep
 {
 
 }
-
