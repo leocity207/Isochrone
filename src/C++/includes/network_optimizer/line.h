@@ -5,9 +5,10 @@
 
 #include "includes/network_optimizer/schedule.h"
 #include "submodule/Logger/includes/exception.h"
+#include "includes/utils/exception_def.h"
 
 class Algorithm_Station;
-DECLARE_EXCEPTION(Exception,No_Matching_Schedule,"No Schedule was found for the day");
+
 
 class Line
 {

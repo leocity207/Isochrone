@@ -7,7 +7,7 @@
 #include <functional>
 
 //log
-#include "submodule/Logger/includes/exception.h"
+#include "includes/utils/exception_def.h"
 
 //utils
 #include "includes/utils/daytime.h"
@@ -17,7 +17,7 @@
 #include "includes/network_optimizer/day_info.h"
 
 class Algorithm_Station;
-DECLARE_EXCEPTION(Exception,Station_Not_In_Schedule,"The station is not in the Schedule.");
+
 
 //------------------------------------------------------------------------------------------------------------
 // Schedule class represent transport schedule and meta data about the schedule
