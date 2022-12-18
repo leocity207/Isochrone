@@ -1,1 +1,5 @@
 *.pyc
+src/C++/build/*
+settings.json
+src/C++/.vs/*
+src/C++/out/*

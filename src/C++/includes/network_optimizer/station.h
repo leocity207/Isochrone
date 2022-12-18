@@ -15,12 +15,31 @@ class Station
         static int s_count;
     public:
         Station() = delete;
+        Station(const Station&) = delete;
+        Station(Station&&) = delete;
         Station(Sphere_Coordinate&& coordinate, std::string&& name) noexcept;
         
+        /////////////////////////////////
+        /// @brief give back the name of the station
+        /// @return the name of the station
         const std::string& GetName() noexcept const;
+
+        /////////////////////////
+        /// @brief give back the coordinate of the station
+        /// @return the coordinate of the station
         const Sphere_Coordinate& GetCoordinate() noexcept const;
-        const float Get_Distance_To(const Station& station) const;
-        const float Get_Distance_To(const Sphere_Coordinate& station) const;
+
+        //////////////////////////////////
+        /// @brief give back the distance from the parameter station to this station
+        /// @param station  the station to compute the distance too
+        /// @return the distance to the two station in meter
+        const double Get_Distance_To(const Station& station) const;
+
+        //////////////////////////////////////
+        /// @brief give back the distance from this station to the given coordinate
+        /// @param station the coordinate you want to compute the distance too
+        /// @return 
+        const double Get_Distance_To(const Sphere_Coordinate& station) const;
         bool operator==(const Station&) const;
 };
 

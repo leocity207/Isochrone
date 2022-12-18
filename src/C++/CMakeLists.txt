@@ -1,0 +1,60 @@
+cmake_minimum_required(VERSION 3.22.1)
+
+# set the project name
+project(ISOCHRONE VERSION 1.0)
+
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+
+include_directories(${PROJECT_SOURCE_DIR})
+
+#---------------------------------------
+#get the current commit hash for version
+execute_process(
+    COMMAND git rev-parse HEAD
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    OUTPUT_VARIABLE GIT_COMMIT_HASH
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
+#-----------------------
+#setting the config file
+configure_file(includes/config/config.h.in includes/config//config.h)
+
+#----------------------------------------------
+# add fetch content in order to get google test
+include(FetchContent)
+FetchContent_Declare(
+    googletest
+    GIT_REPOSITORY https://github.com/google/googletest.git
+    GIT_TAG release-1.12.1
+)
+include(GoogleTest)
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
+#------------------------------------------
+# compiler option
+if (MSVC)
+    # warning level 4 and all warnings as errors
+    add_compile_options(/W4 /WX)
+else()
+    # lots of warnings and all warnings as errors
+    add_compile_options(-Wall -Wextra -pedantic -Werror -Og)
+endif()
+
+
+#------------------------------------
+# subdirectory include
+add_subdirectory(submodule/Logger)
+
+
+
+#tests
+
+add_executable(main src/main.cpp)
+target_link_libraries(main
+log
+)
