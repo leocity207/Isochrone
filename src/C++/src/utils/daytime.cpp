@@ -5,3 +5,16 @@ DayTime::DayTime(std::chrono::hours hours, std::chrono::minutes minutes) noexcep
 {
 
 }
+
+bool DayTime::operator>(const DayTime& other_DayTime) const noexcept
+{
+}
+bool DayTime::operator<(const DayTime& other_DayTime) const noexcept
+{
+}
+bool DayTime::operator>=(const DayTime& other_DayTime) const noexcept
+{
+}
+bool DayTime::operator<=(const DayTime& other_DayTime) const noexcept
+{
+}

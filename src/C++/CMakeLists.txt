@@ -49,12 +49,13 @@ endif()
 #------------------------------------
 # subdirectory include
 add_subdirectory(submodule/Logger)
-
-
+add_subdirectory(src/network_optimizer)
+add_subdirectory(src/utils)
 
 #tests
 
 add_executable(main src/main.cpp)
 target_link_libraries(main
 log
+network_optimizer
 )

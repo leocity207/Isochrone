@@ -42,7 +42,7 @@ DayTemplate::DayTemplate(DayTemplate&& template_to_move) noexcept : m_working_da
 
 bool DayTemplate::Match(const Day& day) const noexcept
 {
-    if(std::find(m_working_days.cbegin(),m_working_days.cend(),day.GetWeekday() != m_working_days.cend())  &&  std::find(m_working_types.cbegin(),m_working_types.cend(),day.GetDayType()) != m_working_types.cend())
+    if(m_working_days[day.GetWeekday().c_encoding()] && m_working_types[day.GetDayType()])
         return true;
     return false;
 }
