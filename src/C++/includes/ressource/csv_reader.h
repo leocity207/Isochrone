@@ -1,7 +1,7 @@
 #ifndef CSV_READER_H
 #define CSV_READER_H
 
-#include <vector>
+#include <list>
 #include <iostream>
 #include <filesystem>
 #include <string>
@@ -14,16 +14,13 @@ constexpr size_t BLOCK_SIZE = 65536;
 class CSV_Reader
 {
 protected:
-    std::string Next_Line();
-    static std::optional<std::string::iterator> Get_Next_Endl(std::string string);
+    std::optional<std::list<std::string>> Next_Line();
     CSV_Reader() = delete;
     CSV_Reader(const std::filesystem::path& filepath);
 
 private:
     std::ifstream m_file_stream;
-    size_t m_length;
-    size_t m_cursor;
-    std::string m_leftover;
+    const char m_delimiter;
 }
 
 #endif
