@@ -6,6 +6,11 @@ Station::Station(Sphere_Coordinate&& coordinate, std::string&& name) noexcept : 
 
 }
 
+Station::Station(Station&& other_station) noexcept : m_coordinate(std::move(other_station.m_coordinate)), m_name(std::move(other_station.m_name)), m_id(other_station.m_id)
+{
+
+}
+
 const Sphere_Coordinate& Station::GetCoordinate() const noexcept 
 {
     return m_coordinate;

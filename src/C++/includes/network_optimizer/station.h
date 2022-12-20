@@ -16,7 +16,7 @@ class Station
     public:
         Station() = delete;
         Station(const Station&) = delete;
-        Station(Station&&) = delete;
+        explicit Station(Station&&) noexcept;
         Station(Sphere_Coordinate&& coordinate, std::string&& name) noexcept;
         
         /////////////////////////////////

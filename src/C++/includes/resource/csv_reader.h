@@ -13,14 +13,14 @@ constexpr size_t BLOCK_SIZE = 65536;
 
 class CSV_Reader
 {
-protected:
-    std::optional<std::list<std::string>> Next_Line();
+public:
     CSV_Reader() = delete;
+    std::optional<std::list<std::string>> Next_Line();
     CSV_Reader(const std::filesystem::path& filepath);
-
 private:
     std::ifstream m_file_stream;
     const char m_delimiter;
-}
 
-#endif
+};
+
+#endif //CSV_READER_H

@@ -5,7 +5,7 @@
 
 #include "includes/utils/daytime.h"
 #include "includes/utils/exception_def.h"
-#include "includes/ressource/csv_reader.h"
+#include "includes/resource/csv_reader.h"
 
 
 

@@ -51,6 +51,8 @@ endif()
 add_subdirectory(submodule/Logger)
 add_subdirectory(src/network_optimizer)
 add_subdirectory(src/utils)
+add_subdirectory(src/resource)
+
 
 #tests
 
