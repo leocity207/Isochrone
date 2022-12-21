@@ -4,7 +4,7 @@
 #include <cctype>
 #include <ranges>
 
-namespace General
+namespace Generals
 {
         
     std::string_view Trim_Space_Front_Back(const std::string_view& str)
@@ -21,7 +21,7 @@ namespace General
 
             // Return a new string_view that includes only the non-whitespace characters
 
-            return std::string_view(&*first, last - first);
+            return std::string_view(first, last);
             // to do used ranges::subview
     }
 }

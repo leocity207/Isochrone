@@ -4,7 +4,7 @@
 #include <string_view>
 
 
-namespace Utils
+namespace Generals
 {
     std::string_view Trim_Space_Front_Back(const std::string_view& str);
 }
