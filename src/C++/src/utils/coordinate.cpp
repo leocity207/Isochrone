@@ -1,11 +1,35 @@
 #include "includes/utils/coordinate_2d.h"
 
+#include "includes/utils/general.h"
+#include "includes/utils/exception_def.h"
+
 #include <cmath>
 #include <numbers>
 
 Sphere_Coordinate::Sphere_Coordinate(double longitude,double latitude) noexcept : m_longitude(longitude),m_latitude(latitude)
 {
 
+}
+
+Sphere_Coordinate::Sphere_Coordinate(const std::string_view& DMS_notation_1, const std::string_view& DMS_notation_2)
+{
+    double V1 = Generals::Parse_Angle(DMS_notation_1);
+    double V2 = Generals::Parse_Angle(DMS_notation_2);
+
+    if ((DMS_notation_1.back() == 'N' || DMS_notation_1.back() == 'S') && (DMS_notation_2.back() == 'E' || DMS_notation_2.back() == 'W'))
+    {
+        m_latitude = V1;
+        m_longitude = V2;
+    }
+    else if ((DMS_notation_2.back() == 'N' || DMS_notation_2.back() == 'S') && (DMS_notation_1.back() == 'E' || DMS_notation_1.back() == 'W'))
+    {
+        m_latitude = V2;
+        m_longitude = V1;
+    }
+    else
+    {
+        THROW_TRACE(Angle_Baldy_Formatted, "the two angles are of the sale type");
+    }
 }
 
 double Sphere_Coordinate::Get_Distance(const Sphere_Coordinate& other_coord) const

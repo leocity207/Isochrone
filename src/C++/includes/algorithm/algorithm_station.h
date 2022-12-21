@@ -7,6 +7,7 @@
 #include "includes/utils/coordinate_2d.h"
 #include "includes/utils/daytime.h"
 
+
 class Algorithm_Station: public Station 
 {
     public:
