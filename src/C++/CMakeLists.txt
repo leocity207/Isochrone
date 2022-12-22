@@ -9,6 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 include_directories(${PROJECT_SOURCE_DIR})
+include_directories(${PROJECT_SOURCE_DIR}/includes)
 
 #---------------------------------------
 #get the current commit hash for version
@@ -51,11 +52,14 @@ endif()
 add_subdirectory(submodule/Logger)
 add_subdirectory(src/network_optimizer)
 add_subdirectory(src/utils)
+
 add_subdirectory(src/resource)
 
 
-#tests
 
+
+#tests
+add_subdirectory(src/utils/test)
 add_executable(main src/main.cpp)
 target_link_libraries(main
 log
