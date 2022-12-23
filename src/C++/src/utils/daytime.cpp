@@ -7,7 +7,7 @@
 #include <chrono>
 
 
-DayTime::DayTime(std::chrono::hours hours, std::chrono::minutes minutes) noexcept : m_day_minute(hours*60+minutes)
+DayTime::DayTime(std::chrono::hours hours, std::chrono::minutes minutes) noexcept : m_day_minute(hours+minutes)
 {
 
 }
@@ -52,5 +52,11 @@ std::optional<DayTime> DayTime::From_Time_String(const std::string_view& time_st
 
     // Return the result as a pair
     return DayTime(std::chrono::hours(hours),std::chrono::minutes(minutes));
+}
+
+
+const std::chrono::minutes& DayTime::GetTime()
+{
+    return m_day_minute;
 }
 

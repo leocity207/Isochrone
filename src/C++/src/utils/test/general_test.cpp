@@ -1,6 +1,6 @@
 #include "general_test.h"
 #include "includes/utils/general.h"
-
+#include "includes/utils/exception_def.h"
 #include <string_view>
 
 
@@ -24,7 +24,7 @@ std::string Space_Triming_Test_Naming(testing::TestParamInfo<std::pair<std::stri
     switch (id.index)
     {
     case 0:
-        return "Void string";
+        return "Void_string";
     case 1:
         return "front_and_back";
     case 2:
@@ -34,7 +34,7 @@ std::string Space_Triming_Test_Naming(testing::TestParamInfo<std::pair<std::stri
     case 4:
         return "No_space";
     case 5:
-        return "only space";
+        return "only_space";
     }
 }
 
@@ -53,6 +53,7 @@ INSTANTIATE_TEST_SUITE_P(
 
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////////
 
 TEST_P(Angle_Parsing, _)
 {
@@ -66,7 +67,7 @@ TEST_P(Angle_Parsing, _)
     }
     else
     {
-        EXPECT_ANY_THROW(Generals::Parse_Angle(angle_str));
+        EXPECT_THROW(Generals::Parse_Angle(angle_str), Angle_Baldy_Formatted);
     }
 }
 
@@ -76,15 +77,15 @@ std::string Angle_parsing_Test_Naming(testing::TestParamInfo<std::tuple<std::str
     switch (id.index)
     {
     case 0:
-        return "Valid int";
+        return "Valid_int";
     case 1:
-        return "valid double";
+        return "valid_double";
     case 2:
-        return "wrong string";
+        return "wrong_string";
     case 3:
-        return "all element but wrong place";
+        return "all_element_but_wrong_place";
     case 4:
-        return "wrong end character";
+        return "wrong_end_character";
     }
 }
 
@@ -92,9 +93,9 @@ INSTANTIATE_TEST_SUITE_P(
     test_string,
     Angle_Parsing,
     ::testing::Values(
-        std::make_tuple("45°31'13\"N",true, 45.5202777778),
-        std::make_tuple("45°31'13.4\"N", true, 45.5203888889),
-        std::make_tuple("lol",false,0),
-        std::make_tuple("°4531\"13.4N''",false,0),
-        std::make_tuple("45°31'13.4\"K",false,0)),
+        std::make_tuple("45°31'13\"N"   ,true  , 45.5202777778),
+        std::make_tuple("45°31'13.4\"N" , true , 45.5203888889),
+        std::make_tuple("lol"           ,false , 0            ),
+        std::make_tuple("°4531\"13.4N''",false , 0            ),
+        std::make_tuple("45°31'13.4\"K" ,false , 0            )),
         Angle_parsing_Test_Naming);

@@ -1,17 +1,14 @@
+#////////////////////////
+# For google test includes
 include(GoogleTest)
 
-
-if (MSVC)
-    # warning level 4 and all warnings as errors
-    add_compile_options(/W0)
-else()
-    # lots of warnings and all warnings as errors
-    add_compile_options(-Wall -Wextra -pedantic -Werror -Og)
-endif()
-
+#/////////////////////////////////////////////////
+# Glob files for adding header file to the target
 file(GLOB_RECURSE MY_HEADERS "*.h")
 
-add_executable(utils_test 
+#/////////////////////////////////////////////////
+# Add all the File for the target
+add_executable( utils_test 
     main.cpp
     coordinate_2d_test.cpp
     daytime_test.cpp
@@ -20,14 +17,24 @@ add_executable(utils_test
     ${MY_HEADERS}
 )
 
-target_include_directories(
-utils_test 
-
-PRIVATE 
-
-${CMAKE_CURRENT_SOURCE_DIR}                 
+#/////////////////////////////////////////////////
+# add header directory
+target_include_directories( utils_test PRIVATE 
+    ${CMAKE_CURRENT_SOURCE_DIR}                 
 )
 
+
+#/////////////////////////////////////
+# Special compilation option for googletest
+if (MSVC)
+    target_compile_options(utils_test PRIVATE /W0 -/WX)
+else()
+    target_compile_options(utils_test PRIVATE -Wall -Wextra -pedantic -Og)
+endif()
+
+
+#/////////////////////////////////
+#final link of the library
 target_link_libraries(
   utils_test
   GTest::gtest_main

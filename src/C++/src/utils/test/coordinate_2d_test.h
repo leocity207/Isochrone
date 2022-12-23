@@ -7,4 +7,5 @@ class Coordinate_Test : public ::testing::Test {
     
 };
 
+
 #endif //COORDINATE_TEST_H

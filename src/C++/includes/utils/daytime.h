@@ -16,6 +16,8 @@ class DayTime
         bool operator<=(const DayTime& other_DayTime) const noexcept;
 
         static std::optional<DayTime> From_Time_String(const std::string_view& description);
+
+        const std::chrono::minutes& GetTime();
     private:
         std::chrono::minutes m_day_minute; 
 };

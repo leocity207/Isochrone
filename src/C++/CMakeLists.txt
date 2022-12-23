@@ -22,7 +22,7 @@ execute_process(
 
 #-----------------------
 #setting the config file
-configure_file(includes/config/config.h.in includes/config//config.h)
+configure_file(${PROJECT_SOURCE_DIR}/includes/config/config.h.in ${PROJECT_SOURCE_DIR}/includes/config/config.h)
 
 #----------------------------------------------
 # add fetch content in order to get google test
@@ -46,10 +46,13 @@ else()
     add_compile_options(-Wall -Wextra -pedantic -Werror -Og)
 endif()
 
+#----------------------------------------
+# Subodule logger
+add_subdirectory(submodule/Logger)
+target_sources(log PRIVATE ${PROJECT_SOURCE_DIR}/includes/config/config.cpp)
 
 #------------------------------------
 # subdirectory include
-add_subdirectory(submodule/Logger)
 add_subdirectory(src/network_optimizer)
 add_subdirectory(src/utils)
 
