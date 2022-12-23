@@ -45,13 +45,23 @@ std::optional<DayTime> DayTime::From_Time_String(const std::string_view& time_st
     // Extract the hour and minute strings
     std::string_view hour_string = sub_str.substr(0, colon_pos);
     std::string_view minute_string = sub_str.substr(colon_pos + 1);
+    
 
     // Convert the strings to integers
-    int hours = std::stoi(hour_string.data());
-    int minutes = std::stoi(minute_string.data());
-
+    int hours;
+    int minutes;
+    try
+    {
+        hours = std::stoi(hour_string.data());
+        minutes  = std::stoi(minute_string.data());
+    }
+    catch (std::invalid_argument&)
+    {
+        THROW_TRACE(Time_Badly_Formatted, "Invalid time string: no colon found " + std::string(time_string));
+    }
+    return DayTime(std::chrono::hours(hours), std::chrono::minutes(minutes));
     // Return the result as a pair
-    return DayTime(std::chrono::hours(hours),std::chrono::minutes(minutes));
+    
 }
 
 

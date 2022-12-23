@@ -63,7 +63,7 @@ INSTANTIATE_TEST_SUITE_P(
     DayTime_Test_String_Parser,
     ::testing::Values(
         std::make_tuple("10:01"  , OK     , 10*60+1),
-        std::make_tuple(" 9:3 "  , THROW  , 0),
+        std::make_tuple(" 9:3 "  , OK     , 9*60+3),
         std::make_tuple(":"      , THROW  , 0),
         std::make_tuple("dksfjsl", THROW  , 0),
         std::make_tuple(""       , NULLOPT, 0)),

@@ -16,10 +16,12 @@ class Sphere_Coordinate
         /// @note if any of the string is badly formated we throw an error Bad_format_Coordinate
         Sphere_Coordinate(const std::string_view& DMS_notation_1, const std::string_view& DMS_notation_2);
         double Get_Distance(const Sphere_Coordinate&) const; 
+        const double& Get_Lattitude() const noexcept;
+        const double& Get_Longitude() const noexcept;
     private:
-    double m_latitude;
-    double m_longitude;
-    static constexpr int earth_radius = 6339000; 
+        double m_latitude;
+        double m_longitude;
+        static constexpr int earth_radius = 6378100; 
 };
 
 class Planar_Coordinate

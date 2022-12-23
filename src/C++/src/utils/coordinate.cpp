@@ -39,3 +39,14 @@ double Sphere_Coordinate::Get_Distance(const Sphere_Coordinate& other_coord) con
     double prod = std::cos(other_coord.m_latitude*std::numbers::pi/180)*std::cos(m_latitude*std::numbers::pi/180);
     return 2*earth_radius*std::asin(std::sqrt(lat_diff*lat_diff+prod*long_diff*long_diff));
 }
+
+
+const double& Sphere_Coordinate::Get_Lattitude() const noexcept
+{
+    return m_latitude;
+}
+
+const double& Sphere_Coordinate::Get_Longitude() const noexcept
+{
+    return m_longitude;
+}
