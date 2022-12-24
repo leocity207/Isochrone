@@ -9,7 +9,6 @@
 #include "includes/utils/daytime.h"
 #include "submodule/logger/includes/exception.h"
 
-constexpr size_t BLOCK_SIZE = 65536;
 
 class CSV_Reader
 {

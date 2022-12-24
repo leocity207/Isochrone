@@ -1,10 +1,10 @@
+#ifndef CONFIG_H
+#define CONFIG_H
 
-const char* GET_COMMIT_HASH()
-{
-    return "${GIT_COMMIT_HASH}";
-}
+#define GIT_HASH "${GIT_COMMIT_HASH}"
+#define VERSION  "${ISOCHRONE_VERSION_MAJOR}.${ISOCHRONE_VERSION_MINOR}"
 
-const char* GET_VERSION()
-{
-    return "${ISOCHRONE_VERSION_MAJOR}.${ISOCHRONE_VERSION_MINOR}";
-}
+extern const char* GET_COMMIT_HASH();
+extern const char* GET_VERSION();
+
+#endif

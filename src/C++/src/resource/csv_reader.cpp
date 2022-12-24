@@ -9,7 +9,7 @@
 
 
 
-CSV_Reader::CSV_Reader(const std::filesystem::path& filepath) : m_delimiter('\n')
+CSV_Reader::CSV_Reader(const std::filesystem::path& filepath) : m_delimiter(';')
 {
     m_file_stream = std::ifstream(filepath, std::ios::in);
     if(m_file_stream.fail())

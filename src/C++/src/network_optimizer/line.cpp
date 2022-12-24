@@ -4,6 +4,8 @@
 
 #include <algorithm>
 
+int Line::s_count = 0;
+
 Line::Line(std::vector<Schedule>&& Schedule,std::string&& name) noexcept: m_schedule(std::move(Schedule)),m_name(std::move(name)),m_id(++s_count)
 {
 

@@ -9,6 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 include_directories(${PROJECT_SOURCE_DIR})
+include_directories(${PROJECT_SOURCE_DIR}/includes)
 
 #---------------------------------------
 #get the current commit hash for version
@@ -21,7 +22,7 @@ execute_process(
 
 #-----------------------
 #setting the config file
-configure_file(includes/config/config.h.in includes/config//config.h)
+configure_file(${PROJECT_SOURCE_DIR}/includes/config/config.h.in ${PROJECT_SOURCE_DIR}/includes/config/config.h)
 
 #----------------------------------------------
 # add fetch content in order to get google test
@@ -45,17 +46,26 @@ else()
     add_compile_options(-Wall -Wextra -pedantic -Werror -Og)
 endif()
 
+#----------------------------------------
+# Subodule logger
+add_subdirectory(submodule/Logger)
+target_sources(log PRIVATE ${PROJECT_SOURCE_DIR}/includes/config/config.cpp)
 
 #------------------------------------
 # subdirectory include
-add_subdirectory(submodule/Logger)
 add_subdirectory(src/network_optimizer)
 add_subdirectory(src/utils)
+add_subdirectory(src/algorithm)
 add_subdirectory(src/resource)
 
 
-#tests
 
+
+#tests
+add_subdirectory(src/utils/test)
+add_subdirectory(src/resource/test)
+
+#main
 add_executable(main src/main.cpp)
 target_link_libraries(main
 log
