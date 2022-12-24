@@ -28,6 +28,7 @@ class Day
     public:
         Day() = delete;
         Day(const std::chrono::weekday,const DAY_TYPE) noexcept;
+        bool operator==(const Day& other) const noexcept;
         
 
         const std::chrono::weekday& GetWeekday() const noexcept;

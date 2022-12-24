@@ -64,6 +64,7 @@ add_subdirectory(src/resource)
 #tests
 add_subdirectory(src/utils/test)
 add_subdirectory(src/resource/test)
+add_subdirectory(src/network_optimizer/test)
 
 #main
 add_executable(main src/main.cpp)
