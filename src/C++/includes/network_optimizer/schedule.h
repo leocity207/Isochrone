@@ -47,9 +47,9 @@ class Schedule : public DayTemplate
         /// @brief check if the first station come before the second station
         /// @param first  is the supposed first station
         /// @param second  is the supposed later station
-        /// @note if first or second is not part of the schedule this function return false(it's therfore interesting to test if first and second are contained inside the schedule before calling this function. )
+        /// @note if first or second is not part of the schedule this function throw
         /// @return true if second come after false
-        bool Order(const Station& first,const Station& second) const noexcept;
+        bool Order(const Station& first,const Station& second) const;
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// @brief Find the closest time to go from start to finish station knowing the curent daytime and the daytype

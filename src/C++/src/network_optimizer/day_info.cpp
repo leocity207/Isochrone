@@ -23,6 +23,12 @@ const std::string Day::Description() const noexcept
     const std::string day_type[DAY_TYPE_COUNT] = {"school day","vacation day","holy day"};
     return weekday[m_weekday.c_encoding()] + day_type[(int)m_day_type];
 }
+
+bool Day::operator==(const Day& other) const noexcept
+{
+    return m_day_type == other.m_day_type && m_weekday == other.m_weekday;
+}
+
 //------------------------------------------
 //
 //

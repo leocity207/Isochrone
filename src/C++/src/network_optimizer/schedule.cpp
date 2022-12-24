@@ -1,6 +1,8 @@
 #include "includes/network_optimizer/schedule.h"
 #include "includes/algorithm/algorithm_station.h"
 
+#include "includes/utils/exception_def.h"
+
 #include <algorithm>
 
 Schedule::Schedule(std::vector<Station_CRef>&& station_list, TimeTable&& schedule_tab,DayTemplate&& day_template) noexcept : m_station_list(station_list),m_schedule(schedule_tab),DayTemplate(std::move(day_template))
@@ -14,13 +16,18 @@ bool Schedule::Contain(const Station& station_to_find) const noexcept
 }
 
 
-bool Schedule::Order(const Station& first,const Station& second) const noexcept
+bool Schedule::Order(const Station& first,const Station& second) const
 {
     std::vector<Station_CRef>::const_iterator first_iterator  = std::find(m_station_list.begin(),m_station_list.end(),first);
     std::vector<Station_CRef>::const_iterator second_iterator = std::find(m_station_list.begin(),m_station_list.end(),second);
-    if(first_iterator<second_iterator)
+    if(first_iterator == m_station_list.end() || second_iterator == m_station_list.end())
+        THROW(Station_Not_In_Schedule)
+    else if(first_iterator == second_iterator)
+        THROW(Cannot_Order_Same_Station)
+    else if(first_iterator<second_iterator)
         return true;
-    return false;
+    else
+        return false;
 }
 
 
@@ -33,7 +40,7 @@ std::optional<DayTime_CRef> Schedule::Get_Closest_Time_To_Station(const Algorith
     if (!start_index)
         THROW_TRACE(Station_Not_In_Schedule, "The station " + start_station.Get_Name() + " is not in schedule")
     else if(!end_index)
-        THROW_TRACE(Station_Not_In_Schedule,"The station " + end_station.Get_Name() + " is not in schedule")
+        THROW_TRACE(Station_Not_In_Schedule, "The station " + end_station.Get_Name() + " is not in schedule")
 
     for(const std::vector<std::optional<DayTime>>& schedule_line : m_schedule)
     {
