@@ -55,7 +55,7 @@ target_sources(log PRIVATE ${PROJECT_SOURCE_DIR}/includes/config/config.cpp)
 # subdirectory include
 add_subdirectory(src/network_optimizer)
 add_subdirectory(src/utils)
-
+add_subdirectory(src/algorithm)
 add_subdirectory(src/resource)
 
 
@@ -63,6 +63,9 @@ add_subdirectory(src/resource)
 
 #tests
 add_subdirectory(src/utils/test)
+add_subdirectory(src/resource/test)
+
+#main
 add_executable(main src/main.cpp)
 target_link_libraries(main
 log

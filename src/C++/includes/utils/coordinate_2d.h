@@ -18,6 +18,8 @@ class Sphere_Coordinate
         double Get_Distance(const Sphere_Coordinate&) const; 
         const double& Get_Lattitude() const noexcept;
         const double& Get_Longitude() const noexcept;
+
+        bool operator==(const Sphere_Coordinate& other_coord) const noexcept;
     private:
         double m_latitude;
         double m_longitude;

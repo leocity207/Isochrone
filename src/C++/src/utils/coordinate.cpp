@@ -1,3 +1,4 @@
+#include "coordinate_2d.h"
 #include "includes/utils/coordinate_2d.h"
 
 #include "includes/utils/general.h"
@@ -49,4 +50,9 @@ const double& Sphere_Coordinate::Get_Lattitude() const noexcept
 const double& Sphere_Coordinate::Get_Longitude() const noexcept
 {
     return m_longitude;
+}
+
+bool Sphere_Coordinate::operator==(const Sphere_Coordinate& other_coord) const noexcept
+{
+    return m_latitude == other_coord.m_latitude && m_longitude == other_coord.m_longitude;
 }

@@ -10,6 +10,7 @@ class DayTime
     public:
         DayTime() = delete;
         DayTime(std::chrono::hours hours, std::chrono::minutes minutes) noexcept;
+        bool operator==(const DayTime& other_DayTime) const noexcept;
         bool operator>(const DayTime& other_DayTime) const noexcept;
         bool operator<(const DayTime& other_DayTime) const noexcept;
         bool operator>=(const DayTime& other_DayTime) const noexcept;

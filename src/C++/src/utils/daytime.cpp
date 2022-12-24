@@ -29,6 +29,11 @@ bool DayTime::operator<=(const DayTime& other_DayTime) const noexcept
     return m_day_minute <= other_DayTime.m_day_minute;
 }
 
+bool DayTime::operator==(const DayTime& other_DayTime) const noexcept
+{
+    return m_day_minute == other_DayTime.m_day_minute;
+}
+
 std::optional<DayTime> DayTime::From_Time_String(const std::string_view& time_string)
 {
     std::string_view sub_str = Generals::Trim_Space_Front_Back(time_string);

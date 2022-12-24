@@ -59,7 +59,6 @@ class Schedule : public DayTemplate
         /// @return the arriving daytime at the end station. if no path were found it return an invalid daytime
         std::optional<DayTime_CRef> Get_Closest_Time_To_Station(const Algorithm_Station& start_station,const Station& end_station) const;
 
-        virtual constexpr operator bool() const noexcept;
     private:
         std::vector<Station_CRef> m_station_list;
         TimeTable m_schedule;

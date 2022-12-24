@@ -1,5 +1,6 @@
 #include "includes/network_optimizer/station.h"
 
+int Station::s_count = 0;
 
 Station::Station(Sphere_Coordinate&& coordinate, std::string&& name) noexcept : m_coordinate(coordinate), m_name(name), m_id(++s_count)
 {
