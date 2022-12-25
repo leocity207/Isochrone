@@ -33,12 +33,12 @@ bool Schedule::Order(const Station& first,const Station& second) const
 
 std::optional<DayTime_CRef> Schedule::Get_Closest_Time_To_Station(const Algorithm_Station& start_station,const Station& end_station) const
 {
-    const std::optional<size_t> start_index = this->Get_Station_Index(start_station);
+    const std::optional<size_t> start_index = this->Get_Station_Index(*start_station);
     const std::optional<size_t> end_index = this->Get_Station_Index(end_station);
 
     // if station cannot be found inside schedule we suppose that this is an error
     if (!start_index)
-        THROW_TRACE(Station_Not_In_Schedule, "The station " + start_station.Get_Name() + " is not in schedule")
+        THROW_TRACE(Station_Not_In_Schedule, "The station " + start_station.Get().Get_Name() + " is not in schedule")
     else if(!end_index)
         THROW_TRACE(Station_Not_In_Schedule, "The station " + end_station.Get_Name() + " is not in schedule")
 

@@ -9,15 +9,18 @@
 class Station
 {
     private:
-        Sphere_Coordinate m_coordinate;
-        std::string m_name;
-        int m_id;
+        const Sphere_Coordinate m_coordinate;
+        const std::string m_name;
+        const int m_id;
         static int s_count;
+
     public:
         Station() = delete;
+        Station(Sphere_Coordinate&& coordinate, std::string&& name) noexcept;
+
         Station(const Station&) = delete;
         explicit Station(Station&&) noexcept;
-        Station(Sphere_Coordinate&& coordinate, std::string&& name) noexcept;
+        
         
         /////////////////////////////////
         /// @brief give back the name of the station
@@ -40,6 +43,8 @@ class Station
         /// @param station the coordinate you want to compute the distance too
         /// @return 
         const double Get_Distance_To(const Sphere_Coordinate& coordinate) const noexcept;
+
+
         bool operator==(const Station& other_station) const noexcept;
 };
 
