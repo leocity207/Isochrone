@@ -16,6 +16,11 @@ CSV_Reader::CSV_Reader(const std::filesystem::path& filepath) : m_delimiter(';')
         THROW_TRACE(File_Open_Failed,"could not open file :" + filepath.string())
 }
 
+CSV_Reader::~CSV_Reader()
+{
+    m_file_stream.close();
+}
+
 std::optional<std::list<std::string>> CSV_Reader::Next_Line()
 {
     // Get the line

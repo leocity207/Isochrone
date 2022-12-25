@@ -12,6 +12,7 @@ add_executable( csv_test
     main.cpp
     csv_schedule_test.cpp
     csv_station_test.cpp
+    resource_getter_test.cpp
 
     ${MY_HEADERS}
 )

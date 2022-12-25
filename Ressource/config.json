@@ -1,0 +1,92 @@
+{
+    "station file":"Geographie/coordinate.csv",
+    "line list":[
+        {
+            "name":"Ligne 1",
+            "schedules":[
+                "Ligne 1/line_1_a_6t_12345v.csv",
+                "Ligne 1/line_1_a_12345s.csv",
+                "Ligne 1/line_1_r_6t_12345v.csv",
+                "Ligne 1/line_1_r_12345s.csv"
+            ]
+        },
+        {
+            "name":"Ligne 2",
+            "schedules":[
+                "Ligne 2/line_2_a_6t_12345v.csv",
+                "Ligne 2/line_2_a_7t_f.csv",
+                "Ligne 2/line_2_a_12345s.csv",
+                "Ligne 2/line_2_r_6t_12345v.csv",
+                "Ligne 2/line_2_r_7t_f.csv",
+                "Ligne 2/line_2_r_12345s.csv"
+            ]
+        },
+        {
+            "name":"Ligne 3",
+            "schedules":[
+                "Ligne 3/line_3_a_6t_12345v.csv",
+                "Ligne 3/line_3_a_12345s.csv",
+                "Ligne 3/line_3_r_6t_12345v.csv",
+                "Ligne 3/line_3_r_12345s.csv"
+            ]
+        },
+        {
+            "name":"Ligne 4",
+            "schedules":[
+                "Ligne 4/line_4_a_6t_12345v.csv",
+                "Ligne 4/line_4_a_7t_f.csv",
+                "Ligne 4/line_4_a_12345s.csv",
+                "Ligne 4/line_4_r_6t_12345v.csv",
+                "Ligne 4/line_4_r_7t_f.csv",
+                "Ligne 4/line_4_r_12345s.csv"
+            ]
+        },
+        {
+            "name":"Ligne 5",
+            "schedules":[
+                "Ligne 5/line_5_a_6t_12345v.csv",
+                "Ligne 5/line_5_a_7t_f.csv",
+                "Ligne 5/line_5_a_12345s.csv",
+                "Ligne 5/line_5_r_6t_12345v.csv",
+                "Ligne 5/line_5_r_7t_f.csv",
+                "Ligne 5/line_5_r_12345s.csv"
+            ]
+        },
+        {
+            "name":"Ligne 6",
+            "schedules":[
+                "Ligne 6/line_6_a_6t_12345v.csv",
+                "Ligne 6/line_6_a_12345s.csv",
+                "Ligne 6/line_6_r_6t_12345v.csv",
+                "Ligne 6/line_6_r_12345s.csv"
+            ]
+        },
+        {
+            "name":"Ligne 7",
+            "schedules":[
+                "Ligne 7/line_7_a_123456t.csv",
+                "Ligne 7/line_7_a_123456t.csv"
+            ]
+        },
+        {
+            "name":"Ligne 8",
+            "schedules":[
+                "Ligne 8/line_8_a_6t.csv",
+                "Ligne 8/line_8_a_12345s.csv",
+                "Ligne 8/line_8_r_6t.csv",
+                "Ligne 8/line_8_r_12345s.csv"
+            ]
+        },
+        {
+            "name":"Ligne 134",
+            "schedules":[
+                "Ligne134/line_134_a_6t.csv",
+                "Ligne134/line_134_a_12345s.csv",
+                "Ligne134/line_134_a_12345v.csv",
+                "Ligne134/line_134_r_6t.csv",
+                "Ligne134/line_134_r_12345s.csv",
+                "Ligne134/line_134_r_12345v.csv"
+            ]
+        }
+    ]
+}

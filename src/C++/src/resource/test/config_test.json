@@ -1,0 +1,14 @@
+{
+    "station file":"Geographie/coordinate.csv",
+    "line list":[
+        {
+            "name":"Ligne 1",
+            "schedules":[
+                "Ligne 1/line_1_a_6t_12345v.csv",
+                "Ligne 1/line_1_a_12345s.csv",
+                "Ligne 1/line_1_r_6t_12345v.csv",
+                "Ligne 1/line_1_r_12345s.csv"
+            ]
+        }
+    ]
+}
