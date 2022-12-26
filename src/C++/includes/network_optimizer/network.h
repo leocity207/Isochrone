@@ -8,15 +8,15 @@ class Station;
 class Line;
 class Network
 {
+public:
     Network() = delete;
     Network(const std::filesystem::path& resource_path);
-    
+    const std::vector<Line>& Get_Lines() const noexcept;
+    const std::vector<Station>& Get_Station() const noexcept;
+    std::vector<Station_CRef> Get_Station_Reference(std::vector<std::string> station_name_list);
+private:
     std::vector<Station> m_station_list;
     std::vector<Line> m_line_list;
-
-    const std::vector<Line>& Get_Lines();
-    const std::vector<Line>& Get_Station();
-
 }
 
 

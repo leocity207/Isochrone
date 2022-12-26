@@ -3,6 +3,7 @@
 
 #include <array>
 #include <Chrono>
+#include <string_view>
 
 
 //------------------------
@@ -10,7 +11,7 @@
 enum DAY_TYPE{
     SCHOOL_DAYS,
     VACATION_DAYS,
-    HOLLY_DAY,
+    HOLYDAYS,
     COUNT
 };
 

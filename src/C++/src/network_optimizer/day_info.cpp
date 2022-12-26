@@ -7,6 +7,8 @@ Day::Day(const std::chrono::weekday weekday,const DAY_TYPE day_type) noexcept : 
 
 }
 
+
+
 const std::chrono::weekday& Day::GetWeekday() const noexcept
 {
     return m_weekday;
