@@ -54,6 +54,7 @@ class DayTemplate
         DayTemplate(DayTemplate&&) noexcept;
 
         bool Match(const Day&) const noexcept;
+        bool operator==(const DayTemplate& other) const noexcept;
     private:
         std::array<bool,WEEKDAY_COUNT> m_working_days;
         std::array<bool,DAY_TYPE_COUNT> m_working_types;

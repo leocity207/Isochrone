@@ -13,47 +13,48 @@
 //network
 #include "includes/network_optimizer/line.h"
 
+//----------------------
 //helper function
-const std::vector<std::pair<DayTemplate,std::filesystem::path>> Get_Schedules(const rapidjson::Value& json)
+std::vector<std::pair<DayTemplate,std::filesystem::path>> Get_Schedules(const rapidjson::Value& json)
 {
-    if (!json.HasMember("paths") && !json.HasMember("paths") && !json["day_types"].IsString() && !json["day_types"].IsArray())
+    if (!json.HasMember("paths") && !json.HasMember("paths") && !json["day template"].IsString() && !json["day template"].IsArray())
         THROW_TRACE(Reading_File_Error, "config file is badly formatted")
     std::vector<std::pair<DayTemplate, std::filesystem::path>> list;
-    for (const auto& day_types : json["day_types"].GetArray())
+    for (const auto& day_types : json["day template"].GetArray())
     {
-        if (!day_types.HasMember("days") && !day_types.HasMember("day_type") && !day_types["days"].IsArray() && !day_types["day_type"].IsArray())
+        if (!day_types.HasMember("weekdays") && !day_types.HasMember("type") && !day_types["weekdays"].IsArray() && !day_types["type"].IsArray())
             THROW_TRACE(Reading_File_Error, "Line list are badly formatted")
 
         std::array<bool, WEEKDAY_COUNT> day_list = {0};
-        for (const auto& day: day_types["days"].GetArray())
+        for (const auto& day: day_types["weekdays"].GetArray())
         {
-            if (day == "MONDAY")
+            if (std::string_view(day.GetString()) == "MONDAY")
                 day_list[std::chrono::Monday.c_encoding()] = true;
-            else if (day == "TUESDAY")
+            else if (std::string_view(day.GetString()) == "TUESDAY")
                 day_list[std::chrono::Tuesday.c_encoding()] = true;
-            else if (day == "WEDNESDAY")
+            else if (std::string_view(day.GetString()) == "WEDNESDAY")
                 day_list[std::chrono::Wednesday.c_encoding()] = true;
-            else if (day == "THURSDAY")
+            else if (std::string_view(day.GetString()) == "THURSDAY")
                 day_list[std::chrono::Thursday.c_encoding()] = true;
-            else if (day == "FRIDAY")
+            else if (std::string_view(day.GetString()) == "FRIDAY")
                 day_list[std::chrono::Friday.c_encoding()] = true;
-            else if (day == "SATURDAY")
+            else if (std::string_view(day.GetString()) == "SATURDAY")
                 day_list[std::chrono::Saturday.c_encoding()] = true;
-            else if (day == "SUNDAY")
+            else if (std::string_view(day.GetString()) == "SUNDAY")
                 day_list[std::chrono::Sunday.c_encoding()] = true;
             else
                 THROW_TRACE(Reading_File_Error, "Day does not exist")
         }
-        std::array<bool, DAY_TYPE_COUNT> day_type_array;
-        for (const auto& day_type: day_types["day_type"].GetArray())
+        std::array<bool, DAY_TYPE_COUNT> day_type_array = {0};
+        for (const auto& day_type: day_types["type"].GetArray())
         {
-            if (day_type == "VACATION")
+            if (std::string_view(day_type.GetString()) == "VACATION")
                 day_type_array[VACATION_DAYS] = true;
-            else if (day_type == "SCHOOL")
+            else if (std::string_view(day_type.GetString()) == "SCHOOL")
                 day_type_array[SCHOOL_DAYS] = true;
-            else if (day_type == "HOLIDAY")
+            else if (std::string_view(day_type.GetString()) == "HOLIDAY")
                 day_type_array[HOLYDAYS] = true;
-            else if (day_type == "ALL")
+            else if (std::string_view(day_type.GetString()) == "ALL")
                 day_type_array = { true,true,true };
             else
                 THROW_TRACE(Reading_File_Error, "Day type does not exist")
@@ -61,7 +62,7 @@ const std::vector<std::pair<DayTemplate,std::filesystem::path>> Get_Schedules(co
 
         for (const auto& paths : json["paths"].GetArray())
         {
-            list.emplace_back(DayTemplate(day_list, day_type_array), paths);
+            list.emplace_back(std::move(DayTemplate(day_list, day_type_array)),std::move(paths.GetString()));
         }
     }
     return list;
@@ -90,11 +91,11 @@ Resource_Getter::Resource_Getter(const std::filesystem::path& filesystem_path)
             THROW_TRACE(Reading_File_Error,"Line list are badly formatted")
 
         //for all the schedules of the lines create the path to schedule file and the daytemplate tht it describe
-        std::vector<std::pair<DayTemplate, std::filesystem::path>> path_list;
+        std::vector<std::pair<DayTemplate, std::filesystem::path>> path_list = {};
         for(const auto& schedule : element["schedules"].GetArray())
         {
-            const std::vector<std::pair<DayTemplate, std::filesystem::path>> schedules = Get_Schedules(schedule);
-            path_list.insert(path_list.end(),std::make_move_iterator(schedules.begin()),std::make_move_iterator(schedules.end()));
+            std::vector<std::pair<DayTemplate, std::filesystem::path>> schedules = Get_Schedules(schedule);
+            std::move(schedules.begin(), schedules.end(), std::back_inserter(path_list));
         }
      
         //add the above data to the lines data and don't forget to add the name of the line

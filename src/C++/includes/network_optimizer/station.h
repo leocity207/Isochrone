@@ -9,9 +9,9 @@
 class Station
 {
     private:
-        const Sphere_Coordinate m_coordinate;
-        const std::string m_name;
-        const int m_id;
+        Sphere_Coordinate m_coordinate;
+        std::string m_name;
+        int m_id;
         static int s_count;
 
     public:

@@ -54,3 +54,10 @@ bool DayTemplate::Match(const Day& day) const noexcept
         return true;
     return false;
 }
+
+bool DayTemplate::operator==(const DayTemplate& other) const noexcept
+{
+    if (m_working_days == other.m_working_days)
+        return true;
+    return false;
+}

@@ -1,14 +1,38 @@
 {
-    "station file":"Geographie/coordinate.csv",
+    "station file":"test.csv",
     "line list":[
         {
-            "name":"Ligne 1",
-            "schedules":[
-                "Ligne 1/line_1_a_6t_12345v.csv",
-                "Ligne 1/line_1_a_12345s.csv",
-                "Ligne 1/line_1_r_6t_12345v.csv",
-                "Ligne 1/line_1_r_12345s.csv"
-            ]
+           "name":"Ligne 1",
+          "schedules": [
+            {
+              "paths": [
+                "a.csv",
+                "b.csv"
+              ],
+              "day template": [
+                {
+                  "weekdays": [ "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY" ],
+                  "type": [ "VACATION" ]
+                },
+                {
+                  "weekdays": [ "SATURDAY" ],
+                  "type": [ "ALL" ]
+                }
+              ]
+            },
+            {
+              "paths": [
+                "c.csv",
+                "d.csv"
+              ],
+              "day template": [
+                {
+                  "weekdays": [ "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY" ],
+                  "type": [ "SCHOOL" ]
+                }
+              ]
+            }
+          ]
         }
     ]
 }
