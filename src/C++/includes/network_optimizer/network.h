@@ -4,8 +4,10 @@
 #include <vector>
 #include <filesystem>
 
-class Station;
-class Line;
+#include "includes/network_optimizer/station.h"
+#include "includes/network_optimizer/line.h"
+
+
 class Network
 {
 public:
@@ -17,7 +19,7 @@ public:
 private:
     std::vector<Station> m_station_list;
     std::vector<Line> m_line_list;
-}
+};
 
 
 #endif //NETWORK_H

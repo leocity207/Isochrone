@@ -3,6 +3,7 @@ add_library(network_optimizer OBJECT
     line.cpp
     schedule.cpp
     station.cpp
+    network.cpp
 )
 
 target_link_libraries(network_optimizer

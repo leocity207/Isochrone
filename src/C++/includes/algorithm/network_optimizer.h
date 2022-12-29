@@ -7,7 +7,7 @@
 class Network_Optimizer
 {
 private:
-    /* data */
+    
 public:
     Network_Optimizer() = delete;
     Network_Optimizer(const Network&);

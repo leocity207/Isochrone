@@ -9,6 +9,7 @@
 #include "includes/network_optimizer/schedule.h"
 #include "includes/network_optimizer/day_info.h"
 
+
 //utils
 #include "includes/utils/exception_def.h"
 
@@ -22,11 +23,11 @@ Network::Network(const std::filesystem::path& resource_path)
 	for(const auto& line_parse_data : getter.Get_Line_Files())
 	{
 		std::vector<Schedule> schedules;
-		for(const auto& schedule : line_parse_data.second)
+		for(auto& schedule : line_parse_data.second)
 		{
-			DayTemplate temp(schedule.filename().string());
-			auto [station_list, timetable] = CSV_Schedule_Reader::Read_Schedule_File(schedule);
-			Schedule(std::move(this->Get_Station_Reference(station_list)),std::move(timetable),std::move(temp));
+			auto [station_list, timetable] = CSV_Schedule_Reader::Read_Schedule_File(resource_path/schedule.second);
+			std::vector<Station_CRef> temp = this->Get_Station_Reference(station_list);
+			schedules.emplace_back(std::move(temp),std::move(timetable),std::move(schedule.first));
 		}
 		m_line_list.emplace_back(std::move(schedules),std::move(line_parse_data.first));
 	}
