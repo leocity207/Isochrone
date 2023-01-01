@@ -12,6 +12,11 @@ DayTime::DayTime(std::chrono::hours hours, std::chrono::minutes minutes) noexcep
 
 }
 
+DayTime::DayTime(const DayTime& other) noexcept : m_day_minute(other.m_day_minute)
+{
+
+}
+
 bool DayTime::operator>(const DayTime& other_DayTime) const noexcept
 {
     return m_day_minute > other_DayTime.m_day_minute;
@@ -29,6 +34,10 @@ bool DayTime::operator<=(const DayTime& other_DayTime) const noexcept
     return m_day_minute <= other_DayTime.m_day_minute;
 }
 
+DayTime DayTime::operator+(const std::chrono::seconds& seconds) const noexcept
+{
+    return DayTime(std::chrono::hours(0), m_day_minute + std::chrono::minutes(seconds.count()/60));
+}
 bool DayTime::operator==(const DayTime& other_DayTime) const noexcept
 {
     return m_day_minute == other_DayTime.m_day_minute;

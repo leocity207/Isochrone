@@ -5,7 +5,6 @@
 #include <functional>
 #include "includes/utils/coordinate_2d.h"
 
-
 class Station
 {
     private:
@@ -15,6 +14,8 @@ class Station
         static int s_count;
 
     public:
+        static Station NIL_STATION;
+
         Station() = delete;
         Station(Sphere_Coordinate&& coordinate, std::string&& name) noexcept;
 
@@ -44,8 +45,11 @@ class Station
         /// @return 
         const double Get_Distance_To(const Sphere_Coordinate& coordinate) const noexcept;
 
-
         bool operator==(const Station& other_station) const noexcept;
+        bool operator!=(const Station& other_station) const noexcept{return !this->operator==(other_station);};
+
+        bool operator<(const Station& other_station) const noexcept { return m_id < other_station.m_id; };
+        
 };
 
 typedef std::reference_wrapper<const Station> Station_CRef;

@@ -17,7 +17,7 @@
 //helper function
 std::vector<std::pair<DayTemplate,std::filesystem::path>> Get_Schedules(const rapidjson::Value& json)
 {
-    if (!json.HasMember("paths") && !json.HasMember("paths") && !json["day template"].IsString() && !json["day template"].IsArray())
+    if (!json.HasMember("paths") && !json.HasMember("day template") && !json["paths"].IsString() && !json["day template"].IsArray())
         THROW_TRACE(Reading_File_Error, "config file is badly formatted")
     std::vector<std::pair<DayTemplate, std::filesystem::path>> list;
     for (const auto& day_types : json["day template"].GetArray())
@@ -103,12 +103,12 @@ Resource_Getter::Resource_Getter(const std::filesystem::path& filesystem_path)
     }
 }
 
-const std::filesystem::path& Resource_Getter::Get_Station_File() const noexcept
+std::filesystem::path& Resource_Getter::Get_Station_File() noexcept
 {
     return m_path_to_Station_File;
 }
 
-const std::vector<std::pair<std::string, std::vector<std::pair<DayTemplate, std::filesystem::path>>>>& Resource_Getter::Get_Line_Files() const noexcept
+std::vector<std::pair<std::string, std::vector<std::pair<DayTemplate, std::filesystem::path>>>>& Resource_Getter::Get_Line_Files() noexcept
 {
     return m_line_data;
 }

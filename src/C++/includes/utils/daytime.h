@@ -8,13 +8,16 @@
 class DayTime
 {
     public:
-        DayTime() = delete;
+        DayTime() = default;
+        DayTime(const DayTime& other) noexcept;
         DayTime(std::chrono::hours hours, std::chrono::minutes minutes) noexcept;
         bool operator==(const DayTime& other_DayTime) const noexcept;
         bool operator>(const DayTime& other_DayTime) const noexcept;
         bool operator<(const DayTime& other_DayTime) const noexcept;
         bool operator>=(const DayTime& other_DayTime) const noexcept;
         bool operator<=(const DayTime& other_DayTime) const noexcept;
+
+        DayTime operator+(const std::chrono::seconds&) const noexcept;
 
         static std::optional<DayTime> From_Time_String(const std::string_view& description);
 

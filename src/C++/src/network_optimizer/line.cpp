@@ -3,6 +3,7 @@
 
 
 #include <algorithm>
+#include <ranges>
 
 int Line::s_count = 0;
 
@@ -34,4 +35,11 @@ std::optional<Schedule_CRef> Line::Get_Schedule(const Day& matching_day,const St
         return std::nullopt;
     }
     return m_schedule[right_schedule- transformed.begin()];
+}
+
+bool Line::Contain(const Station& station, const Day& matching_day) const noexcept
+{
+    std::reference_wrapper<const Station> station_ref = station;
+    auto temp = this->Get_Schedules(matching_day);
+    return std::any_of(temp.begin(), temp.end(), [station_ref](const Schedule& schedule) {return schedule.Contain(station_ref); });
 }
