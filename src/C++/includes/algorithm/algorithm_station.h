@@ -18,21 +18,28 @@ class Algorithm_Station
     public:
         Algorithm_Station(const Station* station_to_link,const Network_Optimizer* optimizer) noexcept;
 
-        /////////////////////////////////////////////////////////////////////
-        /// Give back the time you need to get from this station to the start
+        ////////////////////////////////////////////////////////////////////////////
+        /// @brief Give back the time you need to get from this station to the start
+        /// @return the daytime at which we reach the station
         DayTime Get_Best_Time_Start_To_Station() const noexcept;
+
+        ///////////////////////////////////////////////////////////////////////////
+        /// @brief try and see if the new daytime is better than the registered one
+        /// @param new_value the new daytime value to reach the station where we want to see if better
         void Try_Set_New_Best_Time(DayTime& new_value);
-        void Try_Set_New_Best_Time(std::optional<DayTime>& new_value);
-        const DayTime& Get_Reach_Time() {return m_best_time;};
+        
+       
 
 
         /////////////////////////////////////
         /// Way to get the containing station
         const Station& Get() const noexcept;
-        const Station& operator*() const noexcept;
 
-        //should not move use station ID;
         bool operator<(const Algorithm_Station& other_station) const noexcept { return *m_ref_station < *other_station.m_ref_station; };
+
+        ///////////////////////////////
+        /// give back the reaching time
+        const DayTime& Get_Reach_Time() {return m_best_time;};
 
     private:
         Algorithm_Station() = delete;

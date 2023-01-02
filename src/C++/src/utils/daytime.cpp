@@ -77,10 +77,3 @@ std::optional<DayTime> DayTime::From_Time_String(const std::string_view& time_st
     // Return the result as a pair
     
 }
-
-
-const std::chrono::minutes& DayTime::GetTime()
-{
-    return m_day_minute;
-}
-

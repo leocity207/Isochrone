@@ -11,10 +11,6 @@ const Station& Algorithm_Station::Get() const noexcept
 	return *m_ref_station;
 }
 
-const Station& Algorithm_Station::operator*() const noexcept
-{
-	return *m_ref_station;
-}
 
 DayTime Algorithm_Station::Get_Best_Time_Start_To_Station() const noexcept
 {
@@ -27,10 +23,3 @@ void Algorithm_Station::Try_Set_New_Best_Time(DayTime& new_value)
 	if(m_best_time>new_value)
 		m_best_time = new_value;
 }
-
-void Algorithm_Station::Try_Set_New_Best_Time(std::optional<DayTime>& new_value)
-{
-	if(new_value.has_value() && m_best_time>*new_value)
-		m_best_time = *new_value;
-}
-

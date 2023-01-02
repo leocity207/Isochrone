@@ -22,6 +22,9 @@ class Line
         static int s_count;
     public:
         Line() = delete;
+        Line(const Line&) = delete;
+        Line& operator=(const Line&) = delete;
+
         Line(std::vector<Schedule>&& Schedule,std::string&& name) noexcept;
 
 
@@ -42,11 +45,20 @@ class Line
         /// @return the right schedule if found, otherwise return a void schedule
         std::optional<Schedule_CRef> Get_Schedule(const Day& matching_day,const Station& start_station,const Station& end_station) const noexcept;
 
+        /////////////////////////////////////////////////////////////////////////////////
+        /// @brief give back a list of schedules matching the day
+        /// @param matching_day the day to select schedule from
+        /// @return a view inside the schedule list containing only the good schedule
         auto Get_Schedules(const Day& matching_day) const noexcept
         {
             return std::views::filter(m_schedule, [matching_day](const Schedule& schedule) { return schedule.Match(matching_day); });
         };
 
+        /////////////////////////////////////////////////////////////////////////////////
+        /// @brief return true if the station is contained inside the schedules for the matching day
+        /// @param matching_day the day to select schedule from
+        /// @param station the station we are trying to see if contained inside the schedule
+        /// @return wether or not the station is contained inside the line for this day
         bool Contain(const Station& station,const Day& matching_day) const noexcept;
 };
 

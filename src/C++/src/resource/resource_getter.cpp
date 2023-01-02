@@ -103,12 +103,12 @@ Resource_Getter::Resource_Getter(const std::filesystem::path& filesystem_path)
     }
 }
 
-std::filesystem::path& Resource_Getter::Get_Station_File() noexcept
+std::filesystem::path&& Resource_Getter::Get_Station_File() noexcept
 {
-    return m_path_to_Station_File;
+    return std::move(m_path_to_Station_File);
 }
 
-std::vector<std::pair<std::string, std::vector<std::pair<DayTemplate, std::filesystem::path>>>>& Resource_Getter::Get_Line_Files() noexcept
+std::vector<std::pair<std::string, std::vector<std::pair<DayTemplate, std::filesystem::path>>>>&& Resource_Getter::Get_Line_Files() noexcept
 {
-    return m_line_data;
+    return std::move(m_line_data);
 }

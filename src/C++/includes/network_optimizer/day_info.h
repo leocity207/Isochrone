@@ -50,11 +50,20 @@ class DayTemplate
 {
     public:
         DayTemplate() = delete;
+        DayTemplate(const DayTemplate&) = delete;
+        DayTemplate& operator=(const DayTemplate&) = delete;
+
         DayTemplate(const std::array<bool,WEEKDAY_COUNT>,const std::array<bool,DAY_TYPE_COUNT>) noexcept;
         DayTemplate(DayTemplate&&) noexcept;
 
-        bool Match(const Day&) const noexcept;
+        //////////////////////////////////////////////////////////
+        /// @brief see if the day is a match for the day day 
+        /// @param day to see if contained by this day template
+        /// @return wether or not the day is contained by the day template
+        bool Match(const Day& day) const noexcept;
+
         bool operator==(const DayTemplate& other) const noexcept;
+
     private:
         std::array<bool,WEEKDAY_COUNT> m_working_days;
         std::array<bool,DAY_TYPE_COUNT> m_working_types;

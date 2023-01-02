@@ -29,7 +29,11 @@ typedef std::vector<std::vector<std::optional<DayTime>>> TimeTable;
 class Schedule : public DayTemplate
 {
     public:
+        //deleted
         Schedule() = delete;
+        Schedule(const Schedule& ) = delete;
+        Schedule& operator=(const Schedule&) = delete;
+
         Schedule(std::vector<Station_CRef>&& station_list, TimeTable&& schedule_tab,DayTemplate&& day_template) noexcept;
         
         /////////////////////////////////////////////////////
@@ -59,6 +63,9 @@ class Schedule : public DayTemplate
         /// @return the arriving daytime at the end station. if no path were found it return an invalid daytime
         std::optional<DayTime_CRef> Get_Closest_Time_To_Station(const Algorithm_Station& start_station,const Station& end_station) const;
 
+        //////////////////////////////////////////////////////////////////
+        /// @brief give back the station list of the schedule
+        /// @return a list of reference to the station inside the schedule
         const std::vector<Station_CRef>& Get_Station_List() const noexcept { return m_station_list; };
 
     private:
