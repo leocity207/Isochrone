@@ -30,8 +30,6 @@ void Algorithm_Station::Try_Set_New_Best_Time(std::optional<DayTime>& new_value)
 		m_best_time = *new_value;
 }
 
-
-
 bool Algorithm_Station::operator<(const Algorithm_Station& other_station) const noexcept 
 { 
 	return *m_ref_station < *other_station.m_ref_station; 

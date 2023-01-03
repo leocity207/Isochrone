@@ -67,6 +67,7 @@ TEST_F(Schedule_Test, Get_Station_Index_Not_Contains)
 
 }
 
+
 TEST_F(Schedule_Test, Get_Station_Index_Contains)
 {
 	ASSERT_TRUE(Schedule_Test::s_schedule->Get_Station_Index(s_stations[0]).has_value());
@@ -102,4 +103,13 @@ TEST_F(Schedule_Test,Order_Normal)
 	ASSERT_FALSE(Schedule_Test::s_schedule->Order(s_stations[1],s_stations[0]));
 	ASSERT_FALSE(Schedule_Test::s_schedule->Order(s_stations[2],s_stations[0]));
 	ASSERT_FALSE(Schedule_Test::s_schedule->Order(s_stations[2],s_stations[1]));
+}
+
+
+TEST_F(Schedule_Test, Get_Station_list)
+{
+	const std::vector<Station_CRef> station_list = s_schedule->Get_Station_List();
+	ASSERT_EQ(station_list[0].get(),s_stations[0]);
+	ASSERT_EQ(station_list[1].get(),s_stations[1]);
+	ASSERT_EQ(station_list[2].get(),s_stations[2]);
 }

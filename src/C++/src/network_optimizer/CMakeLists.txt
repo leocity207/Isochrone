@@ -1,4 +1,4 @@
-add_library(network_optimizer OBJECT                       
+add_library(network_optimizer STATIC                      
     day_info.cpp
     line.cpp
     schedule.cpp
@@ -8,4 +8,5 @@ add_library(network_optimizer OBJECT
 
 target_link_libraries(network_optimizer
 log
+csv
 )
