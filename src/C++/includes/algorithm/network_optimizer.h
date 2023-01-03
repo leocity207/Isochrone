@@ -13,9 +13,9 @@ public:
 
     std::vector<Algorithm_Station> Optimize();
     
-    const DayTime& Get_Start_Time() const noexcept {return m_start_time;};
-    const double Get_Speed() const noexcept {return m_speed;};
-    const Sphere_Coordinate& Get_Start_Coordinate() const noexcept {return m_start_coordinate;};
+    const DayTime& Get_Start_Time() const noexcept;
+    const double Get_Speed() const noexcept;
+    const Sphere_Coordinate& Get_Start_Coordinate() const noexcept;
 
 private:
     const DayTime& m_start_time;

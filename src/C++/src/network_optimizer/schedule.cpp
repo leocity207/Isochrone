@@ -33,7 +33,7 @@ bool Schedule::Order(const Station& first,const Station& second) const
 
 std::optional<DayTime_CRef> Schedule::Get_Closest_Time_To_Station(const Algorithm_Station& start_station,const Station& end_station) const
 {
-    const std::optional<size_t> start_index = this->Get_Station_Index(*start_station);
+    const std::optional<size_t> start_index = this->Get_Station_Index(start_station.Get());
     const std::optional<size_t> end_index = this->Get_Station_Index(end_station);
 
     // if station cannot be found inside schedule we suppose that this is an error
@@ -63,4 +63,9 @@ std::optional<size_t> Schedule::Get_Station_Index(const Station& station_to_find
     if(it == m_station_list.end())
         return std::nullopt;
     return std::distance(m_station_list.begin(),it);
+}
+
+const std::vector<Station_CRef>& Schedule::Get_Station_List() const noexcept 
+{ 
+    return m_station_list;
 }

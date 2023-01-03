@@ -36,8 +36,8 @@ public:
     
     /////////
     ///getter
-    const std::vector<Line>& Get_Lines() const noexcept {return m_line_list;};
-    const std::vector<Station>& Get_Station() const noexcept {return m_station_list;};
+    const std::vector<Line>& Get_Lines() const noexcept;
+    const std::vector<Station>& Get_Station() const noexcept;
 private:
     std::vector<Station> m_station_list;
     std::vector<Line> m_line_list;

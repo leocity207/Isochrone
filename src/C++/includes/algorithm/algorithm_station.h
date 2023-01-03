@@ -27,6 +27,7 @@ class Algorithm_Station
         /// @brief try and see if the new daytime is better than the registered one
         /// @param new_value the new daytime value to reach the station where we want to see if better
         void Try_Set_New_Best_Time(DayTime& new_value);
+        void Try_Set_New_Best_Time(std::optional<DayTime>& new_value);
         
        
 
@@ -35,7 +36,7 @@ class Algorithm_Station
         /// Way to get the containing station
         const Station& Get() const noexcept;
 
-        bool operator<(const Algorithm_Station& other_station) const noexcept { return *m_ref_station < *other_station.m_ref_station; };
+        bool operator<(const Algorithm_Station& other_station) const noexcept;
 
         ///////////////////////////////
         /// give back the reaching time

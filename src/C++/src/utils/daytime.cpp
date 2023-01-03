@@ -38,6 +38,7 @@ DayTime DayTime::operator+(const std::chrono::seconds& seconds) const noexcept
 {
     return DayTime(std::chrono::hours(0), m_day_minute + std::chrono::minutes(seconds.count()/60));
 }
+
 bool DayTime::operator==(const DayTime& other_DayTime) const noexcept
 {
     return m_day_minute == other_DayTime.m_day_minute;
@@ -76,4 +77,9 @@ std::optional<DayTime> DayTime::From_Time_String(const std::string_view& time_st
     return DayTime(std::chrono::hours(hours), std::chrono::minutes(minutes));
     // Return the result as a pair
     
+}
+
+const std::chrono::minutes& DayTime::GetTime() const noexcept
+{ 
+    return m_day_minute; 
 }

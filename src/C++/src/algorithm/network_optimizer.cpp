@@ -10,6 +10,23 @@ Network_Optimizer::Network_Optimizer(const Network& network,const Sphere_Coordin
 
 }
 
+
+const DayTime& Network_Optimizer::Get_Start_Time() const noexcept 
+{
+    return m_start_time;
+}
+
+const double Network_Optimizer::Get_Speed() const noexcept 
+{
+    return m_speed;
+}
+
+const Sphere_Coordinate& Network_Optimizer::Get_Start_Coordinate() const noexcept 
+{
+    return m_start_coordinate;
+}
+
+
 std::vector<Algorithm_Station> Network_Optimizer::Optimize()
 {
     std::vector<Algorithm_Station> station_list;

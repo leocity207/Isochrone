@@ -24,6 +24,7 @@ class Line
         Line() = delete;
         Line(const Line&) = delete;
         Line& operator=(const Line&) = delete;
+        Line(Line&&) noexcept = default;
 
         Line(std::vector<Schedule>&& Schedule,std::string&& name) noexcept;
 

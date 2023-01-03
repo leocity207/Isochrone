@@ -56,3 +56,12 @@ std::vector<Line_CRef> Network::Get_Passing_Lines(const Station& station,const D
 	return passing_lines;
 }
 
+const std::vector<Line>& Network::Get_Lines() const noexcept 
+{ 
+	return m_line_list;
+}
+
+const std::vector<Station>& Network::Get_Station() const noexcept 
+{
+	return m_station_list;
+}

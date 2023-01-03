@@ -27,7 +27,7 @@ class DayTime
         /// @throw throw a parsing error if the string is ill formed
         static std::optional<DayTime> From_Time_String(const std::string_view& description);
 
-        const std::chrono::minutes& GetTime() { return m_day_minute; };
+        const std::chrono::minutes& GetTime() const noexcept;
     private:
         std::chrono::minutes m_day_minute; 
 };

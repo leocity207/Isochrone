@@ -16,3 +16,29 @@ const double Station::Get_Distance_To(const Sphere_Coordinate& coordinate) const
 {
     return m_coordinate.Get_Distance(coordinate);
 }
+
+
+const std::string& Station::Get_Name() const noexcept 
+{ 
+    return m_name; 
+}
+
+const Sphere_Coordinate& Station::GetCoordinate() const noexcept 
+{
+     return m_coordinate; 
+}
+
+bool Station::operator==(const Station& other_station) const noexcept
+{ 
+    return m_id == other_station.m_id;
+}
+
+bool Station::operator!=(const Station& other_station) const noexcept
+{ 
+    return m_id != other_station.m_id;
+}
+
+bool Station::operator<(const Station& other_station) const noexcept 
+{ 
+    return m_id < other_station.m_id;
+}

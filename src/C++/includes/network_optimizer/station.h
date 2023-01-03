@@ -38,14 +38,14 @@ class Station
 
         /////////////////////////////////////////////////////////////
         /// @brief comparison operator compare station using their ID
-        bool operator==(const Station& other_station) const noexcept{ return m_id == other_station.m_id;};
-        bool operator!=(const Station& other_station) const noexcept{ return m_id != other_station.m_id;};
-        bool operator<(const Station& other_station) const noexcept { return m_id < other_station.m_id;};
+        bool operator==(const Station& other_station) const noexcept;
+        bool operator!=(const Station& other_station) const noexcept;
+        bool operator<(const Station& other_station) const noexcept;
 
         //////////
         /// getter
-        const std::string& Get_Name() const noexcept { return m_name; };
-        const Sphere_Coordinate& GetCoordinate() const noexcept { return m_coordinate; };
+        const std::string& Get_Name() const noexcept;
+        const Sphere_Coordinate& GetCoordinate() const noexcept;
 };
 
 typedef std::reference_wrapper<const Station> Station_CRef;
