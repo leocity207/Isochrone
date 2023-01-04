@@ -24,6 +24,12 @@ TEST_F(DayTime_Test, addition)
     DayTime test_4 = test+std::chrono::seconds(120);
     ASSERT_EQ(test_4.GetTime(),std::chrono::minutes(63));
 
+    DayTime test_5 = test + std::chrono::seconds(30);
+    ASSERT_EQ(test_5.GetTime(), std::chrono::minutes(62));
+
+    DayTime test_6 = test + std::chrono::seconds(155);
+    ASSERT_EQ(test_6.GetTime(), std::chrono::minutes(64));
+
 }
 
 

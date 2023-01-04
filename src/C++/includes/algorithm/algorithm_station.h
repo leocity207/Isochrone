@@ -42,10 +42,13 @@ class Algorithm_Station
         /// give back the reaching time
         const DayTime& Get_Reach_Time() {return m_best_time;};
 
+        static const Algorithm_Station& Get_Station_By_Name(const std::vector<Algorithm_Station>& station_list, const std::string& name);
+
     private:
         Algorithm_Station() = delete;
 
         DayTime m_best_time;
+        DayTime m_basic_time;
         bool m_reach_by_transport;
         const Station* m_ref_station;
         const Network_Optimizer* m_optimizer;

@@ -13,11 +13,11 @@ TEST_F(Algorithm_Station_Test, Get_Best_Time_Start_To_Station)
     Network_Optimizer optimizer(network,Sphere_Coordinate(0,0),1,start_time,Day(Monday,SCHOOL_DAYS));
 
     Algorithm_Station station_1(&(network.Get_Station()[0]),&optimizer);
-	Algorithm_Station station_2(&(network.Get_Station()[0]),&optimizer);
-	Algorithm_Station station_3(&(network.Get_Station()[0]),&optimizer);
-	Algorithm_Station station_4(&(network.Get_Station()[0]),&optimizer);
-	Algorithm_Station station_5(&(network.Get_Station()[0]),&optimizer);
-	Algorithm_Station station_6(&(network.Get_Station()[0]),&optimizer);
+	Algorithm_Station station_2(&(network.Get_Station()[1]),&optimizer);
+	Algorithm_Station station_3(&(network.Get_Station()[2]),&optimizer);
+	Algorithm_Station station_4(&(network.Get_Station()[3]),&optimizer);
+	Algorithm_Station station_5(&(network.Get_Station()[4]),&optimizer);
+	Algorithm_Station station_6(&(network.Get_Station()[5]),&optimizer);
 
 	
 
@@ -56,11 +56,12 @@ TEST_F(Algorithm_Station_Test, Get_Closest_Time_To_Station)
 	const Schedule& s_r = Schedule_r->get();
 
 	Algorithm_Station A(&(network.Get_Station()[0]),&optimizer);
-	std::optional<DayTime_CRef> value = s_a.Get_Closest_Time_To_Station(A,network.Get_Station()[1]);
-	std::optional<DayTime_CRef> value_2 = s_r.Get_Closest_Time_To_Station(A,network.Get_Station()[3]);
+	Algorithm_Station C(&(network.Get_Station()[2]), &optimizer);
+	std::optional<DayTime> value = s_a.Get_Closest_Time_To_Station(A,network.Get_Station()[1]);
+	std::optional<DayTime> value_2 = s_r.Get_Closest_Time_To_Station(C,network.Get_Station()[1]);
 
-	EXPECT_EQ(value.value(),DayTime(hours(0),minutes(3)));
-	EXPECT_EQ(value.value(),DayTime(hours(0),minutes(3)));
+	EXPECT_EQ(value.value(),DayTime(hours(0),minutes(2)));
+	EXPECT_EQ(value_2.value(),DayTime(hours(18),minutes(35)));
 }
 
 TEST_F(Algorithm_Station_Test, Try_Set_Best_Time)

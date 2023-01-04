@@ -45,3 +45,4 @@ target_link_libraries(csv_test
 )
 
 
+gtest_discover_tests(csv_test)

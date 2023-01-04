@@ -35,7 +35,6 @@ endif()
 #final link of the library
 target_link_libraries(
   algorithm_test
-
   algorithm
   GTest::gtest_main
   network_optimizer
@@ -46,3 +45,4 @@ target_link_libraries(
 )
 
 
+gtest_discover_tests(algorithm_test)

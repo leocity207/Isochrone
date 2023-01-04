@@ -31,27 +31,33 @@ std::vector<Algorithm_Station> Network_Optimizer::Optimize()
 {
     std::vector<Algorithm_Station> station_list;
     std::vector<Algorithm_Station> final_optimized;
-    std::map<const Station*,Algorithm_Station*> map_station;
     station_list.reserve(m_network.Get_Station().size());
 
-    //initialize station_list;
     for (const Station& station : m_network.Get_Station())
-    {
         station_list.emplace_back(&station, this);
-        map_station.insert(std::make_pair(&station, &station_list.back()));
-    }
+
+
 
     for(size_t i = station_list.size()-1;i--;)
     {
         //order list and pop the best element;
-        std::make_heap(station_list.begin(), station_list.end());
-        std::pop_heap(station_list.begin(), station_list.end());
+        std::sort(station_list.begin(), station_list.end());
+        std::reverse(station_list.begin(), station_list.end());
         final_optimized.emplace_back(std::move(station_list.back()));
         station_list.pop_back();
         Algorithm_Station& current_station = final_optimized.back();
 
         //get list of lines passing at the choosen station
-        auto line_list = std::views::filter(m_network.Get_Lines(), [&](const Line& line) { return line.Contain(current_station.Get(),m_day_type);});
+        auto line_list = std::views::filter(m_network.Get_Lines(), [&](const Line& line) {
+            return line.Contain(current_station.Get(),m_day_type);
+        });
+
+        for (Algorithm_Station& alg_station : station_list)
+        {
+            std::chrono::seconds default_time((int)std::round(current_station.Get().Get_Distance_To(alg_station.Get())/m_speed));
+            DayTime time = current_station.Get_Best_Time_Start_To_Station() + default_time;
+            alg_station.Try_Set_New_Best_Time(time);
+        }
 
         //for all lines passing by the station
         std::for_each(line_list.begin(), line_list.end(), [&](const Line& line) { 
@@ -64,7 +70,9 @@ std::vector<Algorithm_Station> Network_Optimizer::Optimize()
                     if (station.get() != current_station.Get()) 
                     {
                         std::optional<DayTime> value = schedule.Get_Closest_Time_To_Station(current_station, station.get());
-                        map_station.at(&(station.get()))->Try_Set_New_Best_Time(value);
+                        auto pose = std::find_if(station_list.begin(), station_list.end(), [&](const Algorithm_Station& alg_station) {return alg_station.Get() == station; });
+                        if (pose != station_list.end())  
+                            pose->Try_Set_New_Best_Time(value);
                     }
                 });
             });

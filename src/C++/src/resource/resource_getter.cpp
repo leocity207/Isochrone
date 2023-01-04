@@ -17,7 +17,7 @@
 //helper function
 std::vector<std::pair<DayTemplate,std::filesystem::path>> Get_Schedules(const rapidjson::Value& json)
 {
-    if (!json.HasMember("paths") && !json.HasMember("day template") && !json["paths"].IsString() && !json["day template"].IsArray())
+    if (!json.HasMember("paths") && !json.HasMember("day template") && !json["paths"].IsArray() && !json["day template"].IsArray())
         THROW_TRACE(Reading_File_Error, "config file is badly formatted")
     std::vector<std::pair<DayTemplate, std::filesystem::path>> list;
     for (const auto& day_types : json["day template"].GetArray())

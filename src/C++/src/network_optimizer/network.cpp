@@ -17,14 +17,14 @@ Network::Network(const std::filesystem::path& resource_path) : m_line_list(), m_
 {
 	Resource_Getter	getter(resource_path);
 
-	m_station_list =  std::move(CSV_Station_Reader::Read_Station_File(resource_path/getter.Get_Station_File()));
+	m_station_list =  std::move(CSV_Station_Reader::Read_Station_File(resource_path.parent_path()/getter.Get_Station_File()));
 
 	for(auto& line_parse_data : getter.Get_Line_Files())
 	{
 		std::vector<Schedule> schedules;
 		for(auto& schedule : line_parse_data.second)
 		{
-			auto [station_list, timetable] = CSV_Schedule_Reader::Read_Schedule_File(resource_path/schedule.second);
+			auto [station_list, timetable] = CSV_Schedule_Reader::Read_Schedule_File(resource_path.parent_path()/schedule.second);
 			std::vector<Station_CRef> temp = this->Get_Station_Reference(station_list);
 
 			schedules.emplace_back(std::move(temp),std::move(timetable),std::move(schedule.first));

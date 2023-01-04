@@ -27,9 +27,13 @@ class DayTime
         /// @throw throw a parsing error if the string is ill formed
         static std::optional<DayTime> From_Time_String(const std::string_view& description);
 
-        const std::chrono::minutes& GetTime() const noexcept;
+        std::chrono::minutes GetTime() const noexcept;
+
+        const std::string ToString() noexcept;
     private:
-        std::chrono::minutes m_day_minute; 
+
+        DayTime(std::chrono::seconds seconds) noexcept;
+        std::chrono::seconds m_day_seconds; 
 };
 
 typedef std::reference_wrapper<const DayTime> DayTime_CRef;

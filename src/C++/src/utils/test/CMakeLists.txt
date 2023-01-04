@@ -42,4 +42,4 @@ target_link_libraries(
   log
 )
 
-
+gtest_discover_tests(utils_test)

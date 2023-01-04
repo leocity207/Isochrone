@@ -64,7 +64,7 @@ class Schedule : public DayTemplate
         /// @param current_time the time at wich you start waiting at the start station
         /// @return the arriving daytime at the end station. if no path were found it return an invalid daytime
         /// @throw if the second or first station is not part of the schedule
-        std::optional<DayTime_CRef> Get_Closest_Time_To_Station(const Algorithm_Station& start_station,const Station& end_station) const;
+        std::optional<DayTime> Get_Closest_Time_To_Station(const Algorithm_Station& start_station,const Station& end_station) const;
 
         //////////////////////////////////////////////////////////////////
         /// @brief give back the station list of the schedule

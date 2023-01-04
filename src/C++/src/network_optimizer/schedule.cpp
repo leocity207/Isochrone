@@ -31,7 +31,7 @@ bool Schedule::Order(const Station& first,const Station& second) const
 }
 
 
-std::optional<DayTime_CRef> Schedule::Get_Closest_Time_To_Station(const Algorithm_Station& start_station,const Station& end_station) const
+std::optional<DayTime> Schedule::Get_Closest_Time_To_Station(const Algorithm_Station& start_station,const Station& end_station) const
 {
     const std::optional<size_t> start_index = this->Get_Station_Index(start_station.Get());
     const std::optional<size_t> end_index = this->Get_Station_Index(end_station);
@@ -41,15 +41,17 @@ std::optional<DayTime_CRef> Schedule::Get_Closest_Time_To_Station(const Algorith
         THROW_TRACE(Station_Not_In_Schedule, "The station " + start_station.Get().Get_Name() + " is not in schedule")
     else if(!end_index)
         THROW_TRACE(Station_Not_In_Schedule, "The station " + end_station.Get_Name() + " is not in schedule")
+    else if(*start_index > *end_index)
+        return std::nullopt;
 
-    for(const std::vector<std::optional<DayTime>>& schedule_line : m_schedule)
+    for(size_t i = 0 ;i < m_schedule[*start_index].size();i++ )
     {
-        const std::optional<DayTime> start_station_time = schedule_line[*start_index];
+        std::optional<DayTime> start_station_time = m_schedule[*start_index][i];
         if(!start_station_time.has_value())
             continue;
-        else if(*start_station_time > start_station.Get_Best_Time_Start_To_Station())
+        else if(*start_station_time < start_station.Get_Best_Time_Start_To_Station())
             continue;
-        const std::optional<DayTime> end_station_station_time = schedule_line[*end_index];
+        const std::optional<DayTime> end_station_station_time = m_schedule[*end_index][i];
         if(!end_station_station_time.has_value())
             continue;
         return end_station_station_time;         
