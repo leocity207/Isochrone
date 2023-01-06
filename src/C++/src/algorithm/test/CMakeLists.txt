@@ -8,18 +8,16 @@ file(GLOB_RECURSE MY_HEADERS "*.h")
 
 #/////////////////////////////////////////////////
 # Add all the File for the target
-add_executable( csv_test 
-    main.cpp
-    csv_schedule_test.cpp
-    csv_station_test.cpp
-    resource_getter_test.cpp
+add_executable( algorithm_test 
+    algorithm_station_test.cpp
+    network_optimizer_test.cpp
 
     ${MY_HEADERS}
 )
 
 #/////////////////////////////////////////////////
 # add header directory
-target_include_directories( csv_test PRIVATE 
+target_include_directories( network_optimizer_test PRIVATE 
     ${CMAKE_CURRENT_SOURCE_DIR}                 
 )
 
@@ -27,22 +25,24 @@ target_include_directories( csv_test PRIVATE
 #/////////////////////////////////////
 # Special compilation option for googletest
 if (MSVC)
-    target_compile_options(utils_test PRIVATE /W0 -/WX)
+    target_compile_options(network_optimizer_test PRIVATE /W0 -/WX)
 else()
-    target_compile_options(utils_test PRIVATE -Wall -Wextra -pedantic -Og)
+    target_compile_options(network_optimizer_test PRIVATE -Wall -Wextra -pedantic -Og)
 endif()
 
 
 #/////////////////////////////////
 #final link of the library
-target_link_libraries(csv_test
-  GTest::gtest_main
-  csv
-  utils
-  network_optimizer
+target_link_libraries(
+  algorithm_test
   algorithm
+  GTest::gtest_main
+  network_optimizer
+  utils
   log
+  algorithm
+  csv
 )
 
 
-gtest_discover_tests(csv_test)
+gtest_discover_tests(algorithm_test)

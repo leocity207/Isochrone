@@ -21,7 +21,7 @@ class Algorithm_Station;
 
 //------------------------------------------------------------------------------------------------------------
 // Schedule class represent transport schedule and meta data about the schedule
-// Basicaly We suppose a schedule is a matrix containing the time at which the transport get to the station
+// Basically We suppose a schedule is a matrix containing the time at which the transport get to the station
 // Here we suppose that the line represent the station and the column represent the pathway of one transport
 // Needed meta data are as follow:
 
@@ -29,7 +29,12 @@ typedef std::vector<std::vector<std::optional<DayTime>>> TimeTable;
 class Schedule : public DayTemplate
 {
     public:
+        //deleted
         Schedule() = delete;
+        Schedule(const Schedule& ) = delete;
+        Schedule& operator=(const Schedule&) = delete;
+        Schedule(Schedule&& ) noexcept = default;
+
         Schedule(std::vector<Station_CRef>&& station_list, TimeTable&& schedule_tab,DayTemplate&& day_template) noexcept;
         
         /////////////////////////////////////////////////////
@@ -49,6 +54,7 @@ class Schedule : public DayTemplate
         /// @param second  is the supposed later station
         /// @note if first or second is not part of the schedule this function throw
         /// @return true if second come after false
+        /// @throw if the second or first station is not part of the schedule
         bool Order(const Station& first,const Station& second) const;
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -57,7 +63,13 @@ class Schedule : public DayTemplate
         /// @param end_station the station you want to get out
         /// @param current_time the time at wich you start waiting at the start station
         /// @return the arriving daytime at the end station. if no path were found it return an invalid daytime
-        std::optional<DayTime_CRef> Get_Closest_Time_To_Station(const Algorithm_Station& start_station,const Station& end_station) const;
+        /// @throw if the second or first station is not part of the schedule
+        std::optional<DayTime> Get_Closest_Time_To_Station(const Algorithm_Station& start_station,const Station& end_station) const;
+
+        //////////////////////////////////////////////////////////////////
+        /// @brief give back the station list of the schedule
+        /// @return a list of reference to the station inside the schedule
+        const std::vector<Station_CRef>& Get_Station_List() const noexcept;
 
     private:
         std::vector<Station_CRef> m_station_list;

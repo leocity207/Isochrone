@@ -207,3 +207,20 @@ TODO
     * lecteur CSV.
     * utiliser le logger (rendre le system de log disponnible dans un autre repo).
     * metre à jour les données de bus et ajouter les donnée SNCF pour aller à LYON ou valence.
+
+29/12/2022
+==========
+DONE
+----
+* C++ implementation begin
+
+
+TODO 
+----
+* Programme
+  * lire article sur les carte Isochrone et les transport
+  * evolution vers le language C++
+    * When loading data inside network reuse already loaded data by caching them 
+    * lecteur CSV.
+    * utiliser le logger (rendre le system de log disponnible dans un autre repo).
+    * metre à jour les données de bus et ajouter les donnée SNCF pour aller à LYON ou valence.

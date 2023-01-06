@@ -1,0 +1,38 @@
+{
+    "station file":"test.csv",
+    "line list":[
+        {
+           "name":"Ligne 1",
+          "schedules": [
+            {
+              "paths": [
+                "a.csv",
+                "b.csv"
+              ],
+              "day template": [
+                {
+                  "weekdays": [ "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY" ],
+                  "type": [ "VACATION" ]
+                },
+                {
+                  "weekdays": [ "SATURDAY" ],
+                  "type": [ "ALL" ]
+                }
+              ]
+            },
+            {
+              "paths": [
+                "c.csv",
+                "d.csv"
+              ],
+              "day template": [
+                {
+                  "weekdays": [ "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY" ],
+                  "type": [ "SCHOOL" ]
+                }
+              ]
+            }
+          ]
+        }
+    ]
+}

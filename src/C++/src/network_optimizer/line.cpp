@@ -3,6 +3,7 @@
 
 
 #include <algorithm>
+#include <ranges>
 
 int Line::s_count = 0;
 
@@ -14,7 +15,7 @@ Line::Line(std::vector<Schedule>&& Schedule,std::string&& name) noexcept: m_sche
 
 std::optional<DayTime_CRef> Line::Get_Closest_Time_To_Station(const Algorithm_Station& start_station,const Station& end_station,const Day& matching_day) const noexcept
 {
-    std::optional<Schedule_CRef> selected_schedule = this->Get_Schedule(matching_day, start_station, end_station);
+    std::optional<Schedule_CRef> selected_schedule = this->Get_Schedule(matching_day, start_station.Get(), end_station);
     if(!selected_schedule.has_value())
         return std::nullopt;
     return selected_schedule->get().Get_Closest_Time_To_Station(start_station,end_station); 
@@ -34,4 +35,11 @@ std::optional<Schedule_CRef> Line::Get_Schedule(const Day& matching_day,const St
         return std::nullopt;
     }
     return m_schedule[right_schedule- transformed.begin()];
+}
+
+bool Line::Contain(const Station& station, const Day& matching_day) const noexcept
+{
+    std::reference_wrapper<const Station> station_ref = station;
+    auto temp = this->Get_Schedules(matching_day);
+    return std::any_of(temp.begin(), temp.end(), [station_ref](const Schedule& schedule) {return schedule.Contain(station_ref); });
 }

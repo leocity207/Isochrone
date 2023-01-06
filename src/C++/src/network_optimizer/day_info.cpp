@@ -7,6 +7,8 @@ Day::Day(const std::chrono::weekday weekday,const DAY_TYPE day_type) noexcept : 
 
 }
 
+
+
 const std::chrono::weekday& Day::GetWeekday() const noexcept
 {
     return m_weekday;
@@ -49,6 +51,13 @@ DayTemplate::DayTemplate(DayTemplate&& template_to_move) noexcept : m_working_da
 bool DayTemplate::Match(const Day& day) const noexcept
 {
     if(m_working_days[day.GetWeekday().c_encoding()] && m_working_types[day.GetDayType()])
+        return true;
+    return false;
+}
+
+bool DayTemplate::operator==(const DayTemplate& other) const noexcept
+{
+    if (m_working_days == other.m_working_days)
         return true;
     return false;
 }

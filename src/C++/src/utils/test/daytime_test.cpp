@@ -6,11 +6,32 @@
 #include <string_view>
 
 
-TEST(DayTime_Test, normal_constructor)
+TEST_F(DayTime_Test, normal_constructor)
 {
 	DayTime test = DayTime(std::chrono::hours(10), std::chrono::minutes(12));
 	ASSERT_EQ(test.GetTime(), std::chrono::minutes(10 * 60 + 12));
 }
+
+TEST_F(DayTime_Test, addition)
+{
+	DayTime test = DayTime(std::chrono::hours(1), std::chrono::minutes(1));
+	DayTime test_2 = test+std::chrono::seconds(10);
+    ASSERT_EQ(test_2.GetTime(),std::chrono::minutes(61));
+
+    DayTime test_3 = test+std::chrono::seconds(45);
+    ASSERT_EQ(test_3.GetTime(),std::chrono::minutes(62));
+
+    DayTime test_4 = test+std::chrono::seconds(120);
+    ASSERT_EQ(test_4.GetTime(),std::chrono::minutes(63));
+
+    DayTime test_5 = test + std::chrono::seconds(30);
+    ASSERT_EQ(test_5.GetTime(), std::chrono::minutes(62));
+
+    DayTime test_6 = test + std::chrono::seconds(155);
+    ASSERT_EQ(test_6.GetTime(), std::chrono::minutes(64));
+
+}
+
 
 
 

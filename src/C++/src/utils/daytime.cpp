@@ -7,31 +7,46 @@
 #include <chrono>
 
 
-DayTime::DayTime(std::chrono::hours hours, std::chrono::minutes minutes) noexcept : m_day_minute(hours+minutes)
+DayTime::DayTime(std::chrono::hours hours, std::chrono::minutes minutes) noexcept : m_day_seconds(hours+minutes)
+{
+
+}
+
+DayTime::DayTime(std::chrono::seconds seconds) noexcept : m_day_seconds(seconds)
+{
+
+}
+
+DayTime::DayTime(const DayTime& other) noexcept : m_day_seconds(other.m_day_seconds)
 {
 
 }
 
 bool DayTime::operator>(const DayTime& other_DayTime) const noexcept
 {
-    return m_day_minute > other_DayTime.m_day_minute;
+    return GetTime() > other_DayTime.GetTime();
 }
 bool DayTime::operator<(const DayTime& other_DayTime) const noexcept
 {
-    return m_day_minute < other_DayTime.m_day_minute;
+    return GetTime() < other_DayTime.GetTime();
 }
 bool DayTime::operator>=(const DayTime& other_DayTime) const noexcept
 {
-    return m_day_minute >= other_DayTime.m_day_minute;
+    return GetTime() >= other_DayTime.GetTime();
 }
 bool DayTime::operator<=(const DayTime& other_DayTime) const noexcept
 {
-    return m_day_minute <= other_DayTime.m_day_minute;
+    return GetTime() <= other_DayTime.GetTime();
+}
+
+DayTime DayTime::operator+(const std::chrono::seconds& seconds) const noexcept
+{
+    return DayTime(m_day_seconds + seconds);
 }
 
 bool DayTime::operator==(const DayTime& other_DayTime) const noexcept
 {
-    return m_day_minute == other_DayTime.m_day_minute;
+    return GetTime() == other_DayTime.GetTime();
 }
 
 std::optional<DayTime> DayTime::From_Time_String(const std::string_view& time_string)
@@ -69,9 +84,14 @@ std::optional<DayTime> DayTime::From_Time_String(const std::string_view& time_st
     
 }
 
-
-const std::chrono::minutes& DayTime::GetTime()
-{
-    return m_day_minute;
+std::chrono::minutes DayTime::GetTime() const noexcept
+{ 
+    if (m_day_seconds.count() % 60 < 30)
+        return std::chrono::minutes(m_day_seconds.count() / 60);
+    return std::chrono::minutes(m_day_seconds.count() / 60 + 1);
 }
 
+const std::string DayTime::ToString() noexcept
+{
+    return  std::to_string(GetTime().count() / 60) + ":" + std::to_string(GetTime().count() % 60);
+}

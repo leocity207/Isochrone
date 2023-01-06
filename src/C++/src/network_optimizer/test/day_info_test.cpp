@@ -6,10 +6,10 @@
 
 TEST_F(Day_Info_Test, day_test_equality)
 {
-	Day a = Day(std::chrono::Monday, HOLLY_DAY);
-	Day b = Day(std::chrono::Monday, HOLLY_DAY);
-	Day c = Day(std::chrono::Thursday, HOLLY_DAY);
-	Day d = Day(std::chrono::Monday, SCHOOL_DAYS);
+	Day a(std::chrono::Monday, HOLYDAYS);
+	Day b(std::chrono::Monday, HOLYDAYS);
+	Day c(std::chrono::Thursday, HOLYDAYS);
+	Day d(std::chrono::Monday, SCHOOL_DAYS);
 
 	ASSERT_EQ(a, b);
 
@@ -23,10 +23,10 @@ TEST_F(Day_Info_Test, day_test_equality)
 
 TEST_F(Day_Info_Test, Day_Template_test)
 {
-	Day a = Day(std::chrono::Monday, HOLLY_DAY);
-	Day b = Day(std::chrono::Thursday, HOLLY_DAY);
-	Day c = Day(std::chrono::Monday, SCHOOL_DAYS);
-	Day d = Day(std::chrono::Thursday, SCHOOL_DAYS);
+	Day a(std::chrono::Monday, HOLYDAYS);
+	Day b(std::chrono::Thursday, HOLYDAYS);
+	Day c(std::chrono::Monday, SCHOOL_DAYS);
+	Day d(std::chrono::Thursday, SCHOOL_DAYS);
 
 	std::array<bool, 7> week_day_array = { 0,1,0,0,0,0,0 };
 	std::array<bool, 3> day_type_array = { 0,0,1 };

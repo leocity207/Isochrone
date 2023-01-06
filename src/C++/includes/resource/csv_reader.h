@@ -14,6 +14,8 @@ class CSV_Reader
 {
 public:
     CSV_Reader() = delete;
+    ~CSV_Reader();
+    
     std::optional<std::list<std::string>> Next_Line();
     CSV_Reader(const std::filesystem::path& filepath);
 private:

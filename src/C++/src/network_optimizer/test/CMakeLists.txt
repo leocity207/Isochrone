@@ -45,4 +45,4 @@ target_link_libraries(
   algorithm
 )
 
-
+gtest_discover_tests(network_optimizer_test)
