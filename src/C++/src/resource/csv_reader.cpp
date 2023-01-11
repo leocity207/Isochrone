@@ -2,11 +2,10 @@
 #include <vector>
 #include <filesystem>
 #include <algorithm>
-
+#include < cuchar >
 #include "includes/utils/daytime.h"
 #include "includes/utils/exception_def.h"
 #include "includes/resource/csv_reader.h"
-
 
 
 CSV_Reader::CSV_Reader(const std::filesystem::path& filepath) : m_delimiter(';')
@@ -36,6 +35,8 @@ std::optional<std::list<std::string>> CSV_Reader::Next_Line()
             throw Reading_File_Error();
         }
     }
+    std::u8string a((char8_t*)line.c_str());
+    line = std::string((char*)a.c_str());
     
     std::list<std::string> chunks;
     std::string chunk;

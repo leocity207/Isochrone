@@ -74,4 +74,8 @@ add_executable(main src/main.cpp)
 target_link_libraries(main
 log
 network_optimizer
+algorithm
+log
+csv
+utils
 )
