@@ -42,8 +42,10 @@ namespace Context
         ///////////////////////////////////////////////////////////////////////////
         /// @brief try and see if the new daytime is better than the registered one
         /// @param new_value the new daytime value to reach the station where we want to see if better
-        void Try_Set_New_Best_Time(DayTime& new_value);
-        void Try_Set_New_Best_Time(std::optional<DayTime>& new_value);
+        bool Try_Set_New_Best_Time_Transport(DayTime& new_value);
+        bool Try_Set_New_Best_Time_Transport(std::optional<DayTime>& new_value);
+         bool Try_Set_New_Best_Time_Base(DayTime& new_value);
+        bool Try_Set_New_Best_Time_Base(std::optional<DayTime>& new_value);
 
         /////////////////////////////////////
         /// Way to get the containing station
@@ -53,13 +55,22 @@ namespace Context
 
         static const Station& Get_Station_By_Name(const std::vector<Station>& station_list, const std::string& name);
 
+        bool Has_Been_Reached_By_Transport() const noexcept;
+        bool Has_Been_Reached_Once_By_Transport() const noexcept;
+
+        void Set_Pos(std::list<Station>::iterator& pos);
+        const std::list<Station>::iterator& Get_Pos() const;
+
+
     //////////////
     /// ATTRIBUTES
     private:
         DayTime m_best_time;
         DayTime m_basic_time;
-        bool m_reach_by_transport;
+        bool m_reach_by_transport = false;
+        bool m_reach_by_transport_once = false;
         std::reference_wrapper<const Network::Station> m_ref_station;
+        std::optional<std::list<Context::Station>::iterator> m_pos = std::nullopt;
     };
 
     

@@ -47,11 +47,11 @@ TEST_P(Line_Test, Order)
 		for (size_t i : std::views::iota(0ul, param_struct.stations.size()-1))
 			for (size_t j : std::views::iota(i + 1ul, param_struct.stations.size()))
 			{
-				EXPECT_TRUE(line.Order(line.Get_Station_List()[i], line.Get_Station_List()[j]));
-				EXPECT_FALSE(line.Order(line.Get_Station_List()[j], line.Get_Station_List()[i]));
+				EXPECT_EQ(line.Order(line.Get_Station_List()[i], line.Get_Station_List()[j]), std::strong_ordering::less);
+				EXPECT_EQ(line.Order(line.Get_Station_List()[j], line.Get_Station_List()[i]), std::strong_ordering::greater);
 			}
 	for (size_t i : std::views::iota(0ul, param_struct.stations.size()))
-		EXPECT_THROW({ line.Order(line.Get_Station_List()[i].get(), line.Get_Station_List()[i].get());}, CANNOT_ORDER_SAME_STATION);
+		EXPECT_EQ(line.Order(line.Get_Station_List()[i].get(), line.Get_Station_List()[i].get()), std::strong_ordering::equivalent);
 
 	if (param_struct.stations.size())
 		for (const Network::Station& station : param_struct.not_contained)

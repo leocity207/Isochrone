@@ -25,21 +25,52 @@ const DayTime& Context::Station::Get_Reaching_Time() const noexcept
 	return m_best_time;
 }
 
-void Context::Station::Try_Set_New_Best_Time(DayTime& new_value)
+bool Context::Station::Try_Set_New_Best_Time_Transport(DayTime& new_value)
 {
 	if(m_best_time>new_value)
+	{
 		m_best_time = new_value;
+		return m_reach_by_transport = m_reach_by_transport_once = true;
+	}
+	return false;
 }
 
-void Context::Station::Try_Set_New_Best_Time(std::optional<DayTime>& new_value)
+bool Context::Station::Try_Set_New_Best_Time_Transport(std::optional<DayTime>& new_value)
 {
 	if(new_value.has_value() && m_best_time>*new_value)
+	{
 		m_best_time = *new_value;
+		return m_reach_by_transport = m_reach_by_transport_once = true;
+	}
+	return false;
 }
+
+bool Context::Station::Try_Set_New_Best_Time_Base(DayTime& new_value)
+{
+	if(m_best_time>new_value)
+	{
+		m_best_time = new_value;
+		m_reach_by_transport = false;
+		return true;
+	}
+	return false;
+}
+
+bool Context::Station::Try_Set_New_Best_Time_Base(std::optional<DayTime>& new_value)
+{
+	if(new_value.has_value() && m_best_time>*new_value)
+	{
+		m_best_time = *new_value;
+		m_reach_by_transport = false;
+		return true;
+	}
+	return false;
+}
+
 
 bool Context::Station::operator<(const  Context::Station& other_station) const noexcept
 { 
-	return m_best_time < other_station.m_best_time;
+	return m_ref_station.get() < other_station.m_ref_station.get();
 }
 
 const Context::Station& Context::Station::Get_Station_By_Name(const std::vector<Context::Station>& station_list,const std::string& name)
@@ -52,4 +83,24 @@ const Context::Station& Context::Station::Get_Station_By_Name(const std::vector<
 	if (it == station_list.end())
 		THROW(STATION_NOT_IN_LIST);
 	return *it;
+}
+
+bool Context::Station::Has_Been_Reached_By_Transport() const noexcept
+{
+    return m_reach_by_transport;
+}
+
+bool Context::Station::Has_Been_Reached_Once_By_Transport() const noexcept
+{
+    return m_reach_by_transport_once;
+}
+
+void Context::Station::Set_Pos(std::list<Station>::iterator &pos)
+{
+	m_pos = pos;
+}
+
+const std::list<Context::Station>::iterator &Context::Station::Get_Pos() const
+{
+	return m_pos.value();
 }

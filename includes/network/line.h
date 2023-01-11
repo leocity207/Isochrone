@@ -37,7 +37,7 @@ namespace Network
 		/// @note if first or second is not part of the schedule this function throw
 		/// @return true if second come after false
 		/// @throw if the second or first station is not part of the schedule
-		bool Order(const Station& first, const Station& second) const;
+		std::strong_ordering Order(const Station& first, const Station& second) const;
 
 
 		/////////////////////////////////////////////////////
@@ -51,6 +51,8 @@ namespace Network
 		/// @param station_to_find the station you want to find the index of
 		/// @return an optional containing the index or not if the station could not be found 
 		std::optional<size_t> Get_Station_Index(const Station& station_to_find) const noexcept;
+
+		std::vector<Station_CRef>::const_iterator From_Station(const Station& station) const noexcept;
 
 		//////////////
 		/// ATTRIBUTESs

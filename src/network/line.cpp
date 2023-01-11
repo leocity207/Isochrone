@@ -30,17 +30,21 @@ bool Network::Line::Contain(const Network::Station& station_to_find) const noexc
 }
 
 
-bool Network::Line::Order(const Network::Station& first, const Network::Station& second) const
+std::strong_ordering Network::Line::Order(const Network::Station& first, const Network::Station& second) const
 {
 	std::vector<Station_CRef>::const_iterator first_iterator = std::find_if(m_stations.begin(), m_stations.end(), [&](const Station& station) {return station == first; });
 	std::vector<Station_CRef>::const_iterator second_iterator = std::find_if(m_stations.begin(), m_stations.end(), [&](const Station& station) {return station == second; });
-	if (first_iterator == m_stations.end() || second_iterator == m_stations.end())
-		THROW(STATION_NOT_IN_SCHEDULE)
-	else if (first_iterator == second_iterator)
-		THROW(CANNOT_ORDER_SAME_STATION)
-	else if (first_iterator < second_iterator)
-		return true;
-	else
-		return false;
+    if (first_iterator == m_stations.end() || second_iterator == m_stations.end())
+        THROW(STATION_NOT_IN_SCHEDULE)
+    else if (first_iterator == second_iterator)
+        return std::strong_ordering::equivalent;
+    else if(first_iterator<second_iterator)
+        return std::strong_ordering::less;
+    else
+        return std::strong_ordering::greater;
 }
 
+std::vector<Network::Station_CRef>::const_iterator Network::Line::From_Station(const Station& station) const noexcept
+{
+    return ++std::find(m_stations.cbegin(), m_stations.cend(), station);
+}
