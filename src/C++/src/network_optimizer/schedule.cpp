@@ -49,7 +49,7 @@ std::optional<DayTime> Schedule::Get_Closest_Time_To_Station(const Algorithm_Sta
         std::optional<DayTime> start_station_time = m_schedule[*start_index][i];
         if(!start_station_time.has_value())
             continue;
-        else if(*start_station_time < start_station.Get_Best_Time_Start_To_Station())
+        else if(*start_station_time < start_station.Get_Reach_Time())
             continue;
         const std::optional<DayTime> end_station_station_time = m_schedule[*end_index][i];
         if(!end_station_station_time.has_value())

@@ -31,22 +31,24 @@ const Sphere_Coordinate& Network_Optimizer::Get_Start_Coordinate() const noexcep
 
 std::vector<Algorithm_Station> Network_Optimizer::Optimize()
 {
-    std::vector<Algorithm_Station> station_list;
+    std::list<Algorithm_Station> station_list;
     std::vector<Algorithm_Station> final_optimized;
-    station_list.reserve(m_network.Get_Station().size());
+    std::list<Algorithm_Station>::iterator& best_item = station_list.begin();
 
     for (const Station& station : m_network.Get_Station())
+    {
         station_list.emplace_back(&station, this);
+        if (best_item->Get_Reach_Time() > station_list.back().Get_Reach_Time())
+            best_item = station_list.end();
+    }
 
 
 
     for(size_t i = station_list.size()-1;i--;)
     {
         //order list and pop the best element;
-        std::sort(station_list.begin(), station_list.end());
-        std::reverse(station_list.begin(), station_list.end());
-        final_optimized.emplace_back(std::move(station_list.back()));
-        station_list.pop_back();
+        final_optimized.emplace_back(std::move(*best_item));
+        station_list.erase(best_item);
         Algorithm_Station& current_station = final_optimized.back();
 
         //get list of lines passing at the choosen station
@@ -56,9 +58,16 @@ std::vector<Algorithm_Station> Network_Optimizer::Optimize()
 
         std::for_each(std::execution::seq,station_list.begin(), station_list.end(), [&](Algorithm_Station& alg_station) {
             std::chrono::seconds default_time((int)std::round(current_station.Get().Get_Distance_To(alg_station.Get()) / m_speed));
-            DayTime time = current_station.Get_Best_Time_Start_To_Station() + default_time;
+            DayTime time = current_station.Get_Reach_Time() + default_time;
             alg_station.Try_Set_New_Best_Time(time);
         });
+        if(current_station.Has_Been_Reached_By_Transport())
+            for (Algorithm_Station& alg_station : station_list)
+            {
+                std::chrono::seconds default_time((int)std::round(current_station.Get().Get_Distance_To(alg_station.Get())/m_speed));
+                DayTime time = current_station.Get_Best_Time_Start_To_Station() + default_time;
+                alg_station.Try_Set_New_Best_Time_Base(time);
+            }
 
         //for all lines passing by the station
         std::for_each(std::execution::seq,line_list.begin(), line_list.end(), [&](const Line& line) {
@@ -72,8 +81,8 @@ std::vector<Algorithm_Station> Network_Optimizer::Optimize()
                     {
                         std::optional<DayTime> value = schedule.Get_Closest_Time_To_Station(current_station, station.get());
                         auto pose = std::find_if(station_list.begin(), station_list.end(), [&](const Algorithm_Station& alg_station) {return alg_station.Get() == station; });
-                        if (pose != station_list.end())  
-                            pose->Try_Set_New_Best_Time(value);
+                        if (pose != station_list.end() && pose->Try_Set_New_Best_Time_Transport(value) && value<best_item->Get_Reach_Time())  
+                            best_item = pose;
                     }
                 });
             });
