@@ -9,7 +9,7 @@ DayTime initial_best_time(const Station& station_to_link,const Network_Optimizer
 	return  optimizer.Get_Start_Time() + std::chrono::seconds((long)(std::round(station_to_link.Get_Distance_To(optimizer.Get_Start_Coordinate()) / optimizer.Get_Speed())));
 }
 
-Algorithm_Station::Algorithm_Station(const Station& station_to_link, const Network_Optimizer& optimizer) noexcept : m_best_time(initial_best_time(station_to_link, optimizer)),m_reach_by_transport(false) , m_linked_station(station_to_link)
+Algorithm_Station::Algorithm_Station(const Station& station_to_link,const Network_Optimizer& optimizer,std::list<Algorithm_Station>::iterator& pos)  noexcept : m_best_time(initial_best_time(station_to_link, optimizer)),m_reach_by_transport(false) , m_linked_station(station_to_link), m_pos(pos)
 {
 
 }

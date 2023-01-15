@@ -1,9 +1,11 @@
+#include "line.h"
 #include "includes/network_optimizer/line.h"
 #include "includes/algorithm/algorithm_station.h"
 
 
 #include <algorithm>
 #include <ranges>
+#include <cassert>
 
 int Line::s_count = 0;
 
@@ -37,9 +39,17 @@ std::optional<Schedule_CRef> Line::Get_Schedule(const Day& matching_day,const St
     return m_schedule[right_schedule- transformed.begin()];
 }
 
+const std::array<Schedule_CRef, 2> Line::Get_Schedules(const Day& matching_day) const noexcept
+{
+    std::vector<Schedule_CRef> temp;
+    std::copy_if(m_schedule.begin(), m_schedule.end(), std::back_inserter(temp), [&](const Schedule& schedule) {return schedule.Match(matching_day);});
+    assert(temp.size() == 2);
+    return {std::move(temp[0]),std::move(temp[1])};
+}
+
 bool Line::Contain(const Station& station, const Day& matching_day) const noexcept
 {
     std::reference_wrapper<const Station> station_ref = station;
-    auto temp = this->Get_Schedules(matching_day);
-    return std::any_of(temp.begin(), temp.end(), [station_ref](const Schedule& schedule) {return schedule.Contain(station_ref); });
+    const std::array<Schedule_CRef, 2> temp = this->Get_Schedules(matching_day);
+    return temp[0].get().Contain(station_ref) || temp[1].get().Contain(station_ref);
 }

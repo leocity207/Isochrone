@@ -55,7 +55,7 @@ class Schedule : public DayTemplate
         /// @note if first or second is not part of the schedule this function throw
         /// @return true if second come after false
         /// @throw if the second or first station is not part of the schedule
-        bool Order(const Station& first,const Station& second) const;
+        std::strong_ordering Order(const Station& first,const Station& second) const;
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// @brief Find the closest time to go from start to finish station knowing the curent daytime and the daytype
@@ -70,6 +70,9 @@ class Schedule : public DayTemplate
         /// @brief give back the station list of the schedule
         /// @return a list of reference to the station inside the schedule
         const std::vector<Station_CRef>& Get_Station_List() const noexcept;
+
+
+        std::vector<Station_CRef>::const_iterator& From_Station(const Station& station) const noexcept;
 
     private:
         std::vector<Station_CRef> m_station_list;

@@ -1,3 +1,4 @@
+#include "schedule.h"
 #include "includes/network_optimizer/schedule.h"
 #include "includes/algorithm/algorithm_station.h"
 
@@ -16,18 +17,18 @@ bool Schedule::Contain(const Station& station_to_find) const noexcept
 }
 
 
-bool Schedule::Order(const Station& first,const Station& second) const
+std::strong_ordering Schedule::Order(const Station& first,const Station& second) const
 {
     std::vector<Station_CRef>::const_iterator first_iterator  = std::find(m_station_list.begin(),m_station_list.end(),first);
     std::vector<Station_CRef>::const_iterator second_iterator = std::find(m_station_list.begin(),m_station_list.end(),second);
-    if(first_iterator == m_station_list.end() || second_iterator == m_station_list.end())
+    if (first_iterator == m_station_list.end() || second_iterator == m_station_list.end())
         THROW(Station_Not_In_Schedule)
-    else if(first_iterator == second_iterator)
-        THROW(Cannot_Order_Same_Station)
+    else if (first_iterator == second_iterator)
+        return std::strong_ordering::equivalent;
     else if(first_iterator<second_iterator)
-        return true;
+        return std::strong_ordering::less;
     else
-        return false;
+        return std::strong_ordering::greater;
 }
 
 
@@ -71,3 +72,9 @@ const std::vector<Station_CRef>& Schedule::Get_Station_List() const noexcept
 { 
     return m_station_list;
 }
+
+std::vector<Station_CRef>::const_iterator& Schedule::From_Station(const Station& station) const noexcept
+{
+    return ++std::find(m_station_list.begin(), m_station_list.end(), station);
+}
+

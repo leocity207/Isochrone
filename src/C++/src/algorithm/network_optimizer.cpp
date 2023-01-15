@@ -43,7 +43,9 @@ std::vector<Algorithm_Station> Network_Optimizer::Optimize()
     }
 
 
-
+    /////////////////////////
+    // run throug all station
+    // O(S)
     for(size_t i = station_list.size()-1;i--;)
     {
         //order list and pop the best element;
@@ -51,39 +53,46 @@ std::vector<Algorithm_Station> Network_Optimizer::Optimize()
         station_list.erase(best_item);
         Algorithm_Station& current_station = final_optimized.back();
 
+        
+        ///////////////////////////////////////////////////////////////////
         //get list of lines passing at the choosen station
+        // O(L)
+        // could be improved by cahcing the passing line inside the station
         auto line_list = std::views::filter(m_network.Get_Lines(), [&](const Line& line) {
             return line.Contain(current_station.Get(),m_day_type);
         });
 
-        std::for_each(std::execution::seq,station_list.begin(), station_list.end(), [&](Algorithm_Station& alg_station) {
-            std::chrono::seconds default_time((int)std::round(current_station.Get().Get_Distance_To(alg_station.Get()) / m_speed));
-            DayTime time = current_station.Get_Reach_Time() + default_time;
-            alg_station.Try_Set_New_Best_Time(time);
-        });
+        //////////////////////////////////////////
+        // Check for reaching station by base speed
+        // Sequential is O(S)
+        // Parallele is O(1)
         if(current_station.Has_Been_Reached_By_Transport())
-            for (Algorithm_Station& alg_station : station_list)
-            {
-                std::chrono::seconds default_time((int)std::round(current_station.Get().Get_Distance_To(alg_station.Get())/m_speed));
-                DayTime time = current_station.Get_Best_Time_Start_To_Station() + default_time;
+            std::for_each(std::execution::seq, station_list.begin(), station_list.end(), [&](Algorithm_Station& alg_station) {
+                std::chrono::seconds default_time((int)std::round(current_station.Get().Get_Distance_To(alg_station.Get()) / m_speed));
+                DayTime time = current_station.Get_Reach_Time() + default_time;
                 alg_station.Try_Set_New_Best_Time_Base(time);
-            }
+            });
 
-        //for all lines passing by the station
+        //////////////////////////////////////////////////////////////////
+        /// For all lines passing by the station
+        /// At worst O(L) but more like the mean station passing by a line
+        /// Paralelisable if each line don't meet
         std::for_each(std::execution::seq,line_list.begin(), line_list.end(), [&](const Line& line) {
-            auto schedule_list = line.Get_Schedules(m_day_type);
-            //get the right schedules for that day
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////
+            /// Get the right schedules for that day (could be cached)
+            /// Complexcity is equivalent to the number of schedule wich is constant around at most 8 for some station
+            const std::array<Schedule_CRef,2> schedule_list = line.Get_Schedules(m_day_type);
+            /////////////////////////////////////////////////////////////////////////////////////////////
+            /// Constant for the line and parralelisable for a specific line the size should always be 2 
             std::for_each(std::execution::seq,schedule_list.begin(), schedule_list.end(), [&](const Schedule& schedule) {
-                //for all station in the lines
-                std::for_each(std::execution::seq,schedule.Get_Station_List().begin(), schedule.Get_Station_List().end(), [&](const Station_CRef& station) {
+                //////////////////////////////////////////////////////////////////////
+                ///go for all station inside the line (this could be improved because )
+                std::for_each(std::execution::seq,schedule.From_Station(current_station.Get()), schedule.Get_Station_List().end(), [&](const Station_CRef& station) {
                     //no need to compute distance from the two same station
-                    if (station.get() != current_station.Get()) 
-                    {
-                        std::optional<DayTime> value = schedule.Get_Closest_Time_To_Station(current_station, station.get());
-                        auto pose = std::find_if(station_list.begin(), station_list.end(), [&](const Algorithm_Station& alg_station) {return alg_station.Get() == station; });
-                        if (pose != station_list.end() && pose->Try_Set_New_Best_Time_Transport(value) && value<best_item->Get_Reach_Time())  
-                            best_item = pose;
-                    }
+                    std::optional<DayTime> value = schedule.Get_Closest_Time_To_Station(current_station, station.get());
+                    auto pose = std::find_if(station_list.begin(), station_list.end(), [&](const Algorithm_Station& alg_station) {return alg_station.Get() == station; });
+                    if (pose != station_list.end() && pose->Try_Set_New_Best_Time_Transport(value) && value<best_item->Get_Reach_Time())  
+                        best_item = pose;
                 });
             });
         });

@@ -50,10 +50,8 @@ class Line
         /// @brief give back a list of schedules matching the day
         /// @param matching_day the day to select schedule from
         /// @return a view inside the schedule list containing only the good schedule
-        auto Get_Schedules(const Day& matching_day) const noexcept
-        {
-            return std::views::filter(m_schedule, [matching_day](const Schedule& schedule) { return schedule.Match(matching_day); });
-        };
+        const std::array<Schedule_CRef, 2> Get_Schedules(const Day& matching_day) const noexcept;
+
 
         /////////////////////////////////////////////////////////////////////////////////
         /// @brief return true if the station is contained inside the schedules for the matching day
