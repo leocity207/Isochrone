@@ -1,4 +1,3 @@
-#include "line.h"
 #include "includes/network_optimizer/line.h"
 #include "includes/algorithm/algorithm_station.h"
 
@@ -27,7 +26,7 @@ std::optional<Schedule_CRef> Line::Get_Schedule(const Day& matching_day,const St
 {
     auto start_station_ref = std::reference_wrapper<const Station>(start_station);
     auto end_station_ref = std::reference_wrapper<const Station>(end_station);
-    auto does_day_match_schedule = [matching_day, start_station_ref, end_station_ref](const Schedule& i) { return i.Match(matching_day) && i.Order(start_station_ref, end_station_ref); };
+    auto does_day_match_schedule = [matching_day, start_station_ref, end_station_ref](const Schedule& i) { return i.Match(matching_day) && (i.Order(start_station_ref, end_station_ref) == std::strong_ordering::less); };
     
     std::vector<Schedule_CRef> transformed(m_schedule.begin(), m_schedule.end());
     auto right_schedule = std::find_if(transformed.begin(), transformed.end(),does_day_match_schedule);

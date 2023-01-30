@@ -1,4 +1,3 @@
-#include "schedule.h"
 #include "includes/network_optimizer/schedule.h"
 #include "includes/algorithm/algorithm_station.h"
 
@@ -73,7 +72,7 @@ const std::vector<Station_CRef>& Schedule::Get_Station_List() const noexcept
     return m_station_list;
 }
 
-std::vector<Station_CRef>::const_iterator& Schedule::From_Station(const Station& station) const noexcept
+std::vector<Station_CRef>::const_iterator Schedule::From_Station(const Station& station) const noexcept
 {
     return ++std::find(m_station_list.begin(), m_station_list.end(), station);
 }

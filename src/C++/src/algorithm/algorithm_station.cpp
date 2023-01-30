@@ -9,9 +9,14 @@ DayTime initial_best_time(const Station& station_to_link,const Network_Optimizer
 	return  optimizer.Get_Start_Time() + std::chrono::seconds((long)(std::round(station_to_link.Get_Distance_To(optimizer.Get_Start_Coordinate()) / optimizer.Get_Speed())));
 }
 
-Algorithm_Station::Algorithm_Station(const Station& station_to_link,const Network_Optimizer& optimizer,std::list<Algorithm_Station>::iterator& pos)  noexcept : m_best_time(initial_best_time(station_to_link, optimizer)),m_reach_by_transport(false) , m_linked_station(station_to_link), m_pos(pos)
+Algorithm_Station::Algorithm_Station(const Station& station_to_link,const Network_Optimizer& optimizer)  noexcept : m_best_time(initial_best_time(station_to_link, optimizer)),m_reach_by_transport(false) , m_linked_station(station_to_link), m_pos(), m_reach_by_transport_once(false)
 {
 
+}
+
+void Algorithm_Station::SetPos(std::list<Algorithm_Station>::iterator pos)
+{
+	m_pos = pos;
 }
 	
 const Station& Algorithm_Station::Get() const noexcept
@@ -66,11 +71,20 @@ bool Algorithm_Station::Try_Set_New_Best_Time_Base(std::optional<DayTime>& new_v
 	return false;
 }
 
+bool Algorithm_Station::Has_Been_Reached_By_Transport()
+{
+	return m_reach_by_transport;
+}
+
+bool Algorithm_Station::Has_Been_Reached_Once_By_Transport()
+{
+	return m_reach_by_transport_once;
+}
+
 bool Algorithm_Station::operator<(const Algorithm_Station& other_station) const noexcept 
 { 
 	return m_linked_station.get() < other_station.m_linked_station.get();
 }
-
 
 /*static*/ const Algorithm_Station& Algorithm_Station::Get_Station_By_Name(const std::vector<Algorithm_Station>& station_list, const std::string& name)
 {
@@ -84,7 +98,7 @@ bool Algorithm_Station::operator<(const Algorithm_Station& other_station) const 
 	return *it;
 }
 
-std::list<Algorithm_Station>::iterator& Algorithm_Station::Get_Pos() const noexcept
+const std::list<Algorithm_Station>::iterator& Algorithm_Station::Get_Pos() const noexcept
 {
 	return m_pos;
 }

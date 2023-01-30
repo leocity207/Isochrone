@@ -52,7 +52,7 @@ TEST_F(Algorithm_Station_Test, Get_Closest_Time_To_Station)
 	const Schedule& s_a = Schedule_a->get();
 	const Schedule& s_r = Schedule_r->get();
 
-	Algorithm_Station A(network.Get_Station()[0],optimizer);
+	Algorithm_Station A(network.Get_Station()[0], optimizer);
 	Algorithm_Station C(network.Get_Station()[2], optimizer);
 	std::optional<DayTime> value = s_a.Get_Closest_Time_To_Station(A,network.Get_Station()[1]);
 	std::optional<DayTime> value_2 = s_r.Get_Closest_Time_To_Station(C,network.Get_Station()[1]);
@@ -69,18 +69,19 @@ TEST_F(Algorithm_Station_Test, Try_Set_Best_Time)
 	DayTime start_time(hours(0),minutes(0));
 	Day today(Monday,SCHOOL_DAYS);
     Network_Optimizer optimizer(network,Sphere_Coordinate(0,0),1,start_time,Day(Monday,SCHOOL_DAYS));
+
 	Algorithm_Station C(network.Get_Station()[2],optimizer);
 
 	DayTime initial_reach_time = C.Get_Reach_Time();
 
 	DayTime big(hours(10),minutes(0));
-	C.Try_Set_New_Best_Time(big);
+	C.Try_Set_New_Best_Time_Base(big);
 
 	//to big it shouldn't work
 	ASSERT_EQ(C.Get_Reach_Time(), initial_reach_time);
 
 	DayTime small(hours(0),minutes(0));
-	C.Try_Set_New_Best_Time(small);
+	C.Try_Set_New_Best_Time_Base(small);
 
 	//smaller so it's Okay
 	ASSERT_EQ(C.Get_Reach_Time(), small);

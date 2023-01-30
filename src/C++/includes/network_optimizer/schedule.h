@@ -72,7 +72,7 @@ class Schedule : public DayTemplate
         const std::vector<Station_CRef>& Get_Station_List() const noexcept;
 
 
-        std::vector<Station_CRef>::const_iterator& From_Station(const Station& station) const noexcept;
+        std::vector<Station_CRef>::const_iterator From_Station(const Station& station) const noexcept;
 
     private:
         std::vector<Station_CRef> m_station_list;

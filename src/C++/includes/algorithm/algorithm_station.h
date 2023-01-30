@@ -16,12 +16,14 @@ class Network_Optimizer;
 class Algorithm_Station
 {
     public:
-        Algorithm_Station(const Station& station_to_link,const Network_Optimizer& optimizer,std::list<Algorithm_Station>::iterator& pos) noexcept;
+        Algorithm_Station(const Station& station_to_link,const Network_Optimizer& optimizer) noexcept;
 
         ////////////////////////////////////////////////////////////////////////////
         /// @brief Give back the time you need to get from this station to the start
         /// @return the daytime at which we reach the station
         DayTime Get_Reach_Time() const noexcept;
+
+        void SetPos(std::list<Algorithm_Station>::iterator pos);
 
         ///////////////////////////////////////////////////////////////////////////
         /// @brief try and see if the new daytime is better than the registered one
@@ -37,10 +39,11 @@ class Algorithm_Station
         /////////////////////////////////////
         /// Way to get the containing station
         const Station& Get() const noexcept;
-        std::list<Algorithm_Station>::iterator& Get_Pos() const noexcept;
+        const std::list<Algorithm_Station>::iterator& Get_Pos() const noexcept;
 
 
         bool operator<(const Algorithm_Station& other_station) const noexcept;
+
 
         ///////////////////////////////
         /// give back the reaching time
@@ -55,7 +58,7 @@ class Algorithm_Station
         bool m_reach_by_transport;
         std::reference_wrapper<const Station> m_linked_station;
         bool m_reach_by_transport_once;
-        std::reference_wrapper<std::list<Algorithm_Station>::iterator> m_pos;
+        std::list<Algorithm_Station>::iterator m_pos;
 };
 
 #endif //ALGORITHM_STATION_H
