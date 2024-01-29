@@ -28,9 +28,7 @@ Sphere_Coordinate::Sphere_Coordinate(const std::string_view& DMS_notation_1, con
         m_longitude = V1;
     }
     else
-    {
-        THROW_TRACE(Angle_Baldy_Formatted, "the two angles are of the sale type");
-    }
+        THROW_TRACE(ANGLE_BADLY_FORMATED, "the two angles are of the sale type");
 }
 
 double Sphere_Coordinate::Get_Distance(const Sphere_Coordinate& other_coord) const

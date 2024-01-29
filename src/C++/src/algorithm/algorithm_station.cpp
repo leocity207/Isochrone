@@ -47,6 +47,6 @@ const Algorithm_Station& Algorithm_Station::Get_Station_By_Name(const std::vecto
 	});
 
 	if (it == station_list.end())
-		throw Time_Badly_Formatted();
+		throw TIME_BADLY_FORMATED();
 	return *it;
 }

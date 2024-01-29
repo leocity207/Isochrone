@@ -1,7 +1,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define GIT_HASH "ab39ceff4529e01f0c8b6f880ef32fbf3a6e5580"
+#define GIT_HASH "3fc4f6e1b779e0b92e9affc745002de8fab8ca61"
 #define VERSION  "1.0"
 
 extern const char* GET_COMMIT_HASH();

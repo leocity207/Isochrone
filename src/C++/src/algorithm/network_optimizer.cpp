@@ -5,11 +5,11 @@
 #include <ranges>
 #include <cassert>
 #include <map>
+
 Network_Optimizer::Network_Optimizer(const Network& network,const Sphere_Coordinate& start_coordinate,const double default_speed,const DayTime& start_time,const Day& day_type) noexcept : m_network(network), m_start_coordinate(start_coordinate), m_speed(default_speed), m_start_time(start_time), m_day_type(day_type)
 {
 
 }
-
 
 const DayTime& Network_Optimizer::Get_Start_Time() const noexcept 
 {

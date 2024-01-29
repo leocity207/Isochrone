@@ -59,7 +59,7 @@ std::optional<DayTime> DayTime::From_Time_String(const std::string_view& time_st
     size_t colon_pos = sub_str.find(':');
     if (colon_pos == std::string_view::npos) {
         // No colon found, throw an exception
-        THROW_TRACE(Time_Badly_Formatted,"Invalid time string: no colon found " + std::string(time_string));
+        THROW_TRACE(TIME_BADLY_FORMATED,"Invalid time string: no colon found " + std::string(time_string));
     }
 
     // Extract the hour and minute strings
@@ -77,7 +77,7 @@ std::optional<DayTime> DayTime::From_Time_String(const std::string_view& time_st
     }
     catch (std::invalid_argument&)
     {
-        THROW_TRACE(Time_Badly_Formatted, "Invalid time string: no colon found " + std::string(time_string));
+        THROW_TRACE(TIME_BADLY_FORMATED, "Invalid time string: no colon found " + std::string(time_string));
     }
     return DayTime(std::chrono::hours(hours), std::chrono::minutes(minutes));
     // Return the result as a pair
