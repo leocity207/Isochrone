@@ -2,6 +2,11 @@
 # For google test includes
 include(GoogleTest)
 
+get_filename_component(TEST_DIR ./ ABSOLUTE)
+
+configure_file(${PROJECT_SOURCE_DIR}/src/algorithm/test/config.h.in ${PROJECT_SOURCE_DIR}/src/algorithm/test/config.h)
+
+
 #/////////////////////////////////////////////////
 # Glob files for adding header file to the target
 file(GLOB_RECURSE MY_HEADERS "*.h")

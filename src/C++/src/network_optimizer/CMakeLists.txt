@@ -9,4 +9,5 @@ add_library(network_optimizer STATIC
 target_link_libraries(network_optimizer
 log
 csv
+json
 )

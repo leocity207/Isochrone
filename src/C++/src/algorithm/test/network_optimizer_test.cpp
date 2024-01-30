@@ -1,13 +1,14 @@
 #include "network_optimizer_test.h"
 
 #include "includes/algorithm/network_optimizer.h"
+#include "config.h"
 
 using namespace std::chrono;
 
 
 TEST_F(Network_Optimizer_Test, test_with_normal_day)
 {
-    std::filesystem::path path = "C:/Users/Leocl/Documents/Isochrone/src/C++/src/algorithm/test/resource_test/config.json";
+    std::filesystem::path path = std::string(RESOURCE_PATH()) + "config.json";
     Network network(path);
     Network_Optimizer optimizer(network,Sphere_Coordinate(0,0),1,DayTime(hours(0),minutes(0)),Day(Monday,SCHOOL_DAYS));
     std::vector<Algorithm_Station> result = optimizer.Optimize();
@@ -23,7 +24,7 @@ TEST_F(Network_Optimizer_Test, test_with_normal_day)
 
 TEST_F(Network_Optimizer_Test, bypass)
 {
-    std::filesystem::path path = "C:/Users/Leocl/Documents/Isochrone/src/C++/src/algorithm/test/resource_test/config.json";
+    std::filesystem::path path = std::string(RESOURCE_PATH()) + "config.json";
     Network network(path);
     Network_Optimizer optimizer(network,Sphere_Coordinate(0,0),0.5,DayTime(hours(1),minutes(0)),Day(Monday,SCHOOL_DAYS));
     std::vector<Algorithm_Station> result = optimizer.Optimize();
@@ -52,7 +53,7 @@ TEST_F(Network_Optimizer_Test, bypass)
 
 TEST_F(Network_Optimizer_Test, Get_Closest_Time_To_Station)
 {
-    std::filesystem::path path = "C:/Users/Leocl/Documents/Isochrone/src/C++/src/algorithm/test/resource_test/config.json";
+    std::filesystem::path path = std::string(RESOURCE_PATH()) + "config.json";
     Network network(path);
     DayTime start_time = DayTime(hours(20),minutes(0));
     Sphere_Coordinate start_coordinate(0, 0);

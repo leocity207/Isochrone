@@ -50,7 +50,7 @@ TEST_P(DayTime_Test_String_Parser, parsing_constructor)
     }
     else if (valid == THROW)
     {
-        EXPECT_THROW(DayTime::From_Time_String(angle_str), Time_Badly_Formatted);
+        EXPECT_THROW(DayTime::From_Time_String(angle_str), TIME_BADLY_FORMATED);
     }
     else
     {
@@ -84,8 +84,8 @@ INSTANTIATE_TEST_SUITE_P(
     DayTime_Test_String_Parser,
     ::testing::Values(
         std::make_tuple("10:01"  , OK     , 10*60+1),
-        std::make_tuple(" 9:3 "  , OK     , 9*60+3),
-        std::make_tuple(":"      , THROW  , 0),
-        std::make_tuple("dksfjsl", THROW  , 0),
-        std::make_tuple(""       , NULLOPT, 0)),
+        std::make_tuple(" 9:3 "  , OK     , 9*60+3 ),
+        std::make_tuple(":"      , THROW  , 0      ),
+        std::make_tuple("dksfjsl", THROW  , 0      ),
+        std::make_tuple(""       , NULLOPT, 0      )),
     DayTime_Test_String_Parser_Naming);

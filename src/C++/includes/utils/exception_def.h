@@ -4,10 +4,10 @@
 #include "submodule/logger/includes/exception.h"
 
 //Resource Error
-DECLARE_EXCEPTION(Exception,File_Open_Failed,"Could not open file.");
-DECLARE_EXCEPTION(Exception,Reading_File_Error,"Error while reading the file.");
-DECLARE_EXCEPTION(Exception,Time_Badly_Formatted,"The time we are trying to read is badly formatted.");
-DECLARE_EXCEPTION(Exception,Angle_Baldy_Formatted,"The angle we are trying to read is badly formatted.");
+DECLARE_EXCEPTION(Exception,FILE_OPEN_FAILED,"Could not open file.");
+DECLARE_EXCEPTION(Exception,READING_FILE_ERROR,"Error while reading the file.");
+DECLARE_EXCEPTION(Exception,TIME_BADLY_FORMATED,"The time we are trying to read is badly formatted.");
+DECLARE_EXCEPTION(Exception,ANGLE_BADLY_FORMATED,"The angle we are trying to read is badly formatted.");
 
 // Network Error
 DECLARE_EXCEPTION(Exception,Station_Not_In_Schedule,"The station is not in the Schedule.");

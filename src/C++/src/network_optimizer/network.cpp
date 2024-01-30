@@ -1,9 +1,10 @@
 #include "includes/network_optimizer/network.h"
 
 //ressource
-#include "includes/resource/resource_getter.h"
-#include "includes/resource/csv_schedule_reader.h"
-#include "includes/resource/csv_station_reader.h"
+#include "includes/resource/json/parser/resource_getter.h"
+#include "includes/resource/csv/parser/timetable.h"
+#include "includes/resource/csv/parser/station.h"
+#include "includes/resource/csv/engine/file_parser.h"
 
 //network
 #include "includes/network_optimizer/day_info.h"
@@ -15,16 +16,18 @@
 
 Network::Network(const std::filesystem::path& resource_path) : m_line_list(), m_station_list()
 {
-	Resource_Getter	getter(resource_path);
+	JSON::Parser::Resource_Getter	getter(resource_path);
 
-	m_station_list =  std::move(CSV_Station_Reader::Read_Station_File(resource_path.parent_path()/getter.Get_Station_File()));
+	CSV::Engine::File_Parser parser(resource_path.parent_path() / getter.Get_Station_File(), ';');
+	m_station_list =  std::move(CSV::Parser::Station::Parse(parser));
 
 	for(auto& line_parse_data : getter.Get_Line_Files())
 	{
 		std::vector<Schedule> schedules;
 		for(auto& schedule : line_parse_data.second)
 		{
-			auto [station_list, timetable] = CSV_Schedule_Reader::Read_Schedule_File(resource_path.parent_path()/schedule.second);
+			CSV::Engine::File_Parser timetable_parser(resource_path.parent_path() / schedule.second, ';');
+			auto [station_list, timetable] = CSV::Parser::Timetable::Parse(timetable_parser);
 			std::vector<Station_CRef> temp = this->Get_Station_Reference(station_list);
 
 			schedules.emplace_back(std::move(temp),std::move(timetable),std::move(schedule.first));

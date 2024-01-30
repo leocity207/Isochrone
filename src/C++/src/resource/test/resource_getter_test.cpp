@@ -1,14 +1,14 @@
 #include "resource_getter_test.h"
 
-#include "includes/resource/resource_getter.h"
+#include "includes/resource/json/parser/resource_getter.h"
 #include "includes/network_optimizer/day_info.h"
 
 
 TEST_F(Resource_Getter_Test, test)
 {
-	std::filesystem::path path_to_csv = "C:/Users/Leocl/Documents/Isochrone/src/C++/src/resource/test/config_test.json";
+	std::filesystem::path path_to_csv = "C:/dev/Isochrone/src/C++/src/resource/test/config_test.json";
 
-	Resource_Getter getter(path_to_csv);
+	JSON::Parser::Resource_Getter getter(path_to_csv);
 
 	ASSERT_EQ(getter.Get_Station_File(), "test.csv");
 

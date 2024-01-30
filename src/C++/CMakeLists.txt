@@ -40,7 +40,7 @@ FetchContent_MakeAvailable(googletest)
 # compiler option
 if (MSVC)
     # warning level 4 and all warnings as errors
-    add_compile_options(/W4 /WX)
+    add_compile_options(/W4 /WX /utf-8)
 else()
     # lots of warnings and all warnings as errors
     add_compile_options(-Wall -Wextra -pedantic -Werror -Og)
@@ -56,7 +56,8 @@ target_sources(log PRIVATE ${PROJECT_SOURCE_DIR}/includes/config/config.cpp)
 add_subdirectory(src/network_optimizer)
 add_subdirectory(src/utils)
 add_subdirectory(src/algorithm)
-add_subdirectory(src/resource)
+add_subdirectory(src/resource/csv)
+add_subdirectory(src/resource/json)
 
 
 

@@ -1,7 +1,6 @@
 #include "schedule_test.h"
 
 #include "includes/network_optimizer/schedule.h"
-#include "includes/resource/csv_schedule_reader.h"
 
 #include "includes/utils/exception_def.h"
 

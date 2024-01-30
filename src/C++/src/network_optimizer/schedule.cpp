@@ -12,14 +12,14 @@ Schedule::Schedule(std::vector<Station_CRef>&& station_list, TimeTable&& schedul
 
 bool Schedule::Contain(const Station& station_to_find) const noexcept
 {
-    return std::find(m_station_list.begin(),m_station_list.end(),station_to_find) != m_station_list.end();
+    return std::find_if(m_station_list.begin(), m_station_list.end(), [&](const Station& station) {return station == station_to_find; }) != m_station_list.end();
 }
 
 
 bool Schedule::Order(const Station& first,const Station& second) const
 {
-    std::vector<Station_CRef>::const_iterator first_iterator  = std::find(m_station_list.begin(),m_station_list.end(),first);
-    std::vector<Station_CRef>::const_iterator second_iterator = std::find(m_station_list.begin(),m_station_list.end(),second);
+    std::vector<Station_CRef>::const_iterator first_iterator  = std::find_if(m_station_list.begin(),m_station_list.end(), [&](const Station& station) {return station == first; });
+    std::vector<Station_CRef>::const_iterator second_iterator = std::find_if(m_station_list.begin(),m_station_list.end(), [&](const Station& station) {return station == second; });
     if(first_iterator == m_station_list.end() || second_iterator == m_station_list.end())
         THROW(Station_Not_In_Schedule)
     else if(first_iterator == second_iterator)
@@ -61,7 +61,7 @@ std::optional<DayTime> Schedule::Get_Closest_Time_To_Station(const Algorithm_Sta
 
 std::optional<size_t> Schedule::Get_Station_Index(const Station& station_to_find) const noexcept
 {
-    std::vector<Station_CRef>::const_iterator it = std::find(m_station_list.begin(),m_station_list.end(),station_to_find);
+    std::vector<Station_CRef>::const_iterator it = std::find_if(m_station_list.begin(),m_station_list.end(), [&](const Station& station) {return station == station_to_find; });
     if(it == m_station_list.end())
         return std::nullopt;
     return std::distance(m_station_list.begin(),it);

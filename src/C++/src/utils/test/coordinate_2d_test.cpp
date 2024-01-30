@@ -15,7 +15,7 @@ TEST_F(Coordinate_Test,easy_constructor)
 
 TEST_F(Coordinate_Test, From_Double_String_Valid)
 {
-	Sphere_Coordinate a = Sphere_Coordinate("45°31'13\"E", "45°31'19.0\"N");
+	Sphere_Coordinate a = Sphere_Coordinate("45Â°31'13\"E", "45Â°31'19.0\"N");
 	ASSERT_FLOAT_EQ(a.Get_Lattitude(), 45.5219444444);
 	ASSERT_FLOAT_EQ(a.Get_Longitude(), 45.5202777778);
 }
@@ -23,9 +23,8 @@ TEST_F(Coordinate_Test, From_Double_String_Valid)
 
 TEST_F(Coordinate_Test, From_Double_String_Invalid)
 {
-	EXPECT_THROW(Sphere_Coordinate("45°31'13\"S", "45°31'19.0\"N"), Angle_Baldy_Formatted);
+	EXPECT_THROW(Sphere_Coordinate("45Â°31'13\"S", "45Â°31'19.0\"N"), ANGLE_BADLY_FORMATED);
 }
-
 
 
 TEST_F(Coordinate_Test, GetDistance_normal)
