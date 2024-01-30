@@ -1,12 +1,13 @@
 #include "algorithm_station_test.h"
 
 #include "includes/algorithm/network_optimizer.h"
+#include "config.h"
 
 using namespace std::chrono;
 
 TEST_F(Algorithm_Station_Test, Get_Best_Time_Start_To_Station)
 {
-    std::filesystem::path path = "C:/Users/Leocl/Documents/Isochrone/src/C++/src/algorithm/test/resource_test/config.json";
+    std::filesystem::path path = std::string(RESOURCE_PATH()) + "config.json";
     Network network(path);
 
 	DayTime start_time(hours(0),minutes(0));
@@ -39,7 +40,7 @@ TEST_F(Algorithm_Station_Test, Get_Best_Time_Start_To_Station)
 
 TEST_F(Algorithm_Station_Test, Get_Closest_Time_To_Station)
 {
-    std::filesystem::path path = "C:/Users/Leocl/Documents/Isochrone/src/C++/src/algorithm/test/resource_test/config.json";
+    std::filesystem::path path = std::string(RESOURCE_PATH()) + "config.json";
     Network network(path);
 
 	DayTime start_time(hours(0),minutes(0));
@@ -66,7 +67,7 @@ TEST_F(Algorithm_Station_Test, Get_Closest_Time_To_Station)
 
 TEST_F(Algorithm_Station_Test, Try_Set_Best_Time)
 {
-    std::filesystem::path path = "C:/Users/Leocl/Documents/Isochrone/src/C++/src/algorithm/test/resource_test/config.json";
+    std::filesystem::path path = std::string(RESOURCE_PATH()) + "config.json";
     Network network(path);
 
 	DayTime start_time(hours(0),minutes(0));
