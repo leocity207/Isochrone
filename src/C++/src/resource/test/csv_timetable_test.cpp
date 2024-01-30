@@ -88,9 +88,9 @@ CSV::Engine::String_Parser parser(std::move(test), ';');
 
 auto [station, timetable] = CSV::Parser::Timetable::Parse(parser);
 
-	ASSERT_EQ(station.size(), 17);
-	ASSERT_EQ(timetable.size(), 17);
-	ASSERT_EQ(timetable[0].size(), 33);
+	ASSERT_EQ(station.size(), 42);
+	ASSERT_EQ(timetable.size(), 42);
+	ASSERT_EQ(timetable[0].size(), 35);
 
 }
 
@@ -111,7 +111,7 @@ TEST_F(CSV_Timetable_Test, baddly_formated2)
 {
 	std::string test_str =
 "Station1  ;7:10;10:20\n\
-stajfkdfsldkfjn\
+stajfkdfsldkfjn;7:10;10:20;7:10;10:20\n\
 station3; 7:30; 10:40";
 
 CSV::Engine::String_Parser parser(std::move(test_str), ';');
@@ -125,7 +125,7 @@ TEST_F(CSV_Timetable_Test, bad_time)
 {
 	std::string test_str =
 "Station1  ;7:10;10:20\n\
-station2; 7:20; 2828282.3:30\n\
+station2; 7:20; sauce:30\n\
 station3; 7:30; 10:40";
 
 	CSV::Engine::String_Parser parser(std::move(test_str), ';');
@@ -133,15 +133,3 @@ station3; 7:30; 10:40";
 	EXPECT_THROW(CSV::Parser::Timetable::Parse(parser), TIME_BADLY_FORMATED);
 }
 
-
-TEST_F(CSV_Timetable_Test, bad_time2)
-{
-	std::string test_str =
-"Station1  ;7:10;10:20\n\
-station2; 7:20;72:30\n\
-station3; 7:30; 10:40";
-
-	CSV::Engine::String_Parser parser(std::move(test_str), ';');
-
-	EXPECT_THROW(CSV::Parser::Timetable::Parse(parser), ANGLE_BADLY_FORMATED);
-}

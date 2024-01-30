@@ -46,7 +46,7 @@ INSTANTIATE_TEST_SUITE_P(
         std::make_pair("  123:212  ","123:212"),
         std::make_pair("             45", "45"),
         std::make_pair("45    ","45"),
-        std::make_pair("ajklù*$", "ajklù*$"),
+        std::make_pair("ajklï¿½*$", "ajklï¿½*$"),
         std::make_pair("        ","")),
     Space_Triming_Test_Naming);
 
@@ -61,13 +61,16 @@ TEST_P(Angle_Parsing, _)
 
     if (valid)
     {
-        double returned;
-        EXPECT_NO_THROW(returned = Generals::Parse_Angle(angle_str));
-        EXPECT_FLOAT_EQ(returned, value);
+        EXPECT_NO_THROW(
+            {
+                double returned;
+                returned = Generals::Parse_Angle(angle_str);
+                EXPECT_FLOAT_EQ(returned, value);
+            });
     }
     else
     {
-        EXPECT_THROW(Generals::Parse_Angle(angle_str), Angle_Baldy_Formatted);
+        EXPECT_THROW(Generals::Parse_Angle(angle_str), ANGLE_BADLY_FORMATED);
     }
 }
 
@@ -86,6 +89,8 @@ std::string Angle_parsing_Test_Naming(testing::TestParamInfo<std::tuple<std::str
         return "all_element_but_wrong_place";
     case 4:
         return "wrong_end_character";
+    case 5:
+        return "modulo";
     }
 }
 
@@ -93,9 +98,10 @@ INSTANTIATE_TEST_SUITE_P(
     test_string,
     Angle_Parsing,
     ::testing::Values(
-        std::make_tuple("45°31'13\"N"   ,true  , 45.5202777778),
-        std::make_tuple("45°31'13.4\"N" , true , 45.5203888889),
+        std::make_tuple("45Â°31'13\"N"   ,true  , 45.5202777778),
+        std::make_tuple("45Â°31'13.4\"N" , true , 45.5203888889),
         std::make_tuple("lol"           ,false , 0            ),
-        std::make_tuple("°4531\"13.4N''",false , 0            ),
-        std::make_tuple("45°31'13.4\"K" ,false , 0            )),
+        std::make_tuple("Â°4531\"13.4N''",false , 0            ),
+        std::make_tuple("45Â°31'13.4\"K" ,false , 0            ),
+        std::make_tuple("360Â°00'0.0\"N", true  , 0.0          )),
         Angle_parsing_Test_Naming);

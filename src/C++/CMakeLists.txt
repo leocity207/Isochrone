@@ -40,7 +40,7 @@ FetchContent_MakeAvailable(googletest)
 # compiler option
 if (MSVC)
     # warning level 4 and all warnings as errors
-    add_compile_options(/W4 /WX)
+    add_compile_options(/W4 /WX /utf-8)
 else()
     # lots of warnings and all warnings as errors
     add_compile_options(-Wall -Wextra -pedantic -Werror -Og)
@@ -71,7 +71,7 @@ add_subdirectory(src/algorithm/test)
 
 
 #main
-add_executable(main src/main.cpp "includes/utils/string.h")
+add_executable(main src/main.cpp)
 target_link_libraries(main
 log
 network_optimizer

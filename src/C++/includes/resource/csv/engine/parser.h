@@ -8,7 +8,6 @@
 #include <mutex>
 
 #include "includes/utils/owner.h"
-#include "includes/utils/utf8string.h"
 
 namespace CSV
 {
@@ -20,7 +19,7 @@ namespace CSV
             /// CTOR
         public:
             Parser() = delete;
-            Parser(Memory::Owned<std::u8istream>&& stream, const char delimiter);
+            Parser(Memory::Owned<std::istream>&& stream, const char delimiter);
 
             ///////////
             /// METHODS

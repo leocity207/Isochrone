@@ -12,7 +12,7 @@ namespace CSV
             ////////
             /// CTOR
         public:
-            String_Parser(std::basic_string&& str, const char delimiter);
+            String_Parser(std::string&& str, const char delimiter);
         };
     }; //Engine
 }; //CSV

@@ -24,12 +24,12 @@ namespace Generals
     {
         // Trim leading whitespace
         str.erase(str.begin(), std::find_if(str.begin(), str.end(), [](int ch) {
-                return !std::isspace(ch);
+                return ch<0 || ch>255 ? false : !std::isspace(ch);
             }));
 
         // Trim trailing whitespace
         str.erase(std::find_if(str.rbegin(), str.rend(), [](int ch) {
-                return !std::isspace(ch);
+                return ch < 0 || ch>255 ? false : !std::isspace(ch);
             }).base(), str.end());
 
         // Return the modified string as an rvalue reference
@@ -40,7 +40,12 @@ namespace Generals
     double Parse_Angle(const std::string_view& str)
     {
         // Find the separators in the string
-        auto degree_it = std::find(str.begin(), str.end(), -80);
+        if(str.empty())
+            THROW_TRACE(ANGLE_BADLY_FORMATED, " the angle is badly formated and void");
+
+        if(str.find("°") == std::string::npos )
+            THROW_TRACE(ANGLE_BADLY_FORMATED, " the angle is badly formated" + std::string(str));
+        auto degree_it = str.begin() + str.find("°");
         auto minute_it = std::find(str.begin(), str.end(), '\'');
         auto second_it = std::find(str.begin(), str.end(), '\"');
 
@@ -50,23 +55,31 @@ namespace Generals
 
         // Extract the component parts of the angle
         std::string_view degrees_str(str.begin(), degree_it);
-        std::string_view minutes_str(&*(degree_it + 1), minute_it - degree_it - 1);
+        std::string_view minutes_str(&*(degree_it + 2), minute_it - degree_it - 2);
         std::string_view seconds_str(&*(minute_it + 1), second_it - minute_it - 1);
         if (str.back() != 'N' && str.back() != 'S' && str.back() != 'E' && str.back() != 'W')
             THROW_TRACE(ANGLE_BADLY_FORMATED, " the angle is badly formated missing the NSWE" + std::string(str));
 
         // Convert the component parts to double values
-        double degrees = std::stod(std::string(degrees_str));
-        double minutes = std::stod(std::string(minutes_str));
-        double seconds = std::stod(std::string(seconds_str));
+        try {
+            int degrees = std::stoi(std::string(degrees_str)) % 360;
+            int minutes = std::stoi(std::string(minutes_str));
+            double seconds = std::stod(std::string(seconds_str));
 
-        // Calculate the angle in degrees
-        double angle = degrees + minutes / 60 + seconds / 3600;
+            // Calculate the angle in degrees
+            double angle = degrees + minutes / 60.0 + seconds / 3600;
 
-        // Negate the angle if the direction is S or W
-        if (str.back() == 'S' || str.back() == 'W')
-            angle = -angle;
+            // Negate the angle if the direction is S or W
+            if (str.back() == 'S' || str.back() == 'W')
+                angle = -angle;
 
-        return angle;
+            return angle;
+        }
+        catch (std::invalid_argument&)
+        {
+            THROW_TRACE(ANGLE_BADLY_FORMATED, " the angle is badly formated missing the NSWE" + std::string(str));
+        }
+
+
     }
 }
