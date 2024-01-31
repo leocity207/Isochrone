@@ -1,0 +1,80 @@
+{
+		"station file":"coordinate.csv",
+		"line list":[
+				{
+					"name":"Ligne 1",
+					"schedules": [
+						{
+							"paths": [
+								"l1_a.csv",
+								"l1_r.csv"
+							],
+							"day template": [
+								{
+									"weekdays": [ "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY" ],
+									"type": [ "SCHOOL" ]
+								},
+								{
+									"weekdays": [ "SATURDAY" ],
+									"type": [ "SCHOOL" ]
+								}
+							]
+						}
+					]
+				},
+				{
+						"name":"Ligne 2",
+						"schedules": [
+							{
+								"paths": [
+									"l2_a.csv",
+									"l2_r.csv"
+								],
+								"day template": [
+									{
+										"weekdays": [ "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY" ],
+										"type": [ "SCHOOL" ]
+									},
+									{
+										"weekdays": [ "SATURDAY" ],
+										"type": [ "VACATION" ]
+									}
+								]
+							}
+						]
+				},
+				{
+						"name":"Ligne 3",
+						"schedules": [
+							{
+								"paths": [
+									"l3_a_1.csv",
+									"l3_r_1.csv"
+								],
+								"day template": [
+									{
+										"weekdays": [ "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY" ],
+										"type": [ "SCHOOL" ]
+									}
+								]
+							},
+							{
+								"paths": [
+									"l3_a_2.csv",
+									"l3_r_2.csv"
+								],
+								"day template": [
+									{
+										"weekdays": [ "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY" ],
+										"type": [ "HOLIDAY" ]
+									},
+									{
+										"weekdays": [ "SATURDAY" ],
+										"type": [ "ALL" ]
+									}
+								]
+							}
+						]
+				}
+		]
+}

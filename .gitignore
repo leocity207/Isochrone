@@ -4,7 +4,8 @@ settings.json
 src/C++/.vs/*
 src/C++/out/*
 .vs/*
+*out/*
 
 # config file
-src/C++/src/algorithm/test/config.h
-src/C++/includes/config/config.h
+includes/config/config.h
+src/algorithm/test/config.h
