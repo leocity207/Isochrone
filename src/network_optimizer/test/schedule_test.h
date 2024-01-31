@@ -9,11 +9,11 @@ class Schedule;
 
 class Schedule_Test : public ::testing::Test {
 public:
-    static void SetUpTestSuite();
+	static void SetUpTestSuite();
 
 
-    static std::unique_ptr<Schedule> s_schedule;
-    static std::vector<Station> s_stations;
+	static std::unique_ptr<Schedule> s_schedule;
+	static std::vector<Station> s_stations;
 };
 
 

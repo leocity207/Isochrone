@@ -9,36 +9,36 @@ Station::Station(Sphere_Coordinate&& coordinate, std::string&& name) noexcept : 
 
 const double Station::Get_Distance_To(const Station& station) const noexcept
 {
-    return m_coordinate.Get_Distance(station.GetCoordinate());
+	return m_coordinate.Get_Distance(station.GetCoordinate());
 }
 
 const double Station::Get_Distance_To(const Sphere_Coordinate& coordinate) const noexcept
 {
-    return m_coordinate.Get_Distance(coordinate);
+	return m_coordinate.Get_Distance(coordinate);
 }
 
 
 const std::string& Station::Get_Name() const noexcept 
 { 
-    return m_name; 
+	return m_name; 
 }
 
 const Sphere_Coordinate& Station::GetCoordinate() const noexcept 
 {
-     return m_coordinate; 
+	 return m_coordinate; 
 }
 
 bool Station::operator==(const Station& other_station) const noexcept
 { 
-    return m_id == other_station.m_id;
+	return m_id == other_station.m_id;
 }
 
 bool Station::operator!=(const Station& other_station) const noexcept
 { 
-    return m_id != other_station.m_id;
+	return m_id != other_station.m_id;
 }
 
 bool Station::operator<(const Station& other_station) const noexcept 
 { 
-    return m_id < other_station.m_id;
+	return m_id < other_station.m_id;
 }
