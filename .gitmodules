@@ -1,6 +1,6 @@
-[submodule "src/C++/submodule/logger"]
-	path = src/C++/submodule/logger
+[submodule "submodule/logger"]
+	path = submodule/logger
 	url = https://github.com/leocity207/logger.git
-[submodule "src/C++/submodule/rapidjson"]
-	path = src/C++/submodule/rapidjson
+[submodule "submodule/rapidjson"]
+	path = submodule/rapidjson
 	url = https://github.com/Tencent/rapidjson.git
