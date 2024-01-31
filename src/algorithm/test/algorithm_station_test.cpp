@@ -1,6 +1,7 @@
 #include "algorithm_station_test.h"
 
 #include "includes/algorithm/network_optimizer.h"
+#include "includes/network_optimizer/timetable.h"
 #include "config.h"
 
 using namespace std::chrono;
@@ -53,8 +54,8 @@ TEST_F(Algorithm_Station_Test, Get_Closest_Time_To_Station)
 	ASSERT_TRUE(Schedule_a.has_value());	
 	ASSERT_TRUE(Schedule_r.has_value());
 
-	const Schedule& s_a = Schedule_a->get();
-	const Schedule& s_r = Schedule_r->get();
+	const Timetable& s_a = Schedule_a->get();
+	const Timetable& s_r = Schedule_r->get();
 
 	Algorithm_Station A(&(network.Get_Station()[0]),&optimizer);
 	Algorithm_Station C(&(network.Get_Station()[2]), &optimizer);

@@ -17,7 +17,6 @@ const double Station::Get_Distance_To(const Sphere_Coordinate& coordinate) const
 	return m_coordinate.Get_Distance(coordinate);
 }
 
-
 const std::string& Station::Get_Name() const noexcept 
 { 
 	return m_name; 

@@ -5,7 +5,7 @@
 #include "includes/utils/general.h"
 
 //network
-#include "includes/network_optimizer/schedule.h"
+#include "includes/network_optimizer/timetable.h"
 
 #include <span>
 

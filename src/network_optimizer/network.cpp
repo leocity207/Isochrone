@@ -24,7 +24,7 @@ Network::Network(const std::filesystem::path& resource_path) : m_line_list(), m_
 
 	for(auto& line_parse_data : getter.Get_Line_Files())
 	{
-		std::vector<Schedule> schedules;
+		std::vector<Timetable> schedules;
 		for(auto& schedule : line_parse_data.second)
 		{
 			CSV::Engine::File_Parser timetable_parser(resource_path.parent_path() / schedule.second, ';');

@@ -15,28 +15,33 @@
 //network_optimization
 #include "includes/network_optimizer/station.h"
 #include "includes/network_optimizer/day_info.h"
+#include "includes/utils/ctor.h"
 
 class Algorithm_Station;
 
 
 //------------------------------------------------------------------------------------------------------------
-// Schedule class represent transport schedule and meta data about the schedule
+// Timetable class represent transport schedule and meta data about the schedule
 // Basically We suppose a schedule is a matrix containing the time at which the transport get to the station
 // Here we suppose that the line represent the station and the column represent the pathway of one transport
 // Needed meta data are as follow:
 
 typedef std::vector<std::vector<std::optional<DayTime>>> TimeTable;
-class Schedule : public DayTemplate
+class Timetable : public DayTemplate
 {
+    ////////
+    /// CTOR
     public:
         //deleted
-        Schedule() = delete;
-        Schedule(const Schedule& ) = delete;
-        Schedule& operator=(const Schedule&) = delete;
-        Schedule(Schedule&& ) noexcept = default;
+        DELETE_COPY(Timetable)
+        DELETE_DEFAULT(Timetable)
+        DEFAULT_MOVE(Timetable)
 
-        Schedule(std::vector<Station_CRef>&& station_list, TimeTable&& schedule_tab,DayTemplate&& day_template) noexcept;
+        Timetable(std::vector<Station_CRef>&& station_list, TimeTable&& schedule_tab,DayTemplate&& day_template) noexcept;
         
+    ///////////
+    /// METHODS
+    public:
         /////////////////////////////////////////////////////
         /// @brief check if a station is contained inside the schedule
         /// @param station_to_find the station you want to check if present inside the schedule
@@ -71,12 +76,14 @@ class Schedule : public DayTemplate
         /// @return a list of reference to the station inside the schedule
         const std::vector<Station_CRef>& Get_Station_List() const noexcept;
 
+    //////////////
+    /// ATTRIBUTES
     private:
         std::vector<Station_CRef> m_station_list;
         TimeTable m_schedule;
 };
 
-typedef std::reference_wrapper<const Schedule> Schedule_CRef;
+typedef std::reference_wrapper<const Timetable> Schedule_CRef;
 
 
 #endif //SCHEDULE_H

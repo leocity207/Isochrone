@@ -2,12 +2,14 @@
 #define LINE_H
 
 #include <vector>
+#include <ranges>
 
-#include "includes/network_optimizer/schedule.h"
+#include "includes/network_optimizer/timetable.h"
 #include "submodule/Logger/includes/exception.h"
 #include "includes/utils/exception_def.h"
+#include "includes/utils/ctor.h"
 
-#include <ranges>
+
 
 class Algorithm_Station;
 
@@ -15,20 +17,18 @@ class Algorithm_Station;
 
 class Line
 {
-    private:
-        std::string m_name;
-        int m_id;
-        std::vector<Schedule> m_schedule;
-        static int s_count;
+    ////////
+    /// CTOR
     public:
-        Line() = delete;
-        Line(const Line&) = delete;
-        Line& operator=(const Line&) = delete;
-        Line(Line&&) noexcept = default;
+        DELETE_COPY(Line)
+        DELETE_DEFAULT(Line)
+        DEFAULT_MOVE(Line)
 
-        Line(std::vector<Schedule>&& Schedule,std::string&& name) noexcept;
+        Line(std::vector<Timetable>&& Schedule,std::string&& name) noexcept;
 
-
+        ///////////
+        /// METHODS
+    public:
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// @brief Find the closest time to go from start to finish station knowing the curent daytime and the daytype
         /// @param start_station the station you want to get on 
@@ -52,7 +52,7 @@ class Line
         /// @return a view inside the schedule list containing only the good schedule
         auto Get_Schedules(const Day& matching_day) const noexcept
         {
-            return std::views::filter(m_schedule, [matching_day](const Schedule& schedule) { return schedule.Match(matching_day); });
+            return std::views::filter(m_schedule, [matching_day](const Timetable& schedule) { return schedule.Match(matching_day); });
         };
 
         /////////////////////////////////////////////////////////////////////////////////
@@ -61,6 +61,14 @@ class Line
         /// @param station the station we are trying to see if contained inside the schedule
         /// @return wether or not the station is contained inside the line for this day
         bool Contain(const Station& station,const Day& matching_day) const noexcept;
+
+    //////////////
+    /// ATTRIBUTESs
+    private:
+        std::string m_name;
+        int m_id;
+        std::vector<Timetable> m_schedule;
+        static int s_count;
 };
 
 typedef std::reference_wrapper<Line> Line_CRef;

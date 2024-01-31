@@ -1,10 +1,10 @@
 #include "schedule_test.h"
 
-#include "includes/network_optimizer/schedule.h"
+#include "includes/network_optimizer/timetable.h"
 
 #include "includes/utils/exception_def.h"
 
-std::unique_ptr<Schedule> Schedule_Test::s_schedule = nullptr;
+std::unique_ptr<Timetable> Schedule_Test::s_schedule = nullptr;
 std::vector<Station> Schedule_Test::s_stations = std::vector<Station>();
 
 void Schedule_Test::SetUpTestSuite()
@@ -38,7 +38,7 @@ void Schedule_Test::SetUpTestSuite()
 	std::vector<Station_CRef> station_list_ref(s_stations.begin(),s_stations.end());
 
 
-	s_schedule = std::unique_ptr<Schedule>(new Schedule(std::move(station_list_ref), std::move(timetable), std::move(temp)));
+	s_schedule = std::unique_ptr<Timetable>(new Timetable(std::move(station_list_ref), std::move(timetable), std::move(temp)));
 }
 
 TEST_F(Schedule_Test, Contains_NotContains)

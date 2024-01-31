@@ -63,7 +63,7 @@ std::vector<Algorithm_Station> Network_Optimizer::Optimize()
 		std::for_each(line_list.begin(), line_list.end(), [&](const Line& line) { 
 			auto schedule_list = line.Get_Schedules(m_day_type);
 			//get the right schedules for that day
-			std::for_each(schedule_list.begin(), schedule_list.end(), [&](const Schedule& schedule) { 
+			std::for_each(schedule_list.begin(), schedule_list.end(), [&](const Timetable& schedule) {
 				//for all station in the lines
 				std::for_each(schedule.Get_Station_List().begin(), schedule.Get_Station_List().end(), [&](const Station_CRef& station) { 
 					//no need to compute distance from the two same station

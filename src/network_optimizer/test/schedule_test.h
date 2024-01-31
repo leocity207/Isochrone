@@ -5,14 +5,14 @@
 #include <memory>
 
 #include "includes/network_optimizer/station.h"
-class Schedule;
+class Timetable;
 
 class Schedule_Test : public ::testing::Test {
 public:
 	static void SetUpTestSuite();
 
 
-	static std::unique_ptr<Schedule> s_schedule;
+	static std::unique_ptr<Timetable> s_schedule;
 	static std::vector<Station> s_stations;
 };
 

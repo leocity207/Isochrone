@@ -4,26 +4,22 @@
 #include <string>
 #include <functional>
 #include "includes/utils/coordinate_2d.h"
+#include "includes/utils/ctor.h"
 
 class Station
 {
-    private:
-        Sphere_Coordinate m_coordinate;
-        std::string m_name;
-        int m_id;
-        static int s_count;
 
+    /////////
+    /// CTOR
     public:
-
-        //delted function
-        Station() = delete;
-        Station(const Station&) = delete;
-        Station& operator=(const Station&) = delete;
-
+        DELETE_DEFAULT(Station)
+        DELETE_COPY(Station)
+        DEFAULT_MOVE(Station)
         Station(Sphere_Coordinate&& coordinate, std::string&& name) noexcept;
-        Station(Station&&) noexcept = default;
         
-
+    ///////////
+    /// METHODS
+    public:
         ////////////////////////////////////////////////////////////////////////////
         /// @brief give back the distance from the parameter station to this station
         /// @param station  the station to compute the distance too
@@ -46,6 +42,14 @@ class Station
         /// getter
         const std::string& Get_Name() const noexcept;
         const Sphere_Coordinate& GetCoordinate() const noexcept;
+
+    //////////////
+    /// ATTRIBUTES
+    private:
+        Sphere_Coordinate m_coordinate;
+        std::string m_name;
+        int m_id;
+        static int s_count;
 };
 
 typedef std::reference_wrapper<const Station> Station_CRef;
