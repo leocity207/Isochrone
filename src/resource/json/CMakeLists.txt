@@ -1,9 +1,16 @@
-FILE(GLOB parser parser/*.cpp)
+#//////////////////////////////////
+# SOURCE FILES
+FILE(GLOB RESOURCE_JSON_SOURCE parser/*.cpp)
 
+#////////
+# LIBRARY
 add_library(json STATIC                       
-    ${parser}
+	${RESOURCE_JSON_SOURCE}
 )
 
-target_link_libraries(
-    log
+#//////////////
+# LIBRARY LINKS
+target_link_libraries(json
+	utils
+	log
 )

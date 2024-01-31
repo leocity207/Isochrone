@@ -1,4 +1,3 @@
-#include "coordinate_2d.h"
 #include "includes/utils/coordinate_2d.h"
 
 #include "includes/utils/general.h"

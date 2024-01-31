@@ -21,7 +21,7 @@ namespace JSON
             //////////////////////////////////////////////////////////////////////////////////////////////////
             /// @brief constructor
             /// @param filesystem_path path to the config file wich indicate how too look for the station data 
-            Resource_Getter(const std::filesystem::path& filesystem_path);
+            Resource_Getter(std::istream&& filesystem_path);
 
             ///////////
             /// getter

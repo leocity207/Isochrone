@@ -251,7 +251,7 @@ TEST_F(CSV_Station_Test, bad_angle_3)
 	std::string test =
 		"Station1  ;45°31'13\"N; 45°31'13\"E\n\
 station2; 45°31'13\"N;367°32'413\"E\n\
-station3; 45°31'13\"N;     45°\0031'13\"E";
+station3; 45°31'13\"N;     45°ä31'13\"E";
 
 	CSV::Engine::String_Parser parser(std::move(test), ';');
 

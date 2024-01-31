@@ -76,6 +76,8 @@ std::string DayTime_Test_String_Parser_Naming(testing::TestParamInfo<std::tuple<
 		return "wrong_string_without_point";
 	case 4:
 		return "void_string";
+	default:
+		throw "unexpected value";
 	}
 }
 

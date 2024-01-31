@@ -16,7 +16,8 @@
 
 Network::Network(const std::filesystem::path& resource_path) : m_line_list(), m_station_list()
 {
-	JSON::Parser::Resource_Getter	getter(resource_path);
+	std::ifstream stream(resource_path);
+	JSON::Parser::Resource_Getter getter(std::move(stream));
 
 	CSV::Engine::File_Parser parser(resource_path.parent_path() / getter.Get_Station_File(), ';');
 	m_station_list =  std::move(CSV::Parser::Station::Parse(parser));

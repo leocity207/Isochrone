@@ -1,12 +1,19 @@
+#/////////////
+# SOURCE FILES
+file(GLOB ALGORITHM_SOURCE "./*.cpp")
+
+#////////
+# LIBRARY
 add_library(algorithm OBJECT                       
-    algorithm_station.cpp
-    network_optimizer.cpp
+	${ALGORITHM_SOURCE}
 )
 
+#//////////////
+# LIBRARY LINKS
 target_link_libraries(algorithm
-log
-utils
-network_optimizer
+	log
+	utils
+	network_optimizer
 )
 
 

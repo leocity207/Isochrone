@@ -2,44 +2,25 @@
 # For google test includes
 include(GoogleTest)
 
+#/////////////////////////////////////////////////////
+# create configuration file to find test resource path
 get_filename_component(TEST_DIR ./ ABSOLUTE)
-
 configure_file(${PROJECT_SOURCE_DIR}/src/algorithm/test/config.h.in ${PROJECT_SOURCE_DIR}/src/algorithm/test/config.h)
 
 
-#/////////////////////////////////////////////////
-# Glob files for adding header file to the target
-file(GLOB_RECURSE MY_HEADERS "*.h")
+#/////////////
+# SOURCE FILES
+file(GLOB_RECURSE ALGORITHM_TEST_SOURCE "./*.cpp")
 
-#/////////////////////////////////////////////////
-# Add all the File for the target
+#///////////
+# EXECUTABLE
 add_executable( algorithm_test 
-    algorithm_station_test.cpp
-    network_optimizer_test.cpp
-
-    ${MY_HEADERS}
+	${ALGORITHM_TEST_SOURCE}
 )
 
-#/////////////////////////////////////////////////
-# add header directory
-target_include_directories( network_optimizer_test PRIVATE 
-    ${CMAKE_CURRENT_SOURCE_DIR}                 
-)
-
-
-#/////////////////////////////////////
-# Special compilation option for googletest
-if (MSVC)
-    target_compile_options(network_optimizer_test PRIVATE /W0 -/WX)
-else()
-    target_compile_options(network_optimizer_test PRIVATE -Wall -Wextra -pedantic -Og)
-endif()
-
-
-#/////////////////////////////////
-#final link of the library
-target_link_libraries(
-  algorithm_test
+#//////////////
+# LIBRARY LINKS
+target_link_libraries(algorithm_test
   algorithm
   GTest::gtest_main
   network_optimizer
@@ -49,5 +30,6 @@ target_link_libraries(
   csv
 )
 
-
+#/////////////
+# DECLARE TEST
 gtest_discover_tests(algorithm_test)

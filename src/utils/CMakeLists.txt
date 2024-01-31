@@ -1,25 +1,17 @@
+#//////////////////////////////////
+# SOURCE FILES
+FILE(GLOB UTILS_SOURCE "./*.cpp")
 
-
-FILE(GLOB_RECURSE MY_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/../../includes/utils/*.h")
-
+#////////
+# LIBRARY
 add_library(utils OBJECT                       
-    coordinate.cpp
-    daytime.cpp
-    general.cpp
-
-    ${MY_HEADERS}
+    ${UTILS_SOURCE}
 )
 
-target_include_directories(utils
-
-PRIVATE
-                            
-${CMAKE_CURRENT_SOURCE_DIR}/../../includes/utils/
+#//////////////
+# LIBRARY LINKS
+target_link_libraries(utils
+    log
 )
-
-
-
-
-target_link_libraries(utils)
 
 

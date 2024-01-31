@@ -6,9 +6,9 @@
 
 TEST_F(Resource_Getter_Test, test)
 {
-	std::filesystem::path path_to_csv = "C:/dev/Isochrone/src/C++/src/resource/test/config_test.json";
+	std::istringstream string_stream("{\"station file\":\"test.csv\",\"line list\":[{\"name\":\"Ligne 1\",\"schedules\": [{\"paths\": [\"a.csv\",\"b.csv\"],\"day template\": [{\"weekdays\": [ \"MONDAY\", \"TUESDAY\", \"WEDNESDAY\", \"THURSDAY\", \"FRIDAY\" ],\"type\": [ \"VACATION\" ]},{\"weekdays\": [ \"SATURDAY\" ],\"type\": [ \"ALL\" ]}]},{\"paths\": [\"c.csv\",\"d.csv\"],\"day template\": [{\"weekdays\": [ \"MONDAY\", \"TUESDAY\", \"WEDNESDAY\", \"THURSDAY\", \"FRIDAY\" ],\"type\": [ \"SCHOOL\" ]}]}]}]}");
 
-	JSON::Parser::Resource_Getter getter(path_to_csv);
+	JSON::Parser::Resource_Getter getter(std::move(string_stream));
 
 	ASSERT_EQ(getter.Get_Station_File(), "test.csv");
 

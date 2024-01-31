@@ -67,12 +67,3 @@ add_subdirectory(src/utils/test)
 add_subdirectory(src/resource/test)
 add_subdirectory(src/network_optimizer/test)
 add_subdirectory(src/algorithm/test)
-
-
-
-#main
-add_executable(main src/main.cpp)
-target_link_libraries(main
-log
-network_optimizer
-)

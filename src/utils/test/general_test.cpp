@@ -35,6 +35,8 @@ std::string Space_Triming_Test_Naming(testing::TestParamInfo<std::pair<std::stri
 		return "No_space";
 	case 5:
 		return "only_space";
+	default:
+		throw "Unexpected index";
 	}
 }
 
@@ -65,7 +67,7 @@ TEST_P(Angle_Parsing, _)
 			{
 				double returned;
 				returned = Generals::Parse_Angle(angle_str);
-				EXPECT_FLOAT_EQ(returned, value);
+				EXPECT_DOUBLE_EQ(returned, value);
 			});
 	}
 	else
@@ -91,6 +93,8 @@ std::string Angle_parsing_Test_Naming(testing::TestParamInfo<std::tuple<std::str
 		return "wrong_end_character";
 	case 5:
 		return "modulo";
+	default:
+		throw "Unexpected index";
 	}
 }
 
@@ -98,8 +102,8 @@ INSTANTIATE_TEST_SUITE_P(
 	test_string,
 	Angle_Parsing,
 	::testing::Values(
-		std::make_tuple("45°31'13\"N"   ,true  , 45.5202777778),
-		std::make_tuple("45°31'13.4\"N" , true , 45.5203888889),
+		std::make_tuple("45°31'13\"N"   ,true  , 45.520277777777778),
+		std::make_tuple("45°31'13.4\"N" , true , 45.520388888888888),
 		std::make_tuple("lol"           ,false , 0            ),
 		std::make_tuple("°4531\"13.4N''",false , 0            ),
 		std::make_tuple("45°31'13.4\"K" ,false , 0            ),

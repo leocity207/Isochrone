@@ -1,6 +1,6 @@
 #//////////////////////////////////
 # SOURCE FILES
-FILE(GLOB_RECURSE NETWORK_OPTIMIZER_SOURCE "./*.cpp")
+FILE(GLOB NETWORK_OPTIMIZER_SOURCE "./*.cpp")
 
 #////////
 # LIBRARY

@@ -66,15 +66,13 @@ std::vector<std::pair<DayTemplate,std::filesystem::path>> Get_Schedules(const ra
 	return list;
 }
 
-JSON::Parser::Resource_Getter::Resource_Getter(const std::filesystem::path& filesystem_path)
+JSON::Parser::Resource_Getter::Resource_Getter(std::istream&& stream)
 {
-	//open config file
-	std::ifstream config_file(filesystem_path);
-	if(config_file.fail())
-		THROW_TRACE(FILE_OPEN_FAILED,"could not open file :" + filesystem_path.string())
+	if(stream.fail())
+		THROW_TRACE(FILE_OPEN_FAILED,"stream is not valid")
 
 	//parth the config file
-	rapidjson::IStreamWrapper isw(config_file);
+	rapidjson::IStreamWrapper isw(stream);
 	rapidjson::Document document;
 	document.ParseStream(isw);
 
