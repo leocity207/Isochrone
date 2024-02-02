@@ -53,7 +53,7 @@ target_sources(log PRIVATE ${PROJECT_SOURCE_DIR}/includes/config/config.cpp)
 
 #------------------------------------
 # subdirectory include
-add_subdirectory(src/network_optimizer)
+add_subdirectory(src/network)
 add_subdirectory(src/utils)
 add_subdirectory(src/algorithm)
 add_subdirectory(src/resource/csv)
@@ -65,5 +65,5 @@ add_subdirectory(src/resource/json)
 #tests
 add_subdirectory(src/utils/test)
 add_subdirectory(src/resource/test)
-add_subdirectory(src/network_optimizer/test)
+add_subdirectory(src/network/test)
 add_subdirectory(src/algorithm/test)

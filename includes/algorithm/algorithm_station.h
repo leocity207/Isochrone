@@ -3,7 +3,7 @@
 
 #include <chrono>
 
-#include "includes/network_optimizer/station.h"
+#include "includes/network/station.h"
 #include "includes/utils/coordinate_2d.h"
 #include "includes/utils/daytime.h"
 
@@ -16,7 +16,7 @@ class Network_Optimizer;
 class Algorithm_Station
 {
     public:
-        Algorithm_Station(const Station* station_to_link,const Network_Optimizer* optimizer) noexcept;
+        Algorithm_Station(const Network::Station* station_to_link,const Network_Optimizer* optimizer) noexcept;
 
         ////////////////////////////////////////////////////////////////////////////
         /// @brief Give back the time you need to get from this station to the start
@@ -34,7 +34,7 @@ class Algorithm_Station
 
         /////////////////////////////////////
         /// Way to get the containing station
-        const Station& Get() const noexcept;
+        const Network::Station& Get() const noexcept;
 
         bool operator<(const Algorithm_Station& other_station) const noexcept;
 
@@ -50,7 +50,7 @@ class Algorithm_Station
         DayTime m_best_time;
         DayTime m_basic_time;
         bool m_reach_by_transport;
-        const Station* m_ref_station;
+        const Network::Station* m_ref_station;
         const Network_Optimizer* m_optimizer;
 };
 

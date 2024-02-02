@@ -1,7 +1,7 @@
 #ifndef NETWORK_OPTIMIZER_H
 #define NETWORK_OPTIMIZER_H
 
-#include "includes/network_optimizer/network.h"
+#include "includes/network/line.h"
 #include "algorithm_station.h"
 #include "includes/utils/daytime.h"
 
@@ -9,7 +9,7 @@ class Network_Optimizer
 {
 public:
     Network_Optimizer() = delete;
-    Network_Optimizer(const Network& network,const Sphere_Coordinate& start_coordinate,const double default_speed,const DayTime& start_time,const Day& day_type) noexcept;
+    Network_Optimizer(const std::vector<Network::Station>& stations, const std::vector<Network::Line>& lines,const Sphere_Coordinate& start_coordinate,const double default_speed,const DayTime& start_time,const Network::Day& day_type) noexcept;
 
     std::vector<Algorithm_Station> Optimize();
     
@@ -21,11 +21,10 @@ private:
     const DayTime& m_start_time;
     const double m_speed;
     const Sphere_Coordinate& m_start_coordinate;
-    const Network& m_network;
-    const Day& m_day_type;
+    const std::vector<Network::Line>& m_lines;
+    const std::vector<Network::Station>& m_stations;
+    const Network::Day& m_day_type;
 };
-
-
 
 
 #endif

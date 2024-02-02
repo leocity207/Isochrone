@@ -11,7 +11,7 @@
 #include "submodule/rapidjson/include/rapidjson/document.h"
 
 //network
-#include "includes/network_optimizer/line.h"
+#include "includes/network/line.h"
 
 //----------------------
 //helper function
@@ -25,7 +25,7 @@ std::vector<std::pair<DayTemplate,std::filesystem::path>> Get_Schedules(const ra
 		if (!day_types.HasMember("weekdays") && !day_types.HasMember("type") && !day_types["weekdays"].IsArray() && !day_types["type"].IsArray())
 			THROW_TRACE(READING_FILE_ERROR, "Line list are badly formatted")
 
-		std::array<bool, WEEKDAY_COUNT> day_list = {0};
+		std::array<bool, Network::WEEKDAY_COUNT> day_list = {0};
 		for (const auto& day: day_types["weekdays"].GetArray())
 		{
 			if (std::string_view(day.GetString()) == "MONDAY")
@@ -45,15 +45,15 @@ std::vector<std::pair<DayTemplate,std::filesystem::path>> Get_Schedules(const ra
 			else
 				THROW_TRACE(READING_FILE_ERROR, "Day does not exist")
 		}
-		std::array<bool, DAY_TYPE_COUNT> day_type_array = {0};
+		std::array<bool, Network::DAY_TYPE_COUNT> day_type_array = {0};
 		for (const auto& day_type: day_types["type"].GetArray())
 		{
 			if (std::string_view(day_type.GetString()) == "VACATION")
-				day_type_array[VACATION_DAYS] = true;
+				day_type_array[Network::VACATION_DAYS] = true;
 			else if (std::string_view(day_type.GetString()) == "SCHOOL")
-				day_type_array[SCHOOL_DAYS] = true;
+				day_type_array[Network::SCHOOL_DAYS] = true;
 			else if (std::string_view(day_type.GetString()) == "HOLIDAY")
-				day_type_array[HOLYDAYS] = true;
+				day_type_array[Network::HOLYDAYS] = true;
 			else if (std::string_view(day_type.GetString()) == "ALL")
 				day_type_array = { true,true,true };
 			else
@@ -61,7 +61,7 @@ std::vector<std::pair<DayTemplate,std::filesystem::path>> Get_Schedules(const ra
 		}
 
 		for (const auto& paths : json["paths"].GetArray())
-			list.emplace_back(std::move(DayTemplate(day_list, day_type_array)),std::move(paths.GetString()));
+			list.emplace_back(std::move(Network::DayTemplate(day_list, day_type_array)),std::move(paths.GetString()));
 	}
 	return list;
 }

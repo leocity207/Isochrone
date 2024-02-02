@@ -1,5 +1,5 @@
-#ifndef SCHEDULE_H
-#define SCHEDULE_H
+#ifndef NETWORK_SCHEDULE_H
+#define NETWORK_SCHEDULE_H
 
 
 #include <vector>
@@ -13,11 +13,9 @@
 #include "includes/utils/daytime.h"
 
 //network_optimization
-#include "includes/network_optimizer/station.h"
-#include "includes/network_optimizer/day_info.h"
+#include "includes/network/station.h"
+#include "includes/network/day_info.h"
 #include "includes/utils/ctor.h"
-
-class Algorithm_Station;
 
 
 //------------------------------------------------------------------------------------------------------------
@@ -26,21 +24,23 @@ class Algorithm_Station;
 // Here we suppose that the line represent the station and the column represent the pathway of one transport
 // Needed meta data are as follow:
 
-typedef std::vector<std::vector<std::optional<DayTime>>> TimeTable;
-class Timetable : public DayTemplate
+namespace Network
 {
-    ////////
-    /// CTOR
+    using  TimeTable = std::vector<std::vector<std::optional<DayTime>>>;
+    class Schedule : public DayTemplate
+    {
+        ////////
+        /// CTOR
     public:
         //deleted
-        DELETE_COPY(Timetable)
-        DELETE_DEFAULT(Timetable)
-        DEFAULT_MOVE(Timetable)
+        DELETE_COPY(Schedule)
+        DELETE_DEFAULT(Schedule)
+        DEFAULT_MOVE(Schedule)
 
-        Timetable(std::vector<Station_CRef>&& station_list, TimeTable&& schedule_tab,DayTemplate&& day_template) noexcept;
-        
-    ///////////
-    /// METHODS
+        Schedule(std::vector<Station_CRef>&& station_list, TimeTable&& schedule_tab, DayTemplate&& day_template) noexcept;
+
+        ///////////
+        /// METHODS
     public:
         /////////////////////////////////////////////////////
         /// @brief check if a station is contained inside the schedule
@@ -54,13 +54,14 @@ class Timetable : public DayTemplate
         /// @return an optional containing the index or not if the station could not be found 
         std::optional<size_t> Get_Station_Index(const Station& station_to_find) const noexcept;
 
+        /////////////////////////////////////////////////////////////////////////////
         /// @brief check if the first station come before the second station
         /// @param first  is the supposed first station
         /// @param second  is the supposed later station
         /// @note if first or second is not part of the schedule this function throw
         /// @return true if second come after false
         /// @throw if the second or first station is not part of the schedule
-        bool Order(const Station& first,const Station& second) const;
+        bool Order(const Station& first, const Station& second) const;
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// @brief Find the closest time to go from start to finish station knowing the curent daytime and the daytype
@@ -69,21 +70,24 @@ class Timetable : public DayTemplate
         /// @param current_time the time at wich you start waiting at the start station
         /// @return the arriving daytime at the end station. if no path were found it return an invalid daytime
         /// @throw if the second or first station is not part of the schedule
-        std::optional<DayTime> Get_Closest_Time_To_Station(const Algorithm_Station& start_station,const Station& end_station) const;
+        std::optional<DayTime> Get_Closest_Time_To_Station(const Station& start_station, const Station& end_station, const DayTime& startStationTime) const;
 
         //////////////////////////////////////////////////////////////////
         /// @brief give back the station list of the schedule
         /// @return a list of reference to the station inside the schedule
         const std::vector<Station_CRef>& Get_Station_List() const noexcept;
 
-    //////////////
-    /// ATTRIBUTES
+        //////////////
+        /// ATTRIBUTES
     private:
         std::vector<Station_CRef> m_station_list;
-        TimeTable m_schedule;
-};
+        TimeTable m_timetable;
+    };
 
-typedef std::reference_wrapper<const Timetable> Schedule_CRef;
+    using Schedule_CRef = std::reference_wrapper<const Schedule>;
+}
 
 
-#endif //SCHEDULE_H
+
+
+#endif //NETWORK_SCHEDULE_H

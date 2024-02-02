@@ -4,3 +4,46 @@
 * Exception Type are always in majuscule
 * Snake_Case for function
 * snake_case for variable
+* class should have the folowing tag and order
+
+
+////////
+/// CTOR
+public:
+	...
+protected:
+	...
+private:
+	...
+
+///////////
+/// METHODS
+public:
+	...
+protected:
+	...
+private:
+	...
+
+//////////////////
+/// STATIC METHODS
+public:
+	...
+protected:
+	...
+private:
+	...
+
+//////////////
+/// ATTRIBUTES
+public:
+	...
+protected:
+	...
+private:
+	...
+
+ * inside the contructor
+   * use the "includes/utils/ctor.h fiels to tell about how the class should handle construction
+ * documentation about the function shoudld be in the doxygen style
+ * 
