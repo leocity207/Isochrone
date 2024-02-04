@@ -9,3 +9,8 @@ const std::vector<Network::Station>& Context::Scheduled_Network::Get_Station() c
 {
 	return m_stations
 }
+
+const std::vector<Network::Scheduled_Line>& Context::Scheduled_Network::Get_Scheduled_Lines() const noexcept
+{
+	return m_lines;
+}

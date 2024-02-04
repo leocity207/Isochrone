@@ -1,5 +1,5 @@
-#ifndef CONTEXT_H
-#define CONTEXT_H
+#ifndef CONTEXT_SCHEDULED_NETWORK_H
+#define CONTEXT_SCHEDULED_NETWORK_H
 
 #include "includes/utils/coordinate_2d.h"
 
@@ -26,6 +26,7 @@ namespace Context
 	/// METHODS
 	public:
 		const std::vector<Network::Station>& Get_Station() const noexcept;
+		const std::vector<Network::Scheduled_Line>& Get_Scheduled_Lines() const noexcept;
 
 
 	//////////////
@@ -36,4 +37,4 @@ namespace Context
 	};
 }
 
-#endif // CONTEXT_H
+#endif // CONTEXT_SCHEDULED_NETWORK_H

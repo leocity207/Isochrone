@@ -5,7 +5,7 @@ include(GoogleTest)
 #/////////////////////////////////////////////////////
 # create configuration file to find test resource path
 get_filename_component(TEST_DIR ./ ABSOLUTE)
-configure_file(${PROJECT_SOURCE_DIR}/src/algorithm/test/config.h.in ${PROJECT_SOURCE_DIR}/src/algorithm/test/config.h)
+configure_file(${PROJECT_SOURCE_DIR}/src/reach_algorithm/test/config.h.in ${PROJECT_SOURCE_DIR}/src/reach_algorithm/test/config.h)
 
 
 #/////////////
@@ -21,13 +21,13 @@ add_executable( algorithm_test
 #//////////////
 # LIBRARY LINKS
 target_link_libraries(algorithm_test
-  algorithm
-  GTest::gtest_main
-  network_optimizer
-  utils
-  log
-  algorithm
-  csv
+	algorithm
+	GTest::gtest_main
+	network_optimizer
+	utils
+	log
+	algorithm
+	csv
 )
 
 #/////////////
