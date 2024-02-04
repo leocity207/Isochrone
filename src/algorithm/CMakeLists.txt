@@ -13,7 +13,7 @@ add_library(algorithm OBJECT
 target_link_libraries(algorithm
 	log
 	utils
-	network_optimizer
+	network
 )
 
 

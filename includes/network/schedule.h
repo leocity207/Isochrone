@@ -11,11 +11,13 @@
 
 //utils
 #include "includes/utils/daytime.h"
+#include "includes/utils/ctor.h"
 
 //network_optimization
 #include "includes/network/station.h"
 #include "includes/network/day_info.h"
-#include "includes/utils/ctor.h"
+#include "includes/network/line.h"
+
 
 
 //------------------------------------------------------------------------------------------------------------
@@ -27,7 +29,7 @@
 namespace Network
 {
     using  TimeTable = std::vector<std::vector<std::optional<DayTime>>>;
-    class Schedule : public DayTemplate
+    class Schedule : public DayTemplate, public Line
     {
         ////////
         /// CTOR
@@ -37,31 +39,11 @@ namespace Network
         DELETE_DEFAULT(Schedule)
         DEFAULT_MOVE(Schedule)
 
-        Schedule(std::vector<Station_CRef>&& station_list, TimeTable&& schedule_tab, DayTemplate&& day_template) noexcept;
+        Schedule(std::vector<Station_CRef>&& station_list, TimeTable&& schedule_tab, DayTemplate&& day_template,std::string&&) noexcept;
 
         ///////////
         /// METHODS
     public:
-        /////////////////////////////////////////////////////
-        /// @brief check if a station is contained inside the schedule
-        /// @param station_to_find the station you want to check if present inside the schedule
-        /// @return true if the station contain the schedule false if not
-        bool Contain(const Station& station_to_find) const noexcept;
-
-        ////////////////////////////////////////////////////////////
-        /// @brief give the index of the station inside the schedule
-        /// @param station_to_find the station you want to find the index of
-        /// @return an optional containing the index or not if the station could not be found 
-        std::optional<size_t> Get_Station_Index(const Station& station_to_find) const noexcept;
-
-        /////////////////////////////////////////////////////////////////////////////
-        /// @brief check if the first station come before the second station
-        /// @param first  is the supposed first station
-        /// @param second  is the supposed later station
-        /// @note if first or second is not part of the schedule this function throw
-        /// @return true if second come after false
-        /// @throw if the second or first station is not part of the schedule
-        bool Order(const Station& first, const Station& second) const;
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// @brief Find the closest time to go from start to finish station knowing the curent daytime and the daytype
@@ -72,15 +54,10 @@ namespace Network
         /// @throw if the second or first station is not part of the schedule
         std::optional<DayTime> Get_Closest_Time_To_Station(const Station& start_station, const Station& end_station, const DayTime& startStationTime) const;
 
-        //////////////////////////////////////////////////////////////////
-        /// @brief give back the station list of the schedule
-        /// @return a list of reference to the station inside the schedule
-        const std::vector<Station_CRef>& Get_Station_List() const noexcept;
 
         //////////////
         /// ATTRIBUTES
     private:
-        std::vector<Station_CRef> m_station_list;
         TimeTable m_timetable;
     };
 

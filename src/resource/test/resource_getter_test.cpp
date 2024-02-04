@@ -1,7 +1,7 @@
 #include "resource_getter_test.h"
 
 #include "includes/resource/json/parser/resource_getter.h"
-#include "includes/network_optimizer/day_info.h"
+#include "includes/network/day_info.h"
 
 
 TEST_F(Resource_Getter_Test, test)
@@ -28,11 +28,11 @@ TEST_F(Resource_Getter_Test, test)
 	EXPECT_EQ(truc[0].second[5].second, "d.csv");
 
 
-	EXPECT_EQ(truc[0].second[0].first, DayTemplate({ 0,1,1,1,1,1,0 }, { 0,1,0 }));
-	EXPECT_EQ(truc[0].second[1].first, DayTemplate({ 0,1,1,1,1,1,0 }, { 0,1,0 }));
-	EXPECT_EQ(truc[0].second[2].first, DayTemplate({ 0,0,0,0,0,0,1 }, { 1,1,1 }));
-	EXPECT_EQ(truc[0].second[3].first, DayTemplate({ 0,0,0,0,0,0,1 }, { 0,1,0 }));
-	EXPECT_EQ(truc[0].second[4].first, DayTemplate({ 0,1,1,1,1,1,0 }, { 1,0,0 }));
-	EXPECT_EQ(truc[0].second[5].first, DayTemplate({ 0,1,1,1,1,1,0 }, { 1,0,0 }));
+	EXPECT_EQ(truc[0].second[0].first, Network::DayTemplate({ 0,1,1,1,1,1,0 }, { 0,1,0 }));
+	EXPECT_EQ(truc[0].second[1].first, Network::DayTemplate({ 0,1,1,1,1,1,0 }, { 0,1,0 }));
+	EXPECT_EQ(truc[0].second[2].first, Network::DayTemplate({ 0,0,0,0,0,0,1 }, { 1,1,1 }));
+	EXPECT_EQ(truc[0].second[3].first, Network::DayTemplate({ 0,0,0,0,0,0,1 }, { 0,1,0 }));
+	EXPECT_EQ(truc[0].second[4].first, Network::DayTemplate({ 0,1,1,1,1,1,0 }, { 1,0,0 }));
+	EXPECT_EQ(truc[0].second[5].first, Network::DayTemplate({ 0,1,1,1,1,1,0 }, { 1,0,0 }));
 
 }

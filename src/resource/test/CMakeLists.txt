@@ -19,8 +19,7 @@ target_link_libraries( ressource_test
 	csv
 	json
 	utils
-	network_optimizer
-	algorithm
+	network
 	log
 )
 

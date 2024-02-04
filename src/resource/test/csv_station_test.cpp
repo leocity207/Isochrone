@@ -15,7 +15,7 @@ station3; 45°31'13\"N;     45°31'13\"E";
 
 	CSV::Engine::String_Parser parser(std::move(test),';');
 
-	std::vector<Station> station_list = CSV::Parser::Station::Parse(parser);
+	std::vector<Network::Station> station_list = CSV::Parser::Station::Parse(parser);
 
 	ASSERT_EQ(station_list.size(), 3);
 
@@ -200,7 +200,7 @@ IME la Bâtie                 ;45°32'07.1\"N;4°52'53.5\"E\n";
 
 CSV::Engine::String_Parser parser(std::move(test), ';');
 
-std::vector<Station> station_list = CSV::Parser::Station::Parse(parser);
+std::vector<Network::Station> station_list = CSV::Parser::Station::Parse(parser);
 
 ASSERT_EQ(station_list.size(), 163);
 
@@ -217,7 +217,7 @@ station3; 45°31'13\"N;     45°31'13\"E";
 
 	CSV::Engine::String_Parser parser(std::move(test), ';');
 
-	EXPECT_THROW(std::vector<Station> station_list = CSV::Parser::Station::Parse(parser), READING_FILE_ERROR);
+	EXPECT_THROW(std::vector<Network::Station> station_list = CSV::Parser::Station::Parse(parser), READING_FILE_ERROR);
 }
 
 
@@ -230,7 +230,7 @@ station3; 45°31'13\"N;     45°31'13\"E";
 
 	CSV::Engine::String_Parser parser(std::move(test), ';');
 
-	EXPECT_THROW(std::vector<Station> station_list = CSV::Parser::Station::Parse(parser), ANGLE_BADLY_FORMATED);
+	EXPECT_THROW(std::vector<Network::Station> station_list = CSV::Parser::Station::Parse(parser), ANGLE_BADLY_FORMATED);
 }
 
 
@@ -243,7 +243,7 @@ station3; 45°31'13\"N;     45°31'13\"E";
 
 	CSV::Engine::String_Parser parser(std::move(test), ';');
 
-	EXPECT_THROW(std::vector<Station> station_list = CSV::Parser::Station::Parse(parser), ANGLE_BADLY_FORMATED);
+	EXPECT_THROW(std::vector<Network::Station> station_list = CSV::Parser::Station::Parse(parser), ANGLE_BADLY_FORMATED);
 }
 
 TEST_F(CSV_Station_Test, bad_angle_3)
@@ -255,5 +255,5 @@ station3; 45°31'13\"N;     45°ä31'13\"E";
 
 	CSV::Engine::String_Parser parser(std::move(test), ';');
 
-	EXPECT_THROW(std::vector<Station> station_list = CSV::Parser::Station::Parse(parser), ANGLE_BADLY_FORMATED);
+	EXPECT_THROW(std::vector<Network::Station> station_list = CSV::Parser::Station::Parse(parser), ANGLE_BADLY_FORMATED);
 }

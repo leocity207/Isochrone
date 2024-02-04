@@ -40,14 +40,14 @@ TEST_F(Station_Test, Greater)
 	Network::Station sc(std::move(a), "a");
 	Network::Station sd(std::move(b), "b");
 
-	EXPECT_GT(sb, sa);
-	EXPECT_GT(sc, sa);
-	EXPECT_GT(sd, sa);
+	EXPECT_LT(sa, sb);
+	EXPECT_LT(sa, sc);
+	EXPECT_LT(sa, sd);
 
-	EXPECT_GT(sc, sb);
-	EXPECT_GT(sd, sb);
+	EXPECT_LT(sb, sc);
+	EXPECT_LT(sb, sd);
 
-	EXPECT_GT(sd, sc);
+	EXPECT_LT(sc, sd);
 }
 
 TEST_F(Station_Test, Getter)
@@ -59,10 +59,10 @@ TEST_F(Station_Test, Getter)
 	Network::Station sb(std::move(b), "b");
 
 	EXPECT_EQ(sa.Get_Name(), "a");
-	EXPECT_EQ(sa.Get_Name(), "b");
+	EXPECT_EQ(sb.Get_Name(), "b");
 
 	EXPECT_EQ(sa.GetCoordinate(), Sphere_Coordinate(1,1));
-	EXPECT_EQ(sa.GetCoordinate(), Sphere_Coordinate(2,2));
+	EXPECT_EQ(sb.GetCoordinate(), Sphere_Coordinate(2,2));
 }
 
 TEST_F(Station_Test, distance_to)

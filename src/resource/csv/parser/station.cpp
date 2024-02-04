@@ -7,9 +7,9 @@
 #include "includes/utils/general.h"
 
 
-std::vector<::Station> CSV::Parser::Station::Parse(const CSV::Engine::Parser& engine)
+std::vector<Network::Station> CSV::Parser::Station::Parse(const CSV::Engine::Parser& engine)
 {
-	std::vector<::Station> station_list;
+	std::vector<Network::Station> station_list;
 
 	while (std::optional<std::vector<std::string>> line = engine.Next_Line())
 	{

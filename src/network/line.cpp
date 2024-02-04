@@ -7,39 +7,41 @@
 
 int Network::Line::s_count = 0;
 
-Network::Line::Line(std::vector<Network::Schedule>&& Timetable,std::string&& name) noexcept: m_schedule(std::move(Timetable)),m_name(std::move(name)),m_id(++s_count)
+Network::Line::Line(std::vector<Station_CRef>&& station_list,std::string&& name) noexcept: m_stations(std::move(station_list)),m_name(std::move(name)),m_id(++s_count)
 {
 
 }
 
-
-std::optional<DayTime_CRef> Network::Line::Get_Closest_Time_To_Station(const Station& start_station, const Network::Station& end_station, const DayTime& start_station_time, const Network::Day& matching_day) const noexcept
+std::optional<size_t> Network::Line::Get_Station_Index(const Network::Station& station_to_find) const noexcept
 {
-	std::optional<Schedule_CRef> selected_schedule = this->Get_Schedule(matching_day, start_station, end_station);
-	if(!selected_schedule.has_value())
+	std::vector<Station_CRef>::const_iterator it = std::find_if(m_stations.begin(), m_stations.end(), [&](const Station& station) {return station == station_to_find; });
+	if (it == m_stations.end())
 		return std::nullopt;
-	return selected_schedule->get().Get_Closest_Time_To_Station(start_station, end_station, start_station_time);
+	return std::distance(m_stations.begin(), it);
 }
 
-std::optional<Network::Schedule_CRef> Network::Line::Get_Schedule(const Network::Day& matching_day,const Network::Station& start_station,const Network::Station& end_station) const noexcept
+const std::vector<Network::Station_CRef>& Network::Line::Get_Station_List() const noexcept
 {
-	auto start_station_ref = std::reference_wrapper<const Station>(start_station);
-	auto end_station_ref = std::reference_wrapper<const Station>(end_station);
-	auto does_day_match_schedule = [matching_day, start_station_ref, end_station_ref](const Network::Schedule& i) { return i.Match(matching_day) && i.Order(start_station_ref, end_station_ref); };
-	
-	std::vector<Schedule_CRef> transformed(m_schedule.begin(), m_schedule.end());
-	auto right_schedule = std::find_if(transformed.begin(), transformed.end(),does_day_match_schedule);
-	if(right_schedule == transformed.end())
-	{
-		TRACE("The line" + m_name + "have no schedule for " + matching_day.Description());
-		return std::nullopt;
-	}
-	return m_schedule[right_schedule- transformed.begin()];
+	return m_stations;
 }
 
-bool Network::Line::Contain(const Network::Station& station, const Network::Day& matching_day) const noexcept
+bool Network::Line::Contain(const Network::Station& station_to_find) const noexcept
 {
-	std::reference_wrapper<const Station> station_ref = station;
-	auto temp = this->Get_Schedules(matching_day);
-	return std::any_of(temp.begin(), temp.end(), [station_ref](const Network::Schedule& schedule) {return schedule.Contain(station_ref); });
+	return std::find_if(m_stations.begin(), m_stations.end(), [&](const Station& station) {return station == station_to_find; }) != m_stations.end();
 }
+
+
+bool Network::Line::Order(const Network::Station& first, const Network::Station& second) const
+{
+	std::vector<Station_CRef>::const_iterator first_iterator = std::find_if(m_stations.begin(), m_stations.end(), [&](const Station& station) {return station == first; });
+	std::vector<Station_CRef>::const_iterator second_iterator = std::find_if(m_stations.begin(), m_stations.end(), [&](const Station& station) {return station == second; });
+	if (first_iterator == m_stations.end() || second_iterator == m_stations.end())
+		THROW(STATION_NOT_IN_SCHEDULE)
+	else if (first_iterator == second_iterator)
+		THROW(CANNOT_ORDER_SAME_STATION)
+	else if (first_iterator < second_iterator)
+		return true;
+	else
+		return false;
+}
+

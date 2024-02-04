@@ -11,15 +11,15 @@
 #include "submodule/rapidjson/include/rapidjson/document.h"
 
 //network
-#include "includes/network/line.h"
+#include "includes/network/day_info.h"
 
 //----------------------
 //helper function
-std::vector<std::pair<DayTemplate,std::filesystem::path>> Get_Schedules(const rapidjson::Value& json)
+std::vector<std::pair<Network::DayTemplate,std::filesystem::path>> Get_Schedules(const rapidjson::Value& json)
 {
 	if (!json.HasMember("paths") && !json.HasMember("day template") && !json["paths"].IsArray() && !json["day template"].IsArray())
 		THROW_TRACE(READING_FILE_ERROR, "config file is badly formatted")
-	std::vector<std::pair<DayTemplate, std::filesystem::path>> list;
+	std::vector<std::pair<Network::DayTemplate, std::filesystem::path>> list;
 	for (const auto& day_types : json["day template"].GetArray())
 	{
 		if (!day_types.HasMember("weekdays") && !day_types.HasMember("type") && !day_types["weekdays"].IsArray() && !day_types["type"].IsArray())
@@ -88,10 +88,10 @@ JSON::Parser::Resource_Getter::Resource_Getter(std::istream&& stream)
 			THROW_TRACE(READING_FILE_ERROR,"Line list are badly formatted")
 
 		//for all the schedules of the lines create the path to schedule file and the daytemplate tht it describe
-		std::vector<std::pair<DayTemplate, std::filesystem::path>> path_list = {};
+		std::vector<std::pair<Network::DayTemplate, std::filesystem::path>> path_list = {};
 		for(const auto& schedule : element["schedules"].GetArray())
 		{
-			std::vector<std::pair<DayTemplate, std::filesystem::path>> schedules = Get_Schedules(schedule);
+			std::vector<std::pair<Network::DayTemplate, std::filesystem::path>> schedules = Get_Schedules(schedule);
 			std::move(schedules.begin(), schedules.end(), std::back_inserter(path_list));
 		}
 	 
@@ -105,7 +105,7 @@ std::filesystem::path&& JSON::Parser::Resource_Getter::Get_Station_File() noexce
 	return std::move(m_path_to_Station_File);
 }
 
-std::vector<std::pair<std::string, std::vector<std::pair<DayTemplate, std::filesystem::path>>>>&& JSON::Parser::Resource_Getter::Get_Line_Files() noexcept
+std::vector<std::pair<std::string, std::vector<std::pair<Network::DayTemplate, std::filesystem::path>>>>&& JSON::Parser::Resource_Getter::Get_Line_Files() noexcept
 {
 	return std::move(m_line_data);
 }

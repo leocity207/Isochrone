@@ -37,7 +37,7 @@ void Schedule_Test::SetUpTestSuite()
 
 	std::vector<Network::Station_CRef> station_list_ref(s_stations.begin(),s_stations.end());
 
-	s_schedule = std::unique_ptr<Network::Schedule>(new Network::Schedule(std::move(station_list_ref), std::move(timetable), std::move(temp)));
+	s_schedule = std::unique_ptr<Network::Schedule>(new Network::Schedule(std::move(station_list_ref), std::move(timetable), std::move(temp),"test"));
 }
 
 TEST_F(Schedule_Test, Contains_NotContains)

@@ -5,29 +5,9 @@
 
 #include <algorithm>
 
-Network::Schedule::Schedule(std::vector<Network::Station_CRef>&& station_list, Network::TimeTable&& schedule_tab, Network::DayTemplate&& day_template) noexcept : m_station_list(station_list), m_timetable(schedule_tab),DayTemplate(std::move(day_template))
+Network::Schedule::Schedule(std::vector<Network::Station_CRef>&& station_list, Network::TimeTable&& schedule_tab, Network::DayTemplate&& day_template,std::string&& name) noexcept : m_timetable(schedule_tab),DayTemplate(std::move(day_template)),Line(std::move(station_list),std::move(name))
 {
 
-}
-
-bool Network::Schedule::Contain(const Network::Station& station_to_find) const noexcept
-{
-	return std::find_if(m_station_list.begin(), m_station_list.end(), [&](const Station& station) {return station == station_to_find; }) != m_station_list.end();
-}
-
-
-bool Network::Schedule::Order(const Network::Station& first,const Network::Station& second) const
-{
-	std::vector<Station_CRef>::const_iterator first_iterator  = std::find_if(m_station_list.begin(),m_station_list.end(), [&](const Station& station) {return station == first; });
-	std::vector<Station_CRef>::const_iterator second_iterator = std::find_if(m_station_list.begin(),m_station_list.end(), [&](const Station& station) {return station == second; });
-	if(first_iterator == m_station_list.end() || second_iterator == m_station_list.end())
-		THROW(STATION_NOT_IN_SCHEDULE)
-	else if(first_iterator == second_iterator)
-		THROW(CANNOT_ORDER_SAME_STATION)
-	else if(first_iterator<second_iterator)
-		return true;
-	else
-		return false;
 }
 
 
@@ -59,15 +39,3 @@ std::optional<DayTime> Network::Schedule::Get_Closest_Time_To_Station(const Stat
 	return std::nullopt;
 }
 
-std::optional<size_t> Network::Schedule::Get_Station_Index(const Network::Station& station_to_find) const noexcept
-{
-	std::vector<Station_CRef>::const_iterator it = std::find_if(m_station_list.begin(),m_station_list.end(), [&](const Station& station) {return station == station_to_find; });
-	if(it == m_station_list.end())
-		return std::nullopt;
-	return std::distance(m_station_list.begin(),it);
-}
-
-const std::vector<Network::Station_CRef>& Network::Schedule::Get_Station_List() const noexcept
-{ 
-	return m_station_list;
-}

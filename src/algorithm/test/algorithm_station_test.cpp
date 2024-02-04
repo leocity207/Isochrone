@@ -1,7 +1,7 @@
 #include "algorithm_station_test.h"
 
 #include "includes/algorithm/network_optimizer.h"
-#include "includes/network_optimizer/timetable.h"
+#include "includes/network/schedule.h"
 #include "config.h"
 
 using namespace std::chrono;

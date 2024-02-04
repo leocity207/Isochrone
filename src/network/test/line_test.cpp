@@ -1,6 +1,6 @@
 #include "line_test.h"
 
-#include "includes/network/line.h"
+#include "includes/network/scheduled_line.h"
 
 
 
@@ -15,17 +15,17 @@ TEST_F(Line_Test, Contain)
 	std::vector<Network::Station_CRef> ref_2 = { A,B };
 	Network::TimeTable void_1;
 	Network::DayTemplate temp_1({ 0,1,1,1,1,1,0 }, { 1,1,1 });
-	Network::Schedule s_1(std::move(ref_1), std::move(void_1),std::move( temp_1));
+	Network::Schedule s_1(std::move(ref_1), std::move(void_1),std::move( temp_1),"test 1");
 
 	Network::TimeTable void_2;
 	Network::DayTemplate temp_2({ 1,0,0,0,0,0,0}, { 1,1,1 });
-	Network::Schedule s_2(std::move(ref_2), std::move(void_2), std::move(temp_2));
+	Network::Schedule s_2(std::move(ref_2), std::move(void_2), std::move(temp_2), "test 2");
 
 	std::vector<Network::Schedule> S;
 	S.emplace_back(std::move(s_1));
 	S.emplace_back(std::move(s_2));
 
-	Network::Line L(std::move(S), "Line 1");
+	Network::Scheduled_Line L(std::move(S), "Line 1");
 
 	Network::Day d(std::chrono::Monday, Network::SCHOOL_DAYS);
 
