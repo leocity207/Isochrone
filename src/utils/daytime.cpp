@@ -91,7 +91,7 @@ std::chrono::minutes DayTime::GetTime() const noexcept
 	return std::chrono::minutes(m_day_seconds.count() / 60 + 1);
 }
 
-const std::string DayTime::ToString() noexcept
+const std::string DayTime::ToString() const noexcept
 {
 	return  std::to_string(GetTime().count() / 60) + ":" + std::to_string(GetTime().count() % 60);
 }

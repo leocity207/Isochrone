@@ -3,7 +3,9 @@
 
 #include <filesystem>
 
-class DayTemplate;
+namespace Network {
+    class DayTemplate;
+}
 
 
 ////////////////////////////////////////////////////////////////////////
@@ -26,10 +28,10 @@ namespace JSON
             ///////////
             /// getter
             std::filesystem::path&& Get_Station_File() noexcept;
-            std::vector<std::pair<std::string, std::vector<std::pair<DayTemplate, std::filesystem::path>>>>&& Get_Line_Files() noexcept;
+            std::vector<std::pair<std::string, std::vector<std::pair<Network::DayTemplate, std::filesystem::path>>>>&& Get_Line_Files() noexcept;
         private:
             std::filesystem::path m_path_to_Station_File;
-            std::vector<std::pair<std::string, std::vector<std::pair<DayTemplate, std::filesystem::path>>>> m_line_data;
+            std::vector<std::pair<std::string, std::vector<std::pair<Network::DayTemplate, std::filesystem::path>>>> m_line_data;
         };
     }//Parser
 };//JSON

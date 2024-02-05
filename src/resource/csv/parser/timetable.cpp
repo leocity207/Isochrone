@@ -5,14 +5,14 @@
 #include "includes/utils/general.h"
 
 //network
-#include "includes/network_optimizer/schedule.h"
+#include "includes/network/schedule.h"
 
 #include <span>
 
 Pair_Station_TimeTable CSV::Parser::Timetable::Parse(const CSV::Engine::Parser& engine)
 {
 	std::vector<std::string> station_list;
-	TimeTable time_table;
+	Network::TimeTable time_table;
 	size_t registered_size = 0;
 
 	while(std::optional<std::vector<std::string>> line = engine.Next_Line())
