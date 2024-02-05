@@ -6,11 +6,11 @@
 
 #include "includes/context/scheduled_network.h"
 
-class Network_Optimizer_Test : public ::testing::Test {
-	static void SetUpTestSuite();
+class Reach_Algorithm_Test : public ::testing::Test {
 
 public:
-	static Context::Scheduled_Network s_context;
+	static void SetUpTestSuite();
+	static std::unique_ptr<Context::Scheduled_Network> s_context;
 };
 
 

@@ -1,5 +1,5 @@
 #ifndef REACH_ALGORITHM_ALGORITHM_H
-#ifndef REACH_ALGORITHM_ALGORITHM_H
+#define REACH_ALGORITHM_ALGORITHM_H
 
 
 /// Utils
@@ -20,11 +20,10 @@ namespace Reach_Algorithm
 		////////
 		/// CTOR
 	public:
+		DEFAULT_DEFAULT(Algorithm)
 		DELETE_COPY(Algorithm);
-		DELETE_DEFAULT(Algorithm);
 		DELETE_MOVE(Algorithm);
 
-		Algorithm(e) noexcept;
 
 		/////////////
 		/// METTHODS
@@ -33,6 +32,6 @@ namespace Reach_Algorithm
 
 
 	};
-}
+};
 
-#endif // !REACH_ALGORITHM_ALGORITHM_H
+#endif // REACH_ALGORITHM_ALGORITHM_H

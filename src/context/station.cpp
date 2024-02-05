@@ -1,24 +1,26 @@
-#include "includes/algorithm/algorithm_station.h"
-#include "includes/algorithm/network_optimizer.h"
+#include "includes/context/station.h"
 
-#include <algorithm>
-#include <vector>
-
+//utils
 #include "includes/utils/exception_def.h"
 
-Context::Station::Station(const Network:: Station& station_to_link) noexcept : m_best_time(), m_basic_time(),m_reach_by_transport(false), m_ref_station(station_to_link)
+//context
+#include "includes/context/reach_algorithm.h"
+
+Context::Station::Station(const Network::Station& station_to_link, const Reach_Algorithm& reach_algorithm_context) noexcept :
+	m_best_time(reach_algorithm_context.Get_Starting_Time() + std::chrono::seconds((long)(std::round(station_to_link.Get_Distance_To(reach_algorithm_context.Get_Starting_Coordinate()) / reach_algorithm_context.Get_Speed())))),
+	m_basic_time(m_best_time),
+	m_reach_by_transport(false),
+	m_ref_station(station_to_link)
 {
-	m_best_time = m_optimizer->Get_Start_Time() + std::chrono::seconds((long)(std::round(m_ref_station->Get_Distance_To(m_optimizer->Get_Start_Coordinate()) / m_optimizer->Get_Speed())));
-	m_basic_time = m_best_time;
 }
 	
 const Network::Station& Context::Station::Get() const noexcept
 {
-	return *m_ref_station;
+	return m_ref_station.get();
 }
 
 
-DayTime Context::Station::Get_Best_Time_Start_To_Station() const noexcept
+const DayTime& Context::Station::Get_Reaching_Time() const noexcept
 {
 	return m_best_time;
 }
@@ -35,20 +37,19 @@ void Context::Station::Try_Set_New_Best_Time(std::optional<DayTime>& new_value)
 		m_best_time = *new_value;
 }
 
-bool Context::Station::Is_Reach_Faster_Than(const Algorithm_Station& other_station) const noexcept
+bool Context::Station::operator<(const  Context::Station& other_station) const noexcept
 { 
 	return m_best_time < other_station.m_best_time;
 }
 
-
-const Context::Station& Context::Station::Get_Station_By_Name(const std::vector<Algorithm_Station>& station_list,const std::string& name)
+const Context::Station& Context::Station::Get_Station_By_Name(const std::vector<Context::Station>& station_list,const std::string& name)
 {
 
-	auto it = std::find_if(station_list.begin(), station_list.end(), [&](const Algorithm_Station& other_station) {
+	auto it = std::find_if(station_list.begin(), station_list.end(), [&](const Context::Station& other_station) {
 		return other_station.Get().Get_Name() == name;
 	});
 
 	if (it == station_list.end())
-		throw TIME_BADLY_FORMATED();
+		THROW_TRACE(STATION_NOT_IN_LIST, "[error] Context::Station::Get_Station_By_Name the station cannot be found inside the list in parameter");
 	return *it;
 }

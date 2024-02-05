@@ -14,5 +14,9 @@ DECLARE_EXCEPTION(Exception,STATION_NOT_IN_SCHEDULE,"The station is not in the T
 DECLARE_EXCEPTION(Exception,NO_MATCHING_SCHEDULE,"No Timetable was found for the day");
 DECLARE_EXCEPTION(Exception,CANNOT_ORDER_SAME_STATION,"The station Being compared order are the same.");
 DECLARE_EXCEPTION(Exception,STATION_NOT_IN_NETWORK,"The station we are trying to find is not part of the network.");
+DECLARE_EXCEPTION(Exception,STATION_NOT_IN_LIST, "The station we are trying to find is not part of the list.");
+
+//General Error
+DECLARE_EXCEPTION(Exception, ELEMENT_NOT_IN_LIST, "The element is not in the list.");
 
 #endif //EXCEPTION_DEF_H

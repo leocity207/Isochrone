@@ -10,26 +10,27 @@ configure_file(${PROJECT_SOURCE_DIR}/src/reach_algorithm/test/config.h.in ${PROJ
 
 #/////////////
 # SOURCE FILES
-file(GLOB_RECURSE ALGORITHM_TEST_SOURCE "./*.cpp")
+file(GLOB_RECURSE REACH_ALGORITHM_TEST_SOURCE "./*.cpp")
 
 #///////////
 # EXECUTABLE
-add_executable( algorithm_test 
-	${ALGORITHM_TEST_SOURCE}
+add_executable( reach_algorithm_test 
+	${REACH_ALGORITHM_TEST_SOURCE}
 )
 
 #//////////////
 # LIBRARY LINKS
-target_link_libraries(algorithm_test
+target_link_libraries(reach_algorithm_test
 	algorithm
 	GTest::gtest_main
-	network_optimizer
+	network
+	context
 	utils
 	log
-	algorithm
 	csv
+	archive
 )
 
 #/////////////
 # DECLARE TEST
-gtest_discover_tests(algorithm_test)
+gtest_discover_tests(reach_algorithm_test)

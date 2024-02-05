@@ -29,7 +29,7 @@ class DayTime
 
         std::chrono::minutes GetTime() const noexcept;
 
-        const std::string ToString() noexcept;
+        const std::string ToString() const noexcept;
     private:
 
         DayTime(std::chrono::seconds seconds) noexcept;

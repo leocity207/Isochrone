@@ -5,12 +5,14 @@
 
 #include "scheduled_network.h"
 
-//Reach algorithm
+//context
+#include "includes/context/station.h"
 
+//Reach algorithm
 namespace Reach_Algorithm
 {
 	class Algorithm;
-}
+};
 
 namespace Context
 {
@@ -43,12 +45,12 @@ namespace Context
 	//////////////
 	/// ATTRIBUTES
 	private:
-		const Scheduled_Network& m_network;
-		DayTime& m_start_time;
+		std::reference_wrapper<const Scheduled_Network> m_network;
+		DayTime m_start_time;
 		double m_speed;
-		Sphere_Coordinate& m_start_coordinate;
-		Network::Day& m_day_type;
+		Sphere_Coordinate m_start_coordinate;
+		Network::Day m_day_type;
 	};
-}
+};//Context
 
 #endif // CONTEXT_REACH_ALGORITHM_H

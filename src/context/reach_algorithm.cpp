@@ -10,37 +10,36 @@ Context::Reach_Algorithm::Reach_Algorithm(const Scheduled_Network& network, DayT
 	m_start_time(std::move(start_time)),
 	m_speed(speed),
 	m_start_coordinate(std::move(starting_coordinate)),
-	m_day_type(std::move(day_type)),
-	m_algorithm(std::move(algorithm))
+	m_day_type(std::move(day_type))
 {
 }
 
-const Scheduled_Network& Reach_Algorithm::Get_Network() const noexcept
+const Context::Scheduled_Network& Context::Reach_Algorithm::Get_Network() const noexcept
 {
-	return m_network;
+	return m_network.get();
 }
 
-const DayTime& Reach_Algorithm::Get_Starting_Time() const noexcept
+const DayTime& Context::Reach_Algorithm::Get_Starting_Time() const noexcept
 {
 	return m_start_time;
 }
 
-const double Reach_Algorithm::Get_Speed() const noexcept
+const double Context::Reach_Algorithm::Get_Speed() const noexcept
 {
 	return m_speed;
 }
 
-const Sphere_Coordinate Reach_Algorithm::Get_Starting_Coordinate() const noexcept
+const Sphere_Coordinate Context::Reach_Algorithm::Get_Starting_Coordinate() const noexcept
 {
 	return m_start_coordinate;
 }
 
-const Network::Day& Reach_Algorithm::Get_Day_Type() const noexcept
+const Network::Day& Context::Reach_Algorithm::Get_Day_Type() const noexcept
 {
 	return m_day_type;
 }
 
 std::vector<Context::Station> Context::Reach_Algorithm::Optimize(::Reach_Algorithm::Algorithm& algorithm)
 {
-	return algorithm.Optimize(*this;)
+	return algorithm.Optimize(*this);
 }

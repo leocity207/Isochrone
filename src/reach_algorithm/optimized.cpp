@@ -6,13 +6,6 @@
 #include <cassert>
 #include <map>
 
-
-Reach_Algorithm::Optimized::Optimized(const Context::Reach_Algorithm& day_type) noexcept :
-	Reach_Algorithm::Algorithm(day_type)
-{
-
-}
-
 std::vector<Context::Station> Reach_Algorithm::Optimized::Optimize(const Context::Reach_Algorithm& algorithm_context)
 {
 	std::vector<Context::Station> station_list;
@@ -20,7 +13,7 @@ std::vector<Context::Station> Reach_Algorithm::Optimized::Optimize(const Context
 	station_list.reserve(algorithm_context.Get_Network().Get_Station().size());
 
 	for (const Network::Station& station : algorithm_context.Get_Network().Get_Station())
-		station_list.emplace_back(&station, this);
+		station_list.emplace_back(station, algorithm_context);
 
 
 
@@ -41,12 +34,12 @@ std::vector<Context::Station> Reach_Algorithm::Optimized::Optimize(const Context
 		for (Context::Station& alg_station : station_list)
 		{
 			std::chrono::seconds default_time((int)std::round(current_station.Get().Get_Distance_To(alg_station.Get())/ algorithm_context.Get_Speed()));
-			DayTime time = current_station.Get_Best_Time_Start_To_Station() + default_time;
+			DayTime time = current_station.Get_Reaching_Time() + default_time;
 			alg_station.Try_Set_New_Best_Time(time);
 		}
 
 		//for all lines passing by the station
-		std::for_each(line_list.begin(), line_list.end(), [&](const Network::Line& line) { 
+		std::for_each(line_list.begin(), line_list.end(), [&](const Network::Scheduled_Line& line) {
 			auto schedule_list = line.Get_Schedules(algorithm_context.Get_Day_Type());
 			//get the right schedules for that day
 			std::for_each(schedule_list.begin(), schedule_list.end(), [&](const Network::Schedule& schedule) {
@@ -54,8 +47,8 @@ std::vector<Context::Station> Reach_Algorithm::Optimized::Optimize(const Context
 				std::for_each(schedule.Get_Station_List().begin(), schedule.Get_Station_List().end(), [&](const Network::Station_CRef& station) {
 					//no need to compute distance from the two same station
 					if (station.get() != current_station.Get()) {
-						std::optional<DayTime> value = schedule.Get_Closest_Time_To_Station(current_station.Get(), station.get(), current_station.Get_Best_Time_Start_To_Station());
-						auto pose = std::find_if(station_list.begin(), station_list.end(), [&](const Algorithm_Station& alg_station) {return alg_station.Get() == station; });
+						std::optional<DayTime> value = schedule.Get_Closest_Time_To_Station(current_station.Get(), station.get(), current_station.Get_Reaching_Time());
+						auto pose = std::find_if(station_list.begin(), station_list.end(), [&](const Context::Station& alg_station) {return alg_station.Get() == station; });
 						if (pose != station_list.end())  
 							pose->Try_Set_New_Best_Time(value);
 					}
