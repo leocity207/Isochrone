@@ -35,6 +35,8 @@ std::string Space_Triming_Test_Naming(testing::TestParamInfo<std::pair<std::stri
 		return "No_space";
 	case 5:
 		return "only_space";
+	case 6:
+		return "leading_utf8_charachter";
 	default:
 		throw "Unexpected index";
 	}
@@ -49,7 +51,8 @@ INSTANTIATE_TEST_SUITE_P(
 		std::make_pair("             45", "45"),
 		std::make_pair("45    ","45"),
 		std::make_pair("ajkl�*$", "ajkl�*$"),
-		std::make_pair("        ","")),
+		std::make_pair("        ",""),
+		std::make_pair("Étienne Rey                 ", "Étienne Rey")),
 	Space_Triming_Test_Naming);
 
 

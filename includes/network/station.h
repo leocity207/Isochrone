@@ -37,7 +37,6 @@ namespace Network
         /////////////////////////////////////////////////////////////
         /// @brief comparison operator compare station using their ID
         bool operator==(const Station& other_station) const noexcept;
-        bool operator!=(const Station& other_station) const noexcept;
         bool operator<(const Station& other_station) const noexcept;
 
         //////////

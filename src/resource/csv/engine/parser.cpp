@@ -12,6 +12,8 @@ CSV::Engine::Parser::Parser(Memory::Owned<std::istream>&& stream, const char del
 	m_delimiter(delimiter),
 	m_file_stream(std::move(stream))
 {
+	if (!m_file_stream->good())
+		THROW_TRACE(READING_FILE_ERROR, "read from stream failed");
 }
 
 std::optional<std::vector<std::string>> CSV::Engine::Parser::Next_Line() const

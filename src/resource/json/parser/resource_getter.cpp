@@ -42,6 +42,8 @@ std::vector<std::pair<Network::DayTemplate,std::filesystem::path>> Get_Schedules
 				day_list[std::chrono::Saturday.c_encoding()] = true;
 			else if (std::string_view(day.GetString()) == "SUNDAY")
 				day_list[std::chrono::Sunday.c_encoding()] = true;
+			else if (std::string_view(day.GetString()) == "ALL")
+				day_list = { true,true,true,true,true,true,true};
 			else
 				THROW_TRACE(READING_FILE_ERROR, "Day does not exist")
 		}

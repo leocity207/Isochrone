@@ -24,12 +24,12 @@ namespace Generals
 	{
 		// Trim leading whitespace
 		str.erase(str.begin(), std::find_if(str.begin(), str.end(), [](int ch) {
-				return ch<0 || ch>255 ? false : !std::isspace(ch);
+				return (ch<0 || ch>255 ? true : !std::isspace(ch));
 			}));
 
 		// Trim trailing whitespace
 		str.erase(std::find_if(str.rbegin(), str.rend(), [](int ch) {
-				return ch < 0 || ch>255 ? false : !std::isspace(ch);
+				return (ch < 0 || ch>255 ? true : !std::isspace(ch));
 			}).base(), str.end());
 
 		// Return the modified string as an rvalue reference

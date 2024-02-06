@@ -17,7 +17,7 @@ std::optional<DayTime> Network::Schedule::Get_Closest_Time_To_Station(const Stat
 
 	// if station cannot be found inside schedule we suppose that this is an error
 	if (!start_index)
-		THROW_TRACE(STATION_NOT_IN_SCHEDULE, "The station " + start_station.Get_Name() + " is not in schedule")
+		return std::nullopt;//THROW_TRACE(STATION_NOT_IN_SCHEDULE, "The station " + start_station.Get_Name() + " is not in schedule")
 	else if (!end_index)
 		THROW_TRACE(STATION_NOT_IN_SCHEDULE, "The station " + end_station.Get_Name() + " is not in schedule")
 	else if(*start_index > *end_index)

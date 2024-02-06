@@ -6,40 +6,8 @@
             "schedules":[
                 {
                     "paths":[
-                        "Ligne 1/line_1_a_6t_12345v.csv",
-                        "Ligne 1/line_1_r_6t_12345v.csv"],
-                    "day template":[
-                        {
-                            "weekdays":["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY"],
-                            "type":"VACATION"
-                        },
-                        {
-                            "weekdays":["SATURDAY"],
-                            "type":"ALL"
-                        }
-                    ]
-                },
-                {
-                    "paths":[
-                        "Ligne 1/line_1_a_12345s.csv",
-                        "Ligne 1/line_1_r_12345s.csv"],
-                    "day template":[
-                        {
-                            "weekdays":["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY"],
-                            "type":"SCHOOL"
-                        }
-                    ]
-                }
-            ]
-        },
-        
-        {
-            "name":"Ligne 2",
-            "schedules":[
-                {
-                    "paths":[
-                        "Ligne 2/line_2_a_6t_12345v.csv",
-                        "Ligne 2/line_2_r_6t_12345v.csv"],
+                        "Ligne1/line_1_a_6t_12345v.csv",
+                        "Ligne1/line_1_r_6t_12345v.csv"],
                     "day template":[
                         {
                             "weekdays":["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY"],
@@ -53,8 +21,40 @@
                 },
                 {
                     "paths":[
-                        "Ligne 2/line_2_a_12345s.csv",
-                        "Ligne 2/line_2_r_12345s.csv"],
+                        "Ligne1/line_1_a_12345s.csv",
+                        "Ligne1/line_1_r_12345s.csv"],
+                    "day template":[
+                        {
+                            "weekdays":["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY"],
+                            "type":["SCHOOL"]
+                        }
+                    ]
+                }
+            ]
+        },
+        
+        {
+            "name":"Ligne 2",
+            "schedules":[
+                {
+                    "paths":[
+                        "Ligne2/line_2_a_6t_12345v.csv",
+                        "Ligne2/line_2_r_6t_12345v.csv"],
+                    "day template":[
+                        {
+                            "weekdays":["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY"],
+                            "type":["VACATION"]
+                        },
+                        {
+                            "weekdays":["SATURDAY"],
+                            "type":["ALL"]
+                        }
+                    ]
+                },
+                {
+                    "paths":[
+                        "Ligne2/line_2_a_12345s.csv",
+                        "Ligne2/line_2_r_12345s.csv"],
                     "day template":[
                         {
                             "weekdays":["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY"],
@@ -64,8 +64,8 @@
                 },
                 {
                     "paths":[
-                        "Ligne 2/line_2_a_7t_f.csv",
-                        "Ligne 2/line_2_r_7t_f.csv"],
+                        "Ligne2/line_2_a_7t_f.csv",
+                        "Ligne2/line_2_r_7t_f.csv"],
                     "day template":[
                         {
                             "weekdays":["ALL"],
@@ -88,42 +88,8 @@
             "schedules":[
                 {
                     "paths":[
-                        "Ligne 3/line_3_a_6t_12345v.csv",
-                        "Ligne 3/line_3_r_6t_12345v.csv"],
-                    "day template":[
-                        {
-                            "weekdays":["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY"],
-                            "type":"VACATION"
-                        },
-                        {
-                            "weekdays":["SATURDAY"],
-                            "type":"ALL"
-                        }
-                    ]
-                },
-                {
-                    "paths":[
-                        "Ligne 3/line_3_a_12345s.csv",
-                        "Ligne 3/line_3_r_12345s.csv"],
-                    "day template":[
-                        {
-                            "weekdays":["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY"],
-                            "type":"SCHOOL"
-                        }
-                    ]
-                }
-            ]
-        },
-
-
-
-        {
-            "name":"Ligne 4",
-            "schedules":[
-                {
-                    "paths":[
-                        "Ligne 4/line_4_a_6t_12345v.csv",
-                        "Ligne 4/line_4_r_6t_12345v.csv"],
+                        "Ligne3/line_3_a_6t_12345v.csv",
+                        "Ligne3/line_3_r_6t_12345v.csv"],
                     "day template":[
                         {
                             "weekdays":["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY"],
@@ -137,8 +103,42 @@
                 },
                 {
                     "paths":[
-                        "Ligne 4/line_4_a_12345s.csv",
-                        "Ligne 4/line_4_r_12345s.csv"],
+                        "Ligne3/line_3_a_12345s.csv",
+                        "Ligne3/line_3_r_12345s.csv"],
+                    "day template":[
+                        {
+                            "weekdays":["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY"],
+                            "type":["SCHOOL"]
+                        }
+                    ]
+                }
+            ]
+        },
+
+
+
+        {
+            "name":"Ligne 4",
+            "schedules":[
+                {
+                    "paths":[
+                        "Ligne4/line_4_a_6t_12345v.csv",
+                        "Ligne4/line_4_r_6t_12345v.csv"],
+                    "day template":[
+                        {
+                            "weekdays":["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY"],
+                            "type":["VACATION"]
+                        },
+                        {
+                            "weekdays":["SATURDAY"],
+                            "type":["ALL"]
+                        }
+                    ]
+                },
+                {
+                    "paths":[
+                        "Ligne4/line_4_a_12345s.csv",
+                        "Ligne4/line_4_r_12345s.csv"],
                     "day template":[
                         {
                             "weekdays":["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY"],
@@ -148,8 +148,8 @@
                 },
                 {
                     "paths":[
-                        "Ligne 4/line_4_a_7t_f.csv",
-                        "Ligne 4/line_4_r_7t_f.csv"],
+                        "Ligne4/line_4_a_7t_f.csv",
+                        "Ligne4/line_4_r_7t_f.csv"],
                     "day template":[
                         {
                             "weekdays":["ALL"],
@@ -171,8 +171,8 @@
             "schedules":[
                 {
                     "paths":[
-                        "Ligne 5/line_5_a_6t_12345v.csv",
-                        "Ligne 5/line_5_r_6t_12345v.csv"],
+                        "Ligne5/line_5_a_6t_12345v.csv",
+                        "Ligne5/line_5_r_6t_12345v.csv"],
                     "day template":[
                         {
                             "weekdays":["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY"],
@@ -186,8 +186,8 @@
                 },
                 {
                     "paths":[
-                        "Ligne 5/line_5_a_12345s.csv",
-                        "Ligne 5/line_5_r_12345s.csv"],
+                        "Ligne5/line_5_a_12345s.csv",
+                        "Ligne5/line_5_r_12345s.csv"],
                     "day template":[
                         {
                             "weekdays":["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY"],
@@ -197,8 +197,8 @@
                 },
                 {
                     "paths":[
-                        "Ligne 5/line_5_a_7t_f.csv",
-                        "Ligne 5/line_5_r_7t_f.csv"],
+                        "Ligne5/line_5_a_7t_f.csv",
+                        "Ligne5/line_5_r_7t_f.csv"],
                     "day template":[
                         {
                             "weekdays":["ALL"],
@@ -220,27 +220,27 @@
             "schedules":[
                 {
                     "paths":[
-                        "Ligne 6/line_6_a_6t_12345v.csv",
-                        "Ligne 6/line_6_r_6t_12345v.csv"],
+                        "Ligne6/line_6_a_6t_12345v.csv",
+                        "Ligne6/line_6_r_6t_12345v.csv"],
                     "day template":[
                         {
                             "weekdays":["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY"],
-                            "type":"VACATION"
+                            "type":["VACATION"]
                         },
                         {
                             "weekdays":["SATURDAY"],
-                            "type":"ALL"
+                            "type":["ALL"]
                         }
                     ]
                 },
                 {
                     "paths":[
-                        "Ligne 6/line_6_a_12345s.csv",
-                        "Ligne 6/line_6_r_12345s.csv"],
+                        "Ligne6/line_6_a_12345s.csv",
+                        "Ligne6/line_6_r_12345s.csv"],
                     "day template":[
                         {
                             "weekdays":["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY"],
-                            "type":"SCHOOL"
+                            "type":["SCHOOL"]
                         }
                     ]
                 }
@@ -253,12 +253,12 @@
             "schedules":[
                 {
                     "paths":[
-                        "Ligne 6/line_6_a_6t_12345v.csv",
-                        "Ligne 6/line_6_r_6t_12345v.csv"],
+                        "Ligne6/line_6_a_6t_12345v.csv",
+                        "Ligne6/line_6_r_6t_12345v.csv"],
                     "day template":[
                         {
                             "weekdays":["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"],
-                            "type":"ALL"
+                            "type":["ALL"]
                         }
                     ]
                 }
@@ -269,23 +269,23 @@
             "schedules":[
                 {
                     "paths":[
-                        "Ligne 8/line_8_a_6t.csv",
-                        "Ligne 8/line_8_r_6t.csv"],
+                        "Ligne8/line_8_a_6t.csv",
+                        "Ligne8/line_8_r_6t.csv"],
                     "day template":[
                         {
                             "weekdays":["SATURDAY"],
-                            "type":"ALL"
+                            "type":["ALL"]
                         }
                     ]
                 },
                 {
                     "paths":[
-                        "Ligne 8/line_8_a_12345s.csv",
-                        "Ligne 8/line_8_r_12345s.csv"],
+                        "Ligne8/line_8_a_12345s.csv",
+                        "Ligne8/line_8_r_12345s.csv"],
                     "day template":[
                         {
                             "weekdays":["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY"],
-                            "type":"SCHOOL"
+                            "type":["SCHOOL"]
                         }
                     ]
                 }
