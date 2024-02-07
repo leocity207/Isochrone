@@ -3,8 +3,13 @@
 
 #include <gtest/gtest.h>
 
-class Day_Info_Test : public ::testing::Test {
+class Day_Test : public ::testing::Test, ::testing::WithParamInterface < std::tuple<std::chrono::weekday,Network::DAY_TYPE> > {
     
+};
+
+
+class Day_template_Test : public ::testing::Test {
+
 };
 
 
