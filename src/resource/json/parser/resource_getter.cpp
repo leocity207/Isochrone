@@ -28,6 +28,7 @@ std::vector<std::pair<Network::DayTemplate,std::filesystem::path>> Get_Schedules
 		std::array<bool, Network::WEEKDAY_COUNT> day_list = {0};
 		for (const auto& day: day_types["weekdays"].GetArray())
 		{
+			// !!! carefull monday map to 6 and sunday to 0 !!!
 			if (std::string_view(day.GetString()) == "MONDAY")
 				day_list[std::chrono::Monday.c_encoding()] = true;
 			else if (std::string_view(day.GetString()) == "TUESDAY")
