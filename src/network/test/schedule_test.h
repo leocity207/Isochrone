@@ -5,10 +5,8 @@
 #include <memory>
 
 #include "includes/network/station.h"
+#include "includes/network/schedule.h"
 
-namespace Network{
-	class Schedule;
-}
 
 class Schedule_Test : public ::testing::Test {
 public:
@@ -16,6 +14,7 @@ public:
 
 	static std::unique_ptr<Network::Schedule> s_schedule;
 	static std::vector<Network::Station> s_stations;
+	static Network::TimeTable s_timetable;
 };
 
 
