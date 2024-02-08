@@ -50,6 +50,6 @@ const Context::Station& Context::Station::Get_Station_By_Name(const std::vector<
 	});
 
 	if (it == station_list.end())
-		THROW_TRACE(STATION_NOT_IN_LIST, "[error] Context::Station::Get_Station_By_Name the station cannot be found inside the list in parameter");
+		THROW(STATION_NOT_IN_LIST);
 	return *it;
 }

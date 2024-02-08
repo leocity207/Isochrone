@@ -5,7 +5,9 @@
 #include <ranges>
 
 
-Network::Scheduled_Line::Scheduled_Line(std::vector<Network::Schedule>&& Timetable, std::string&& name) noexcept : m_schedule(std::move(Timetable)), Line(Scheduled_Line::Construct_Station_From_Schedules(m_schedule), std::move(name))
+Network::Scheduled_Line::Scheduled_Line(std::vector<Network::Schedule>&& Timetable, std::string&& name) noexcept :
+	Line(Scheduled_Line::Construct_Station_From_Schedules(m_schedule), std::move(name)),
+	m_schedule(std::move(Timetable))
 {
 
 }
@@ -27,10 +29,7 @@ std::optional<Network::Schedule_CRef> Network::Scheduled_Line::Get_Schedule(cons
 	std::vector<Schedule_CRef> transformed(m_schedule.begin(), m_schedule.end());
 	auto right_schedule = std::find_if(transformed.begin(), transformed.end(), does_day_match_schedule);
 	if (right_schedule == transformed.end())
-	{
-		TRACE("The line" + m_name + "have no schedule for " + matching_day.Description());
-		return std::nullopt;
-	}
+		TRACE_RETURN("[warning]", std::nullopt, "The line" , m_name , "have no schedule for " , matching_day.Description());
 	return m_schedule[right_schedule - transformed.begin()];
 }
 
