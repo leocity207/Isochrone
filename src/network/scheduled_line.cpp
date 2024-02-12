@@ -24,7 +24,15 @@ std::optional<Network::Schedule_CRef> Network::Scheduled_Line::Get_Schedule(cons
 {
 	auto start_station_ref = std::reference_wrapper<const Station>(start_station);
 	auto end_station_ref = std::reference_wrapper<const Station>(end_station);
-	auto does_day_match_schedule = [matching_day, start_station_ref, end_station_ref](const Network::Schedule& i) { return i.Match(matching_day) && i.Order(start_station_ref, end_station_ref); };
+	auto does_day_match_schedule = [matching_day, start_station_ref, end_station_ref](const Network::Schedule& i) { 
+			try {
+				return i.Match(matching_day) && i.Order(start_station_ref, end_station_ref);
+			}
+			catch (STATION_NOT_IN_SCHEDULE&)
+			{
+				return false;
+			}
+		};
 
 	std::vector<Schedule_CRef> transformed(m_schedule.begin(), m_schedule.end());
 	auto right_schedule = std::find_if(transformed.begin(), transformed.end(), does_day_match_schedule);

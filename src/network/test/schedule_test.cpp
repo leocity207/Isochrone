@@ -53,20 +53,28 @@ TEST_F(Schedule_Test, Get_Time_To_Station_Wrong)
 }
 
 
-////////////////////////////////////////
-/// get time between two station between 
+////////////////////////////////////////////////////////
+/// get time between two station between at a given time
+/// Three type of event can apear
+///		- normal case when the next transport give you to the next station
+///		- case when the next bus don't stop at your station (because the bus service is different during the day)
+///		- there are no next bus since it's the end of the day
 TEST_F(Schedule_Test, Expect_Value_Get_Time_To_Station)
 {
-	EXPECT_EQ(s_schedule->Get_Closest_Time_To_Station(s_schedule->Get_Station_List()[0].get(), s_schedule->Get_Station_List()[1].get(), DayTime(std::chrono::hours(5), std::chrono::minutes(59))).value(), s_timetable[1][0].value());
-	EXPECT_EQ(s_schedule->Get_Closest_Time_To_Station(s_schedule->Get_Station_List()[0].get(), s_schedule->Get_Station_List()[2].get(), DayTime(std::chrono::hours(5), std::chrono::minutes(59))).value(), s_timetable[2][1].value());
+	// normal case when its on the same line
+	EXPECT_EQ(s_schedule->Get_Closest_Time_To_Station(s_schedule->Get_Station_List()[0].get(), s_schedule->Get_Station_List()[1].get(), DayTime(std::chrono::hours(5), std::chrono::minutes(59))).value() , s_timetable[1][0].value());
+	EXPECT_EQ(s_schedule->Get_Closest_Time_To_Station(s_schedule->Get_Station_List()[0].get(), s_schedule->Get_Station_List()[1].get(), DayTime(std::chrono::hours(5), std::chrono::minutes(59))).value() , s_timetable[1][0].value());
+	EXPECT_EQ(s_schedule->Get_Closest_Time_To_Station(s_schedule->Get_Station_List()[0].get(), s_schedule->Get_Station_List()[2].get(), DayTime(std::chrono::hours(10),std::chrono::minutes(10))).value() , s_timetable[2][3].value());
+	EXPECT_EQ(s_schedule->Get_Closest_Time_To_Station(s_schedule->Get_Station_List()[1].get(), s_schedule->Get_Station_List()[2].get(), DayTime(std::chrono::hours(10),std::chrono::minutes(10))).value() , s_timetable[2][3].value());
+	EXPECT_EQ(s_schedule->Get_Closest_Time_To_Station(s_schedule->Get_Station_List()[0].get(), s_schedule->Get_Station_List()[1].get(), DayTime(std::chrono::hours(6), std::chrono::minutes(8))).value()  , s_timetable[1][1].value());
+	EXPECT_EQ(s_schedule->Get_Closest_Time_To_Station(s_schedule->Get_Station_List()[0].get(), s_schedule->Get_Station_List()[2].get(), DayTime(std::chrono::hours(6), std::chrono::minutes(50))).value() , s_timetable[2][1].value());
 
-	EXPECT_EQ(s_schedule->Get_Closest_Time_To_Station(s_schedule->Get_Station_List()[0].get(), s_schedule->Get_Station_List()[1].get(), DayTime(std::chrono::hours(6), std::chrono::minutes(8))).value(),  s_timetable[1][1].value());
+	//hop to next line because of nullopt
 	EXPECT_EQ(s_schedule->Get_Closest_Time_To_Station(s_schedule->Get_Station_List()[0].get(), s_schedule->Get_Station_List()[1].get(), DayTime(std::chrono::hours(9), std::chrono::minutes(20))).value(), s_timetable[1][3].value());
 	EXPECT_EQ(s_schedule->Get_Closest_Time_To_Station(s_schedule->Get_Station_List()[0].get(), s_schedule->Get_Station_List()[1].get(), DayTime(std::chrono::hours(7), std::chrono::minutes(30))).value(), s_timetable[1][3].value());
+	EXPECT_EQ(s_schedule->Get_Closest_Time_To_Station(s_schedule->Get_Station_List()[0].get(), s_schedule->Get_Station_List()[2].get(), DayTime(std::chrono::hours(5), std::chrono::minutes(59))).value(), s_timetable[2][1].value());
 
-	EXPECT_EQ(s_schedule->Get_Closest_Time_To_Station(s_schedule->Get_Station_List()[1].get(), s_schedule->Get_Station_List()[2].get(), DayTime(std::chrono::hours(10), std::chrono::minutes(10))).value(), s_timetable[2][3].value());
-	EXPECT_EQ(s_schedule->Get_Closest_Time_To_Station(s_schedule->Get_Station_List()[0].get(), s_schedule->Get_Station_List()[2].get(), DayTime(std::chrono::hours(10), std::chrono::minutes(10))).value(), s_timetable[2][3].value());
-
+	// case for the end of the day
 	EXPECT_FALSE(s_schedule->Get_Closest_Time_To_Station(s_schedule->Get_Station_List()[0].get(), s_schedule->Get_Station_List()[2].get(), DayTime(std::chrono::hours(11), std::chrono::minutes(59))).has_value());
 	EXPECT_FALSE(s_schedule->Get_Closest_Time_To_Station(s_schedule->Get_Station_List()[0].get(), s_schedule->Get_Station_List()[2].get(), DayTime(std::chrono::hours(15), std::chrono::minutes(59))).has_value());
 }
