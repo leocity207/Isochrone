@@ -7,4 +7,5 @@ CSV::Engine::File_Parser::File_Parser(std::filesystem::path&& path, const char d
 	CSV::Engine::Parser(std::make_unique<std::ifstream>(std::ifstream(path)), delimiter),
 	m_filepath(std::move(path))
 {
+	
 }

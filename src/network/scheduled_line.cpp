@@ -5,7 +5,9 @@
 #include <ranges>
 
 
-Network::Scheduled_Line::Scheduled_Line(std::vector<Network::Schedule>&& Timetable, std::string&& name) noexcept : m_schedule(std::move(Timetable)), Line(Scheduled_Line::Construct_Station_From_Schedules(m_schedule), std::move(name))
+Network::Scheduled_Line::Scheduled_Line(std::vector<Network::Schedule>&& Timetable, std::string&& name) noexcept :
+	Line(Scheduled_Line::Construct_Station_From_Schedules(m_schedule), std::move(name)),
+	m_schedule(std::move(Timetable))
 {
 
 }
@@ -22,15 +24,20 @@ std::optional<Network::Schedule_CRef> Network::Scheduled_Line::Get_Schedule(cons
 {
 	auto start_station_ref = std::reference_wrapper<const Station>(start_station);
 	auto end_station_ref = std::reference_wrapper<const Station>(end_station);
-	auto does_day_match_schedule = [matching_day, start_station_ref, end_station_ref](const Network::Schedule& i) { return i.Match(matching_day) && i.Order(start_station_ref, end_station_ref); };
+	auto does_day_match_schedule = [matching_day, start_station_ref, end_station_ref](const Network::Schedule& i) { 
+			try {
+				return i.Match(matching_day) && i.Order(start_station_ref, end_station_ref);
+			}
+			catch (STATION_NOT_IN_SCHEDULE&)
+			{
+				return false;
+			}
+		};
 
 	std::vector<Schedule_CRef> transformed(m_schedule.begin(), m_schedule.end());
 	auto right_schedule = std::find_if(transformed.begin(), transformed.end(), does_day_match_schedule);
 	if (right_schedule == transformed.end())
-	{
-		TRACE("The line" + m_name + "have no schedule for " + matching_day.Description());
-		return std::nullopt;
-	}
+		TRACE_RETURN("[warning]", std::nullopt, "The line" , m_name , "have no schedule for " , matching_day.Description());
 	return m_schedule[right_schedule - transformed.begin()];
 }
 

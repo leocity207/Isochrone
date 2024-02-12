@@ -34,11 +34,6 @@ bool Network::Station::operator==(const Station& other_station) const noexcept
 	return m_id == other_station.m_id;
 }
 
-bool Network::Station::operator!=(const Station& other_station) const noexcept
-{ 
-	return m_id != other_station.m_id;
-}
-
 bool Network::Station::operator<(const Station& other_station) const noexcept
 { 
 	return m_id < other_station.m_id;

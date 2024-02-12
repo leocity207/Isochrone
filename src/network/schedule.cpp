@@ -13,14 +13,12 @@ Network::Schedule::Schedule(std::vector<Network::Station_CRef>&& station_list, N
 std::optional<DayTime> Network::Schedule::Get_Closest_Time_To_Station(const Station& start_station,const Station& end_station,const DayTime& startStationTime) const
 {
 	const std::optional<size_t> start_index = this->Get_Station_Index(start_station);
+	if(!start_index)
+		return std::nullopt;
 	const std::optional<size_t> end_index = this->Get_Station_Index(end_station);
 
 	// if station cannot be found inside schedule we suppose that this is an error
-	if (!start_index)
-		THROW_TRACE(STATION_NOT_IN_SCHEDULE, "The station " + start_station.Get_Name() + " is not in schedule")
-	else if (!end_index)
-		THROW_TRACE(STATION_NOT_IN_SCHEDULE, "The station " + end_station.Get_Name() + " is not in schedule")
-	else if(*start_index > *end_index)
+	if (!end_index || *start_index > *end_index)
 		return std::nullopt;
 
 	for(size_t i = 0 ;i < m_timetable[*start_index].size();i++ )

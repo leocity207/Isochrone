@@ -77,7 +77,7 @@ std::optional<DayTime> DayTime::From_Time_String(const std::string_view& time_st
 	}
 	catch (std::invalid_argument&)
 	{
-		THROW_TRACE(TIME_BADLY_FORMATED, "Invalid time string: no colon found " + std::string(time_string));
+		THROW_TRACE(TIME_BADLY_FORMATED, "Invalid time string: no colon found " , std::string(time_string));
 	}
 	return DayTime(std::chrono::hours(hours), std::chrono::minutes(minutes));
 	// Return the result as a pair

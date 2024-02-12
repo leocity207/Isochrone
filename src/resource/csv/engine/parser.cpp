@@ -12,10 +12,13 @@ CSV::Engine::Parser::Parser(Memory::Owned<std::istream>&& stream, const char del
 	m_delimiter(delimiter),
 	m_file_stream(std::move(stream))
 {
+	if (!m_file_stream->good())
+		THROW(READING_FILE_ERROR);
 }
 
 std::optional<std::vector<std::string>> CSV::Engine::Parser::Next_Line() const
 {
+	TRACE_ENTERLEAVE("CSV::Engine::Parser::Next_Line")
 	// Get the line
 	std::string line;
 	{
@@ -25,7 +28,7 @@ std::optional<std::vector<std::string>> CSV::Engine::Parser::Next_Line() const
 			if (m_file_stream->eof())
 				return std::nullopt;
 			else
-				throw READING_FILE_ERROR();
+				THROW(READING_FILE_ERROR);
 		}
 	}
 	

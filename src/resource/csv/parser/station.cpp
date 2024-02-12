@@ -14,7 +14,7 @@ std::vector<Network::Station> CSV::Parser::Station::Parse(const CSV::Engine::Par
 	while (std::optional<std::vector<std::string>> line = engine.Next_Line())
 	{
 		if(line->size()!=3)
-			THROW_TRACE(READING_FILE_ERROR,"A line in the CSV file of the schedule is less than three");
+			THROW(READING_FILE_ERROR);
 		
 		//extract the three line
 		std::string station_name = Generals::Trim_Space_Front_Back(std::move(line->at(0)));

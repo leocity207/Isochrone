@@ -21,15 +21,15 @@ Pair_Station_TimeTable CSV::Parser::Timetable::Parse(const CSV::Engine::Parser& 
 		if (!registered_size)
 			registered_size = line->size();
 		if(line->size()<2)
-			THROW_TRACE(READING_FILE_ERROR,"A line in the CSV file of the schedule is less than two")
+			THROW(READING_FILE_ERROR)
 		else if(registered_size != line->size())
-			THROW_TRACE(READING_FILE_ERROR, "size of table is not constant")
+			THROW(READING_FILE_ERROR)
 		
 
 		//add the station to the list of station
 		std::string_view station_view = Generals::Trim_Space_Front_Back(line->front());
 		if (station_view.size() == 0)
-			THROW_TRACE(READING_FILE_ERROR, "The  station_name of a line is incorrect");
+			THROW(READING_FILE_ERROR);
 		station_list.emplace_back(Generals::Trim_Space_Front_Back(line->front()));
 
 		//read all the daytimes

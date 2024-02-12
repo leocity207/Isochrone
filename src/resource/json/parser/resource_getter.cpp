@@ -18,16 +18,17 @@
 std::vector<std::pair<Network::DayTemplate,std::filesystem::path>> Get_Schedules(const rapidjson::Value& json)
 {
 	if (!json.HasMember("paths") && !json.HasMember("day template") && !json["paths"].IsArray() && !json["day template"].IsArray())
-		THROW_TRACE(READING_FILE_ERROR, "config file is badly formatted")
+		THROW(READING_FILE_ERROR)
 	std::vector<std::pair<Network::DayTemplate, std::filesystem::path>> list;
 	for (const auto& day_types : json["day template"].GetArray())
 	{
 		if (!day_types.HasMember("weekdays") && !day_types.HasMember("type") && !day_types["weekdays"].IsArray() && !day_types["type"].IsArray())
-			THROW_TRACE(READING_FILE_ERROR, "Line list are badly formatted")
+			THROW(READING_FILE_ERROR)
 
 		std::array<bool, Network::WEEKDAY_COUNT> day_list = {0};
 		for (const auto& day: day_types["weekdays"].GetArray())
 		{
+			// !!! carefull monday map to 6 and sunday to 0 !!!
 			if (std::string_view(day.GetString()) == "MONDAY")
 				day_list[std::chrono::Monday.c_encoding()] = true;
 			else if (std::string_view(day.GetString()) == "TUESDAY")
@@ -42,8 +43,10 @@ std::vector<std::pair<Network::DayTemplate,std::filesystem::path>> Get_Schedules
 				day_list[std::chrono::Saturday.c_encoding()] = true;
 			else if (std::string_view(day.GetString()) == "SUNDAY")
 				day_list[std::chrono::Sunday.c_encoding()] = true;
+			else if (std::string_view(day.GetString()) == "ALL")
+				day_list = { true,true,true,true,true,true,true};
 			else
-				THROW_TRACE(READING_FILE_ERROR, "Day does not exist")
+				THROW(READING_FILE_ERROR)
 		}
 		std::array<bool, Network::DAY_TYPE_COUNT> day_type_array = {0};
 		for (const auto& day_type: day_types["type"].GetArray())
@@ -57,7 +60,7 @@ std::vector<std::pair<Network::DayTemplate,std::filesystem::path>> Get_Schedules
 			else if (std::string_view(day_type.GetString()) == "ALL")
 				day_type_array = { true,true,true };
 			else
-				THROW_TRACE(READING_FILE_ERROR, "Day type does not exist")
+				THROW(READING_FILE_ERROR)
 		}
 
 		for (const auto& paths : json["paths"].GetArray())
@@ -69,7 +72,7 @@ std::vector<std::pair<Network::DayTemplate,std::filesystem::path>> Get_Schedules
 JSON::Parser::Resource_Getter::Resource_Getter(std::istream&& stream)
 {
 	if(stream.fail())
-		THROW_TRACE(FILE_OPEN_FAILED,"stream is not valid")
+		THROW(FILE_OPEN_FAILED)
 
 	//parth the config file
 	rapidjson::IStreamWrapper isw(stream);
@@ -78,14 +81,14 @@ JSON::Parser::Resource_Getter::Resource_Getter(std::istream&& stream)
 
 	//get the stations file
 	if(!document.HasMember("station file") && !document.HasMember("line list") && !document["station file"].IsString() && !document["line list"].IsArray())
-		THROW_TRACE(READING_FILE_ERROR,"config file is badly formated")
+		THROW(READING_FILE_ERROR)
 	m_path_to_Station_File = document["station file"].GetString();
 
 	//for all the lines
 	for(const auto& element : document["line list"].GetArray())
 	{
 		if(!element.HasMember("name") && !element.HasMember("schedules") && !element["name"].IsString()  && !element["schedules"].IsArray())
-			THROW_TRACE(READING_FILE_ERROR,"Line list are badly formatted")
+			THROW(READING_FILE_ERROR)
 
 		//for all the schedules of the lines create the path to schedule file and the daytemplate tht it describe
 		std::vector<std::pair<Network::DayTemplate, std::filesystem::path>> path_list = {};

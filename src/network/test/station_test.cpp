@@ -2,6 +2,9 @@
 
 #include "includes/network/station.h"
 
+//////////////////////////////////////////////////////////
+/// test if two station are equal
+/// two stations are equal only if their index is the same
 TEST_F(Station_Test,Equality)
 {
 	Sphere_Coordinate a(1,1);
@@ -9,8 +12,13 @@ TEST_F(Station_Test,Equality)
 	Network::Station sa(std::move(a),"a");
 
 	EXPECT_EQ(sa,sa);
+
+
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// test if two station are not equal
+/// two stations are equal only if their index is different not if their coordinate or name is same
 TEST_F(Station_Test, Inequality)
 {
 	Sphere_Coordinate a(1, 1);
@@ -28,6 +36,10 @@ TEST_F(Station_Test, Inequality)
 	EXPECT_NE(sa, sd);
 }
 
+////////////////////////////////////////////////////////////////
+/// Test if station is greater than another station
+/// ordering for station is based on their index of construction
+/// sa < sb < sc < sd
 TEST_F(Station_Test, Greater)
 {
 	Sphere_Coordinate a(1, 1);
@@ -50,6 +62,10 @@ TEST_F(Station_Test, Greater)
 	EXPECT_LT(sc, sd);
 }
 
+//////////////////////////////////////////////////////
+/// test the getter of a station
+/// test if the get name give what we expect
+/// test if the get coordinate gives us what we expect
 TEST_F(Station_Test, Getter)
 {
 	Sphere_Coordinate a(1, 1);
@@ -65,6 +81,9 @@ TEST_F(Station_Test, Getter)
 	EXPECT_EQ(sb.GetCoordinate(), Sphere_Coordinate(2,2));
 }
 
+///////////////////////////////////////////////////////////////////////////
+/// Test that the computation of distance to two station is correct
+/// this give the straight distance to a station, not the track distance
 TEST_F(Station_Test, distance_to)
 {
 	Sphere_Coordinate a(1, 1);
