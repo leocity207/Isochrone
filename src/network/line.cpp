@@ -46,5 +46,6 @@ std::strong_ordering Network::Line::Order(const Network::Station& first, const N
 
 std::vector<Network::Station_CRef>::const_iterator Network::Line::From_Station(const Station& station) const noexcept
 {
-    return ++std::find(m_stations.cbegin(), m_stations.cend(), station);
+    auto it = std::find(m_stations.cbegin(), m_stations.cend(), station);
+    return (it == m_stations.cend() ? it :++it);
 }

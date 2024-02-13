@@ -26,7 +26,7 @@ int main()
 		range.end(),
 		[&](int item)
 		{
-			Context::Reach_Algorithm solver_context(network_context, DayTime(hours(item % 60), minutes(item / 60)), 1, Sphere_Coordinate(45.52700, 4.878250), Network::Day(Monday, Network::SCHOOL_DAYS));
+			Context::Reach_Algorithm solver_context(network_context, DayTime(hours(item / 60), minutes(item % 60 )), 1, Sphere_Coordinate(45.52700, 4.878250), Network::Day(Monday, Network::SCHOOL_DAYS));
 			Reach_Algorithm::Optimized algorithm;
 			std::vector<Context::Station> result = solver_context.Optimize(algorithm);
 		});
