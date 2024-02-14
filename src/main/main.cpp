@@ -7,6 +7,7 @@ using namespace std::chrono;
 
 #include  <algorithm>
 #include <execution>
+#include <fstream>
 
 int main()
 {
@@ -26,7 +27,7 @@ int main()
 		range.end(),
 		[&](int item)
 		{
-			Context::Reach_Algorithm solver_context(network_context, DayTime(hours(item / 60), minutes(item % 60 )), 1, Sphere_Coordinate(45.52700, 4.878250), Network::Day(Monday, Network::SCHOOL_DAYS));
+			Context::Reach_Algorithm solver_context(network_context, DayTime(hours(item / 60), minutes(item % 60 )), 1, Sphere_Coordinate(45.52700, 4.8740833333333340), Network::Day(Monday, Network::SCHOOL_DAYS));
 			Reach_Algorithm::Optimized algorithm;
 			std::vector<Context::Station> result = solver_context.Optimize(algorithm);
 		});
@@ -36,5 +37,14 @@ int main()
 	milliseconds d = std::chrono::duration_cast<milliseconds>(t1-t0);
 	std::cout << (t1 - t0).count() << "s\n";
 	std::cout << d.count() << "ms\n";
+
+	Context::Reach_Algorithm solver_context(network_context, DayTime(hours(8), minutes(0)), 1, Sphere_Coordinate(45.521305555555557, 4.8740833333333340), Network::Day(Monday, Network::SCHOOL_DAYS));
+	Reach_Algorithm::Optimized algorithm;
+	std::vector<Context::Station> result = solver_context.Optimize(algorithm);
+	std::ofstream output("ouput.txt");
+	for (const auto& station : result)
+		output << station.Get().Get_Name() << ";" << station.Get_Reaching_Time().GetTime().count() << ";" << station.Has_Been_Reached_By_Transport() << ";" << station.Has_Been_Reached_Once_By_Transport() << std::endl;
+
+
 	return 0;
 }

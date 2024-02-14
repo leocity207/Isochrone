@@ -70,7 +70,9 @@ std::vector<Context::Station> Reach_Algorithm::Optimized::Optimize(const Context
             /// Constant for the line and parralelisable for a specific line the size should always be 2 
 			std::for_each(std::execution::seq,schedule_list.begin(), schedule_list.end(), [&](const Network::Schedule& schedule) {
 				//////////////////////////////////////////////////////////////////////
-                ///go for all station inside the line (this could be improved because )
+                ///go for all station inside the line (this could be improved because  A and R may not sahre the same station starting from current station)
+                ///     Note. there are some case where the current station is contain in the A but not in the R line (especialy when the line doesn't work the same way on A and R track
+                ///           in that case schedule.From_Station will return the end of the line
 				std::for_each(std::execution::seq,schedule.From_Station(current_station.Get()), schedule.Get_Station_List().cend(), [&](const Network::Station_CRef& station) {
 					//no need to compute distance from the two same station
 					std::optional<DayTime> value = schedule.Get_Closest_Time_To_Station(current_station.Get(), station.get(), current_station.Get_Reaching_Time());
