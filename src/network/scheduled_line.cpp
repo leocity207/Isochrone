@@ -1,6 +1,6 @@
 #include "includes/network/scheduled_line.h"
 
-
+//STL
 #include <algorithm>
 #include <ranges>
 
@@ -25,7 +25,8 @@ std::optional<Network::Schedule_CRef> Network::Scheduled_Line::Get_Schedule(cons
 	auto start_station_ref = std::reference_wrapper<const Station>(start_station);
 	auto end_station_ref = std::reference_wrapper<const Station>(end_station);
 	auto does_day_match_schedule = [matching_day, start_station_ref, end_station_ref](const Network::Schedule& i) { 
-			try {
+			try 
+			{
 				return i.Match(matching_day) && (i.Order(start_station_ref, end_station_ref) == std::strong_ordering::less);
 			}
 			catch (STATION_NOT_IN_SCHEDULE&)

@@ -1,11 +1,10 @@
 #include "includes/reach_algorithm/simple_par.h"
 #include "includes/context/reach_algorithm.h"
 
-#include <algorithm>
-#include <ranges>
-#include <cassert>
+// STL
 #include <map>
 #include <execution>
+
 
 std::vector<Context::Station> Reach_Algorithm::Simple_Par::Optimize(const Context::Reach_Algorithm& algorithm_context)
 {
@@ -66,7 +65,8 @@ std::vector<Context::Station> Reach_Algorithm::Simple_Par::Optimize(const Contex
 		});
 	}
 
-	//dont forget the last element
+	/////////////////////////////////
+	/// Don't forget the last element
 	final_optimized.emplace_back(std::move(remaining_stations.back()));
 	return final_optimized;
 }

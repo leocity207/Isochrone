@@ -1,14 +1,19 @@
 #include "reach_algorithm_test.h"
 
+// Config file
 #include "config.h"
 
 using namespace std::chrono;
 
 
+// Context
 #include "includes/context/Scheduled_Network.h"
-#include "includes/resource/archive/plain.h"
 #include "includes/context/reach_algorithm.h"
 #include "includes/context/station.h"
+
+// Ressource
+#include "includes/resource/archive/plain.h"
+// Reach algorithm
 #include "includes/reach_algorithm/simple.h"
 #include "includes/reach_algorithm/simple_with_map.h"
 #include "includes/reach_algorithm/simple_par.h"

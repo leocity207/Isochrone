@@ -4,7 +4,10 @@
 
 #include <gtest/gtest.h>
 
+// Context
 #include "includes/context/scheduled_network.h"
+
+// Reach Algorithm
 #include "includes/reach_algorithm/algorithm.h"
 
 class Reach_Algorithm_Test : public ::testing::Test, public ::testing::WithParamInterface<std::reference_wrapper<Reach_Algorithm::Algorithm>> {

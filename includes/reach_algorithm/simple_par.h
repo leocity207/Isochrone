@@ -1,12 +1,14 @@
 #ifndef REACH_ALGORITHM_SIMPLE_PAR_H
 #define REACH_ALGORITHM_SIMPLE_PAR_H
 
-//TEST 1.308ms
+
 //reach_algorithm
 #include "algorithm.h"
 
 namespace Reach_Algorithm
 {
+	
+	//TEST 1.308ms VIENNE 1440
 	class Simple_Par : public Algorithm
 	{
 
@@ -23,6 +25,7 @@ namespace Reach_Algorithm
 	public:
 		std::vector<Context::Station> Optimize(const Context::Reach_Algorithm& algorithm_context) override;
 	};
+	
 }; //Reach_Algorithm
 
 

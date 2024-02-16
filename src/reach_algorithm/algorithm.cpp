@@ -1,7 +1,9 @@
 #include "includes/reach_algorithm/algorithm.h"
 
+// STL
 #include <algorithm>
 #include <execution>
+
 
 void Reach_Algorithm::Algorithm::Place_Min_Reaching_Time_At_End(std::vector<Context::Station>& list)
 {
@@ -44,8 +46,8 @@ Context::Station& Reach_Algorithm::Algorithm::Pop_Best_Reached_Station(std::vect
 
 Context::Station& Reach_Algorithm::Algorithm::Pop_Best_Reached_Station(std::vector<Context::Station>& remaining_list, std::vector<Context::Station>& optimized_list, std::map<Network::Station_CRef, Context::Station_CRef, std::less<const Network::Station>>& map)
 {
-map.erase(remaining_list.back().Get());
-optimized_list.emplace_back(std::move(remaining_list.back()));
-remaining_list.pop_back();
-return optimized_list.back();
+	map.erase(remaining_list.back().Get());
+	optimized_list.emplace_back(std::move(remaining_list.back()));
+	remaining_list.pop_back();
+	return optimized_list.back();
 }

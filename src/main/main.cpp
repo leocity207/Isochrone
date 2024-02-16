@@ -20,9 +20,6 @@ int main()
 
 	auto t0 = high_resolution_clock::now();
 
-	for (auto i : std::views::iota(0, 100))
-	{
-		i;
 		auto range = std::views::iota(0, 1440);
 
 		std::for_each(
@@ -32,18 +29,17 @@ int main()
 			[&](int item)
 			{
 				Context::Reach_Algorithm solver_context(network_context, DayTime(hours(item / 60), minutes(item % 60)), 1, Sphere_Coordinate(4.8740833333333340, 45.521305555555557), Network::Day(Monday, Network::SCHOOL_DAYS));
-				Reach_Algorithm::Simple_With_Map_Par algorithm;
+				Reach_Algorithm::Simple_With_Map algorithm;
 				std::vector<Context::Station> result = solver_context.Optimize(algorithm);
 			});
 
-	}
 	auto t1 = high_resolution_clock::now();
 	milliseconds d = std::chrono::duration_cast<milliseconds>(t1-t0);
 	std::cout << (t1 - t0).count() << "s\n";
-	std::cout << d.count() / ((1260.0 - 480.0)*100) << "ms\n";
+	std::cout << d.count() / (1260.0 - 480.0) << "ms\n";
 
 	Context::Reach_Algorithm solver_context(network_context, DayTime(hours(8), minutes(0)), 1, Sphere_Coordinate(4.8740833333333340, 45.521305555555557), Network::Day(Monday, Network::SCHOOL_DAYS));
-	Reach_Algorithm::Simple_With_Map_Par algorithm;
+	Reach_Algorithm::Simple_With_Map algorithm;
 	std::vector<Context::Station> result = solver_context.Optimize(algorithm);
 	std::ofstream output("ouput.txt");
 	for (const auto& station : result)
