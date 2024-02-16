@@ -11,6 +11,7 @@
 //network
 #include "includes/network/station.h"
 
+#include <mutex>
 
 namespace Context
 {
@@ -27,9 +28,10 @@ namespace Context
     public:
         DELETE_DEFAULT(Station);
         DELETE_COPY(Station);
-        DEFAULT_MOVE(Station);
 
         Station(const Network::Station& station_to_link,const Reach_Algorithm& reach_algorithm_context) noexcept;
+        Station(Station&&) noexcept;
+        Station& operator=(Station&&) noexcept;
 
     ///////////
     /// METHODS
@@ -44,6 +46,7 @@ namespace Context
         /// @param new_value the new daytime value to reach the station where we want to see if better
         bool Try_Set_New_Best_Time_Transport(DayTime& new_value);
         bool Try_Set_New_Best_Time_Transport(std::optional<DayTime>& new_value);
+        bool Try_Set_New_Best_Time_Transport_Lock(std::optional<DayTime>& new_value);
          bool Try_Set_New_Best_Time_Base(DayTime& new_value);
         bool Try_Set_New_Best_Time_Base(std::optional<DayTime>& new_value);
 
@@ -71,8 +74,9 @@ namespace Context
         bool m_reach_by_transport_once = false;
         std::reference_wrapper<const Network::Station> m_ref_station;
         std::optional<std::list<Context::Station>::iterator> m_pos = std::nullopt;
+        std::mutex m_mutex = std::mutex();
     };
-
+    using Station_CRef = std::reference_wrapper<Station>;
     
 }
 
