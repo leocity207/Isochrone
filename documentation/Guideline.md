@@ -46,4 +46,5 @@ private:
  * inside the contructor
    * use the "includes/utils/ctor.h fiels to tell about how the class should handle construction
  * documentation about the function shoudld be in the doxygen style
- * 
+ * inside cpp add two blank line before begining the first implementation
+ * always group and comment includes

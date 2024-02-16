@@ -1,5 +1,5 @@
-#ifndef REACH_ALGORITHM_OPTIMIZED_H
-#define REACH_ALGORITHM_OPTIMIZED_H
+#ifndef REACH_ALGORITHM_SIMPLE_H
+#define REACH_ALGORITHM_SIMPLE_H
 
 
 //reach_algorithm
@@ -7,15 +7,16 @@
 
 namespace Reach_Algorithm
 {
-	class Optimized : public Algorithm
+	//TEST 0.713ms VIENNE 1440
+	class Simple : public Algorithm
 	{
 
 	////////
 	/// CTOR
 	public:
-		DEFAULT_DEFAULT(Optimized)
-		DELETE_COPY(Optimized)
-		DELETE_MOVE(Optimized)
+		DEFAULT_DEFAULT(Simple)
+		DELETE_COPY(Simple)
+		DELETE_MOVE(Simple)
 
 
 	//////////
@@ -23,7 +24,8 @@ namespace Reach_Algorithm
 	public:
 		std::vector<Context::Station> Optimize(const Context::Reach_Algorithm& algorithm_context) override;
 	};
+	
 }; //Reach_Algorithm
 
 
-#endif //REACH_ALGORITHM_OPTIMIZED_H
+#endif //REACH_ALGORITHM_SIMPLE_H

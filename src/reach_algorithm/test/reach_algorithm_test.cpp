@@ -1,18 +1,23 @@
 #include "reach_algorithm_test.h"
 
+// Config file
 #include "config.h"
 
 using namespace std::chrono;
 
-#include "includes/resource/json/parser/resource_getter.h"
-#include "includes/resource/csv/engine/file_parser.h"
-#include "includes/resource/csv/parser/station.h"
-#include "includes/resource/csv/parser/timetable.h"
+
+// Context
 #include "includes/context/Scheduled_Network.h"
-#include "includes/resource/archive/plain.h"
 #include "includes/context/reach_algorithm.h"
 #include "includes/context/station.h"
-#include "includes/reach_algorithm/optimized.h"
+
+// Ressource
+#include "includes/resource/archive/plain.h"
+// Reach algorithm
+#include "includes/reach_algorithm/simple.h"
+#include "includes/reach_algorithm/simple_with_map.h"
+#include "includes/reach_algorithm/simple_par.h"
+#include "includes/reach_algorithm/simple_with_map_par.h"
 
 
 std::unique_ptr<Context::Scheduled_Network> Reach_Algorithm_Test::s_context;
@@ -24,10 +29,10 @@ void Reach_Algorithm_Test::SetUpTestSuite()
 	s_context = std::make_unique<Context::Scheduled_Network>(std::move(scheduled_lines),std::move(stations));
 }
 
-TEST_F(Reach_Algorithm_Test, test_with_normal_day)
+TEST_P(Reach_Algorithm_Test, test_with_normal_day)
 {
 	Context::Reach_Algorithm solver_context(*s_context, DayTime(hours(0), minutes(0)), 1, Sphere_Coordinate(0, 0), Network::Day(Monday, Network::SCHOOL_DAYS));
-	Reach_Algorithm::Optimized algorithm;
+	std::reference_wrapper<Reach_Algorithm::Algorithm> algorithm = GetParam().get();
 	std::vector<Context::Station> result = solver_context.Optimize(algorithm);
 	
 	Context::Station a(s_context->Get_Station()[0], solver_context);
@@ -47,10 +52,10 @@ TEST_F(Reach_Algorithm_Test, test_with_normal_day)
 }
 
 
-TEST_F(Reach_Algorithm_Test, bypass)
+TEST_P(Reach_Algorithm_Test, bypass)
 {
 	Context::Reach_Algorithm solver_context(*s_context, DayTime(hours(1), minutes(0)), 0.5, Sphere_Coordinate(0, 0), Network::Day(Monday, Network::SCHOOL_DAYS));
-	Reach_Algorithm::Optimized algorithm;
+	std::reference_wrapper<Reach_Algorithm::Algorithm> algorithm = GetParam().get();
 	std::vector<Context::Station> result = solver_context.Optimize(algorithm);
 
 	DayTime res = DayTime(hours(1), minutes(3)) + seconds((int)std::round(s_context->Get_Station()[3].Get_Distance_To(s_context->Get_Station()[4])));
@@ -75,12 +80,12 @@ TEST_F(Reach_Algorithm_Test, bypass)
 
 
 
-TEST_F(Reach_Algorithm_Test, Get_Closest_Time_To_Station)
+TEST_P(Reach_Algorithm_Test, Get_Closest_Time_To_Station)
 {
 	DayTime start_time = DayTime(hours(20),minutes(0));
 	Sphere_Coordinate start_coordinate(0, 0);
 	Context::Reach_Algorithm solver_context(*s_context, std::move(start_time), 1, std::move(start_coordinate), Network::Day(Monday, Network::SCHOOL_DAYS));
-	Reach_Algorithm::Optimized algorithm;
+	std::reference_wrapper<Reach_Algorithm::Algorithm> algorithm = GetParam().get();
 	std::vector<Context::Station> result = solver_context.Optimize(algorithm);
 
 	DayTime res1 = start_time+seconds((int)std::round(s_context->Get_Station()[1].Get_Distance_To(start_coordinate)));
@@ -96,3 +101,54 @@ TEST_F(Reach_Algorithm_Test, Get_Closest_Time_To_Station)
 	ASSERT_EQ(Context::Station::Get_Station_By_Name(result, "Station E").Get_Reaching_Time(), res4);
 	ASSERT_EQ(Context::Station::Get_Station_By_Name(result, "Station F").Get_Reaching_Time(), res5);
 }
+
+std::string Algorithm_Test_String_Parser_Naming(testing::TestParamInfo<std::reference_wrapper<Reach_Algorithm::Algorithm>> id)
+{
+	switch (id.index)
+	{
+	case 0:
+		return "Simple";
+	case 1:
+		return "Simple_with_map";
+	case 2:
+		return "Simple_par";
+	case 3:
+		return "Simple_with_map_par";
+	default:
+		throw "unexpected value";
+	}
+}
+
+Reach_Algorithm::Algorithm& Give_Simple()
+{
+	static Reach_Algorithm::Simple simple;
+	return simple;
+}
+
+Reach_Algorithm::Algorithm& Give_Simple_With_Map()
+{
+	static Reach_Algorithm::Simple_With_Map simple_with_map;
+	return simple_with_map;
+}
+
+Reach_Algorithm::Algorithm& Give_Simple_Par()
+{
+	static Reach_Algorithm::Simple_Par simple;
+	return simple;
+}
+
+Reach_Algorithm::Algorithm& Give_Simple_With_Map_Par()
+{
+	static Reach_Algorithm::Simple_With_Map_Par simple_with_map;
+	return simple_with_map;
+}
+
+INSTANTIATE_TEST_SUITE_P(
+	test_reach_algorithm,
+	Reach_Algorithm_Test,
+	::testing::Values(
+		std::reference_wrapper<Reach_Algorithm::Algorithm>(Give_Simple()),
+		std::reference_wrapper<Reach_Algorithm::Algorithm>(Give_Simple_With_Map()),
+		std::reference_wrapper<Reach_Algorithm::Algorithm>(Give_Simple_Par()),
+		std::reference_wrapper<Reach_Algorithm::Algorithm>(Give_Simple_With_Map_Par())),
+	Algorithm_Test_String_Parser_Naming);
