@@ -10,6 +10,7 @@
 // Reach Algorithm
 #include "includes/reach_algorithm/algorithm.h"
 
+
 class Reach_Algorithm_Test : public ::testing::Test, public ::testing::WithParamInterface<std::reference_wrapper<Reach_Algorithm::Algorithm>> {
 
 public:

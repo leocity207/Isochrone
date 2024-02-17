@@ -1,9 +1,8 @@
 #include "includes/context/reach_algorithm.h"
 
-
-
-///algorithm
+/// Reach algorithm
 #include "includes/reach_algorithm/algorithm.h"
+
 
 Context::Reach_Algorithm::Reach_Algorithm(const Scheduled_Network& network, DayTime&& start_time, double speed, Sphere_Coordinate&& starting_coordinate, Network::Day&& day_type) noexcept :
 	m_network(network),
@@ -39,7 +38,7 @@ const Network::Day& Context::Reach_Algorithm::Get_Day_Type() const noexcept
 	return m_day_type;
 }
 
-std::vector<Context::Station> Context::Reach_Algorithm::Optimize(::Reach_Algorithm::Algorithm& algorithm)
+std::vector<Context::Station> Context::Reach_Algorithm::Optimize(::Reach_Algorithm::Algorithm& algorithm) const
 {
 	return algorithm.Optimize(*this);
 }

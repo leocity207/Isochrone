@@ -1,6 +1,5 @@
 #include "includes/network/day_info.h"
 
-#include <algorithm>
 
 Network::Day::Day(const std::chrono::weekday weekday,const DAY_TYPE day_type) noexcept : m_weekday(weekday), m_day_type(day_type)
 {

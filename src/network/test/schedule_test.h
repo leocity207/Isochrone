@@ -2,8 +2,11 @@
 #define SCHEDULE_TEST_H
 
 #include <gtest/gtest.h>
+
+// STL
 #include <memory>
 
+// Network
 #include "includes/network/station.h"
 #include "includes/network/schedule.h"
 

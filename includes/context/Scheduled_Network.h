@@ -1,11 +1,11 @@
 #ifndef CONTEXT_SCHEDULED_NETWORK_H
 #define CONTEXT_SCHEDULED_NETWORK_H
 
-#include "includes/utils/coordinate_2d.h"
-
+// Network
 #include "includes/network/scheduled_line.h"
 #include "includes/network/station.h"
 
+// utils
 #include "includes/utils/ctor.h"
 
 
@@ -35,6 +35,8 @@ namespace Context
 		std::vector<Network::Scheduled_Line> m_lines;
 		std::vector<Network::Station> m_stations;
 	};
-}
+
+}// Context
+
 
 #endif // CONTEXT_SCHEDULED_NETWORK_H

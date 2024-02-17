@@ -1,8 +1,10 @@
 #include "includes/utils/coordinate_2d.h"
 
+// Utils
 #include "includes/utils/general.h"
 #include "includes/utils/exception_def.h"
 
+// STL
 #include <cmath>
 #include <numbers>
 

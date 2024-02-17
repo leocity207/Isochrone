@@ -22,7 +22,7 @@ execute_process(
 
 #-----------------------
 #setting the config file
-configure_file(${PROJECT_SOURCE_DIR}/includes/config/config.h.in ${PROJECT_SOURCE_DIR}/includes/config/config.h)
+configure_file(${PROJECT_SOURCE_DIR}/includes/config/config.h.in ${PROJECT_SOURCE_DIR}/submodule/logger/config.h)
 
 #----------------------------------------------
 # add fetch content in order to get google test
@@ -49,7 +49,6 @@ endif()
 #----------------------------------------
 # Subodule logger
 add_subdirectory(submodule/Logger)
-target_sources(log PRIVATE ${PROJECT_SOURCE_DIR}/includes/config/config.cpp)
 
 #------------------------------------
 # subdirectory include

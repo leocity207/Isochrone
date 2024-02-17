@@ -3,9 +3,6 @@
 // Config file
 #include "config.h"
 
-using namespace std::chrono;
-
-
 // Context
 #include "includes/context/Scheduled_Network.h"
 #include "includes/context/reach_algorithm.h"
@@ -19,8 +16,10 @@ using namespace std::chrono;
 #include "includes/reach_algorithm/simple_par.h"
 #include "includes/reach_algorithm/simple_with_map_par.h"
 
+using namespace std::chrono;
 
 std::unique_ptr<Context::Scheduled_Network> Reach_Algorithm_Test::s_context;
+
 
 void Reach_Algorithm_Test::SetUpTestSuite()
 {

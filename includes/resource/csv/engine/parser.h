@@ -1,13 +1,15 @@
 #ifndef CSV_ENGINE_PARSER_H
 #define CSV_ENGINE_PARSER_H
 
+// STM
 #include <vector>
-#include <istream>
 #include <string>
 #include <optional>
 #include <mutex>
 
+// Utils
 #include "includes/utils/owner.h"
+
 
 namespace CSV
 {
@@ -35,7 +37,9 @@ namespace CSV
             const char m_delimiter;
             mutable std::mutex m_reader_mutex;
         };
+
     };//Engine
+
 }; // CSV
 
 #endif //CSV_ENGINE_PARSER_H

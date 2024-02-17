@@ -1,12 +1,12 @@
 #include "schedule_test.h"
 
+// Network
 #include "includes/network/schedule.h"
-
-#include "includes/utils/exception_def.h"
 
 std::unique_ptr<Network::Schedule> Schedule_Test::s_schedule = nullptr;
 std::vector<Network::Station> Schedule_Test::s_stations = std::vector<Network::Station>();
 Network::TimeTable Schedule_Test::s_timetable;
+
 
 void Schedule_Test::SetUpTestSuite()
 {
@@ -51,7 +51,6 @@ TEST_F(Schedule_Test, Get_Time_To_Station_Wrong)
 	EXPECT_FALSE(s_schedule->Get_Closest_Time_To_Station(s_schedule->Get_Station_List()[0].get(), test, DayTime(std::chrono::hours(7), std::chrono::minutes(4))).has_value());
 	EXPECT_FALSE(s_schedule->Get_Closest_Time_To_Station(s_schedule->Get_Station_List()[1].get(), s_schedule->Get_Station_List()[0].get(), DayTime(std::chrono::hours(7), std::chrono::minutes(4))).has_value());
 }
-
 
 ////////////////////////////////////////////////////////
 /// get time between two station between at a given time

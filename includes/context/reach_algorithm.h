@@ -1,18 +1,16 @@
 #ifndef CONTEXT_REACH_ALGORITHM_H
 #define CONTEXT_REACH_ALGORITHM_H
 
+// Utils
 #include "includes/utils/ctor.h"
 
+// Network
 #include "scheduled_network.h"
 
-//context
+// Context
 #include "includes/context/station.h"
 
-//Reach algorithm
-namespace Reach_Algorithm
-{
-	class Algorithm;
-};
+namespace Reach_Algorithm { class Algorithm;};
 
 namespace Context
 {
@@ -36,11 +34,7 @@ namespace Context
 		const double Get_Speed() const noexcept;
 		const Sphere_Coordinate Get_Starting_Coordinate() const noexcept;
 		const Network::Day& Get_Day_Type() const noexcept;
-
-		std::vector<Context::Station> Optimize(::Reach_Algorithm::Algorithm& algorithm);
-
-
-
+		std::vector<Context::Station> Optimize(::Reach_Algorithm::Algorithm& algorithm) const;
 
 	//////////////
 	/// ATTRIBUTES
@@ -51,6 +45,7 @@ namespace Context
 		Sphere_Coordinate m_start_coordinate;
 		Network::Day m_day_type;
 	};
+
 };//Context
 
 #endif // CONTEXT_REACH_ALGORITHM_H

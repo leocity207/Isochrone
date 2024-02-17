@@ -1,6 +1,7 @@
 #ifndef CSV_ENGINE_STRING_PARSER_H
 #define CSV_ENGINE_STRING_PARSER_H
 
+// Resource
 #include "parser.h"
 
 namespace CSV
@@ -14,7 +15,9 @@ namespace CSV
         public:
             String_Parser(std::string&& str, const char delimiter);
         };
+
     }; //Engine
+
 }; //CSV
 
 #endif //CSV_ENGINE_STRING_PARSER_H

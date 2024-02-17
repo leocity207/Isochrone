@@ -3,6 +3,7 @@
 
 #include <gtest/gtest.h>
 
+
 class Resource_Getter_Test : public ::testing::Test {
 
 };

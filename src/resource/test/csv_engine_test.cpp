@@ -1,9 +1,7 @@
 #include "csv_engine_test.h"
 
-
+// Resource
 #include "includes/resource/csv/engine/string_parser.h"
-#include <thread>
-
 
 
 TEST_F(CSV_Engine_Test, null_CSV_File)
@@ -16,7 +14,6 @@ TEST_F(CSV_Engine_Test, null_CSV_File)
 	EXPECT_FALSE(line.has_value());
 }
 
-
 TEST_F(CSV_Engine_Test, wrong_string)
 {
 	CSV::Engine::String_Parser test(std::string("123456789skjdfhskjdfhjsdklqsjdfh"), ';');
@@ -28,7 +25,6 @@ TEST_F(CSV_Engine_Test, wrong_string)
 	line = test.Next_Line();
 	EXPECT_FALSE(line.has_value());
 }
-
 
 TEST_F(CSV_Engine_Test, diferent_size)
 {
@@ -77,7 +73,6 @@ TEST_F(CSV_Engine_Test, wrong_delimiter)
 	line = test.Next_Line();
 	EXPECT_FALSE(line.has_value());
 }
-
 
 TEST_F(CSV_Engine_Test, paralelle_reading)
 {

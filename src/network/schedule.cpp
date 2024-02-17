@@ -1,14 +1,10 @@
 #include "includes/network/schedule.h"
 
-#include "includes/utils/exception_def.h"
-
-#include <algorithm>
 
 Network::Schedule::Schedule(std::vector<Network::Station_CRef>&& station_list, Network::TimeTable&& schedule_tab, Network::DayTemplate&& day_template,std::string&& name) noexcept : m_timetable(schedule_tab),DayTemplate(std::move(day_template)),Line(std::move(station_list),std::move(name))
 {
 
 }
-
 
 std::optional<DayTime> Network::Schedule::Get_Closest_Time_To_Station(const Station& start_station,const Station& end_station,const DayTime& startStationTime) const
 {

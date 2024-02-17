@@ -6,6 +6,7 @@
 //context
 #include "includes/context/reach_algorithm.h"
 
+
 Context::Station::Station(const Network::Station& station_to_link, const Reach_Algorithm& reach_algorithm_context) noexcept :
 	m_best_time(reach_algorithm_context.Get_Starting_Time() + std::chrono::seconds((long)(std::round(station_to_link.Get_Distance_To(reach_algorithm_context.Get_Starting_Coordinate()) / reach_algorithm_context.Get_Speed())))),
 	m_basic_time(m_best_time),
@@ -36,12 +37,10 @@ Context::Station& Context::Station::operator=(Station&& other) noexcept
 	return *this;
 }
 
-	
 const Network::Station& Context::Station::Get() const noexcept
 {
 	return m_ref_station.get();
 }
-
 
 const DayTime& Context::Station::Get_Reaching_Time() const noexcept
 {
@@ -100,7 +99,6 @@ bool Context::Station::Try_Set_New_Best_Time_Base(std::optional<DayTime>& new_va
 	}
 	return false;
 }
-
 
 bool Context::Station::operator<(const  Context::Station& other_station) const noexcept
 { 

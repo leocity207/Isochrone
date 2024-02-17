@@ -1,17 +1,18 @@
 #ifndef CONTEXT_REACHED_STATION_H
 #define CONTEXT_REACHED_STATION_H
 
-//std
+// STL
 #include <optional>
+#include <mutex>
+#include <list>
 
-//utils
+// Utils
 #include "includes/utils/ctor.h"
 #include "includes/utils/daytime.h"
 
-//network
+// Network
 #include "includes/network/station.h"
 
-#include <mutex>
 
 namespace Context
 {
@@ -105,6 +106,6 @@ namespace Context
 	
 	using Station_CRef = std::reference_wrapper<Station>;
 	
-}
+}// Network
 
 #endif // !CONTEXT_REACHED_STATION_H

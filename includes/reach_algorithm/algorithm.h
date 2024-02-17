@@ -1,7 +1,6 @@
 #ifndef REACH_ALGORITHM_ALGORITHM_H
 #define REACH_ALGORITHM_ALGORITHM_H
 
-
 /// Utils
 #include "includes/utils/ctor.h"
 
@@ -11,10 +10,8 @@
 // STL
 #include <map>
 
-namespace Context
-{
-	class Reach_Algorithm;
-}
+namespace Context { class Reach_Algorithm; }
+
 
 namespace Reach_Algorithm
 {
@@ -63,6 +60,8 @@ namespace Reach_Algorithm
 		static void Test_Walking_Time_From_Station(Context::Station& starting_station, std::vector<Context::Station>& remaining_stations, double walking_speed);
 		static void Test_Walking_Time_From_Station_Par(Context::Station& starting_station, std::vector<Context::Station>& remaining_stations, double walking_speed);
 	};
-};
+
+}; // Reach_Algorithm
+
 
 #endif // REACH_ALGORITHM_ALGORITHM_H

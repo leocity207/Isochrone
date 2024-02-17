@@ -1,4 +1,3 @@
-
 #include "includes/resource/csv/parser/station.h"
 
 //utils

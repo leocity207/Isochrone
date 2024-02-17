@@ -1,31 +1,27 @@
 #ifndef NETWORK_SCHEDULE_H
 #define NETWORK_SCHEDULE_H
 
-
+// STL
 #include <vector>
 #include <optional>
 #include <functional>
 
-//log
+// Utils
 #include "includes/utils/exception_def.h"
-
-//utils
 #include "includes/utils/daytime.h"
 #include "includes/utils/ctor.h"
 
-//network_optimization
+// Network
 #include "includes/network/station.h"
 #include "includes/network/day_info.h"
 #include "includes/network/line.h"
 
 
-
-//------------------------------------------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Timetable class represent transport schedule and meta data about the schedule
 // Basically We suppose a schedule is a matrix containing the time at which the transport get to the station
 // Here we suppose that the line represent the station and the column represent the pathway of one transport
 // Needed meta data are as follow:
-
 namespace Network
 {
     using  TimeTable = std::vector<std::vector<std::optional<DayTime>>>;
@@ -62,9 +58,8 @@ namespace Network
     };
 
     using Schedule_CRef = std::reference_wrapper<const Schedule>;
-}
 
-
+} // Network
 
 
 #endif //NETWORK_SCHEDULE_H

@@ -1,21 +1,19 @@
 #include "includes/resource/json/parser/resource_getter.h"
 
-//STD
-#include <iostream>
-
-//utils
+// Utils
 #include "includes/utils/exception_def.h"
 
-//JSON parser
+// JSON parser
 #include "submodule/rapidjson/include/rapidjson/istreamwrapper.h"
 #include "submodule/rapidjson/include/rapidjson/document.h"
 
-//network
+// Network
 #include "includes/network/day_info.h"
 
-//----------------------
+
+/////////////////
 //helper function
-std::vector<std::pair<Network::DayTemplate,std::filesystem::path>> Get_Schedules(const rapidjson::Value& json)
+static std::vector<std::pair<Network::DayTemplate,std::filesystem::path>> Get_Schedules(const rapidjson::Value& json)
 {
 	if (!json.HasMember("paths") && !json.HasMember("day template") && !json["paths"].IsArray() && !json["day template"].IsArray())
 		THROW(READING_FILE_ERROR)

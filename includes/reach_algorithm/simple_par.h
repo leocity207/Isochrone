@@ -2,7 +2,7 @@
 #define REACH_ALGORITHM_SIMPLE_PAR_H
 
 
-//reach_algorithm
+// Reach algorithm
 #include "algorithm.h"
 
 namespace Reach_Algorithm
@@ -26,7 +26,7 @@ namespace Reach_Algorithm
 		std::vector<Context::Station> Optimize(const Context::Reach_Algorithm& algorithm_context) override;
 	};
 	
-}; //Reach_Algorithm
+}; //Reach Algorithm
 
 
 #endif //REACH_ALGORITHM_SIMPLE_PAR_H

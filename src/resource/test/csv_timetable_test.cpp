@@ -1,7 +1,10 @@
 #include "csv_timetable_test.h"
 
+// Resource
 #include "includes/resource/csv/parser/timetable.h"
 #include "includes/resource/csv/engine/string_parser.h"
+
+// Utils
 #include "includes/utils/exception_def.h"
 
 
@@ -35,7 +38,6 @@ station3; 7:30; 10:40";
 	ASSERT_EQ(timetable[2][1], DayTime(std::chrono::hours(10), std::chrono::minutes(40)));
 
 }
-
 
 TEST_F(CSV_Timetable_Test, reading_test_hard)
 {
@@ -94,7 +96,6 @@ auto [station, timetable] = CSV::Parser::Timetable::Parse(parser);
 
 }
 
-
 TEST_F(CSV_Timetable_Test, baddly_formated)
 {
 	std::string test_str =
@@ -118,7 +119,6 @@ CSV::Engine::String_Parser parser(std::move(test_str), ';');
 
 	EXPECT_THROW(CSV::Parser::Timetable::Parse(parser), READING_FILE_ERROR);
 }
-
 
 
 TEST_F(CSV_Timetable_Test, bad_time)

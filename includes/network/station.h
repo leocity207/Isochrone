@@ -1,8 +1,11 @@
 #ifndef NETWORK_STATION_H
 #define NETWORK_STATION_H
 
+// STL
 #include <string>
-#include <functional>
+#include <vector>
+
+// Utils
 #include "includes/utils/coordinate_2d.h"
 #include "includes/utils/ctor.h"
 
@@ -57,7 +60,9 @@ namespace Network
         int m_id;
         static int s_count;
     };
+
     using Station_CRef = std::reference_wrapper<const Station> ;
-}
+
+}// Network
 
 #endif //NETWORK_STATION_H

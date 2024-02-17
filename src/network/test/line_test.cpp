@@ -1,10 +1,10 @@
 #include "line_test.h"
 
-#include "includes/network/line.h"
-
-#include <functional>
+// STL
 #include <ranges>
 
+// Network
+#include "includes/network/line.h"
 
 std::map<std::string, Network::Station> SetupStationList()
 {
@@ -85,7 +85,6 @@ TEST_P(Line_Test, Get_Station_Index)
 	for (const Network::Station& station : param_struct.not_contained)
 		EXPECT_FALSE(line.Get_Station_Index(station).has_value());
 }
-
 
 ///////////////////////////////////////////////////
 /// a simple line composed of four station A,B,C,D

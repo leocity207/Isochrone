@@ -1,7 +1,6 @@
 #include "day_info_test.h"
 
 
-
 std::array<std::chrono::weekday, 7> weekdays = {
 	std::chrono::Monday,
 	std::chrono::Tuesday,
@@ -18,14 +17,12 @@ std::array<Network::DAY_TYPE, 3> day_Types = {
 		Network::HOLYDAYS,
 };
 
-
-
 /////////////////////
 /// Testing equality
 /// TODO render combine
 TEST_P(Day_Test, equality)
 {
-	auto [weekday, day_Type] = GetParam();
+	const auto [weekday, day_Type] = GetParam();
 	Network::Day day(weekday, day_Type);
 	for(std::chrono::weekday weekday2 : weekdays)
 		for (Network::DAY_TYPE day_type2 : day_Types)
@@ -95,7 +92,6 @@ INSTANTIATE_TEST_SUITE_P(
 		::testing::ValuesIn(day_Types)),
 	Space_Triming_Test_Naming
 );
-
 
 /////////////////////
 /// Testing equality
@@ -295,7 +291,6 @@ TEST_P(Day_Template_Test, Match)
 												EXPECT_NE(daytemplate, daytemplate2);
 										}
 }
-
 
 std::string Space_Triming_Test_Naming_Day_Template(testing::TestParamInfo<std::tuple<bool, bool, bool, bool, bool, bool, bool, bool, bool, bool>> id)
 {

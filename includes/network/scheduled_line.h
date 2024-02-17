@@ -1,12 +1,15 @@
 #ifndef SCHEDULED_LINE_H
 #define SCHEDULED_LINE_H
 
+// STL
 #include <vector>
 #include <ranges>
 
+// Network
 #include "includes/network/schedule.h"
 #include "includes/network/line.h"
 
+// Utils
 #include "includes/utils/ctor.h"
 
 
@@ -71,6 +74,8 @@ namespace Network
 	};
 
 	using Scheduled_Line_CRef = std::reference_wrapper<Scheduled_Line>;
-};
+
+};// Network
+
 
 #endif //SCHEDULED_LINE_H

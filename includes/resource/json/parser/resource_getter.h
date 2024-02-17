@@ -1,6 +1,7 @@
 #ifndef JSON_PARSER_RESOURCE_CONFIG_H
 #define JSON_PARSER_RESOURCE_CONFIG_H
 
+// STL
 #include <filesystem>
 
 namespace Network {
@@ -8,13 +9,12 @@ namespace Network {
 }
 
 
-////////////////////////////////////////////////////////////////////////
-/// @brief this class implement a resource getter for a specific network
-
 namespace JSON
 {
     namespace Parser
     {
+        ////////////////////////////////////////////////////////////////////////
+        /// @brief this class implement a resource getter for a specific network
         class Resource_Getter
         {
 
@@ -33,7 +33,9 @@ namespace JSON
             std::filesystem::path m_path_to_Station_File;
             std::vector<std::pair<std::string, std::vector<std::pair<Network::DayTemplate, std::filesystem::path>>>> m_line_data;
         };
+
     }//Parser
+
 };//JSON
 
 

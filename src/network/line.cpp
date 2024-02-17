@@ -1,9 +1,5 @@
 #include "includes/network/line.h"
 
-// STL
-#include <algorithm>
-#include <ranges>
-
 int Network::Line::s_count = 0;
 
 
@@ -29,7 +25,6 @@ bool Network::Line::Contain(const Network::Station& station_to_find) const noexc
 {
 	return std::find_if(m_stations.begin(), m_stations.end(), [&](const Station& station) {return station == station_to_find; }) != m_stations.end();
 }
-
 
 std::strong_ordering Network::Line::Order(const Network::Station& first, const Network::Station& second) const
 {

@@ -1,9 +1,11 @@
 #include "csv_station_test.h"
 
+// Resource
 #include "includes/resource/csv/parser/station.h"
 #include "includes/resource/csv/engine/string_parser.h"
-#include "includes/utils/exception_def.h"
 
+// Utils
+#include "includes/utils/exception_def.h"
 
 
 TEST_F(CSV_Station_Test, reading_test_easy)
@@ -206,7 +208,6 @@ ASSERT_EQ(station_list.size(), 163);
 
 }
 
-
 TEST_F(CSV_Station_Test, baddly_formated)
 {
 	std::string test =
@@ -220,7 +221,6 @@ station3; 45°31'13\"N;     45°31'13\"E";
 	EXPECT_THROW(std::vector<Network::Station> station_list = CSV::Parser::Station::Parse(parser), READING_FILE_ERROR);
 }
 
-
 TEST_F(CSV_Station_Test, bad_angle)
 {
 	std::string test =
@@ -232,7 +232,6 @@ station3; 45°31'13\"N;     45°31'13\"E";
 
 	EXPECT_THROW(std::vector<Network::Station> station_list = CSV::Parser::Station::Parse(parser), ANGLE_BADLY_FORMATED);
 }
-
 
 TEST_F(CSV_Station_Test, bad_angle_2)
 {

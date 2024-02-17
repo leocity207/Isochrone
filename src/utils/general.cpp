@@ -1,9 +1,7 @@
 #include "includes/utils/general.h"
-#include "includes/utils/exception_def.h"
 
-#include <algorithm>
-#include <cctype>
-#include <ranges>
+//Utils
+#include "includes/utils/exception_def.h"
 
 namespace Generals
 {
@@ -13,10 +11,8 @@ namespace Generals
 		// Trim leading and trailing whitespace
 		size_t first_non_whitespace = str.find_first_not_of(" \t\n\r");
 		size_t last_non_whitespace = str.find_last_not_of(" \t\n\r");
-		if (first_non_whitespace == std::string_view::npos || last_non_whitespace == std::string_view::npos) {
-			// String is empty or consists of only whitespace
+		if (first_non_whitespace == std::string_view::npos || last_non_whitespace == std::string_view::npos)
 			return std::string_view();
-		}
 		return str.substr(first_non_whitespace, last_non_whitespace - first_non_whitespace + 1);
 	}
 
@@ -44,21 +40,21 @@ namespace Generals
 			THROW(ANGLE_BADLY_FORMATED);
 
 		if(str.find("°") == std::string::npos )
-			THROW_TRACE(ANGLE_BADLY_FORMATED, " the angle is badly formated " , std::string(str));
+			THROW_TRACE(ANGLE_BADLY_FORMATED, " the angle is badly formated ", str);
 		auto degree_it = str.begin() + str.find("°");
 		auto minute_it = std::find(str.begin(), str.end(), '\'');
 		auto second_it = std::find(str.begin(), str.end(), '\"');
 
 		// Check if the separators were not found
 		if (degree_it == str.end() || minute_it == str.end() || second_it == str.end())
-			THROW_TRACE(ANGLE_BADLY_FORMATED, " the angle is badly formated " , std::string(str));
+			THROW_TRACE(ANGLE_BADLY_FORMATED, " the angle is badly formated " ,str);
 
 		// Extract the component parts of the angle
 		std::string_view degrees_str(str.begin(), degree_it);
 		std::string_view minutes_str(&*(degree_it + 2), minute_it - degree_it - 2);
 		std::string_view seconds_str(&*(minute_it + 1), second_it - minute_it - 1);
 		if (str.back() != 'N' && str.back() != 'S' && str.back() != 'E' && str.back() != 'W')
-			THROW_TRACE(ANGLE_BADLY_FORMATED, " the angle is badly formated missing the NSWE " , std::string(str));
+			THROW_TRACE(ANGLE_BADLY_FORMATED, " the angle is badly formated missing the NSWE ", str);
 
 		// Convert the component parts to double values
 		try {
@@ -77,7 +73,7 @@ namespace Generals
 		}
 		catch (std::invalid_argument&)
 		{
-			THROW_TRACE(ANGLE_BADLY_FORMATED, " the angle is badly formated missing the NSWE " , std::string(str));
+			THROW_TRACE(ANGLE_BADLY_FORMATED, " the angle is badly formated missing the NSWE ", str);
 		}
 	}
 }

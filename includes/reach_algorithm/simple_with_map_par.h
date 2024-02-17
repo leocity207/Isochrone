@@ -4,6 +4,7 @@
 //reach_algorithm
 #include "algorithm.h"
 
+
 namespace Reach_Algorithm
 {
 	//TEST 1.728ms VIENNE 1440
@@ -23,6 +24,7 @@ namespace Reach_Algorithm
 		std::vector<Context::Station> Optimize(const Context::Reach_Algorithm& algorithm_context) override;
 	};
 	
-}; //Reach_Algorithm
+}; //Reach Algorithm
+
 
 #endif //REACH_ALGORITHM_SIMPLE_WITH_MAP_PAR_H

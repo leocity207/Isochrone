@@ -1,9 +1,10 @@
 #ifndef DAYTIME_H
 #define DAYTIME_H
 
+// STL
 #include <chrono>
-#include <functional>
 #include <optional>
+
 
 class DayTime
 {

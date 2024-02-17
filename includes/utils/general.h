@@ -1,8 +1,8 @@
 #ifndef GENERAL_H
 #define GENERAL_H
 
+// STL
 #include <string_view>
-#include <optional>
 
 
 namespace Generals

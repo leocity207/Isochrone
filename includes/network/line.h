@@ -74,6 +74,8 @@ namespace Network
 	};
 
 	using Line_CRef = std::reference_wrapper<Line>;
-};
+
+};// Network
+
 
 #endif //NETWORK_LINE_H

@@ -1,9 +1,11 @@
 #include "daytime_test.h"
-#include "includes/utils/daytime.h"
 
-#include "includes/utils/exception_def.h"
-
+// STL
 #include <string_view>
+
+// Utils
+#include "includes/utils/daytime.h"
+#include "includes/utils/exception_def.h"
 
 
 TEST_F(DayTime_Test, normal_constructor)
@@ -31,9 +33,6 @@ TEST_F(DayTime_Test, addition)
 	ASSERT_EQ(test_6.GetTime(), std::chrono::minutes(64));
 
 }
-
-
-
 
 TEST_P(DayTime_Test_String_Parser, parsing_constructor)
 {

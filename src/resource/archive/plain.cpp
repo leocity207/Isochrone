@@ -1,11 +1,10 @@
 #include "includes/resource/archive/plain.h"
 
+// Ressrouce
+#include "includes/resource/csv/engine/file_parser.h"
 #include "includes/resource/csv/parser/station.h"
 #include "includes/resource/csv/parser/timetable.h"
-
 #include "includes/resource/json/parser/resource_getter.h"
-
-#include "includes/resource/csv/engine/file_parser.h"
 
 
 std::pair<std::vector<Network::Station>, std::vector<Network::Scheduled_Line>> Resource::Archive::Plaine::Parse_Scheduled_Network_Resource(std::filesystem::path&& plain_archive_path)

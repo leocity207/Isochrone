@@ -1,9 +1,12 @@
 #ifndef CSV_ENGINE_FILE_PARSER_H
 #define CSV_ENGINE_FILE_PARSER_H
 
+// STL
 #include <filesystem>
 
+// Resource
 #include "parser.h"
+
 
 namespace CSV
 {
@@ -21,7 +24,10 @@ namespace CSV
         private:
             std::filesystem::path m_filepath;
         };
-    };
-}; //CSV
+
+    }; // Engine
+
+}; // CSV
+
 
 #endif //CSV_ENGINE_FILE_PARSER_H

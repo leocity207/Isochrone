@@ -2,7 +2,6 @@
 
 //STL
 #include <algorithm>
-#include <ranges>
 
 
 Network::Scheduled_Line::Scheduled_Line(std::vector<Network::Schedule>&& Timetable, std::string&& name) noexcept :
@@ -33,7 +32,7 @@ std::optional<Network::Schedule_CRef> Network::Scheduled_Line::Get_Schedule(cons
 			{
 				return false;
 			}
-		};
+	};
 
 	std::vector<Schedule_CRef> transformed(m_schedule.begin(), m_schedule.end());
 	auto right_schedule = std::find_if(transformed.begin(), transformed.end(), does_day_match_schedule);

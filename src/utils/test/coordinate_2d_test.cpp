@@ -1,7 +1,9 @@
 #include "coordinate_2d_test.h"
 
+// STL
 #include <string_view>
 
+// Utils
 #include "includes/utils/coordinate_2d.h"
 #include "includes/utils/exception_def.h"
 
@@ -20,12 +22,10 @@ TEST_F(Coordinate_Test, From_Double_String_Valid)
 	EXPECT_DOUBLE_EQ(a.Get_Longitude(), 45.520277777777778);
 }
 
-
 TEST_F(Coordinate_Test, From_Double_String_Invalid)
 {
 	EXPECT_THROW(Sphere_Coordinate("45°31'13\"S", "45°31'19.0\"N"), ANGLE_BADLY_FORMATED);
 }
-
 
 TEST_F(Coordinate_Test, GetDistance_normal)
 {
@@ -35,7 +35,6 @@ TEST_F(Coordinate_Test, GetDistance_normal)
 	EXPECT_DOUBLE_EQ(a.Get_Distance(b), 109643.85167255464);
 
 }
-
 
 TEST_F(Coordinate_Test, GetDistance_null)
 {

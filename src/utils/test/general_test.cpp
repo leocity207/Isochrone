@@ -1,7 +1,12 @@
 #include "general_test.h"
+
+
+// STL
+#include <string_view>
+
+// Utils
 #include "includes/utils/general.h"
 #include "includes/utils/exception_def.h"
-#include <string_view>
 
 
 TEST_P(Space_Triming_Test, string_view) {
@@ -10,7 +15,6 @@ TEST_P(Space_Triming_Test, string_view) {
 	EXPECT_NO_THROW(returned = Generals::Trim_Space_Front_Back(test_view));
 	ASSERT_EQ(returned, GetParam().second);
 }
-
 
 TEST_P(Space_Triming_Test, string) {
 	std::string test_string = std::string(GetParam().first);
@@ -78,7 +82,6 @@ TEST_P(Angle_Parsing, _)
 		EXPECT_THROW(Generals::Parse_Angle(angle_str), ANGLE_BADLY_FORMATED);
 	}
 }
-
 
 std::string Angle_parsing_Test_Naming(testing::TestParamInfo<std::tuple<std::string,bool,double>> id)
 {
