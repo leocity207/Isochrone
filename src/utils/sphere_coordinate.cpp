@@ -1,4 +1,4 @@
-#include "includes/utils/coordinate_2d.h"
+#include "includes/utils/sphere_coordinate.h"
 
 // Utils
 #include "includes/utils/general.h"
