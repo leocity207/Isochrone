@@ -1,5 +1,5 @@
-#ifndef COORDINATE_2D_H
-#define COORDINATE_2D_H
+#ifndef UTILS_SPHERE_COORDINATE_H
+#define UTILS_SPHERE_COORDINATE_H
 
 // STL
 #include <string>
@@ -32,7 +32,9 @@ class Sphere_Coordinate
     private:
         double m_latitude;
         double m_longitude;
+    public:
         static constexpr int earth_radius = 6378100; 
 };
 
-#endif //2D_COORDINATE_H
+
+#endif //UTILS_SPHERE_COORDINATE_H
