@@ -4,7 +4,7 @@
 #include <string_view>
 
 // Utils
-#include "includes/utils/coordinate_2d.h"
+#include "includes/utils/sphere_coordinate.h"
 #include "includes/utils/exception_def.h"
 
 
