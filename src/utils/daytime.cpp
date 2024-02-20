@@ -7,19 +7,27 @@
 // STL
 #include <string_view>
 #include <chrono>
+#include <cmath>
 
 
-DayTime::DayTime(std::chrono::hours hours, std::chrono::minutes minutes) noexcept : m_day_seconds(hours+minutes)
+DayTime::DayTime(std::chrono::hours hours, std::chrono::minutes minutes) noexcept : 
+	m_day_seconds(hours+minutes)
+{
+}
+
+DayTime::DayTime(double seconds) noexcept :
+	m_day_seconds((size_t)std::round(seconds))
+{
+}
+
+DayTime::DayTime(std::chrono::seconds seconds) noexcept :
+	m_day_seconds(seconds)
 {
 
 }
 
-DayTime::DayTime(std::chrono::seconds seconds) noexcept : m_day_seconds(seconds)
-{
-
-}
-
-DayTime::DayTime(const DayTime& other) noexcept : m_day_seconds(other.m_day_seconds)
+DayTime::DayTime(const DayTime& other) noexcept :
+	m_day_seconds(other.m_day_seconds)
 {
 
 }

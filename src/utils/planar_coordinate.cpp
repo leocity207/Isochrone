@@ -1,34 +1,45 @@
 #include "includes/utils/planar_coordinate.h"
 #include "includes/utils/sphere_coordinate.h"
 
+// STD
 #include <numbers>
-
-#include "includes/Context/Scheduled_Network.h"
+#include <cmath>
+#include <vector>
 
 double Planar_Coordinate::s_mean_longitude_factor = 0.0;
 
+
 Planar_Coordinate::Planar_Coordinate(const Sphere_Coordinate& other) noexcept:
 	m_x(Sphere_Coordinate::earth_radius * other.Get_Lattitude() * std::numbers::pi/180.0),
-	m_y(Sphere_Coordinate::earth_radius * other.Get_Longitude() * Planar_Coordinate::s_mean_longitude_factor* std::numbers::pi / 180.0)
+	m_y(Sphere_Coordinate::earth_radius * other.Get_Longitude() * std::numbers::pi / 180.0)
 {
-
 }
 
-void Planar_Coordinate::Compute_Mean_Longitude_Factor(const Context::Scheduled_Network& context)
+Planar_Coordinate::Planar_Coordinate(double x, double y) noexcept :
+	m_x(x),
+	m_y(y)
+{
+}
+
+void Planar_Coordinate::Compute_Mean_Longitude_Factor(const std::vector<std::reference_wrapper<const Sphere_Coordinate>>& coordinates)
 {
 	s_mean_longitude_factor = 0;
-	for (const Network::Station& station : context.Get_Station())
-		s_mean_longitude_factor += station.GetCoordinate().Get_Longitude();
-	s_mean_longitude_factor /= context.Get_Station().size();
+	for (const Sphere_Coordinate& coordinate : coordinates)
+		s_mean_longitude_factor += coordinate.Get_Longitude();
+	s_mean_longitude_factor /= coordinates.size();
 }
 
-
-size_t Planar_Coordinate::Get_X() const noexcept
+double Planar_Coordinate::Get_X() const noexcept
 {
-	return size_t();
+	return m_x;
 }
 
-size_t Planar_Coordinate::Get_Y() const noexcept
+double Planar_Coordinate::Get_Y() const noexcept
 {
-	return size_t();
+	return m_y;
+}
+
+double Planar_Coordinate::Get_Distance(const Planar_Coordinate& other) const noexcept
+{
+	return std::sqrt((other.m_x - m_x) * (other.m_x - m_x) + (other.m_y - m_y) * (other.m_y - m_y));
 }

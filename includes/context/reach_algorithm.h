@@ -34,6 +34,7 @@ namespace Context
 		const double Get_Speed() const noexcept;
 		const Sphere_Coordinate Get_Starting_Coordinate() const noexcept;
 		const Network::Day& Get_Day_Type() const noexcept;
+		const Scheduled_Network& GetNetwork() const noexcept;
 		std::vector<Context::Station> Optimize(::Reach_Algorithm::Algorithm& algorithm) const;
 
 	//////////////

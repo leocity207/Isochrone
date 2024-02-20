@@ -18,4 +18,5 @@ target_link_libraries(main_app
 	log
 	csv
 	archive
+	map
 )

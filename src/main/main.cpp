@@ -5,6 +5,7 @@
 #include "includes/reach_algorithm/simple_with_map.h"
 #include "includes/reach_algorithm/simple_par.h"
 #include "includes/reach_algorithm/simple_with_map_par.h"
+#include "includes/map/image.h"
 
 using namespace std::chrono;
 
@@ -20,31 +21,35 @@ int main()
 
 	auto t0 = high_resolution_clock::now();
 
-		auto range = std::views::iota(0, 1440);
 
-		std::for_each(
-			std::execution::par,
-			range.begin(),
-			range.end(),
-			[&](int item)
-			{
-				Context::Reach_Algorithm solver_context(network_context, DayTime(hours(item / 60), minutes(item % 60)), 1, Sphere_Coordinate(4.8740833333333340, 45.521305555555557), Network::Day(Monday, Network::SCHOOL_DAYS));
-				Reach_Algorithm::Simple_With_Map algorithm;
-				std::vector<Context::Station> result = solver_context.Optimize(algorithm);
-			});
+	Context::Reach_Algorithm solver_context(network_context, DayTime(hours(8), minutes(0)), 1, Sphere_Coordinate(4.8740833333333340, 45.521305555555557), Network::Day(Monday, Network::SCHOOL_DAYS));
+	Reach_Algorithm::Simple_With_Map algorithm;
+	std::vector<Context::Station> result = solver_context.Optimize(algorithm);
+	Map::Image map_creator(solver_context, result, 25);
+	auto map = map_creator.Compute_Time_Image();
+
+
+
 
 	auto t1 = high_resolution_clock::now();
 	milliseconds d = std::chrono::duration_cast<milliseconds>(t1-t0);
 	std::cout << (t1 - t0).count() << "s\n";
 	std::cout << d.count() / (1260.0 - 480.0) << "ms\n";
 
-	Context::Reach_Algorithm solver_context(network_context, DayTime(hours(8), minutes(0)), 1, Sphere_Coordinate(4.8740833333333340, 45.521305555555557), Network::Day(Monday, Network::SCHOOL_DAYS));
-	Reach_Algorithm::Simple_With_Map algorithm;
-	std::vector<Context::Station> result = solver_context.Optimize(algorithm);
-	std::ofstream output("ouput.txt");
-	for (const auto& station : result)
-		output << station.Get().Get_Name() << ";" << station.Get_Reaching_Time().ToString() << ";" << station.Has_Been_Reached_By_Transport() << ";" << station.Has_Been_Reached_Once_By_Transport() << std::endl;
+	
+	std::ofstream output("ouput.img");
+	for (const auto& rows : map)
+	{
+		for (size_t i = 0; i < rows.size(); i++)
+		{
+			if (i != 0)
+				output << ",";
+			output << rows[i].GetTime().count();
+		}
+		output << std::endl;
+	}
 
+		
 
 	return 0;
 }

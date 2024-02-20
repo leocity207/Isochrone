@@ -12,6 +12,7 @@ class DayTime
         DayTime() = default;
         DayTime(const DayTime& other) noexcept;
         DayTime(std::chrono::hours hours, std::chrono::minutes minutes) noexcept;
+        DayTime(double seconds) noexcept;
         
         bool operator==(const DayTime& other_DayTime) const noexcept;
         bool operator>(const DayTime& other_DayTime) const noexcept;
