@@ -46,3 +46,4 @@ T Utils::Rectangle<T>::Get_Y_Min() const noexcept
 }
 
 template class Utils::Rectangle<size_t>;
+template class Utils::Rectangle<int>;

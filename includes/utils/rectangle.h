@@ -31,7 +31,8 @@ namespace Utils
 		T m_y_max;
 	};
 
-	using Integer_Rectangle = Rectangle<size_t>;
+	using Size_Rectangle = Rectangle<size_t>;
+	using Integer_Rectangle = Rectangle<int>;
 }
 
 

@@ -28,7 +28,7 @@ namespace Map
 	public:
 		std::vector<std::vector<DayTime>> Compute_Time_Image();
 	private:
-		DayTime Compute_Time_To_Coordinate(const Network::Station&,const Planar_Coordinate&) const noexcept;
+		DayTime Compute_Time_To_Coordinate(const Context::Station&,const Planar_Coordinate&) const noexcept;
 		DayTime Compute_Time_To_Coordinate(const Planar_Coordinate&, const Planar_Coordinate&) const noexcept;
 
 	//////////////

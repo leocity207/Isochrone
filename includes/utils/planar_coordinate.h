@@ -25,7 +25,7 @@ public:
     //////////////////
     /// STATIC METHODS
 public:
-    static void Compute_Mean_Longitude_Factor(const std::vector<std::reference_wrapper<const Sphere_Coordinate>>& stations);
+    static void Compute_Mean_Factor(const std::vector<std::reference_wrapper<const Sphere_Coordinate>>& stations);
 
 
     //////////////
@@ -34,6 +34,7 @@ private:
     double m_x;
     double m_y;
     static double s_mean_longitude_factor;
+    static double s_mean_lattitude_factor;
 };
 
 #endif //UTILS_PLANAR_COORDINATE_H

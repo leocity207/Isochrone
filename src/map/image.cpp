@@ -3,6 +3,7 @@
 // STD
 #include <algorithm>
 #include <ranges>
+#include <execution>
 
 // Context
 #include "includes/context/reach_algorithm.h"
@@ -17,6 +18,8 @@
 #include "includes/utils/daytime.h"
 
 
+
+
 static Utils::Integer_Rectangle Compute_Network_Boundary(const std::vector<Network::Station>& stations)
 {
     if (!stations.size())
@@ -26,7 +29,7 @@ static Utils::Integer_Rectangle Compute_Network_Boundary(const std::vector<Netwo
     coordinates.reserve(stations.size());
     for (const Network::Station& station : stations)
         coordinates.emplace_back(std::ref(station.GetCoordinate()));
-    Planar_Coordinate::Compute_Mean_Longitude_Factor(coordinates);
+    Planar_Coordinate::Compute_Mean_Factor(coordinates);
 
     Planar_Coordinate coordinate(stations[0].GetCoordinate());
     double x_min = coordinate.Get_X();
@@ -46,7 +49,7 @@ static Utils::Integer_Rectangle Compute_Network_Boundary(const std::vector<Netwo
         if (station_coordinate.Get_Y() > y_max)
             y_max = station_coordinate.Get_Y();
     }
-    return Utils::Integer_Rectangle((size_t)x_min, (size_t)x_max,(size_t)y_min,(size_t)y_max);
+    return Utils::Integer_Rectangle((int)x_min, (int)x_max,(int)y_min,(int)y_max);
 }
 
 
@@ -59,9 +62,9 @@ Map::Image::Image(const Context::Reach_Algorithm& context, const std::vector<Con
 
 }
 
-DayTime Map::Image::Compute_Time_To_Coordinate(const Network::Station& station, const Planar_Coordinate& coordinate) const noexcept
+DayTime Map::Image::Compute_Time_To_Coordinate(const Context::Station& station, const Planar_Coordinate& coordinate) const noexcept
 {
-    return this->Compute_Time_To_Coordinate(Planar_Coordinate(station.GetCoordinate()), coordinate);
+    return this->Compute_Time_To_Coordinate(Planar_Coordinate(station.Get().GetCoordinate()), coordinate) + station.Get_Reaching_Time();
 }
 
 DayTime Map::Image::Compute_Time_To_Coordinate(const Planar_Coordinate& coordinate1, const Planar_Coordinate& coordinate2) const noexcept
@@ -72,20 +75,21 @@ DayTime Map::Image::Compute_Time_To_Coordinate(const Planar_Coordinate& coordina
 std::vector<std::vector<DayTime>> Map::Image::Compute_Time_Image()
 {
 
-    std::vector<std::vector<DayTime>> image(size_t(m_boundary.Get_Y_Length() / m_meter_per_pixel), std::vector<DayTime>(size_t(m_boundary.Get_X_Length() / m_meter_per_pixel),0));
+    //std::vector<std::vector<DayTime>> image(size_t(m_boundary.Get_Y_Length() / m_meter_per_pixel), std::vector<DayTime>(size_t(m_boundary.Get_X_Length() / m_meter_per_pixel),0));
+    std::vector<std::vector<DayTime>> image(size_t(m_boundary.Get_X_Length() / m_meter_per_pixel), std::vector<DayTime>(size_t(m_boundary.Get_Y_Length() / m_meter_per_pixel), 0));
     auto range_x = std::views::iota(size_t(0), size_t(m_boundary.Get_X_Length()/m_meter_per_pixel));
     auto range_y = std::views::iota(size_t(0), size_t(m_boundary.Get_Y_Length()/m_meter_per_pixel));
-    std::for_each(range_x.begin(), range_x.end(), [&](size_t i) {
-        std::for_each(range_y.begin(), range_y.end(), [&](size_t j) {
+    std::for_each(std::execution::par_unseq,range_x.begin(), range_x.end(), [&](size_t i) {
+        std::for_each(std::execution::par_unseq,range_y.begin(), range_y.end(), [&](size_t j) {
             auto temp = Planar_Coordinate(double(i) * m_meter_per_pixel + m_boundary.Get_X_Min(),double(j) * m_meter_per_pixel + m_boundary.Get_Y_Min());
-            DayTime min = this->Compute_Time_To_Coordinate(temp, Planar_Coordinate(m_reach_context.get().Get_Starting_Coordinate()));
+            DayTime min = this->Compute_Time_To_Coordinate(temp, Planar_Coordinate(m_reach_context.get().Get_Starting_Coordinate())) + m_reach_context.get().Get_Starting_Time();
             for (const Context::Station& station : m_stations.get())
             {
-                DayTime distance = this->Compute_Time_To_Coordinate(station.Get(), temp);
+                DayTime distance = this->Compute_Time_To_Coordinate(station, temp);
                 if (distance < min)
                     min = distance;
             }
-            image[j][i] = min;
+            image[image.size()-i-1][j] = min;
         });
     });
     return image;
