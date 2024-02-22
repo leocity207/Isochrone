@@ -25,5 +25,6 @@
 * #13 : Add archive
 * #14 : Create Readme
 * #15 : Create map base
-* #16 : Check timetable validity
-  * Done
+  * Error detected at the end of the day 
+* #16: validate input data, mainly that timetable respect order 
+  * Done 
