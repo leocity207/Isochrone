@@ -59,6 +59,11 @@ DayTime DayTime::operator+(const DayTime& other) const noexcept
 	return DayTime(m_day_seconds + other.m_day_seconds);
 }
 
+DayTime DayTime::operator-(const DayTime& other) const noexcept
+{
+	return DayTime(m_day_seconds - other.m_day_seconds);
+}
+
 bool DayTime::operator==(const DayTime& other_DayTime) const noexcept
 {
 	return GetTime() == other_DayTime.GetTime();

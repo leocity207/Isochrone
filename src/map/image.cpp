@@ -85,7 +85,7 @@ std::vector<std::vector<DayTime>> Map::Image::Compute_Time_Image()
             DayTime min = this->Compute_Time_To_Coordinate(temp, Planar_Coordinate(m_reach_context.get().Get_Starting_Coordinate())) + m_reach_context.get().Get_Starting_Time();
             for (const Context::Station& station : m_stations.get())
             {
-                DayTime distance = this->Compute_Time_To_Coordinate(station, temp);
+                DayTime distance = this->Compute_Time_To_Coordinate(station, temp) - m_reach_context.get().Get_Starting_Time();
                 if (distance < min)
                     min = distance;
             }

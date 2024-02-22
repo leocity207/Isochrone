@@ -22,6 +22,7 @@ class DayTime
 
         DayTime operator+(const std::chrono::seconds&) const noexcept;
         DayTime operator+(const DayTime&) const noexcept;
+        DayTime operator-(const DayTime&) const noexcept;
 
         ////////////////////////////
         /// @brief create a daytime from a string

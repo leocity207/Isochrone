@@ -13,7 +13,7 @@ def Create_Image(path):
 	for row in reader:
 			reader2.append([float(row[i]) for i in range(len(row))])
 	#readers3 = np.uint8(np.asarray(reader2)/np.asarray(reader2).max())*256
-	cm = plt.get_cmap('prism')
+	cm = plt.get_cmap('viridis')
 	colored_image = cm(np.asarray(reader2)/np.asarray(reader2).max())
 	return Image.fromarray((colored_image[:, :, :3] * 255).astype(np.uint8))
 
