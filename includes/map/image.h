@@ -13,6 +13,7 @@ namespace Context {
 namespace Network{ class Station; }
 class Planar_Coordinate;
 
+
 namespace Map
 {
 	class Image
@@ -26,6 +27,9 @@ namespace Map
 	///////////
 	/// METHODS
 	public:
+		///////////////////////////////////////////
+		/// @brief  : Compute the Isochrone map 
+		/// @return : 2D image of the Isochrone map
 		std::vector<std::vector<DayTime>> Compute_Time_Image();
 	private:
 		DayTime Compute_Time_To_Coordinate(const Context::Station&,const Planar_Coordinate&) const noexcept;

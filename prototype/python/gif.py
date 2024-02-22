@@ -12,19 +12,16 @@ def Create_Image(path):
 	reader2 = []
 	for row in reader:
 			reader2.append([float(row[i]) for i in range(len(row))])
-	#readers3 = np.uint8(np.asarray(reader2)/np.asarray(reader2).max())*256
 	cm = plt.get_cmap('viridis')
 	colored_image = cm(np.asarray(reader2)/np.asarray(reader2).max())
 	return Image.fromarray((colored_image[:, :, :3] * 255).astype(np.uint8))
 
 def Load_Images(path):
-
 	glober = [path.replace("*",str(i)) for i in range(720)]
 	images = [Create_Image(subpath) for subpath in glober]
 	return images
 
 def Make_GIF(frames,outfile):
-	print(len(frames))
 	frame_one = frames[0]
 	frame_one.save(outfile, format="GIF", append_images=frames,
                save_all=True, duration=100, loop=0)

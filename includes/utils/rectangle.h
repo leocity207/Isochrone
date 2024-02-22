@@ -4,6 +4,7 @@
 // Utils
 #include "ctor.h"
 
+
 namespace Utils
 {
 	template<class T>
@@ -34,7 +35,6 @@ namespace Utils
 	using Size_Rectangle = Rectangle<size_t>;
 	using Integer_Rectangle = Rectangle<int>;
 }
-
 
 
 #endif UTILS_RECTANGLE_H

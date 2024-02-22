@@ -9,6 +9,7 @@
 double Planar_Coordinate::s_mean_longitude_factor = 0.0;
 double Planar_Coordinate::s_mean_lattitude_factor = 0.0;
 
+
 Planar_Coordinate::Planar_Coordinate(const Sphere_Coordinate& other) noexcept:
 	m_x(Sphere_Coordinate::earth_radius * (other.Get_Lattitude() - s_mean_lattitude_factor) * std::numbers::pi/180.0),
 	m_y(Sphere_Coordinate::earth_radius * (other.Get_Longitude() - s_mean_longitude_factor) * std::numbers::pi / 180.0)
