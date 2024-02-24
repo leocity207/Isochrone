@@ -10,14 +10,14 @@
 
 namespace CSV
 {
-    namespace Parser
-    {
-        namespace Station
-        {
-            std::vector<Network::Station> Parse(const CSV::Engine::Parser& engine);
-        };
+	namespace Parser
+	{
+		namespace Station
+		{
+			std::vector<Network::Station> Parse(const CSV::Engine::Parser& engine);
+		};
 
-    }; // Parser
+	}; // Parser
 
 }; // CSV
 

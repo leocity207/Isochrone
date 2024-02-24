@@ -10,22 +10,22 @@
 
 namespace CSV
 {
-    namespace Engine
-    {
-        class File_Parser : public Parser
-        {
-            ////////
-            /// CTOR
-        public:
-            File_Parser(std::filesystem::path&& path, const char delimiter);
+	namespace Engine
+	{
+		class File_Parser : public Parser
+		{
+			////////
+			/// CTOR
+		public:
+			File_Parser(std::filesystem::path&& path, const char delimiter);
 
-            //////////////
-            /// ATTRIBUTES
-        private:
-            std::filesystem::path m_filepath;
-        };
+			//////////////
+			/// ATTRIBUTES
+		private:
+			std::filesystem::path m_filepath;
+		};
 
-    }; // Engine
+	}; // Engine
 
 }; // CSV
 

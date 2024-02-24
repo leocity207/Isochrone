@@ -6,17 +6,17 @@
 
 namespace CSV
 {
-    namespace Engine
-    {
-        class String_Parser : public Parser
-        {
-            ////////
-            /// CTOR
-        public:
-            String_Parser(std::string&& str, const char delimiter);
-        };
+	namespace Engine
+	{
+		class String_Parser : public Parser
+		{
+			////////
+			/// CTOR
+		public:
+			String_Parser(std::string&& str, const char delimiter);
+		};
 
-    }; //Engine
+	}; //Engine
 
 }; //CSV
 

@@ -12,14 +12,14 @@ using  Pair_Station_TimeTable = std::pair<std::vector<std::string>, std::vector<
 
 namespace CSV
 {
-    namespace Parser
-    {
-        namespace Timetable
-        {
-            Pair_Station_TimeTable Parse(const CSV::Engine::Parser& engine);
-        };
+	namespace Parser
+	{
+		namespace Timetable
+		{
+			Pair_Station_TimeTable Parse(const CSV::Engine::Parser& engine);
+		};
 
-    }; // Parser
+	}; // Parser
 
 }; // CSV
 
