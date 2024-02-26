@@ -67,21 +67,33 @@ const size_t CSV::Parser::Validator::TimeTable_Error_Size::Get_Normal_Size() con
 std::vector<std::unique_ptr<CSV::Parser::Validator::TimeTable_Error>> CSV::Parser::Validator::Validate(const TimeTable& timetable,const std::string& name) noexcept
 {
 	std::vector<std::unique_ptr<CSV::Parser::Validator::TimeTable_Error>> errors;
-	if (!timetable.size())
-		return errors;
-	const size_t normal_size = timetable.begin()->size();
-	for (size_t i : std::views::iota(size_t(0), timetable.size()))
+
+	// Checking the size is correct
+	size_t rows = timetable.size();
+	if (rows == 0)
 	{
-		if (timetable[i].size() != normal_size)
-			errors.push_back(std::unique_ptr< CSV::Parser::Validator::TimeTable_Error>(new CSV::Parser::Validator::TimeTable_Error_Size(normal_size, timetable[i].size(), i, name)));
+		errors.push_back(std::unique_ptr< CSV::Parser::Validator::TimeTable_Error>(new CSV::Parser::Validator::TimeTable_Error_Size(0, 0, 0, name)));
+		return errors;
+	}
+
+	size_t cols = timetable[0].size();
+	for (const auto& row : std::ranges::iota_view(0ul, rows))
+		if (timetable[row].size() != cols)
+			errors.push_back(std::unique_ptr< CSV::Parser::Validator::TimeTable_Error>(new CSV::Parser::Validator::TimeTable_Error_Size(cols, timetable[row].size(), row, name)));
+	if (!errors.empty())
+		return errors;
+
+	// Checking that values are correct
+	for (size_t i : std::ranges::iota_view(0ul, cols))
+	{
 		DayTime current_daytime(0h,0min);
-		for (size_t j : std::views::iota(size_t(0), timetable[i].size()))
-			if (!timetable[i][j].has_value())
+		for (size_t j : std::views::iota(0ul, rows))
+			if (!timetable[j][i].has_value())
 				continue;
-			else if (timetable[i][j] < current_daytime)
-				errors.push_back(std::make_unique<CSV::Parser::Validator::TimeTable_Error_Time>(i, j, *timetable[i][j], name));
+			else if (timetable[j][i] < current_daytime)
+				errors.push_back(std::make_unique<CSV::Parser::Validator::TimeTable_Error_Time>(j, i, *timetable[j][i], name));
 			else
-				current_daytime = *timetable[i][j];
+				current_daytime = *timetable[j][i];
 	}
 	return errors;
 }

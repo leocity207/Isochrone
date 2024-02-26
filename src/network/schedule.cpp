@@ -1,5 +1,7 @@
 #include "includes/network/schedule.h"
 
+// STL
+#include <ranges>
 
 Network::Schedule::Schedule(std::vector<Network::Station_CRef>&& station_list, Network::TimeTable&& schedule_tab, Network::DayTemplate&& day_template,std::string&& name) noexcept : m_timetable(schedule_tab),DayTemplate(std::move(day_template)),Line(std::move(station_list),std::move(name))
 {
@@ -17,7 +19,7 @@ std::optional<DayTime> Network::Schedule::Get_Closest_Time_To_Station(const Stat
 	if (!end_index || *start_index > *end_index)
 		return std::nullopt;
 
-	for(size_t i = 0 ;i < m_timetable[*start_index].size();i++ )
+	for(size_t i : std::ranges::iota_view(0ul,m_timetable[*start_index].size()))
 	{
 		std::optional<DayTime> start_station_time = m_timetable[*start_index][i];
 		if(!start_station_time.has_value())

@@ -1,8 +1,5 @@
 #include "includes/resource/archive/plain.h"
 
-// Utils
-#include "includes/utils/general.h"
-
 // Ressrouce
 #include "includes/resource/csv/engine/file_parser.h"
 #include "includes/resource/csv/parser/station.h"
@@ -14,7 +11,7 @@
 
 static void Check_Timetable(const TimeTable& timetable,const std::string& timetable_name)
 {
-	const auto errors = CSV::Parser::Validator::Validate(Generals::Transpose(timetable), timetable_name);
+	const auto errors = CSV::Parser::Validator::Validate(timetable, timetable_name);
 	if (!errors.empty())
 	{
 		for (const auto& error : errors)
