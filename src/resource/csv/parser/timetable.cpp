@@ -42,5 +42,5 @@ Pair_Station_TimeTable CSV::Parser::Timetable::Parse(const CSV::Engine::Parser& 
 	}
 
 	
-	return Pair_Station_TimeTable(station_list, Generals::Transpose(time_table));
+	return Pair_Station_TimeTable(station_list, time_table);
 }
