@@ -29,9 +29,39 @@ std::string CSV::Parser::Validator::TimeTable_Error_Time::Get_Error_As_String() 
 	return std::string("Line: ") + m_name + " at time " + m_time.ToString() + " coordinate : " + std::to_string(m_i) + ":" + std::to_string(m_j);
 }
 
+const size_t CSV::Parser::Validator::TimeTable_Error_Time::Get_i() const noexcept
+{
+	return m_i;
+}
+
+const size_t CSV::Parser::Validator::TimeTable_Error_Time::Get_j() const noexcept
+{
+	return m_j;
+}
+
+const DayTime CSV::Parser::Validator::TimeTable_Error_Time::Get_Time() const noexcept
+{
+	return m_time;
+}
+
 std::string CSV::Parser::Validator::TimeTable_Error_Size::Get_Error_As_String() const noexcept
 {
 	return "Line: " + m_name + " at line " + std::to_string(m_i) + " expected size : " + std::to_string(m_normal_size) + " but got size " + std::to_string(m_anormal_size);
+}
+
+const size_t CSV::Parser::Validator::TimeTable_Error_Size::Get_i() const noexcept
+{
+	return m_i;
+}
+
+const size_t CSV::Parser::Validator::TimeTable_Error_Size::Get_Anormal_Size() const noexcept
+{
+	return m_anormal_size;
+}
+
+const size_t CSV::Parser::Validator::TimeTable_Error_Size::Get_Normal_Size() const noexcept
+{
+	return m_normal_size;
 }
 
 std::vector<std::unique_ptr<CSV::Parser::Validator::TimeTable_Error>> CSV::Parser::Validator::Validate(const TimeTable& timetable,const std::string& name) noexcept

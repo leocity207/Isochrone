@@ -48,6 +48,9 @@ namespace CSV
 				/// Methods
 				public:
 					std::string Get_Error_As_String() const noexcept override;
+					const size_t Get_i() const noexcept;
+					const size_t Get_j() const noexcept;
+					const DayTime Get_Time() const noexcept;
 				
 				//////////////
 				/// ATTRIBUTES
@@ -72,6 +75,9 @@ namespace CSV
 				/// Methods
 			public:
 				std::string Get_Error_As_String() const noexcept override;
+				const size_t Get_i() const noexcept;
+				const size_t Get_Anormal_Size() const noexcept;
+				const size_t Get_Normal_Size() const noexcept;
 
 				//////////////
 				/// ATTRIBUTES
