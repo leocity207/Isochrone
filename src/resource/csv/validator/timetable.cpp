@@ -78,7 +78,7 @@ std::vector<std::unique_ptr<CSV::Parser::Validator::TimeTable_Error>> CSV::Parse
 		for (size_t j : std::views::iota(size_t(0), timetable[i].size()))
 			if (!timetable[i][j].has_value())
 				continue;
-			else if(timetable[i][j] < current_daytime)
+			else if (timetable[i][j] < current_daytime)
 				errors.push_back(std::make_unique<CSV::Parser::Validator::TimeTable_Error_Time>(i, j, *timetable[i][j], name));
 			else
 				current_daytime = *timetable[i][j];

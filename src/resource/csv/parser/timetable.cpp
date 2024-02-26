@@ -40,5 +40,7 @@ Pair_Station_TimeTable CSV::Parser::Timetable::Parse(const CSV::Engine::Parser& 
 			temp_vector.emplace_back(DayTime::From_Time_String(element));
 		time_table.emplace_back(std::move(temp_vector));
 	}
-	return Pair_Station_TimeTable(station_list,time_table);
+
+	
+	return Pair_Station_TimeTable(station_list, Generals::Transpose(time_table));
 }

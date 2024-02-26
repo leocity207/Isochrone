@@ -22,6 +22,22 @@ TEST_F(CSV_Validator_Test, normal)
 	EXPECT_EQ(errors.size(), 0);
 }
 
+////////////////////////////////////////////////////////////////////////////
+/// when time is the same two our consecutively it is exepected to be valide
+TEST_F(CSV_Validator_Test, normal_following)
+{
+	DayTime a00 = DayTime::From_Time_String("6:00").value();  DayTime a10 = DayTime::From_Time_String("6:10").value();
+	DayTime a01 = DayTime::From_Time_String("7:00").value();  DayTime a11 = DayTime::From_Time_String("9:20").value();  DayTime a21 = DayTime::From_Time_String("8:00").value();
+	DayTime a02 = DayTime::From_Time_String("9:20").value();                                                            DayTime a22 = DayTime::From_Time_String("9:20").value();
+	DayTime a03 = DayTime::From_Time_String("10:10").value(); DayTime a13 = DayTime::From_Time_String("9:20").value(); DayTime a23 = DayTime::From_Time_String("10:30").value();
+	DayTime a04 = DayTime::From_Time_String("10:10").value(); DayTime a14 = DayTime::From_Time_String("12:10").value();
+
+	TimeTable timetable = { {a00,a01,a02,a03,a04},{a10,a11,std::nullopt,a13,a14},{std::nullopt,a21,a22,a23,std::nullopt} };
+
+	const auto errors = CSV::Parser::Validator::Validate(timetable, "valide");
+	EXPECT_EQ(errors.size(), 0);
+}
+
 ////////////////////////////////////////
 /// Test where there is one wrong value
 TEST_F(CSV_Validator_Test, strange_time)
