@@ -41,6 +41,5 @@ Pair_Station_TimeTable CSV::Parser::Timetable::Parse(const CSV::Engine::Parser& 
 		time_table.emplace_back(std::move(temp_vector));
 	}
 
-	
 	return Pair_Station_TimeTable(station_list, time_table);
 }

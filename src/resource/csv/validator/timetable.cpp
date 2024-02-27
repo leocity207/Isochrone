@@ -1,8 +1,11 @@
 #include "includes/resource/csv/validator/timetable.h"
 
+// STL
+#include <chrono>
 #include <ranges>
 
 using namespace std::chrono;
+
 
 CSV::Parser::Validator::TimeTable_Error_Time::TimeTable_Error_Time(size_t i, size_t j, DayTime time, const std::string& name) noexcept :
 	CSV::Parser::Validator::TimeTable_Error(),
@@ -68,7 +71,7 @@ std::vector<std::unique_ptr<CSV::Parser::Validator::TimeTable_Error>> CSV::Parse
 {
 	std::vector<std::unique_ptr<CSV::Parser::Validator::TimeTable_Error>> errors;
 
-	// Checking the size is correct
+	// Cheking that there are elements
 	size_t rows = timetable.size();
 	if (rows == 0)
 	{
@@ -76,6 +79,7 @@ std::vector<std::unique_ptr<CSV::Parser::Validator::TimeTable_Error>> CSV::Parse
 		return errors;
 	}
 
+	// Checking that all rows are correct
 	size_t cols = timetable[0].size();
 	for (const auto& row : std::ranges::iota_view(0ul, rows))
 		if (timetable[row].size() != cols)
@@ -83,7 +87,7 @@ std::vector<std::unique_ptr<CSV::Parser::Validator::TimeTable_Error>> CSV::Parse
 	if (!errors.empty())
 		return errors;
 
-	// Checking that values are correct
+	// Checking that values are always acending
 	for (size_t i : std::ranges::iota_view(0ul, cols))
 	{
 		DayTime current_daytime(0h,0min);

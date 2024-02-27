@@ -11,6 +11,7 @@
 
 using  TimeTable = std::vector<std::vector<std::optional<DayTime>>>;
 
+
 namespace CSV
 {
 	namespace Parser

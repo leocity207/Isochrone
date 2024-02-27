@@ -4,6 +4,7 @@
 // Resource
 #include "parser.h"
 
+
 namespace CSV
 {
 	namespace Engine
@@ -19,5 +20,6 @@ namespace CSV
 	}; //Engine
 
 }; //CSV
+
 
 #endif //CSV_ENGINE_STRING_PARSER_H

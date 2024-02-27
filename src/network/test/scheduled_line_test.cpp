@@ -32,16 +32,16 @@ void Scheduled_Line_Test::SetUpTestSuite()
 	Network::DayTemplate temp = Network::DayTemplate(week_day_array, day_type_array);
 
 	// Timetable Creation Aij (bellow representation is transposed)
-	DayTime a00 = DayTime::From_Time_String("6:00").value();  DayTime a10 = DayTime::From_Time_String("6:10").value();
-	DayTime a01 = DayTime::From_Time_String("7:00").value();  DayTime a11 = DayTime::From_Time_String("9:20").value();  DayTime a21 = DayTime::From_Time_String("9:40").value();
-	DayTime a02 = DayTime::From_Time_String("9:20").value();                                                            DayTime a22 = DayTime::From_Time_String("9:25").value();
+	DayTime a00 = DayTime::From_Time_String("6:00").value() ; DayTime a10 = DayTime::From_Time_String("6:10").value() ;
+	DayTime a01 = DayTime::From_Time_String("7:00").value() ; DayTime a11 = DayTime::From_Time_String("9:20").value() ; DayTime a21 = DayTime::From_Time_String("9:40").value();
+	DayTime a02 = DayTime::From_Time_String("9:20").value() ;                                                           DayTime a22 = DayTime::From_Time_String("9:25").value();
 	DayTime a03 = DayTime::From_Time_String("10:10").value(); DayTime a13 = DayTime::From_Time_String("10:20").value(); DayTime a23 = DayTime::From_Time_String("10:30").value();
 	DayTime a04 = DayTime::From_Time_String("12:00").value(); DayTime a14 = DayTime::From_Time_String("12:10").value();
 
 	Network::TimeTable timetable = {
-		{a00,a01,a02,a03,a04},
-		{a10,a11,std::nullopt,a13,a14},
-		{std::nullopt,a21,a22,a23,std::nullopt} };
+		{a00         ,a01,a02         ,a03,a04         },
+		{a10         ,a11,std::nullopt,a13,a14         },
+		{std::nullopt,a21,a22         ,a23,std::nullopt}};
 	s_timetable = { 
 		{a00,a01,a02,a03,a04},
 		{a10,a11,std::nullopt,a13,a14},
@@ -61,22 +61,22 @@ void Scheduled_Line_Test::SetUpTestSuite()
 	Network::DayTemplate temp2 = Network::DayTemplate(week_day_array2, day_type_array2);
 
 	// Timetable Creation Aij (bellow representation is transposed)
-	DayTime b00 = DayTime::From_Time_String("6:00").value();  DayTime b10 = DayTime::From_Time_String("6:10").value();                                                          ; DayTime b30 = DayTime::From_Time_String("6:30").value();
-	DayTime b01 = DayTime::From_Time_String("7:00").value();  DayTime b11 = DayTime::From_Time_String("9:20").value();  DayTime b21 = DayTime::From_Time_String("9:50").value();  DayTime b31 = DayTime::From_Time_String("10:10").value();
-	DayTime b02 = DayTime::From_Time_String("9:20").value();                                                            DayTime b22 = DayTime::From_Time_String("9:25").value();  DayTime b32 = DayTime::From_Time_String("9:40").value();
+	DayTime b00 = DayTime::From_Time_String("6:00").value() ; DayTime b10 = DayTime::From_Time_String("6:10").value() ;                                                         ; DayTime b30 = DayTime::From_Time_String("6:30").value() ;
+	DayTime b01 = DayTime::From_Time_String("7:00").value() ; DayTime b11 = DayTime::From_Time_String("9:20").value() ; DayTime b21 = DayTime::From_Time_String("9:50").value() ; DayTime b31 = DayTime::From_Time_String("10:10").value();
+	DayTime b02 = DayTime::From_Time_String("9:20").value() ;                                                            DayTime b22 = DayTime::From_Time_String("9:25").value(); DayTime b32 = DayTime::From_Time_String("9:40").value() ;
 	DayTime b03 = DayTime::From_Time_String("10:10").value(); DayTime b13 = DayTime::From_Time_String("10:20").value(); DayTime b23 = DayTime::From_Time_String("10:30").value(); DayTime b33 = DayTime::From_Time_String("10:50").value();
 	DayTime b04 = DayTime::From_Time_String("12:00").value(); DayTime b14 = DayTime::From_Time_String("12:10").value();
 
 	Network::TimeTable timetable2 = {
-	{b00,b01,b02,b03,b04},
-	{b10,b11,std::nullopt,b13,b14},
-	{std::nullopt,b21,b22,b23,std::nullopt},
-	{b30,b31,b32,b33,std::nullopt} };
+		{b00         ,b01,b02         ,b03,b04         },
+		{b10         ,b11,std::nullopt,b13,b14         },
+		{std::nullopt,b21,b22         ,b23,std::nullopt},
+		{b30         ,b31,b32         ,b33,std::nullopt}};
 	s_timetable2 = {
-		{b00,b01,b02,b03,b04},
-		{b10,b11,std::nullopt,b13,b14},
-		{std::nullopt,b21,b22,b23,std::nullopt},
-		{b30,b31,b32,b33,std::nullopt}};
+		{b00         ,b01,b02         ,b03,b04         },
+		{b10         ,b11,std::nullopt,b13,b14         },
+		{std::nullopt,b21,b22         ,b23,std::nullopt},
+		{b30         ,b31,b32         ,b33,std::nullopt}};
 
 	std::vector<Network::Station_CRef> station_list_ref2(s_stations.begin(), s_stations.end());
 	Network::Schedule schedule_2(std::move(station_list_ref2), std::move(timetable2), std::move(temp2), "test2");

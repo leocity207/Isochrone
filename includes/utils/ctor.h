@@ -1,6 +1,7 @@
 #ifndef CTOR_H
 #define CTOR_H
 
+
 #define DELETE_DEFAULT(class_name) class_name() = delete;
 #define DEFAULT_DEFAULT(class_name) class_name() = default;
 
@@ -18,5 +19,6 @@
 
 #define VIRTUAL_DESTRUCTOR(class_name) \
 	virtual ~class_name() {};\
+
 
 #endif // !CTOR_H
