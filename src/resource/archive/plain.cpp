@@ -6,6 +6,20 @@
 #include "includes/resource/csv/parser/timetable.h"
 #include "includes/resource/json/parser/resource_getter.h"
 
+// Valididator
+#include "includes/resource/csv/validator/timetable.h"
+
+
+static void Check_Timetable(const TimeTable& timetable,const std::string& timetable_name)
+{
+	const auto errors = CSV::Parser::Validator::Validate(timetable, timetable_name);
+	if (!errors.empty())
+	{
+		for (const auto& error : errors)
+			TRACE(error->Get_Error_As_String());
+		THROW(TIMETABLE_BADLY_FORMATED);
+	}
+}
 
 std::pair<std::vector<Network::Station>, std::vector<Network::Scheduled_Line>> Resource::Archive::Plaine::Parse_Scheduled_Network_Resource(std::filesystem::path&& plain_archive_path)
 {
@@ -23,6 +37,9 @@ std::pair<std::vector<Network::Station>, std::vector<Network::Scheduled_Line>> R
 		{
 			CSV::Engine::File_Parser timetable_parser(plain_archive_path.parent_path() / schedule.second, ';');
 			auto [station_list, timetable] = CSV::Parser::Timetable::Parse(timetable_parser);
+			
+			Check_Timetable(timetable, schedule.second.string());
+
 			std::vector<Network::Station_CRef> tmp_station_reference;
 			for (const std::string& station_name : station_list)
 				tmp_station_reference.emplace_back(Network::Station::Get_Station_By_Name(stations, station_name));
