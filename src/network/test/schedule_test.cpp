@@ -15,15 +15,21 @@ void Schedule_Test::SetUpTestSuite()
 	std::array<bool, 3> day_type_array = { 0,0,1 };
 	Network::DayTemplate temp = Network::DayTemplate(week_day_array, day_type_array);
 
-	// Timetable Creation
+	// Timetable Creation Aij (bellow representation is transposed)
 	DayTime a00 = DayTime::From_Time_String("6:00").value();  DayTime a10 = DayTime::From_Time_String("6:10").value();
-	DayTime a01 = DayTime::From_Time_String("7:00").value();  DayTime a11 = DayTime::From_Time_String("9:20").value();  DayTime a21 = DayTime::From_Time_String("8:00").value();
-	DayTime a02 = DayTime::From_Time_String("9:20").value();                                                            DayTime a22 = DayTime::From_Time_String("9:20").value();
+	DayTime a01 = DayTime::From_Time_String("7:00").value();  DayTime a11 = DayTime::From_Time_String("9:20").value();  DayTime a21 = DayTime::From_Time_String("9:40").value();
+	DayTime a02 = DayTime::From_Time_String("9:20").value();                                                            DayTime a22 = DayTime::From_Time_String("9:50").value();
 	DayTime a03 = DayTime::From_Time_String("10:10").value(); DayTime a13 = DayTime::From_Time_String("10:20").value(); DayTime a23 = DayTime::From_Time_String("10:30").value();
 	DayTime a04 = DayTime::From_Time_String("12:00").value(); DayTime a14 = DayTime::From_Time_String("12:10").value();
 
-	Network::TimeTable timetable = { {a00,a01,a02,a03,a04},{a10,a11,std::nullopt,a13,a14},{std::nullopt,a21,a22,a23,std::nullopt} };
-	s_timetable = { {a00,a01,a02,a03,a04},{a10,a11,std::nullopt,a13,a14},{std::nullopt,a21,a22,a23,std::nullopt} };
+	Network::TimeTable timetable = {
+		{a00         ,a01,a02         ,a03,a04},
+		{a10         ,a11,std::nullopt,a13,a14},
+		{std::nullopt,a21,a22         ,a23,std::nullopt}};
+	s_timetable = { 
+		{a00         ,a01,a02         ,a03,a04},
+		{a10         ,a11,std::nullopt,a13,a14},
+		{std::nullopt,a21,a22         ,a23,std::nullopt} };
 
 	Sphere_Coordinate coord1("45°38'13\"E", "45°32'13\"N");
 	Sphere_Coordinate coord2("45°39'13\"E", "45°33'13\"N");
