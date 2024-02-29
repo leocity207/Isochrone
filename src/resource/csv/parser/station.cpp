@@ -2,7 +2,7 @@
 
 //utils
 #include "includes/utils/exception_def.h"
-#include "includes/utils/coordinate_2d.h"
+#include "includes/coordinate/sphere.h"
 #include "includes/utils/general.h"
 
 
@@ -20,7 +20,7 @@ std::vector<Network::Station> CSV::Parser::Station::Parse(const CSV::Engine::Par
 		std::string latitude = Generals::Trim_Space_Front_Back(std::move(line->at(1)));
 		std::string longitude = Generals::Trim_Space_Front_Back(std::move(line->at(2)));
 
-		Sphere_Coordinate coord = Sphere_Coordinate(latitude,longitude);
+		Coordinate::Spherical coord = Coordinate::Spherical::From_String(latitude,longitude);
 		
 		station_list.emplace_back(std::move(coord),std::move(station_name));
 	}

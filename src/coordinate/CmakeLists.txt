@@ -1,0 +1,17 @@
+#/////////////
+# SOURCE FILES
+file(GLOB COORDINATE_SOURCE "./*.cpp")
+
+#////////
+# LIBRARY
+add_library(coordinate STATIC                       
+	${COORDINATE_SOURCE}
+)
+
+#//////////////
+# LIBRARY LINKS
+target_link_libraries(coordinate
+	utils
+)
+
+

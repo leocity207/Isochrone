@@ -34,7 +34,7 @@ namespace Network
         ////////
         /// CTOR
         public:
-            DELETE_DEFAULT(Day);
+            DELETE_DEFAULT_CTOR(Day);
             Day(const std::chrono::weekday, const DAY_TYPE) noexcept;
 
         ///////////
@@ -63,7 +63,7 @@ namespace Network
         ////////
         /// CTOR
         public:
-            DELETE_DEFAULT(DayTemplate);
+            DELETE_DEFAULT_CTOR(DayTemplate);
             DELETE_COPY(DayTemplate);
 
             DayTemplate(const std::array<bool, WEEKDAY_COUNT>, const std::array<bool, DAY_TYPE_COUNT>) noexcept;

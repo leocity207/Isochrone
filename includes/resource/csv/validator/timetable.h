@@ -41,7 +41,7 @@ namespace CSV
 				/// CTOR
 				public:
 					DELETE_COPY(TimeTable_Error_Time)
-					DELETE_DEFAULT(TimeTable_Error_Time)
+					DELETE_DEFAULT_CTOR(TimeTable_Error_Time)
 					DELETE_MOVE(TimeTable_Error_Time)
 					TimeTable_Error_Time(size_t i,size_t j,DayTime time,const std::string& name) noexcept;
 				
@@ -68,7 +68,7 @@ namespace CSV
 				/// CTOR
 			public:
 				DELETE_COPY(TimeTable_Error_Size)
-				DELETE_DEFAULT(TimeTable_Error_Size)
+				DELETE_DEFAULT_CTOR(TimeTable_Error_Size)
 				DELETE_MOVE(TimeTable_Error_Size)
 				TimeTable_Error_Size(size_t normal_size, size_t anormal_size, size_t i, const std::string& name) noexcept;
 

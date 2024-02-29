@@ -26,9 +26,9 @@ station3; 45°31'13\"N;     45°31'13\"E";
 	ASSERT_EQ(station_list[1].Get_Name(), "station2");
 	ASSERT_EQ(station_list[2].Get_Name(), "station3");
 
-	ASSERT_EQ(station_list[0].GetCoordinate(), Sphere_Coordinate("45°31'13\"N", "45°31'13\"E"));
-	ASSERT_EQ(station_list[0].GetCoordinate(), Sphere_Coordinate("45°31'13\"N", "45°31'13\"E"));
-	ASSERT_EQ(station_list[0].GetCoordinate(), Sphere_Coordinate("45°31'13\"N", "45°31'13\"E"));
+	ASSERT_EQ(station_list[0].GetCoordinate(), Coordinate::Spherical::From_String("45°31'13\"N", "45°31'13\"E"));
+	ASSERT_EQ(station_list[0].GetCoordinate(), Coordinate::Spherical::From_String("45°31'13\"N", "45°31'13\"E"));
+	ASSERT_EQ(station_list[0].GetCoordinate(), Coordinate::Spherical::From_String("45°31'13\"N", "45°31'13\"E"));
 }
 
 TEST_F(CSV_Station_Test, reading_test_hard)

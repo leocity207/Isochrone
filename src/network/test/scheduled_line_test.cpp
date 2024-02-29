@@ -13,10 +13,10 @@ void Scheduled_Line_Test::SetUpTestSuite()
 {
 	/////////////////////////
 	/// Creating the stations
-	Sphere_Coordinate coord1("45°38'13\"E", "45°32'13\"N");
-	Sphere_Coordinate coord2("45°39'13\"E", "45°33'13\"N");
-	Sphere_Coordinate coord3("45°34'13\"E", "45°33'13\"N");
-	Sphere_Coordinate coord4("45°33'13\"E", "45°33'13\"N");
+	Coordinate::Spherical coord1 = Coordinate::Spherical::From_String("45°38'13\"E", "45°32'13\"N");
+	Coordinate::Spherical coord2 = Coordinate::Spherical::From_String("45°39'13\"E", "45°33'13\"N");
+	Coordinate::Spherical coord3 = Coordinate::Spherical::From_String("45°34'13\"E", "45°33'13\"N");
+	Coordinate::Spherical coord4 = Coordinate::Spherical::From_String("45°33'13\"E", "45°33'13\"N");
 
 	//Station fabrication
 	s_stations.emplace_back(std::move(coord1), "Station 1");

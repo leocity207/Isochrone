@@ -59,6 +59,7 @@ add_subdirectory(src/context)
 add_subdirectory(src/resource/csv)
 add_subdirectory(src/resource/json)
 add_subdirectory(src/resource/archive)
+add_subdirectory(src/coordinate)
 add_subdirectory(src/main)
 
 

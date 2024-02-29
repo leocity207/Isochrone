@@ -5,8 +5,10 @@
 #include <string>
 #include <vector>
 
+// Coordinate
+#include "includes/coordinate/sphere.h"
+
 // Utils
-#include "includes/utils/coordinate_2d.h"
 #include "includes/utils/ctor.h"
 
 
@@ -17,10 +19,10 @@ namespace Network
     /////////
     /// CTOR
     public:
-        DELETE_DEFAULT(Station)
+        DELETE_DEFAULT_CTOR(Station)
         DELETE_COPY(Station)
         DEFAULT_MOVE(Station)
-        Station(Sphere_Coordinate&& coordinate, std::string&& name) noexcept;
+        Station(Coordinate::Spherical&& coordinate, std::string&& name) noexcept;
 
     ///////////
     /// METHODS
@@ -35,7 +37,7 @@ namespace Network
         /// @brief give back the distance from this station to the given coordinate
         /// @param station the coordinate you want to compute the distance too
         /// @return 
-        const double Get_Distance_To(const Sphere_Coordinate& coordinate) const noexcept;
+        const double Get_Distance_To(const Coordinate::Spherical& coordinate) const noexcept;
 
         /////////////////////////////////////////////////////////////
         /// @brief comparison operator compare station using their ID
@@ -45,7 +47,7 @@ namespace Network
         //////////
         /// getter
         const std::string& Get_Name() const noexcept;
-        const Sphere_Coordinate& GetCoordinate() const noexcept;
+        const Coordinate::Spherical& GetCoordinate() const noexcept;
 
     //////////////////
     /// STATIC METHODS
@@ -55,7 +57,7 @@ namespace Network
     //////////////
     /// ATTRIBUTES
     private:
-        Sphere_Coordinate m_coordinate;
+        Coordinate::Spherical m_coordinate;
         std::string m_name;
         int m_id;
         static int s_count;

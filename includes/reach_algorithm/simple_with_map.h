@@ -15,7 +15,7 @@ namespace Reach_Algorithm
 	////////
 	/// CTOR
 	public:
-		DEFAULT_DEFAULT(Simple_With_Map)
+		DEFAULT_DEFAULT_CTOR(Simple_With_Map)
 		DELETE_COPY(Simple_With_Map)
 		DELETE_MOVE(Simple_With_Map)
 

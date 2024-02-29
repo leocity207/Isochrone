@@ -28,7 +28,7 @@ int main()
 			range.end(),
 			[&](int item)
 			{
-				Context::Reach_Algorithm solver_context(network_context, DayTime(hours(item / 60), minutes(item % 60)), 1, Sphere_Coordinate(4.8740833333333340, 45.521305555555557), Network::Day(Monday, Network::SCHOOL_DAYS));
+				Context::Reach_Algorithm solver_context(network_context, DayTime(hours(item / 60), minutes(item % 60)), 1, Coordinate::Spherical(4.8740833333333340, 45.521305555555557), Network::Day(Monday, Network::SCHOOL_DAYS));
 				Reach_Algorithm::Simple_With_Map algorithm;
 				std::vector<Context::Station> result = solver_context.Optimize(algorithm);
 			});
@@ -38,7 +38,7 @@ int main()
 	std::cout << (t1 - t0).count() << "s\n";
 	std::cout << d.count() / (1260.0 - 480.0) << "ms\n";
 
-	Context::Reach_Algorithm solver_context(network_context, DayTime(hours(8), minutes(0)), 1, Sphere_Coordinate(4.8740833333333340, 45.521305555555557), Network::Day(Monday, Network::SCHOOL_DAYS));
+	Context::Reach_Algorithm solver_context(network_context, DayTime(hours(8), minutes(0)), 1, Coordinate::Spherical(4.8740833333333340, 45.521305555555557), Network::Day(Monday, Network::SCHOOL_DAYS));
 	Reach_Algorithm::Simple_With_Map algorithm;
 	std::vector<Context::Station> result = solver_context.Optimize(algorithm);
 	std::ofstream output("ouput.txt");

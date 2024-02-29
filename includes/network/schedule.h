@@ -32,7 +32,7 @@ namespace Network
     public:
         //deleted
         DELETE_COPY(Schedule)
-        DELETE_DEFAULT(Schedule)
+        DELETE_DEFAULT_CTOR(Schedule)
         DEFAULT_MOVE(Schedule)
 
         Schedule(std::vector<Station_CRef>&& station_list, TimeTable&& schedule_tab, DayTemplate&& day_template,std::string&&) noexcept;

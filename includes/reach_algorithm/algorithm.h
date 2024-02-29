@@ -20,7 +20,7 @@ namespace Reach_Algorithm
 	////////
 	/// CTOR
 	public:
-		DEFAULT_DEFAULT(Algorithm)
+		DEFAULT_DEFAULT_CTOR(Algorithm)
 		DELETE_COPY(Algorithm);
 		DELETE_MOVE(Algorithm);
 

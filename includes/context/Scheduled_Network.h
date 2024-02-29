@@ -16,7 +16,7 @@ namespace Context
 	////////
 	/// CTOR
 	public:
-		DELETE_DEFAULT(Scheduled_Network);
+		DELETE_DEFAULT_CTOR(Scheduled_Network);
 		DELETE_COPY(Scheduled_Network);
 		DEFAULT_MOVE(Scheduled_Network);
 		

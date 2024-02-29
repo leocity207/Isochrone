@@ -30,7 +30,7 @@ void Reach_Algorithm_Test::SetUpTestSuite()
 
 TEST_P(Reach_Algorithm_Test, test_with_normal_day)
 {
-	Context::Reach_Algorithm solver_context(*s_context, DayTime(hours(0), minutes(0)), 1, Sphere_Coordinate(0, 0), Network::Day(Monday, Network::SCHOOL_DAYS));
+	Context::Reach_Algorithm solver_context(*s_context, DayTime(hours(0), minutes(0)), 1, Coordinate::Spherical(0, 0), Network::Day(Monday, Network::SCHOOL_DAYS));
 	std::reference_wrapper<Reach_Algorithm::Algorithm> algorithm = GetParam().get();
 	std::vector<Context::Station> result = solver_context.Optimize(algorithm);
 	
@@ -53,7 +53,7 @@ TEST_P(Reach_Algorithm_Test, test_with_normal_day)
 
 TEST_P(Reach_Algorithm_Test, bypass)
 {
-	Context::Reach_Algorithm solver_context(*s_context, DayTime(hours(1), minutes(0)), 0.5, Sphere_Coordinate(0, 0), Network::Day(Monday, Network::SCHOOL_DAYS));
+	Context::Reach_Algorithm solver_context(*s_context, DayTime(hours(1), minutes(0)), 0.5, Coordinate::Spherical(0, 0), Network::Day(Monday, Network::SCHOOL_DAYS));
 	std::reference_wrapper<Reach_Algorithm::Algorithm> algorithm = GetParam().get();
 	std::vector<Context::Station> result = solver_context.Optimize(algorithm);
 
@@ -82,7 +82,7 @@ TEST_P(Reach_Algorithm_Test, bypass)
 TEST_P(Reach_Algorithm_Test, Get_Closest_Time_To_Station)
 {
 	DayTime start_time = DayTime(hours(20),minutes(0));
-	Sphere_Coordinate start_coordinate(0, 0);
+	Coordinate::Spherical start_coordinate(0, 0);
 	Context::Reach_Algorithm solver_context(*s_context, std::move(start_time), 1, std::move(start_coordinate), Network::Day(Monday, Network::SCHOOL_DAYS));
 	std::reference_wrapper<Reach_Algorithm::Algorithm> algorithm = GetParam().get();
 	std::vector<Context::Station> result = solver_context.Optimize(algorithm);

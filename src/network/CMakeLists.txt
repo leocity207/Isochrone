@@ -14,5 +14,6 @@ target_link_libraries(network
 	log
 	csv
 	json
+	coordinate
 )
 
