@@ -20,7 +20,7 @@ namespace Coordinate
 		////////////
 		/// METHODS
 	public:
-		virtual Planare_double Project(const Spherical& coordinate) = 0;
+		virtual Planare_double Project(const Spherical& coordinate) const = 0;
 
 		//////////////
 		/// ATTRIBUTES
@@ -33,7 +33,7 @@ namespace Coordinate
 		////////////
 		/// METHDODS
 	public:
-		Planare_double Project(const Spherical& coordinate) override;
+		Planare_double Project(const Spherical& coordinate) const override;
 	};
 
 	class Azimuthal_Equidistant : public Projection
@@ -41,7 +41,7 @@ namespace Coordinate
 		////////////
 		/// METHDODS
 	public:
-		Planare_double Project(const Spherical& coordinate) override;
+		Planare_double Project(const Spherical& coordinate) const override;
 	};
 }
 

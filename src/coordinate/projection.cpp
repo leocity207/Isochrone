@@ -10,14 +10,14 @@ Coordinate::Projection::Projection(Spherical&& mean_coordiante) noexcept :
 {
 }
 
-Coordinate::Planare_double Coordinate::Equirectangular::Project(const Coordinate::Spherical& coordinate)
+Coordinate::Planare_double Coordinate::Equirectangular::Project(const Coordinate::Spherical& coordinate) const
 {
 	double x = Coordinate::Spherical::earth_radius * (coordinate.Get_Longitude() - m_mean_coordinate.Get_Longitude()) * std::numbers::pi / 180.0 * std::cos(coordinate.Get_Latitude() * std::numbers::pi / 180.0);
 	double y = Coordinate::Spherical::earth_radius * (coordinate.Get_Latitude() - m_mean_coordinate.Get_Latitude()  ) * std::numbers::pi / 180.0;
 	return Base<double>(x, y);
 }
 
-Coordinate::Planare_double Coordinate::Azimuthal_Equidistant::Project(const Coordinate::Spherical& coordinate)
+Coordinate::Planare_double Coordinate::Azimuthal_Equidistant::Project(const Coordinate::Spherical& coordinate) const
 {
 	double phi = coordinate.Get_Latitude() * std::numbers::pi / 180.0;
 	double phi_0 = m_mean_coordinate.Get_Latitude() * std::numbers::pi / 180.0;

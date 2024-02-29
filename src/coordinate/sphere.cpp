@@ -9,7 +9,7 @@
 #include <numbers>
 
 Coordinate::Spherical::Spherical(double longitude,double latitude) noexcept:
-	Base<double>(longitude, latitude),
+	Base<double>(latitude,longitude ),
 	m_latitude(first),
 	m_longitude(second)
 {

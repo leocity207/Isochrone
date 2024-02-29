@@ -1,0 +1,26 @@
+#////////////////////////
+# For google test includes
+include(GoogleTest)
+
+#/////////////
+# SOURCE FILES
+file(GLOB COORDINATE_TEST_SOURCE "./*.cpp")
+
+#///////////
+# EXECUTABLE
+add_executable( coordinate_test 
+	${COORDINATE_TEST_SOURCE}
+)
+
+#////////////////
+# EXECUTABLE LINK
+target_link_libraries( coordinate_test
+  GTest::gtest_main
+  coordinate
+  utils
+  log
+)
+
+#/////////////
+# DECLARE TEST
+gtest_discover_tests(coordinate_test)
