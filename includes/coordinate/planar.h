@@ -37,14 +37,8 @@ namespace Coordinate
         /// METHODS
     public:
         double Distance_To(const Planar&) const noexcept;
-        T Get_X() const noexcept;
-        T Get_Y() const noexcept;
-
-        //////////////
-        /// ATTRIBTUES
-    private:
-        T& m_x;
-        T& m_y;
+        T X() const noexcept;
+        T Y() const noexcept;
     };
 }
 #endif //COORDINATE_PLANAR_H

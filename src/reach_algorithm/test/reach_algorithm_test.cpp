@@ -33,14 +33,6 @@ TEST_P(Reach_Algorithm_Test, test_with_normal_day)
 	Context::Reach_Algorithm solver_context(*s_context, DayTime(hours(0), minutes(0)), 1, Coordinate::Spherical(0, 0), Network::Day(Monday, Network::SCHOOL_DAYS));
 	std::reference_wrapper<Reach_Algorithm::Algorithm> algorithm = GetParam().get();
 	std::vector<Context::Station> result = solver_context.Optimize(algorithm);
-	
-	Context::Station a(s_context->Get_Station()[0], solver_context);
-	Context::Station b(s_context->Get_Station()[1], solver_context);
-	std::swap(a, b);
-	int d = 1;
-	int c = 2;
-	std::swap(c, d);
-
 
 	ASSERT_EQ(result[0].Get_Reaching_Time(), DayTime(hours(0),minutes(0)));
 	ASSERT_EQ(result[1].Get_Reaching_Time(), DayTime(hours(0),minutes(2)));

@@ -8,9 +8,7 @@
 
 template<class T>
 Coordinate::Planar<T>::Planar(T x, T y) noexcept :
-	Base<T>(x,y),
-	m_x(this->first),
-	m_y(this->second)
+	Base<T>(x,y)
 {
 
 }
@@ -18,30 +16,27 @@ Coordinate::Planar<T>::Planar(T x, T y) noexcept :
 template<class T>
 template<class E>
 Coordinate::Planar<T>::Planar(typename std::enable_if<Is_Float<T, E>(), const Spherical&>::type sphere_coordinate, const Projection& projector) noexcept :
-	Base<double>(projector.Project(sphere_coordinate)),
-	m_x(this->first),
-	m_y(this->second)
+	Base<double>(projector.Project(sphere_coordinate))
 {
-
 }
 
 
 template<class T>
 double Coordinate::Planar<T>::Distance_To(const Planar& other) const noexcept
 {
-	return std::sqrt((m_x - other.m_x) * (m_x - other.m_x) + (m_y - other.m_y) * (m_y - other.m_y));
+	return std::sqrt((X() - other.X()) * (X() - other.X()) + (Y() - other.Y()) * (Y() - other.Y()));
 }
 
 template<class T>
-T Coordinate::Planar<T>::Get_X() const noexcept
+T Coordinate::Planar<T>::X() const noexcept
 {
-	return m_x;
+	return this->first;
 }
 
 template<class T>
-T Coordinate::Planar<T>::Get_Y() const noexcept
+T Coordinate::Planar<T>::Y() const noexcept
 {
-	return m_y;
+	return this->second;
 }
 
 

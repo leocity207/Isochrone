@@ -10,8 +10,8 @@
 TEST_F(Planar_Test,easy_constructor)
 {
 	Coordinate::Planar<double> a(10, 10.0001);
-	EXPECT_DOUBLE_EQ(a.Get_Y(), 10.0001);
-	EXPECT_DOUBLE_EQ(a.Get_X(), 10.0);
+	EXPECT_DOUBLE_EQ(a.Y(), 10.0001);
+	EXPECT_DOUBLE_EQ(a.X(), 10.0);
 }
 
 

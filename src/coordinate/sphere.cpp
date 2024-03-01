@@ -9,9 +9,7 @@
 #include <numbers>
 
 Coordinate::Spherical::Spherical(double longitude,double latitude) noexcept:
-	Base<double>(latitude,longitude ),
-	m_latitude(first),
-	m_longitude(second)
+	Base<double>(latitude,longitude )
 {
 }
 
@@ -31,18 +29,22 @@ Coordinate::Spherical Coordinate::Spherical::From_String(const std::string_view&
 
 double Coordinate::Spherical::Distance_To(const Spherical& other_coord) const noexcept
 {
-	double lat_diff = std::sin((other_coord.m_latitude-m_latitude)*std::numbers::pi/360);
-	double long_diff = std::sin((other_coord.m_longitude-m_longitude)*std::numbers::pi/360);
-	double prod = std::cos(other_coord.m_latitude*std::numbers::pi/180)*std::cos(m_latitude*std::numbers::pi/180);
+	double lat_diff = std::sin((other_coord.Latitude()-Latitude())*std::numbers::pi/360);
+	double long_diff = std::sin((other_coord.Longitude() - Longitude())*std::numbers::pi/360);
+	double prod = std::cos(other_coord.Latitude()*std::numbers::pi/180)*std::cos(Latitude()*std::numbers::pi/180);
 	return 2*earth_radius*std::asin(std::sqrt(lat_diff*lat_diff+prod*long_diff*long_diff));
 }
 
-const double& Coordinate::Spherical::Get_Latitude() const noexcept
+const double& Coordinate::Spherical::Latitude() const noexcept
 {
-	return m_latitude;
+	return first;
 }
 
-const double& Coordinate::Spherical::Get_Longitude() const noexcept
+const double& Coordinate::Spherical::Longitude() const noexcept
 {
-	return m_longitude;
+	return second;
+}
+bool Coordinate::Spherical::operator==(const Coordinate::Spherical& other_coord) const noexcept
+{
+	return Latitude() == other_coord.Latitude() && Longitude() == other_coord.Longitude();
 }
