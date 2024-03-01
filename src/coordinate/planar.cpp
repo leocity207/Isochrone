@@ -16,21 +16,15 @@ Coordinate::Planar<T>::Planar(T x, T y) noexcept :
 }
 
 template<class T>
-Coordinate::Planar<T>::Planar(const Coordinate::Spherical& , const Projection& ) noexcept :
-	Base<T>(0,0),
-	m_x(this->first),
-	m_y(this->second)
-{
-	assert(false);
-}
-
-Coordinate::Planar<double>::Planar(const Coordinate::Spherical& sphere_coordinate,const Projection& projector) noexcept :
+template<class E>
+Coordinate::Planar<T>::Planar(typename std::enable_if<Is_Float<T, E>(), const Spherical&>::type sphere_coordinate, const Projection& projector) noexcept :
 	Base<double>(projector.Project(sphere_coordinate)),
 	m_x(this->first),
 	m_y(this->second)
 {
 
 }
+
 
 template<class T>
 double Coordinate::Planar<T>::Distance_To(const Planar& other) const noexcept
