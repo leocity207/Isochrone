@@ -1,10 +1,9 @@
 #include "includes/coordinate/planar.h"
 #include "includes/coordinate/sphere.h"
-#include "includes/coordinate/projection.h"
+#include "includes/coordinate/projector/base.h"
 
-#include<numbers>
+// STL
 #include<cmath>
-#include <cassert>
 
 template<class T>
 Coordinate::Planar<T>::Planar(T x, T y) noexcept :
@@ -15,7 +14,7 @@ Coordinate::Planar<T>::Planar(T x, T y) noexcept :
 
 template<class T>
 template<class E>
-Coordinate::Planar<T>::Planar(typename std::enable_if<Is_Float<T, E>(), const Spherical&>::type sphere_coordinate, const Projection& projector) noexcept :
+Coordinate::Planar<T>::Planar(typename std::enable_if<Is_Float<T, E>(), const Spherical&>::type sphere_coordinate, const Coordinate::Projector::Base& projector) noexcept :
 	Base<double>(projector.Project(sphere_coordinate))
 {
 }

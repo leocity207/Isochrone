@@ -6,7 +6,7 @@
 
 namespace Coordinate
 {
-    class Projection;
+    namespace Projector { class Base; };
     class Spherical;
 
     template<class T, class E>
@@ -24,13 +24,13 @@ namespace Coordinate
     public:
         DELETE_DEFAULT_CTOR(Planar)
         DEFAULT_MOVE(Planar)
-        DELETE_COPY(Planar)
+        DEFAULT_COPY(Planar)
         Planar(T x,T y) noexcept;
 
         //////////////////////////////////////////////////////////
         /// This construcor is only enabled if T is floating point
         template<class E>
-        Planar(typename std::enable_if<Is_Float<T,E>(), const Spherical&>::type sphere_coordinate, const Projection& projector) noexcept;
+        Planar(typename std::enable_if<Is_Float<T,E>(), const Spherical&>::type sphere_coordinate, const Coordinate::Projector::Base& projector) noexcept;
 
 
         ///////////
