@@ -14,10 +14,10 @@ include_directories(${PROJECT_SOURCE_DIR}/includes)
 #---------------------------------------
 #get the current commit hash for version
 execute_process(
-    COMMAND git rev-parse HEAD
-    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-    OUTPUT_VARIABLE GIT_COMMIT_HASH
-    OUTPUT_STRIP_TRAILING_WHITESPACE
+	COMMAND git rev-parse HEAD
+	WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+	OUTPUT_VARIABLE GIT_COMMIT_HASH
+	OUTPUT_STRIP_TRAILING_WHITESPACE
 )
 
 #-----------------------
@@ -28,9 +28,9 @@ configure_file(${PROJECT_SOURCE_DIR}/includes/config/config.h.in ${PROJECT_SOURC
 # add fetch content in order to get google test
 include(FetchContent)
 FetchContent_Declare(
-    googletest
-    GIT_REPOSITORY https://github.com/google/googletest.git
-    GIT_TAG release-1.12.1
+	googletest
+	GIT_REPOSITORY https://github.com/google/googletest.git
+	GIT_TAG release-1.12.1
 )
 include(GoogleTest)
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
@@ -39,11 +39,11 @@ FetchContent_MakeAvailable(googletest)
 #------------------------------------------
 # compiler option
 if (MSVC)
-    # warning level 4 and all warnings as errors
-    add_compile_options(/W4 /WX /utf-8)
+	# warning level 4 and all warnings as errors
+	add_compile_options(/W4 /WX /utf-8)
 else()
-    # lots of warnings and all warnings as errors
-    add_compile_options(-Wall -Wextra -pedantic -Werror -Og)
+	# lots of warnings and all warnings as errors
+	add_compile_options(-Wall -Wextra -pedantic -Werror -Og)
 endif()
 
 #----------------------------------------

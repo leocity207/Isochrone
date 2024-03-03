@@ -1,44 +1,49 @@
 #ifndef COORDINATE_PLANAR_H
 #define COORDINATE_PLANAR_H
 
+// Coordinate
 #include "coordinate.h"
 
 
 namespace Coordinate
 {
-    namespace Projector { class Base; };
-    class Spherical;
+	namespace Projector { class Base; };
+	class Spherical;
 
-    template<class T, class E>
-    constexpr bool Is_Float()
-    {
-        return std::is_same< E, const Spherical&>::value&& std::is_floating_point<T>::value;
-    }
-
-
-    template<class T>
-    class Planar : public Base<T>
-    {
-        ////////
-        /// CTOR
-    public:
-        DELETE_DEFAULT_CTOR(Planar)
-        DEFAULT_MOVE(Planar)
-        DEFAULT_COPY(Planar)
-        Planar(T x,T y) noexcept;
-
-        //////////////////////////////////////////////////////////
-        /// This construcor is only enabled if T is floating point
-        template<class E>
-        Planar(typename std::enable_if<Is_Float<T,E>(), const Spherical&>::type sphere_coordinate, const Coordinate::Projector::Base& projector) noexcept;
+	template<class T, class E>
+	constexpr bool Is_Float()
+	{
+		return std::is_same< E, const Spherical&>::value&& std::is_floating_point<T>::value;
+	}
 
 
-        ///////////
-        /// METHODS
-    public:
-        double Distance_To(const Planar&) const noexcept;
-        T X() const noexcept;
-        T Y() const noexcept;
-    };
+	template<class T>
+	class Planar : public Base<T>
+	{
+		////////
+		/// CTOR
+	public:
+		DELETE_DEFAULT_CTOR(Planar)
+		DEFAULT_MOVE(Planar)
+		DEFAULT_COPY(Planar)
+		Planar(T x,T y) noexcept;
+
+		//////////////////////////////////////////////////////////////////////////////
+		/// @note This construcor is only enabled if T is floating point
+		/// @param sphere_coordinate: the coordinate to derive from
+		/// @param projector        : the projector that will project the sphere point
+		/// @throw if the sphere point cannot be projected
+		template<class E>
+		Planar(typename std::enable_if<Is_Float<T,E>(), const Spherical&>::type sphere_coordinate, const Coordinate::Projector::Base& projector);
+
+		///////////
+		/// METHODS
+	public:
+		double Distance_To(const Planar&) const noexcept;
+		T X() const noexcept;
+		T Y() const noexcept;
+	};
 }
+
+
 #endif //COORDINATE_PLANAR_H

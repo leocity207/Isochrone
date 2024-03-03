@@ -34,6 +34,10 @@ namespace Coordinate
 		//////////////////
 		/// STATIC METHODS
 	public:
+		/////////////////////////////////////////////////////
+		/// Compute the barycenter of a vector of coordinate
+		/// @param coordinates: list of coordinate
+		/// @return           : the barycenter of the list coordiante
 		static Base<T> Compute_Mean(std::vector<std::reference_wrapper<const Base<T>>>& coordinates) noexcept;
 	};
 } // Coordinate

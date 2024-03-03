@@ -1,12 +1,12 @@
 #include "includes/coordinate/sphere.h"
 
-// Utils
-#include "includes/utils/general.h"
-#include "includes/utils/exception_def.h"
-
 // STL
 #include <cmath>
 #include <numbers>
+
+// Utils
+#include "includes/utils/general.h"
+#include "includes/utils/exception_def.h"
 
 Coordinate::Spherical::Spherical(double longitude,double latitude) noexcept:
 	Base<double>(latitude,longitude )
@@ -44,6 +44,7 @@ const double& Coordinate::Spherical::Longitude() const noexcept
 {
 	return second;
 }
+
 bool Coordinate::Spherical::operator==(const Coordinate::Spherical& other_coord) const noexcept
 {
 	return Latitude() == other_coord.Latitude() && Longitude() == other_coord.Longitude();

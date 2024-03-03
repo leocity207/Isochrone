@@ -4,7 +4,9 @@
 // STL
 #include <string>
 
+// Coordinate
 #include "coordinate.h"
+
 
 namespace Coordinate
 {

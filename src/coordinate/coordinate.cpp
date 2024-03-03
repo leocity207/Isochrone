@@ -37,6 +37,7 @@ Coordinate::Base<T> Coordinate::Base<T>::Compute_Mean(std::vector<std::reference
 	return mean_coordiante;
 }
 
+
 template class Coordinate::Base<size_t>;
 
 template class Coordinate::Base<double>;

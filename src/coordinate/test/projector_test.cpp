@@ -10,11 +10,12 @@
 // UTils
 #include "includes/utils/exception_def.h"
 
+// Error at computing cosinus value
 constexpr double err = 6.1346820258134738e-10;
+
 
 /////////////////////
 /// Testing equality
-/// TODO render combine
 TEST_P(Equirectangular_Test, test_coordinate)
 {
 	auto [coordinate, expected] = GetParam();

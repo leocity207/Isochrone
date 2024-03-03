@@ -25,4 +25,5 @@ namespace Coordinate
 	}// Projection
 }// Coordinate
 
+
 #endif //COORDINATE_PROJECTOR_AZIMUTAL_EQUIDISTANTE_H

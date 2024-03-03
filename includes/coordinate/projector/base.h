@@ -7,6 +7,7 @@
 // Coordinate
 #include "includes/coordinate/sphere.h"
 
+
 namespace Coordinate
 {
 	namespace Projector
@@ -33,5 +34,6 @@ namespace Coordinate
 		};
 	} // Projector
 } // Coordinate
+
 
 #endif //COORDINATE_PROJECTOR_BASE_H

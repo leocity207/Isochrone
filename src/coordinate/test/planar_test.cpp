@@ -14,8 +14,6 @@ TEST_F(Planar_Test,easy_constructor)
 	EXPECT_DOUBLE_EQ(a.X(), 10.0);
 }
 
-
-
 TEST_F(Planar_Test, GetDistance_normal)
 {
 	{

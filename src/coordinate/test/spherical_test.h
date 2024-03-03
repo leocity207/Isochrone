@@ -8,4 +8,5 @@ class Spherical_Test : public ::testing::Test {
 	
 };
 
+
 #endif //COORDINATE_SPHERICAL_TEST_H

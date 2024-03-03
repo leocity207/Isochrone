@@ -2,8 +2,10 @@
 
 //utils
 #include "includes/utils/exception_def.h"
-#include "includes/coordinate/sphere.h"
 #include "includes/utils/general.h"
+
+// Coordinate
+#include "includes/coordinate/sphere.h"
 
 
 std::vector<Network::Station> CSV::Parser::Station::Parse(const CSV::Engine::Parser& engine)

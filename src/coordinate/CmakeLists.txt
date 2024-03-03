@@ -6,7 +6,7 @@ file(GLOB PROJECTOR_SOURCE "./projector/*.cpp")
 
 #////////
 # LIBRARY
-add_library(coordinate STATIC                       
+add_library(coordinate STATIC
 	${COORDINATE_SOURCE}
 	${PROJECTOR_SOURCE}
 )

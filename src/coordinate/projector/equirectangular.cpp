@@ -1,9 +1,12 @@
 #include "includes/coordinate/projector/equirectangular.h"
 
+// STL
 #include <type_traits>
 #include <numbers>
 
+// Utils
 #include "includes/utils/exception_def.h"
+
 
 Coordinate::Projector::Equirectangular::Equirectangular(Coordinate::Spherical&& mean_coordinate) noexcept :
 	Coordinate::Projector::Base(std::move(mean_coordinate))

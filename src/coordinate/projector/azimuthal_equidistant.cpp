@@ -39,7 +39,4 @@ Coordinate::Base<double> Coordinate::Projector::Azimuthal_Equidistant::Project(c
 	double rho = std::acos(cos_Rho_R)  * Coordinate::Spherical::earth_radius;
 
 	return Coordinate::Base<double>(rho * std::sin(theta), rho * std::cos(-theta));
-	
-	
-	//double c = std::sin(phi_0) * std::sin(phi) + std::cos(phi_0) * std::cos(phi) * std::cos(lambda - lambda_0);
 }

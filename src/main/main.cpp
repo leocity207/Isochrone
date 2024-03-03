@@ -12,8 +12,6 @@ using namespace std::chrono;
 
 int main()
 {
-	
-	
 	std::filesystem::path path("C:/dev/Isochrone/Ressource/config.json");
 	auto [stations, scheduled_lines] = Resource::Archive::Plaine::Parse_Scheduled_Network_Resource(std::move(path));
 	Context::Scheduled_Network network_context(std::move(scheduled_lines), std::move(stations));
@@ -44,7 +42,6 @@ int main()
 	std::ofstream output("ouput.txt");
 	for (const auto& station : result)
 		output << station.Get().Get_Name() << ";" << station.Get_Reaching_Time().ToString() << ";" << station.Has_Been_Reached_By_Transport() << ";" << station.Has_Been_Reached_Once_By_Transport() << std::endl;
-
 
 	return 0;
 }

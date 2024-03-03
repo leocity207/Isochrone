@@ -4,7 +4,7 @@ FILE(GLOB NETWORK_SOURCE "./*.cpp")
 
 #////////
 # LIBRARY
-add_library(network STATIC                      
+add_library(network STATIC
 	${NETWORK_SOURCE}
 )
 

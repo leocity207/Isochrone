@@ -4,6 +4,7 @@
 // Projector
 #include "base.h"
 
+
 namespace Coordinate
 {
 	namespace Projector
@@ -23,5 +24,6 @@ namespace Coordinate
 		};
 	}
 }
+
 
 #endif //COORDINATE_PROJECTOR_EQUIRECTANGULAR_H
