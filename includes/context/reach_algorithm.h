@@ -20,11 +20,11 @@ namespace Context
 	////////
 	/// CTOR
 	public:
-		DELETE_DEFAULT(Reach_Algorithm);
+		DELETE_DEFAULT_CTOR(Reach_Algorithm);
 		DELETE_COPY(Reach_Algorithm);
 		DEFAULT_MOVE(Reach_Algorithm);
 
-		Reach_Algorithm(const Scheduled_Network& network, DayTime&& start_time, double speed, Sphere_Coordinate&& starting_coordinate, Network::Day&& m_day_type) noexcept;
+		Reach_Algorithm(const Scheduled_Network& network, DayTime&& start_time, double speed, Coordinate::Spherical&& starting_coordinate, Network::Day&& m_day_type) noexcept;
 
 	///////////
 	/// METHODS
@@ -32,7 +32,7 @@ namespace Context
 		const Scheduled_Network& Get_Network() const noexcept;
 		const DayTime& Get_Starting_Time() const noexcept;
 		const double Get_Speed() const noexcept;
-		const Sphere_Coordinate Get_Starting_Coordinate() const noexcept;
+		const Coordinate::Spherical Get_Starting_Coordinate() const noexcept;
 		const Network::Day& Get_Day_Type() const noexcept;
 		std::vector<Context::Station> Optimize(::Reach_Algorithm::Algorithm& algorithm) const;
 
@@ -42,7 +42,7 @@ namespace Context
 		std::reference_wrapper<const Scheduled_Network> m_network;
 		DayTime m_start_time;
 		double m_speed;
-		Sphere_Coordinate m_start_coordinate;
+		Coordinate::Spherical m_start_coordinate;
 		Network::Day m_day_type;
 	};
 

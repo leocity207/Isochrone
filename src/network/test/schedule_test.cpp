@@ -31,9 +31,9 @@ void Schedule_Test::SetUpTestSuite()
 		{a10         ,a11,std::nullopt,a13,a14         },
 		{std::nullopt,a21,a22         ,a23,std::nullopt}};
 
-	Sphere_Coordinate coord1("45°38'13\"E", "45°32'13\"N");
-	Sphere_Coordinate coord2("45°39'13\"E", "45°33'13\"N");
-	Sphere_Coordinate coord3("45°34'13\"E", "45°33'13\"N");
+	Coordinate::Spherical coord1 = Coordinate::Spherical::From_String("45°38'13\"E", "45°32'13\"N");
+	Coordinate::Spherical coord2 = Coordinate::Spherical::From_String("45°39'13\"E", "45°33'13\"N");
+	Coordinate::Spherical coord3 = Coordinate::Spherical::From_String("45°34'13\"E", "45°33'13\"N");
 
 	//Station fabrication
 	s_stations.emplace_back(std::move(coord1), "Station 1");
@@ -50,7 +50,7 @@ void Schedule_Test::SetUpTestSuite()
 /// if the start station is not in the same order as the end one we should return nullopt
 TEST_F(Schedule_Test, Get_Time_To_Station_Wrong)
 {
-	Sphere_Coordinate coord("48°34'13\"E", "45°33'13\"N");
+	Coordinate::Spherical coord = Coordinate::Spherical::From_String("48°34'13\"E", "45°33'13\"N");
 	Network::Station test(std::move(coord), "Station 4");
 
 	EXPECT_FALSE(s_schedule->Get_Closest_Time_To_Station(test, test,DayTime(std::chrono::hours(7),std::chrono::minutes(4))).has_value());

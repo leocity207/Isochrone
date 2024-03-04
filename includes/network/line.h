@@ -23,7 +23,7 @@ namespace Network
 	/// CTOR
 	public:
 		DELETE_COPY(Line)
-		DELETE_DEFAULT(Line)
+		DELETE_DEFAULT_CTOR(Line)
 		DEFAULT_MOVE(Line)
 
 		Line(std::vector<Station_CRef>&& Schedule,std::string&& name) noexcept;

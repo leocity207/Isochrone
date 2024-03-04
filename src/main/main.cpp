@@ -12,8 +12,6 @@ using namespace std::chrono;
 
 int main()
 {
-	
-	
 	std::filesystem::path path("C:/dev/Isochrone/Ressource/config.json");
 	auto [stations, scheduled_lines] = Resource::Archive::Plaine::Parse_Scheduled_Network_Resource(std::move(path));
 	Context::Scheduled_Network network_context(std::move(scheduled_lines), std::move(stations));
@@ -28,7 +26,7 @@ int main()
 			range.end(),
 			[&](int item)
 			{
-				Context::Reach_Algorithm solver_context(network_context, DayTime(hours(item / 60), minutes(item % 60)), 1, Sphere_Coordinate(4.8740833333333340, 45.521305555555557), Network::Day(Monday, Network::SCHOOL_DAYS));
+				Context::Reach_Algorithm solver_context(network_context, DayTime(hours(item / 60), minutes(item % 60)), 1, Coordinate::Spherical(4.8740833333333340, 45.521305555555557), Network::Day(Monday, Network::SCHOOL_DAYS));
 				Reach_Algorithm::Simple_With_Map algorithm;
 				std::vector<Context::Station> result = solver_context.Optimize(algorithm);
 			});
@@ -38,13 +36,12 @@ int main()
 	std::cout << (t1 - t0).count() << "s\n";
 	std::cout << d.count() / (1260.0 - 480.0) << "ms\n";
 
-	Context::Reach_Algorithm solver_context(network_context, DayTime(hours(8), minutes(0)), 1, Sphere_Coordinate(4.8740833333333340, 45.521305555555557), Network::Day(Monday, Network::SCHOOL_DAYS));
+	Context::Reach_Algorithm solver_context(network_context, DayTime(hours(8), minutes(0)), 1, Coordinate::Spherical(4.8740833333333340, 45.521305555555557), Network::Day(Monday, Network::SCHOOL_DAYS));
 	Reach_Algorithm::Simple_With_Map algorithm;
 	std::vector<Context::Station> result = solver_context.Optimize(algorithm);
 	std::ofstream output("ouput.txt");
 	for (const auto& station : result)
 		output << station.Get().Get_Name() << ";" << station.Get_Reaching_Time().ToString() << ";" << station.Has_Been_Reached_By_Transport() << ";" << station.Has_Been_Reached_Once_By_Transport() << std::endl;
-
 
 	return 0;
 }

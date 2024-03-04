@@ -1,0 +1,20 @@
+#/////////////
+# SOURCE FILES
+file(GLOB COORDINATE_SOURCE "./*.cpp")
+file(GLOB PROJECTOR_SOURCE "./projector/*.cpp")
+
+
+#////////
+# LIBRARY
+add_library(coordinate STATIC
+	${COORDINATE_SOURCE}
+	${PROJECTOR_SOURCE}
+)
+
+#//////////////
+# LIBRARY LINKS
+target_link_libraries(coordinate
+	utils
+)
+
+

@@ -6,18 +6,18 @@
 int Network::Station::s_count = 0;
 
 
-Network::Station::Station(Sphere_Coordinate&& coordinate, std::string&& name) noexcept : m_coordinate(coordinate), m_name(name), m_id(++s_count)
+Network::Station::Station(Coordinate::Spherical&& coordinate, std::string&& name) noexcept : m_coordinate(coordinate), m_name(name), m_id(++s_count)
 {
 }
 
 const double Network::Station::Get_Distance_To(const Station& station) const noexcept
 {
-	return m_coordinate.Get_Distance(station.GetCoordinate());
+	return m_coordinate.Distance_To(station.GetCoordinate());
 }
 
-const double Network::Station::Get_Distance_To(const Sphere_Coordinate& coordinate) const noexcept
+const double Network::Station::Get_Distance_To(const Coordinate::Spherical& coordinate) const noexcept
 {
-	return m_coordinate.Get_Distance(coordinate);
+	return m_coordinate.Distance_To(coordinate);
 }
 
 const std::string& Network::Station::Get_Name() const noexcept
@@ -25,7 +25,7 @@ const std::string& Network::Station::Get_Name() const noexcept
 	return m_name; 
 }
 
-const Sphere_Coordinate& Network::Station::GetCoordinate() const noexcept
+const Coordinate::Spherical& Network::Station::GetCoordinate() const noexcept
 {
 	 return m_coordinate; 
 }

@@ -22,6 +22,7 @@ DECLARE_EXCEPTION(Exception,STATION_NOT_IN_LIST, "The station we are trying to f
 DECLARE_EXCEPTION(Exception, ELEMENT_NOT_IN_LIST, "The element is not in the list.");
 DECLARE_EXCEPTION(Exception, SIZE_IS_ZERO, "Size of the list is zero.");
 DECLARE_EXCEPTION(Exception, NOT_RECTANGULAR, "Matrix is not rectangular.");
+DECLARE_EXCEPTION(Exception, BAD_ANGULAR_VALUE_PROJECTION, "The Angular coordinate in parameter cannot be projected.");
 
 
 #endif //EXCEPTION_DEF_H

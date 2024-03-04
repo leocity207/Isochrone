@@ -9,12 +9,12 @@
 std::map<std::string, Network::Station> SetupStationList()
 {
 	std::map<std::string, Network::Station> tmp;
-	tmp.emplace("A", Network::Station(Sphere_Coordinate(0, 0), "Station A"));
-	tmp.emplace("B", Network::Station(Sphere_Coordinate(0, 0), "Station B"));
-	tmp.emplace("C", Network::Station(Sphere_Coordinate(0, 0), "Station C"));
-	tmp.emplace("D", Network::Station(Sphere_Coordinate(0, 0), "Station D"));
-	tmp.emplace("false A", Network::Station(Sphere_Coordinate(0, 0), "Station false A"));
-	tmp.emplace("F", Network::Station(Sphere_Coordinate(0, 0), "Station F"));
+	tmp.emplace("A", Network::Station(Coordinate::Spherical(0, 0), "Station A"));
+	tmp.emplace("B", Network::Station(Coordinate::Spherical(0, 0), "Station B"));
+	tmp.emplace("C", Network::Station(Coordinate::Spherical(0, 0), "Station C"));
+	tmp.emplace("D", Network::Station(Coordinate::Spherical(0, 0), "Station D"));
+	tmp.emplace("false A", Network::Station(Coordinate::Spherical(0, 0), "Station false A"));
+	tmp.emplace("F", Network::Station(Coordinate::Spherical(0, 0), "Station F"));
 	return tmp;
 }
 

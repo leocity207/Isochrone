@@ -4,7 +4,7 @@
 #include "includes/reach_algorithm/algorithm.h"
 
 
-Context::Reach_Algorithm::Reach_Algorithm(const Scheduled_Network& network, DayTime&& start_time, double speed, Sphere_Coordinate&& starting_coordinate, Network::Day&& day_type) noexcept :
+Context::Reach_Algorithm::Reach_Algorithm(const Scheduled_Network& network, DayTime&& start_time, double speed, Coordinate::Spherical&& starting_coordinate, Network::Day&& day_type) noexcept :
 	m_network(network),
 	m_start_time(std::move(start_time)),
 	m_speed(speed),
@@ -28,7 +28,7 @@ const double Context::Reach_Algorithm::Get_Speed() const noexcept
 	return m_speed;
 }
 
-const Sphere_Coordinate Context::Reach_Algorithm::Get_Starting_Coordinate() const noexcept
+const Coordinate::Spherical Context::Reach_Algorithm::Get_Starting_Coordinate() const noexcept
 {
 	return m_start_coordinate;
 }

@@ -27,7 +27,7 @@ namespace Context
 	////////
 	/// CTOR
 	public:
-		DELETE_DEFAULT(Station);
+		DELETE_DEFAULT_CTOR(Station);
 		DELETE_COPY(Station);
 
 		Station(const Network::Station& station_to_link,const Reach_Algorithm& reach_algorithm_context) noexcept;
