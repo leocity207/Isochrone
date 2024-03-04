@@ -5,7 +5,8 @@
 
 // Coordinate
 #include "includes/coordinate/planar.h"
-
+#include "includes/coordinate/sphere.h"
+#include "includes/coordinate/projector/equirectangular.h"
 
 TEST_F(Planar_Test,easy_constructor)
 {
@@ -56,4 +57,14 @@ TEST_F(Planar_Test, GetDistance_null)
 
 		EXPECT_DOUBLE_EQ(a.Distance_To(b), 0);
 	}
+}
+
+TEST_F(Planar_Test, Projection_construction)
+{
+	Coordinate::Spherical mean(0, 0);
+	Coordinate::Projector::Equirectangular projector(std::move(mean));
+	Coordinate::Spherical a(0, 0);
+
+	Coordinate::Planar<double> projected = Coordinate::Planar<double>(a, projector);
+	EXPECT_EQ(projected, Coordinate::Planar<double>(.0, .0));
 }

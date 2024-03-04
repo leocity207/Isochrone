@@ -10,13 +10,6 @@ namespace Coordinate
 	namespace Projector { class Base; };
 	class Spherical;
 
-	template<class T, class E>
-	constexpr bool Is_Float()
-	{
-		return std::is_same< E, const Spherical&>::value&& std::is_floating_point<T>::value;
-	}
-
-
 	template<class T>
 	class Planar : public Base<T>
 	{
@@ -33,8 +26,7 @@ namespace Coordinate
 		/// @param sphere_coordinate: the coordinate to derive from
 		/// @param projector        : the projector that will project the sphere point
 		/// @throw if the sphere point cannot be projected
-		template<class E>
-		Planar(typename std::enable_if<Is_Float<T,E>(), const Spherical&>::type sphere_coordinate, const Coordinate::Projector::Base& projector);
+		Planar(const Spherical& sphere_coordinate,const Coordinate::Projector::Base& projector) requires std::is_floating_point<T>::value;
 
 		///////////
 		/// METHODS

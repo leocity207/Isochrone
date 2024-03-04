@@ -13,12 +13,10 @@ Coordinate::Planar<T>::Planar(T x, T y) noexcept :
 }
 
 template<class T>
-template<class E>
-Coordinate::Planar<T>::Planar(typename std::enable_if<Is_Float<T, E>(), const Spherical&>::type sphere_coordinate, const Coordinate::Projector::Base& projector) noexcept :
+Coordinate::Planar<T>::Planar(const Spherical& sphere_coordinate, const Coordinate::Projector::Base& projector) requires std::is_floating_point<T>::value:
 	Base<double>(projector.Project(sphere_coordinate))
 {
 }
-
 
 template<class T>
 double Coordinate::Planar<T>::Distance_To(const Planar& other) const noexcept
