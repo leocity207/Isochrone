@@ -21,7 +21,7 @@ add_executable( reach_algorithm_test
 #//////////////
 # LIBRARY LINKS
 target_link_libraries(reach_algorithm_test
-	algorithm
+	reach_algorithm
 	GTest::gtest_main
 	network
 	context

@@ -27,3 +27,5 @@
 * #15 : Create map base
 * #16 : Check timetable validity
   * Done
+* #17: coordinate
+* #18: documentation

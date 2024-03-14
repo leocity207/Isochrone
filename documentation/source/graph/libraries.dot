@@ -1,0 +1,27 @@
+digraph Libraries{
+    Logger
+	Utils
+	CSV
+	JSON
+	Coordinate
+	Archive
+	Network
+	Context
+	Reach_Algorithm
+	
+	Logger -> Utils
+	Utils -> Coordinate
+	Coordinate -> Network
+	Network -> {Context Reach_Algorithm JSON CSV}
+	
+	Reach_Algorithm -> Context
+	Context -> Reach_Algorithm
+	{rank=same Reach_Algorithm Context} 
+	
+	subgraph cluster_ressource {
+		label=ressource
+		{JSON CSV Archive}
+		{JSON CSV} -> Archive
+	}
+	
+}

@@ -9,3 +9,6 @@ src/C++/out/*
 # config file
 includes/config/config.h
 src/algorithm/test/config.h
+
+#documentation build
+documentation/build/*
