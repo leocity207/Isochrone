@@ -26,6 +26,7 @@ if errorlevel 9009 (
 
 if "%1" == "" goto help
 
+python source/graph/applytheme.py source/graph/classes.dot source/graph/theme.json
 %SPHINXBUILD% -M %1 %SOURCEDIR% %BUILDDIR% %SPHINXOPTS% %O%
 goto end
 

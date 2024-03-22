@@ -19,16 +19,19 @@
 
 	"interface":
 	{
-		"style" : "none"
+		"style" : "",
+		"shape" :"ellipse"
 	},
 
 	"plain":
 	{
-		"style" : "none"
+		"style" : "",
+		"shape" :"ellipse"
 	},
 
 	"namespace":
 	{
-		"style" : "none"
+		"style" : "",
+		"shape" :"ellipse"
 	}
 }

@@ -2,7 +2,7 @@
 Classes
 =======
 
-.. graphviz:: graph/classes.dot
+.. graphviz:: graph/classes_themed.dot
 
 .. toctree::
     

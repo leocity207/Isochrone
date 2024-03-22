@@ -1,0 +1,204 @@
+digraph G {
+Daytime [shape=ellipse, style=""];
+General [shape=ellipse, style=""];
+Parser_CSV_Station [shape=ellipse, style=""];
+parser_CSV_Timetable [shape=ellipse, style=""];
+Parser_JSON [shape=ellipse, style=""];
+validator_CSV [shape=ellipse, style=""];
+validator_TimeTable_Error [shape=ellipse, style=""];
+validator_TimeTable_Error_Time [shape=ellipse, style=""];
+validator_TimeTable_Error_Size [shape=ellipse, style=""];
+engine_CSV_Parser [shape=ellipse, style=""];
+engine_CSV_Parser_File [shape=ellipse, style=""];
+engine_CSV_Parser_stream [shape=ellipse, style=""];
+archive_plain [shape=ellipse, style=""];
+Coordinate_Base [shape=ellipse, style=""];
+Coordinate_Spherical [shape=ellipse, style=""];
+Coordinate_Planar [shape=ellipse, style=""];
+Coordinate_Projector_Base [shape=ellipse, style=""];
+Coordinate_Projector_Equirectangular [shape=ellipse, style=""];
+Coordinate_Projector_Ezimuthal_Equidistant [shape=ellipse, style=""];
+Network_Station [shape=ellipse, style=""];
+Network_Line [shape=ellipse, style=""];
+Network_Schedule [shape=ellipse, style=""];
+Network_Scheduled_Line [shape=ellipse, style=""];
+Network_Day [shape=ellipse, style=""];
+Network_DayTemplate [shape=ellipse, style=""];
+Context_Scheduled_Network [shape=ellipse, style=""];
+Context_Reache_Algorithm [shape=ellipse, style=""];
+Context_Station [shape=ellipse, style=""];
+Reache_Algorithm [shape=ellipse, style=""];
+Reache_Algorithm_Simple [shape=ellipse, style=""];
+Reache_Algorithm_Simple_Par [shape=ellipse, style=""];
+Reache_Algorithm_Dictionary [shape=ellipse, style=""];
+Reache_Algorithm_Dictionary_Par [shape=ellipse, style=""];
+General -> Coordinate_Spherical  [color="light gray", style=dotted];
+Coordinate_Spherical -> Network_Station  [color=blue, style=bold];
+Daytime -> Network_Schedule  [color=blue, style=bold];
+subgraph  {
+Network_Scheduled_Line;
+Network_Station;
+}
+ -> Context_Scheduled_Network  [color=blue, style=bold];
+subgraph  {
+Network_Station;
+Daytime;
+}
+ -> Context_Station  [color=blue, style=bold];
+subgraph  {
+Context_Scheduled_Network;
+Network_Day;
+Coordinate_Spherical;
+Daytime;
+}
+ -> Context_Reache_Algorithm  [color=blue, style=bold];
+Coordinate_Projector_Base -> Coordinate_Planar  [color="light gray", style=dotted];
+Context_Station -> Reache_Algorithm  [color="light gray", style=dotted];
+Network_DayTemplate -> Parser_JSON  [color="light gray", style=dotted];
+Daytime -> subgraph  {
+parser_CSV_Timetable;
+validator_CSV;
+}
+  [color="light gray", style=dotted];
+subgraph  {
+validator_CSV;
+Parser_CSV_Station;
+Parser_JSON;
+parser_CSV_Timetable;
+engine_CSV_Parser_File;
+Network_Station;
+Network_Scheduled_Line;
+}
+ -> archive_plain  [color="light gray", style=dotted];
+subgraph cluster_Ressource {
+label=Ressource;
+subgraph cluster_Validator {
+label=Validator;
+validator_CSV;
+validator_TimeTable_Error;
+validator_TimeTable_Error_Time;
+validator_TimeTable_Error_Size;
+validator_TimeTable_Error -> subgraph  {
+validator_TimeTable_Error_Time;
+validator_TimeTable_Error_Size;
+}
+  [style=inherit];
+subgraph  {
+validator_TimeTable_Error;
+validator_TimeTable_Error_Time;
+validator_TimeTable_Error_Size;
+}
+ -> validator_CSV  [style=use];
+}
+
+subgraph cluster_CSV {
+label=CSV;
+subgraph cluster_Engine {
+label=Engine;
+engine_CSV_Parser;
+engine_CSV_Parser_File;
+engine_CSV_Parser_stream;
+engine_CSV_Parser -> subgraph  {
+engine_CSV_Parser_File;
+engine_CSV_Parser_stream;
+}
+  [style=inherit];
+}
+
+subgraph cluster_Parser {
+label=Parser;
+Parser_CSV_Station;
+parser_CSV_Timetable;
+}
+
+engine_CSV_Parser -> subgraph  {
+Parser_CSV_Station;
+parser_CSV_Timetable;
+}
+  [style=use];
+}
+
+subgraph cluster_JSON {
+label=JSON;
+Parser_JSON;
+}
+
+subgraph cluster_Archive {
+label=Archive;
+archive_plain;
+}
+
+}
+
+subgraph cluster_Network {
+label=Network;
+Network_Station;
+Network_Line;
+Network_Schedule;
+Network_Scheduled_Line;
+Network_Day;
+Network_DayTemplate;
+subgraph  {
+Network_DayTemplate;
+Network_Line;
+}
+ -> Network_Schedule  [style=inherit];
+Network_Station -> Network_Line  [style=contain];
+Network_Schedule -> Network_Scheduled_Line  [style=contain];
+Network_Line -> Network_Scheduled_Line  [style=inherit];
+}
+
+subgraph cluster_Contexte {
+label=Contexte;
+Context_Scheduled_Network;
+Context_Reache_Algorithm;
+Context_Station;
+}
+
+subgraph cluster_Reach_Algorihtm {
+label=Reach_Algorihtm;
+Reache_Algorithm;
+Reache_Algorithm_Simple;
+Reache_Algorithm_Simple_Par;
+Reache_Algorithm_Dictionary;
+Reache_Algorithm_Dictionary_Par;
+Reache_Algorithm -> subgraph  {
+Reache_Algorithm_Simple;
+Reache_Algorithm_Simple_Par;
+Reache_Algorithm_Dictionary;
+Reache_Algorithm_Dictionary_Par;
+}
+  [style=inherit];
+}
+
+subgraph cluster_Utils {
+label=Utils;
+Daytime;
+General;
+}
+
+subgraph cluster_Coordinate {
+label=Coordinate;
+Coordinate_Base;
+Coordinate_Spherical;
+Coordinate_Planar;
+Coordinate_Base -> subgraph  {
+Coordinate_Spherical;
+Coordinate_Planar;
+}
+;
+subgraph cluster_Projector {
+label=Projector;
+Coordinate_Projector_Base;
+Coordinate_Projector_Equirectangular;
+Coordinate_Projector_Ezimuthal_Equidistant;
+Coordinate_Projector_Base -> subgraph  {
+Coordinate_Projector_Ezimuthal_Equidistant;
+Coordinate_Projector_Equirectangular;
+}
+;
+}
+
+}
+
+}

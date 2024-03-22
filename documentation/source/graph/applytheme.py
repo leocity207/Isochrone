@@ -14,7 +14,7 @@ def Apply_Theme(filepath: str,themepath: str):
 	if(len(graphs) != 1):
 		raise ValueError("expected dot file to only have one graphbut got : " + str(len(graphs)))
 	Parse_Graph(graphs[0],ParseTheme(themepath))
-	graphs[0].write(filepath.rstrip('.')+"_themed.dot")
+	graphs[0].write(filepath.rstrip('.dot')+"_themed.dot")
    
 def Parse_Graph(graph: pydot.Graph, theme: dict):
 	edges = graph.get_edges()
@@ -38,14 +38,14 @@ def Parse_Graph(graph: pydot.Graph, theme: dict):
 
 def Edge_Transform(name:str, edge: pydot.Edge,theme: dict):
 	for attribute in pydot.EDGE_ATTRIBUTES:
-		Is_Writable = attribute == "style" or edge.__getattribute__("get_"+attribute)() is not None
-		if(theme[name].get(attribute) is not None and Is_Writable):
+		#Is_Writable = attribute == "style" or edge.__getattribute__("get_"+attribute)() is not None
+		if(theme[name].get(attribute) is not None):
 			edge.__getattribute__("set_"+attribute)(theme[name].get(attribute))
 
 def Node_Transform(name:str, node: pydot.Node,theme: dict):
 	for attribute in pydot.NODE_ATTRIBUTES:
-		Is_Writable = attribute == "style" or node.__getattribute__("get_"+attribute)() is not None
-		if(theme[name].get(attribute) is not None and Is_Writable):
+		#Is_Writable = attribute == "style" or node.__getattribute__("get_"+attribute)() is not None
+		if(theme[name].get(attribute) is not None):
 			node.__getattribute__("set_"+attribute)(theme[name].get(attribute))
 
 def _Parse_Args():
