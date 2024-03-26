@@ -5,7 +5,7 @@ import argparse
 VALIDE_EDGE = ["use","contain","inherit"]
 VALIDE_NODE = ["interface","plain","namespace"]
 
-def ParseTheme(filepath):
+def Parse_Theme(filepath):
 	with open(filepath,'r') as f:
 		return json.load(f)
 
@@ -13,7 +13,7 @@ def Apply_Theme(filepath: str,themepath: str):
 	graphs = pydot.graph_from_dot_file(filepath)
 	if(len(graphs) != 1):
 		raise ValueError("expected dot file to only have one graphbut got : " + str(len(graphs)))
-	Parse_Graph(graphs[0],ParseTheme(themepath))
+	Parse_Graph(graphs[0],Parse_Theme(themepath))
 	graphs[0].write(filepath.rstrip('.dot')+"_themed.dot")
    
 def Parse_Graph(graph: pydot.Graph, theme: dict):
