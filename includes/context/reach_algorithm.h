@@ -34,6 +34,11 @@ namespace Context
 		const double Get_Speed() const noexcept;
 		const Coordinate::Spherical Get_Starting_Coordinate() const noexcept;
 		const Network::Day& Get_Day_Type() const noexcept;
+
+		///////////////////////////////////////////////////////////////////////////
+		/// @brief otimize the scheduled network with the given optimizer algorithm
+		/// @param algorithm the algorithm with wich we will optimize the network
+		/// @return list of context station optimized
 		std::vector<Context::Station> Optimize(::Reach_Algorithm::Algorithm& algorithm) const;
 
 	//////////////

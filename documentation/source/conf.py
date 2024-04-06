@@ -15,7 +15,8 @@ author = 'Léo Cluzel'
 
 extensions = [
 	'sphinx.ext.graphviz',
-    'sphinx.ext.autodoc'
+    'sphinx.ext.autodoc',
+    'breathe'
 ]
 pygments_style = 'sphinx'
 
@@ -24,11 +25,24 @@ exclude_patterns = []
 
 
 
+
+
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'groundwork'
+html_theme = 'sphinx_rtd_theme'
 html_static_path = []#['_static']
 
 # -- GraphViz configuration ----------------------------------
 graphviz_output_format = 'svg'
+
+
+breathe_projects = {
+     "Isochrone": "../build/doxygen/xml"
+}
+
+breathe_default_project = "Isochrone"
+
+primary_domain = 'cpp'
+
+highlight_language = 'cpp'

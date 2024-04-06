@@ -12,7 +12,7 @@ documentation
 -------------
 	generating the documentation require **python 3.10** with Sphinx
 
-	.. code-block:: python
+	.. code-block:: 
 
 		pip install sphinx
 
@@ -20,6 +20,6 @@ documentation
 
 	automatic graphical theming for the dot files also need the pydot 
 
-	.. code-block:: pydot
+	.. code-block::
 
 		pip install pydot
