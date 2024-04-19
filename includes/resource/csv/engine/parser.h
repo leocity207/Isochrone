@@ -17,21 +17,21 @@ namespace CSV
 	{
 		class Parser
 		{
-			////////
-			/// CTOR
+			//#####
+			// CTOR
 		public:
 			Parser() = delete;
 			Parser(Memory::Owned<std::istream>&& stream, const char delimiter);
 
-			///////////
-			/// METHODS
+			//########
+			// METHODS
 		public:
 			std::optional<std::vector<std::string>> Next_Line() const;
 		private:
 			std::vector<std::string> Split_Line(std::string&& line) const noexcept;
 
-			/////////////
-			/// ATRIBUTES
+			//##########
+			// ATRIBUTES
 		private:
 			mutable Memory::Owned<std::istream> m_file_stream;
 			const char m_delimiter;

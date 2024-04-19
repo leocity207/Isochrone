@@ -13,8 +13,8 @@ namespace Context
 {
 	class Scheduled_Network
 	{
-	////////
-	/// CTOR
+	//#####
+	// CTOR
 	public:
 		DELETE_DEFAULT_CTOR(Scheduled_Network);
 		DELETE_COPY(Scheduled_Network);
@@ -22,15 +22,15 @@ namespace Context
 		
 		Scheduled_Network(std::vector<Network::Scheduled_Line>&& lines, std::vector<Network::Station>&& stations) noexcept;
 
-	///////////
-	/// METHODS
+	//########
+	// METHODS
 	public:
 		const std::vector<Network::Station>& Get_Station() const noexcept;
 		const std::vector<Network::Scheduled_Line>& Get_Scheduled_Lines() const noexcept;
 
 
-	//////////////
-	/// ATTRIBUTES
+	//###########
+	// ATTRIBUTES
 	private:
 		std::vector<Network::Scheduled_Line> m_lines;
 		std::vector<Network::Station> m_stations;

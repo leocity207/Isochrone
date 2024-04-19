@@ -16,16 +16,16 @@ namespace Network
 {
 	class Station
 	{
-	/////////
-	/// CTOR
+	//#####
+	// CTOR
 	public:
 		DELETE_DEFAULT_CTOR(Station)
 		DELETE_COPY(Station)
 		DEFAULT_MOVE(Station)
 		Station(Coordinate::Spherical&& coordinate, std::string&& name) noexcept;
 
-	///////////
-	/// METHODS
+	//########
+	// METHODS
 	public:
 		////////////////////////////////////////////////////////////////////////////
 		/// @brief give back the distance from the parameter station to this station
@@ -44,18 +44,18 @@ namespace Network
 		bool operator==(const Station& other_station) const noexcept;
 		bool operator<(const Station& other_station) const noexcept;
 
-		//////////
-		/// getter
+		//########
+		// getter
 		const std::string& Get_Name() const noexcept;
 		const Coordinate::Spherical& GetCoordinate() const noexcept;
 
-	//////////////////
-	/// STATIC METHODS
+	//###############
+	// STATIC METHODS
 	public:
 		static const Station& Get_Station_By_Name(const std::vector<Station>& station_list, const std::string& name);
 
-	//////////////
-	/// ATTRIBUTES
+	//###########
+	// ATTRIBUTES
 	private:
 		Coordinate::Spherical m_coordinate;
 		std::string m_name;

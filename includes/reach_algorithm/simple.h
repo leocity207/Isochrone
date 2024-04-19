@@ -12,16 +12,16 @@ namespace Reach_Algorithm
 	class Simple : public Algorithm
 	{
 
-	////////
-	/// CTOR
+	//#####
+	// CTOR
 	public:
 		DEFAULT_DEFAULT_CTOR(Simple)
 		DELETE_COPY(Simple)
 		DELETE_MOVE(Simple)
 
 
-	//////////
-	/// METHODS
+	//########
+	// METHODS
 	public:
 		std::vector<Context::Station> Optimize(const Context::Reach_Algorithm& algorithm_context) override;
 	};

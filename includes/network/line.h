@@ -19,8 +19,8 @@ namespace Network
 {
 	class Line
 	{
-	////////
-	/// CTOR
+	//#####
+	// CTOR
 	public:
 		DELETE_COPY(Line)
 		DELETE_DEFAULT_CTOR(Line)
@@ -28,8 +28,8 @@ namespace Network
 
 		Line(std::vector<Station_CRef>&& Schedule,std::string&& name) noexcept;
 
-	///////////
-	/// METHODS
+	//########
+	// METHODS
 	public:
 		//////////////////////////////////////////////////////////////////
 		/// @brief give back the station list of the schedule
@@ -64,8 +64,8 @@ namespace Network
 		/// @return  : An optional containing the index or not if the station could not be found 
 		std::vector<Station_CRef>::const_iterator From_Station(const Station& station) const noexcept;
 
-		//////////////
-		/// ATTRIBUTESs
+		//###########
+		// ATTRIBUTES
 		protected:
 			std::string m_name;
 			std::vector<Station_CRef> m_stations;

@@ -13,8 +13,8 @@ namespace Coordinate
 	template<class T>
 	class Planar : public Base<T>
 	{
-		////////
-		/// CTOR
+		//#####
+		// CTOR
 	public:
 		DELETE_DEFAULT_CTOR(Planar)
 		DEFAULT_MOVE(Planar)
@@ -28,8 +28,8 @@ namespace Coordinate
 		/// @throw if the sphere point cannot be projected
 		Planar(const Spherical& sphere_coordinate,const Coordinate::Projector::Base& projector) requires std::is_floating_point<T>::value;
 
-		///////////
-		/// METHODS
+		//########
+		// METHODS
 	public:
 		double Distance_To(const Planar&) const noexcept;
 		T X() const noexcept;

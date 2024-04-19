@@ -17,8 +17,8 @@ namespace Network
 {
 	class Scheduled_Line : public Line
 	{
-		////////
-		/// CTOR
+		//#####
+		// CTOR
 	public:
 		DELETE_COPY(Scheduled_Line)
 		DELETE_DEFAULT_CTOR(Scheduled_Line)
@@ -26,8 +26,8 @@ namespace Network
 
 		Scheduled_Line(std::vector<Schedule>&& Schedule, std::string&& name) noexcept;
 
-		///////////
-		/// METHODS
+		//########
+		// METHODS
 	public:
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		/// @brief Find the closest time to go from start to finish station knowing the curent daytime and the daytype
@@ -62,13 +62,13 @@ namespace Network
 		/// @return wether or not the station is contained inside the line for this day
 		bool Contain(const Station& station, const Day& matching_day) const noexcept;
 
-	//////////////////
-	/// STATIC METHDOS
+	//###############
+	// STATIC METHDOS
 	private: 
 		std::vector<Station_CRef> Construct_Station_From_Schedules(const std::vector<Schedule>&);
 
-		//////////////
-		/// ATTRIBUTESs
+		//###########
+		// ATTRIBUTES
 	private:
 		std::vector<Schedule> m_schedule;
 	};

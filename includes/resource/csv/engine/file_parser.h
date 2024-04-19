@@ -14,13 +14,13 @@ namespace CSV
 	{
 		class File_Parser : public Parser
 		{
-			////////
-			/// CTOR
+			//#####
+			// CTOR
 		public:
 			File_Parser(std::filesystem::path&& path, const char delimiter);
 
-			//////////////
-			/// ATTRIBUTES
+			//###########
+			// ATTRIBUTES
 		private:
 			std::filesystem::path m_filepath;
 		};

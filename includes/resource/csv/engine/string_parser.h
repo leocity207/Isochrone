@@ -11,8 +11,8 @@ namespace CSV
 	{
 		class String_Parser : public Parser
 		{
-			////////
-			/// CTOR
+			//#####
+			// CTOR
 		public:
 			String_Parser(std::string&& str, const char delimiter);
 		};

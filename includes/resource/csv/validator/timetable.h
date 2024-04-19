@@ -20,16 +20,16 @@ namespace CSV
 		{
 			class TimeTable_Error
 			{
-				////////
-				/// CTOR
+				//#####
+				// CTOR
 			public:
 				DELETE_COPY(TimeTable_Error)
 				DELETE_MOVE(TimeTable_Error)
 				VIRTUAL_DESTRUCTOR(TimeTable_Error)
 				TimeTable_Error() = default;
 
-				///////////
-				/// Methods
+				//########
+				// Methods
 			public:
 				virtual std::string Get_Error_As_String() const noexcept = 0;
 
@@ -37,24 +37,24 @@ namespace CSV
 
 			class TimeTable_Error_Time : public TimeTable_Error
 			{
-				////////
-				/// CTOR
+				//#####
+				// CTOR
 				public:
 					DELETE_COPY(TimeTable_Error_Time)
 					DELETE_DEFAULT_CTOR(TimeTable_Error_Time)
 					DELETE_MOVE(TimeTable_Error_Time)
 					TimeTable_Error_Time(size_t i,size_t j,DayTime time,const std::string& name) noexcept;
 				
-				///////////
-				/// Methods
+				//########
+				// Methods
 				public:
 					std::string Get_Error_As_String() const noexcept override;
 					const size_t Get_i() const noexcept;
 					const size_t Get_j() const noexcept;
 					const DayTime Get_Time() const noexcept;
 				
-				//////////////
-				/// ATTRIBUTES
+				//###########
+				// ATTRIBUTES
 				private:
 					size_t m_i;
 					size_t m_j;
@@ -64,24 +64,24 @@ namespace CSV
 
 			class TimeTable_Error_Size : public TimeTable_Error
 			{
-				////////
-				/// CTOR
+				//#####
+				// CTOR
 			public:
 				DELETE_COPY(TimeTable_Error_Size)
 				DELETE_DEFAULT_CTOR(TimeTable_Error_Size)
 				DELETE_MOVE(TimeTable_Error_Size)
 				TimeTable_Error_Size(size_t normal_size, size_t anormal_size, size_t i, const std::string& name) noexcept;
 
-				///////////
-				/// Methods
+				//########
+				// Methods
 			public:
 				std::string Get_Error_As_String() const noexcept override;
 				const size_t Get_i() const noexcept;
 				const size_t Get_Anormal_Size() const noexcept;
 				const size_t Get_Normal_Size() const noexcept;
 
-				//////////////
-				/// ATTRIBUTES
+				//###########
+				// ATTRIBUTES
 			private:
 				size_t m_i;
 				size_t m_normal_size;

@@ -17,8 +17,8 @@ namespace Context
 	class Reach_Algorithm
 	{
 
-	////////
-	/// CTOR
+	//#####
+	// CTOR
 	public:
 		DELETE_DEFAULT_CTOR(Reach_Algorithm);
 		DELETE_COPY(Reach_Algorithm);
@@ -26,8 +26,8 @@ namespace Context
 
 		Reach_Algorithm(const Scheduled_Network& network, DayTime&& start_time, double speed, Coordinate::Spherical&& starting_coordinate, Network::Day&& m_day_type) noexcept;
 
-	///////////
-	/// METHODS
+	//########
+	// METHODS
 	public:
 		const Scheduled_Network& Get_Network() const noexcept;
 		const DayTime& Get_Starting_Time() const noexcept;
@@ -41,8 +41,8 @@ namespace Context
 		/// @return list of context station optimized
 		std::vector<Context::Station> Optimize(::Reach_Algorithm::Algorithm& algorithm) const;
 
-	//////////////
-	/// ATTRIBUTES
+	//###########
+	// ATTRIBUTES
 	private:
 		std::reference_wrapper<const Scheduled_Network> m_network;
 		DayTime m_start_time;

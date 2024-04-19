@@ -17,15 +17,15 @@ namespace Reach_Algorithm
 {
 	class Algorithm
 	{
-	////////
-	/// CTOR
+	//#####
+	// CTOR
 	public:
 		DEFAULT_DEFAULT_CTOR(Algorithm)
 		DELETE_COPY(Algorithm);
 		DELETE_MOVE(Algorithm);
 
-	/////////////
-	/// METTHODS
+	//#########
+	// METTHODS
 	public:
 		////////////////////////////////////////////////////////////////////////
 		/// @brief         : This method optimize according to the given context 
@@ -33,8 +33,8 @@ namespace Reach_Algorithm
 		/// @return        : List of context station that are ordered and reach optimized
 		virtual std::vector<Context::Station> Optimize(const Context::Reach_Algorithm& context) = 0;
 
-	//////////////////
-	/// STATIC METHODS
+	//###############
+	// STATIC METHODS
 	protected:
 		////////////////////////////////////////////////////////////////
 		/// @brief      : Place the min element of list at the end of list 

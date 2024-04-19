@@ -9,16 +9,19 @@ namespace Coordinate
 {
 	namespace Projector
 	{
+		////////////////////////////////////////////////////////////////////////////////////////////////////////
+		/// @brief represent Equirectangular projection https://en.wikipedia.org/wiki/Equirectangular_projection
+		/// @note not_default_constructible
 		class Equirectangular : public Base
 		{
-			////////
+			//#####
 			// CTOR
 		public:
 			DELETE_DEFAULT_CTOR(Equirectangular)
 			Equirectangular(Spherical&& mean_coordinate) noexcept;
 
-			////////////
-			/// METHDODS
+			//#########
+			// METHDODS
 		public:
 			Planare_double Project(const Spherical& coordinate) const override;
 		};

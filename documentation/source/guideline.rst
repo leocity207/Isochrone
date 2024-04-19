@@ -31,8 +31,8 @@ class
 
 	.. code-block:: cpp
 
-		////////
-		/// TAG
+		//####
+		// TAG
 		public:
 			...
 		protected:

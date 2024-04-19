@@ -31,22 +31,22 @@ namespace Network
 	//  - The type of day  (As described in the data type schedule above)
 	class Day
 	{
-		////////
-		/// CTOR
+		//#####
+		// CTOR
 		public:
 			DELETE_DEFAULT_CTOR(Day);
 			Day(const std::chrono::weekday, const DAY_TYPE) noexcept;
 
-		///////////
-		/// METHODS
+		//########
+		// METHODS
 		public:
 			bool operator==(const Day& other) const noexcept;
 			const std::chrono::weekday& GetWeekday() const noexcept;
 			const DAY_TYPE& GetDayType() const noexcept;
 			const std::string Description() const noexcept;
 
-		//////////////
-		/// ATTRIBUTES
+		//###########
+		// ATTRIBUTES
 		private:
 			std::chrono::weekday m_weekday;
 			DAY_TYPE m_day_type;
@@ -60,8 +60,8 @@ namespace Network
 	//  - The type of day  (As described in the data type schedule above)
 	class DayTemplate
 	{
-		////////
-		/// CTOR
+		//#####
+		// CTOR
 		public:
 			DELETE_DEFAULT_CTOR(DayTemplate);
 			DELETE_COPY(DayTemplate);
@@ -69,8 +69,8 @@ namespace Network
 			DayTemplate(const std::array<bool, WEEKDAY_COUNT>, const std::array<bool, DAY_TYPE_COUNT>) noexcept;
 			DayTemplate(DayTemplate&&) noexcept;
 
-		///////////
-		/// METHODS
+		//########
+		// METHODS
 		public:
 			//////////////////////////////////////////////////////////
 			/// @brief see if the day is a match for the day day 
@@ -80,8 +80,8 @@ namespace Network
 
 			bool operator==(const DayTemplate& other) const noexcept;
 
-		//////////////
-		/// ATTRIBUTES
+		//###########
+		// ATTRIBUTES
 		private:
 			std::array<bool, WEEKDAY_COUNT> m_working_days;
 			std::array<bool, DAY_TYPE_COUNT> m_working_types;

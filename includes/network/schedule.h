@@ -27,8 +27,8 @@ namespace Network
 	using  TimeTable = std::vector<std::vector<std::optional<DayTime>>>;
 	class Schedule : public DayTemplate, public Line
 	{
-		////////
-		/// CTOR
+		//#####
+		// CTOR
 	public:
 		//deleted
 		DELETE_COPY(Schedule)
@@ -37,8 +37,8 @@ namespace Network
 
 		Schedule(std::vector<Station_CRef>&& station_list, TimeTable&& schedule_tab, DayTemplate&& day_template,std::string&&) noexcept;
 
-		///////////
-		/// METHODS
+		//########
+		// METHODS
 	public:
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -51,8 +51,8 @@ namespace Network
 		std::optional<DayTime> Get_Closest_Time_To_Station(const Station& start_station, const Station& end_station, const DayTime& startStationTime) const;
 
 
-		//////////////
-		/// ATTRIBUTES
+		//###########
+		// ATTRIBUTES
 	private:
 		TimeTable m_timetable;
 	};

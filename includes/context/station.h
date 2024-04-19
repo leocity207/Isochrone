@@ -24,8 +24,8 @@ namespace Context
 	class Station
 	{
 	
-	////////
-	/// CTOR
+	//#####
+	// CTOR
 	public:
 		DELETE_DEFAULT_CTOR(Station);
 		DELETE_COPY(Station);
@@ -34,8 +34,8 @@ namespace Context
 		Station(Station&&) noexcept;
 		Station& operator=(Station&&) noexcept;
 
-	///////////
-	/// METHODS
+	//########
+	// METHODS
 	public:
 		////////////////////////////////////////////////////////////////////////////
 		/// @brief Give back the time you need to get from this station to the start
@@ -81,8 +81,8 @@ namespace Context
 		void Set_Pos(std::list<Station>::iterator& pos);
 		const std::list<Station>::iterator& Get_Pos() const;
 
-	//////////////////
-	/// STATIC METHODS
+	//###############
+	// STATIC METHODS
 	public:
 		/////////////////////////////////////////////////////
 		/// @brief          : Give back the station from a list 
@@ -92,8 +92,8 @@ namespace Context
 		static const Station& Get_Station_By_Name(const std::vector<Station>& stations, const std::string& name);
 
 
-	//////////////
-	/// ATTRIBUTES
+	//###########
+	// ATTRIBUTES
 	private:
 		DayTime m_best_time;
 		DayTime m_basic_time;

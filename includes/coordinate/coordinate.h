@@ -16,23 +16,23 @@ namespace Coordinate
 	class Base :public std::pair<T,T> 
 	{
 		static_assert(std::is_scalar<T>::value,"coordinate should be made of scalar type");
-		/////////
-		/// CTOR
+		//#####
+		// CTOR
 	public:
 		DEFAULT_DEFAULT_CTOR(Base)
 		DEFAULT_COPY(Base)
 		DEFAULT_MOVE(Base)
 		Base(T first,T second);
 
-		///////////
-		/// METHODS
+		//########
+		// METHODS
 	public:
 		Base& operator+=(const Base& other);
 		template<class E>
 		Base& operator/=(E constant);
 
-		//////////////////
-		/// STATIC METHODS
+		//###############
+		// STATIC METHODS
 	public:
 		/////////////////////////////////////////////////////
 		/// Compute the barycenter of a vector of coordinate
