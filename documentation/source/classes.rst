@@ -12,3 +12,5 @@ Classes
     classes/reach_algorithm
     classes/resource
     classes/utils
+    classes/projector
+    classes/exceptions
