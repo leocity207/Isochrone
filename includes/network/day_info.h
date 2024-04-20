@@ -12,8 +12,8 @@
 
 namespace Network
 {
-	///////////////////////////
-	// A day type designate the 
+	/////////////////////////////////////////////////////////////////////////
+	/// @brief A day type designate typical running day of a transport network 
 	enum DAY_TYPE {
 		SCHOOL_DAYS,
 		VACATION_DAYS,
@@ -24,25 +24,40 @@ namespace Network
 	constexpr int WEEKDAY_COUNT = 7;
 	constexpr int DAY_TYPE_COUNT = static_cast<int>(DAY_TYPE::COUNT);
 
-	//////////////////////////////////////////
-	// This class is a representation of a Day
-	// A day is two thing:
-	//  - Weekday  should be referred using std::chrono::weekday )
-	//  - The type of day  (As described in the data type schedule above)
+	///////////////////////////////////////////////////////////////////////////////
+	/// @brief This class is a representation of a Day
+	///        A day is two thing:
+	///            * Weekday  should be referred using std::chrono::weekday )
+	///            * The type of day  (As described in the data type schedule above)
+	/// @note default_constructible, copy_constructible, copy_assignable, move_constructible, move_asignable
 	class Day
 	{
 		//#####
 		// CTOR
 		public:
 			DELETE_DEFAULT_CTOR(Day);
+
+			///////////////////////////////
+			/// @brief Explicit constructor
 			Day(const std::chrono::weekday, const DAY_TYPE) noexcept;
 
 		//########
 		// METHODS
 		public:
+			/////////////////////////
+			/// @brief equal operator
 			bool operator==(const Day& other) const noexcept;
+
+			///////////////////////////////////////////////
+			/// @brief give back the weekday of the Day
 			const std::chrono::weekday& GetWeekday() const noexcept;
+
+			/////////////////////////////////////////////////
+			/// @brief give backe the day type of the Day
 			const DAY_TYPE& GetDayType() const noexcept;
+
+			////////////////////////////////////////
+			/// @brief readable description of the Day 
 			const std::string Description() const noexcept;
 
 		//###########
@@ -53,11 +68,12 @@ namespace Network
 	};
 
 	/////////////////////////////////////////////////////////////////////////////////////////////
-	// This class represent a template Day that can be used to see if a day fit inside a template
-	// it generaly represent working schedule day
-	// A day is two thing:
-	//  - Weekday  should be referred using std::chrono::weekday )
-	//  - The type of day  (As described in the data type schedule above)
+	/// @brief This class represent a template Day that can be used to see if a day fit inside a template
+	///        It generaly represent working schedule day
+	///        A day is two thing:
+	///            * Weekday  should be referred using std::chrono::weekday )
+	///            * The type of day  (As described in the data type schedule above)
+	/// @note not_default_constructible, not_copy_constructible, not_copy_assignable, move_constructible, move_asignable
 	class DayTemplate
 	{
 		//#####
@@ -66,18 +82,21 @@ namespace Network
 			DELETE_DEFAULT_CTOR(DayTemplate);
 			DELETE_COPY(DayTemplate);
 
+			///////////////////////////////
+			/// @brief Explicit constructor
 			DayTemplate(const std::array<bool, WEEKDAY_COUNT>, const std::array<bool, DAY_TYPE_COUNT>) noexcept;
-			DayTemplate(DayTemplate&&) noexcept;
 
 		//########
 		// METHODS
 		public:
 			//////////////////////////////////////////////////////////
-			/// @brief see if the day is a match for the day day 
-			/// @param day to see if contained by this day template
-			/// @return wether or not the day is contained by the day template
+			/// @brief     See if the day is a match for the day day 
+			/// @param day To see if contained by this day template
+			/// @return    Wether or not the day is contained by the day template
 			bool Match(const Day& day) const noexcept;
 
+			//////////////////////////////////////////////////////////////////////
+			/// @brief see if the other DayTemplate is strictly equal to the other
 			bool operator==(const DayTemplate& other) const noexcept;
 
 		//###########

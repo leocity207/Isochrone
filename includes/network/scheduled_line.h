@@ -15,6 +15,9 @@
 
 namespace Network
 {
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// @brief Represent the concatenation between schedules and Lines since a line can have multiple schedules attached to it depending on the daytypes
+	/// @note not_default_constructible, not_copy_constructible, not_copy_assignable, move_constructible, move_asignable
 	class Scheduled_Line : public Line
 	{
 		//#####
@@ -24,17 +27,20 @@ namespace Network
 		DELETE_DEFAULT_CTOR(Scheduled_Line)
 		DEFAULT_MOVE(Scheduled_Line)
 
+		////////////////////////////////////////////////////
+		/// @brief Explicit constructor by move construction
 		Scheduled_Line(std::vector<Schedule>&& Schedule, std::string&& name) noexcept;
 
 		//########
 		// METHODS
 	public:
+
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		/// @brief Find the closest time to go from start to finish station knowing the curent daytime and the daytype
-		/// @param start_station the station you want to get on 
-		/// @param end_station the station you want to get out
-		/// @param day_template a representation of the current day
-		/// @return the arriving daytime at the end station. if no path were found it return an invalid daytime
+		/// @brief               Find the closest time to go from start to finish station knowing the curent daytime and the daytype
+		/// @param start_station The station you want to get on 
+		/// @param end_station   The station you want to get out
+		/// @param day_template  A representation of the current day
+		/// @return              The arriving daytime at the end station. if no path were found it return an invalid daytime
 		std::optional<DayTime_CRef> Get_Closest_Time_To_Station(const Station& start_station, const Station& end_station, const DayTime& start_station_time, const Day& day) const noexcept;
 
 		/////////////////////////////////////////////////////////////////////////
@@ -47,25 +53,29 @@ namespace Network
 		std::optional<Schedule_CRef> Get_Schedule(const Day& matching_day, const Station& start_station, const Station& end_station) const noexcept;
 
 		/////////////////////////////////////////////////////////////////////////////////
-		/// @brief give back a list of schedules matching the day
-		/// @param matching_day the day to select schedule from
-		/// @return a view inside the schedule list containing only the good schedule
+		/// @brief              Give back a list of schedules matching the day
+		/// @param matching_day The day to select schedule from
+		/// @return             A view inside the schedule list containing only the good schedule
 		auto Get_Schedules(const Day& matching_day) const noexcept
 		{
 			return std::views::filter(m_schedule, [matching_day](const Schedule& schedule) { return schedule.Match(matching_day); });
 		};
 
 		/////////////////////////////////////////////////////////////////////////////////
-		/// @brief return true if the station is contained inside the schedules for the matching day
-		/// @param matching_day the day to select schedule from
-		/// @param station the station we are trying to see if contained inside the schedule
-		/// @return wether or not the station is contained inside the line for this day
+		/// @brief              Return true if the station is contained inside the schedules for the matching day
+		/// @param matching_day The day to select schedule from
+		/// @param station      The station we are trying to see if contained inside the schedule
+		/// @return             Wether or not the station is contained inside the line for this day
 		bool Contain(const Station& station, const Day& matching_day) const noexcept;
 
 	//###############
 	// STATIC METHDOS
 	private: 
-		std::vector<Station_CRef> Construct_Station_From_Schedules(const std::vector<Schedule>&);
+		/////////////////////////////////////////////////////////////////////////////
+		/// @brief           Given a list of schedult construct the list of station in the line
+		/// @param schedules List of schedules to extract station from
+		/// @return          List of ordered station representing the 
+		std::vector<Station_CRef> Construct_Line_From_Schedules(const std::vector<Schedule>& schedules);
 
 		//###########
 		// ATTRIBUTES

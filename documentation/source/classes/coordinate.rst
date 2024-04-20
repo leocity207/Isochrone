@@ -1,6 +1,9 @@
 Coordinate
 ==========
 
+.. doxygennamespace:: Coordinate
+   :desc-only:
+
 Coordinate::Base
 ~~~~~~~~~~~~~~~~
 .. doxygenclass:: Coordinate::Base
@@ -9,9 +12,9 @@ Coordinate::Base
 
 Coordinate::Planar
 ~~~~~~~~~~~~~~~~~~
-//.. doxygenclass:: Coordinate::Planar
-//   :members:
-//   :protected-members:
+.. doxygenclass:: Coordinate::Planar
+   :members:
+   :protected-members:
 
 Coordinate::Spherical
 ~~~~~~~~~~~~~~~~~~~~~

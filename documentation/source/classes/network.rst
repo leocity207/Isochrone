@@ -1,11 +1,12 @@
 Network
 =======
 
+.. doxygennamespace:: Network
+   :desc-only:
+
 Network::DAY_TYPE
 ~~~~~~~~~~~~~~~~~
 .. doxygenenum:: Network::DAY_TYPE
-   :members:
-   :protected-members:
 
 Network::DayTemplate
 ~~~~~~~~~~~~~~~~~~~~
@@ -21,9 +22,9 @@ Network::Day
 
 Network::Line
 ~~~~~~~~~~~~~
-//.. doxygenclass:: Network::Line
-//   :members:
-//   :protected-members:
+.. doxygenclass:: Network::Line
+   :members:
+   :protected-members:
 
 Network::Schedule
 ~~~~~~~~~~~~~~~~~
@@ -33,12 +34,12 @@ Network::Schedule
 
 Network::Scheduled_Line
 ~~~~~~~~~~~~~~~~~~~~~~~
-//.. doxygenclass:: Network::Scheduled_Line
-//   :members:
-//   :protected-members:
+.. doxygenclass:: Network::Scheduled_Line
+   :members:
+   :protected-members:
 
 Network::Station
-~~~~~~~~~~~~~~~~~~~~~~~
-//.. doxygenclass:: Network::Station
-//   :members:
-//   :protected-members:
+~~~~~~~~~~~~~~~~
+.. doxygenclass:: Network::Station
+   :members:
+   :protected-members:
