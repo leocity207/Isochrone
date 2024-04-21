@@ -20,7 +20,11 @@ namespace Reach_Algorithm
 		
 	//////////////////////////////////////////////
 	/// @brief Base class for all  reach algorithm
-	/// @note  default_constructible, not_copy_constructible, not_copy_assignable, not_move_constructible, not_move_asignable
+	/// @note  default_constructible
+	///        not_copy_constructible
+	///        not_copy_assignable
+	///        not_move_constructible
+	///        not_move_asignable
 	class Algorithm
 	{
 	//#####

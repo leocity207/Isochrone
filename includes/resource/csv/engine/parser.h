@@ -9,18 +9,34 @@
 
 // Utils
 #include "includes/utils/owner.h"
+#include "includes/utils/ctor.h"
 
-
+/////////////////////////////////////////////////////
+/// @brief Everything revolving around the CSV Format
 namespace CSV
 {
+	////////////////////////////////////////////////////
+	/// @brief Engines are use to decode or encode into the CSV Format
 	namespace Engine
 	{
+		/////////////////////////////////////////////////////
+		/// @brief base class for parsing a CSV Stream of data
+		/// @note  default_constructible
+		///        not_copy_constructible
+		///        not_copy_assignable
+		///        move_constructible
+		///        move_asignable
 		class Parser
 		{
 			//#####
 			// CTOR
 		public:
-			Parser() = delete;
+			DELETE_DEFAULT_CTOR(File_Parser)
+			DELETE_COPY(File_Parser)
+			DEFAULT_MOVE(File_Parser)
+
+			////////////////////////////////////////////////////
+			/// @brief Explicit constructor by move construction
 			Parser(Memory::Owned<std::istream>&& stream, const char delimiter);
 
 			//########

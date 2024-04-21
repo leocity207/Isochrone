@@ -16,7 +16,11 @@ namespace Coordinate
 	//////////////////////////////////////////////
 	/// @brief  Base clase for all coordinates
 	/// @tparam T a scalar
-	/// @note   Default_constructible, copy_constructible, copy_assignable, move_constructible, move_asignable
+	/// @note   Default_constructible
+	///         copy_constructible
+	///         copy_assignable
+	///         move_constructible
+	///         move_asignable
 	template<class T>
 	class Base :public std::pair<T,T> 
 	{

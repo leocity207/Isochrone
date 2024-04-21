@@ -8,6 +8,11 @@
 
 ////////////////////////////////////////////////////////////////////////
 /// @brief wrapper around std::chrono in order to represent HH:MM values
+/// @note  default_constructible
+///        copy_constructible
+///        copy_assignable
+///        move_constructible
+///        move_asignable
 class DayTime
 {
     public:

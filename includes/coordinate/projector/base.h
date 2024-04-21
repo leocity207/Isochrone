@@ -16,6 +16,13 @@ namespace Coordinate
 	{
 		using Planare_double = Coordinate::Base<double>;
 
+		////////////////////////////////////////////////////////////////////////////////////////////////////////
+		/// @brief base virtual class for projector every projectot inheritate this class
+		/// @note not_default_constructible
+		///       not_copy_constructible
+		///       not_copy_assignable
+		///       move_constructible
+		///       move_asignable
 		class Base
 		{
 			//#####

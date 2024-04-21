@@ -13,7 +13,11 @@ namespace Coordinate
 	///////////////////////////////////////////
 	/// @brief  Represent 2D coordinate on a plan
 	/// @tparam T a scalar
-	/// @note   Default_constructible, copy_constructible, copy_assignable, move_constructible, move_asignable
+	/// @note   default_constructible
+	///         copy_constructible
+	///         copy_assignable
+	///         move_constructible
+	///         move_asignable
 	template<class T>
 	class Planar : public Base<T>
 	{

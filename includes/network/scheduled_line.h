@@ -17,7 +17,11 @@ namespace Network
 {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// @brief Represent the concatenation between schedules and Lines since a line can have multiple schedules attached to it depending on the daytypes
-	/// @note not_default_constructible, not_copy_constructible, not_copy_assignable, move_constructible, move_asignable
+	/// @note not_default_constructible
+	///       not_copy_constructible
+	///       not_copy_assignable
+	///       move_constructible
+	///       move_asignable
 	class Scheduled_Line : public Line
 	{
 		//#####
@@ -44,12 +48,12 @@ namespace Network
 		std::optional<DayTime_CRef> Get_Closest_Time_To_Station(const Station& start_station, const Station& end_station, const DayTime& start_station_time, const Day& day) const noexcept;
 
 		/////////////////////////////////////////////////////////////////////////
-		/// @brief Get the right schedule in the line following a paterne
-		/// @param matching_day the day that should match with the schedule
-		/// @param start_station the station that should be before the end station
-		/// @param end_station the station that should be after the start station
-		/// @note the start and end station are use to determinate the direction to use
-		/// @return the right schedule if found, otherwise return a void schedule
+		/// @brief               Get the right schedule in the line following a paterne
+		/// @param matching_day  The day that should match with the schedule
+		/// @param start_station The station that should be before the end station
+		/// @param end_station   The station that should be after the start station
+		/// @note                The start and end station are use to determinate the direction to use
+		/// @return              The right schedule if found, otherwise return a void schedule
 		std::optional<Schedule_CRef> Get_Schedule(const Day& matching_day, const Station& start_station, const Station& end_station) const noexcept;
 
 		/////////////////////////////////////////////////////////////////////////////////

@@ -12,11 +12,17 @@
 #include "includes/utils/ctor.h"
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+/// @brief Network namesapce represent object inside a network it is mainly used for descriptive object 
 namespace Network
 {
 	///////////////////////////////////////////////////////////////////////////////
 	/// @brief Represent a station inside a network
-	/// @note not_default_constructible, not_copy_constructible, not_copy_assignable, move_constructible, move_asignable
+	/// @note not_default_constructible
+	///       not_copy_constructible
+	///       not_copy_assignable
+	///       move_constructible
+	///       move_asignable
 	class Station
 	{
 	//#####

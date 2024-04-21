@@ -14,6 +14,14 @@ namespace Reach_Algorithm { class Algorithm;};
 
 namespace Context
 {
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// @brief Context used to solve the Reach Algorithm
+	///        To solve this problem ones need to know the speed, the starting point , and the starting point of the agent inside the network
+	/// @note not_default_constructible
+	///       not_copy_constructible
+	///       not_copy_assignable
+	///       move_constructible
+	///       move_asignable
 	class Reach_Algorithm
 	{
 
@@ -24,21 +32,33 @@ namespace Context
 		DELETE_COPY(Reach_Algorithm);
 		DEFAULT_MOVE(Reach_Algorithm);
 
+		////////////////////////////////////////////////////
+		/// @brief Explicit constructor by move construction
 		Reach_Algorithm(const Scheduled_Network& network, DayTime&& start_time, double speed, Coordinate::Spherical&& starting_coordinate, Network::Day&& m_day_type) noexcept;
 
 	//########
 	// METHODS
 	public:
+		////////////////////////////////////////////////////////////////
+		/// @brief getter for the network of the reach algorithm context
 		const Scheduled_Network& Get_Network() const noexcept;
+		//////////////////////////////////////////
+		/// @brief getter for the starting time
 		const DayTime& Get_Starting_Time() const noexcept;
+		//////////////////////////////////////////
+		/// @brief getter for the speed
 		const double Get_Speed() const noexcept;
+		//////////////////////////////////////////
+		/// @brief getter for the starting coordinate
 		const Coordinate::Spherical Get_Starting_Coordinate() const noexcept;
+		//////////////////////////////////
+		/// @brief getter for the Day_Type 
 		const Network::Day& Get_Day_Type() const noexcept;
 
 		///////////////////////////////////////////////////////////////////////////
-		/// @brief otimize the scheduled network with the given optimizer algorithm
-		/// @param algorithm the algorithm with wich we will optimize the network
-		/// @return list of context station optimized
+		/// @brief           Optimize the scheduled network with the given optimizer algorithm
+		/// @param algorithm The algorithm with wich we will optimize the network
+		/// @return          List of context station optimized
 		std::vector<Context::Station> Optimize(::Reach_Algorithm::Algorithm& algorithm) const;
 
 	//###########

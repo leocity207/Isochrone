@@ -13,7 +13,11 @@ namespace Reach_Algorithm
 	/////////////////////////////////////////////////////
 	/// @brief Simple algorithm with parallele execution
 	/// @warning 1.308ms VIENNE 1440
-	/// @note  default_constructible, not_copy_constructible, not_copy_assignable, not_move_constructible, not_move_asignable
+	/// @note  default_constructible
+	///        not_copy_constructible
+	///        not_copy_assignable
+	///        not_move_constructible
+	///        not_move_asignable
 	class Simple_Par : public Algorithm
 	{
 

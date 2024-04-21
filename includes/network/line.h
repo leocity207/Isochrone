@@ -19,7 +19,11 @@ namespace Network
 {
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// @brief A Line is mainly a list of station, We suppose the the station has the same station on any of the side
-	/// @note not_default_constructible, not_copy_constructible, not_copy_assignable, move_constructible, move_asignable
+	/// @note not_default_constructible
+	///       not_copy_constructible
+	///       not_copy_assignable
+	///       move_constructible
+	///       move_asignable
 	class Line
 	{
 	//#####

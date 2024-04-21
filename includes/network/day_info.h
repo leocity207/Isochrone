@@ -29,7 +29,11 @@ namespace Network
 	///        A day is two thing:
 	///            * Weekday  should be referred using std::chrono::weekday )
 	///            * The type of day  (As described in the data type schedule above)
-	/// @note default_constructible, copy_constructible, copy_assignable, move_constructible, move_asignable
+	/// @note default_constructible
+	///       copy_constructible
+	///       copy_assignable
+	///       move_constructible
+	///       move_asignable
 	class Day
 	{
 		//#####
@@ -45,19 +49,19 @@ namespace Network
 		// METHODS
 		public:
 			/////////////////////////
-			/// @brief equal operator
+			/// @brief Equality operator
 			bool operator==(const Day& other) const noexcept;
 
 			///////////////////////////////////////////////
-			/// @brief give back the weekday of the Day
+			/// @brief Give back the weekday of the Day
 			const std::chrono::weekday& GetWeekday() const noexcept;
 
 			/////////////////////////////////////////////////
-			/// @brief give backe the day type of the Day
+			/// @brief Give backe the day type of the Day
 			const DAY_TYPE& GetDayType() const noexcept;
 
 			////////////////////////////////////////
-			/// @brief readable description of the Day 
+			/// @brief Readable description of the Day 
 			const std::string Description() const noexcept;
 
 		//###########
@@ -73,7 +77,11 @@ namespace Network
 	///        A day is two thing:
 	///            * Weekday  should be referred using std::chrono::weekday )
 	///            * The type of day  (As described in the data type schedule above)
-	/// @note not_default_constructible, not_copy_constructible, not_copy_assignable, move_constructible, move_asignable
+	/// @note not_default_constructible
+	///       not_copy_constructible
+	///       not_copy_assignable
+	///       move_constructible
+	///       move_asignable
 	class DayTemplate
 	{
 		//#####
@@ -96,7 +104,7 @@ namespace Network
 			bool Match(const Day& day) const noexcept;
 
 			//////////////////////////////////////////////////////////////////////
-			/// @brief see if the other DayTemplate is strictly equal to the other
+			/// @brief See if the other DayTemplate is strictly equal to the other
 			bool operator==(const DayTemplate& other) const noexcept;
 
 		//###########

@@ -12,7 +12,11 @@ namespace Coordinate
 {
 	/////////////////////////////////////////////////////////////////////////////////
 	/// @brief Represent 2D spherical coordinate in degree with longitude and latitude
-	/// @note  Default_constructible, copy_constructible, copy_assignable, move_constructible, move_asignable
+	/// @note  default_constructible
+	///        copy_constructible
+	///        copy_assignable
+	///        move_constructible
+	///        move_asignable
 	class Spherical : public Base<double>
 	{
 		//#####
@@ -44,7 +48,7 @@ namespace Coordinate
 		const double& Longitude() const noexcept;
 
 		///////////////////////////////////////
-		/// test if two coordinate are the same
+		/// @brief test if two coordinate are the same
 		bool operator==(const Spherical& other_coord) const noexcept;
 
 		//###############

@@ -24,7 +24,11 @@ namespace Network
 	/// @brief Timetable class represent transport schedule and meta data about the schedule
 	///        Basically We suppose a schedule is a matrix containing the time at which the transport get to the station
 	///        Here we suppose that the line represent the station and the column represent the pathway of one transport
-	/// @note not_default_constructible, not_copy_constructible, not_copy_assignable, move_constructible, move_asignable
+	/// @note not_default_constructible
+	///       not_copy_constructible
+	///       not_copy_assignable
+	///       move_constructible
+	///       move_asignable
 	class Schedule : public DayTemplate, public Line
 	{
 		//#####
