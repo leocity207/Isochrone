@@ -1,6 +1,9 @@
 Reach algorithm
 ===============
 
+.. doxygennamespace:: Reach_Algorithm
+   :desc-only:
+
 Reach_Algorithm::Algorithm
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. doxygenclass:: Reach_Algorithm::Algorithm

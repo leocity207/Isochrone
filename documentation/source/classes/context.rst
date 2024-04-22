@@ -10,12 +10,12 @@ Context::Reach_Algorithm
 
 Context::Scheduled_Network
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
-//.. doxygenclass:: Context::Scheduled_Network
-//   :members:
-//   :protected-members:
+.. doxygenclass:: Context::Scheduled_Network
+   :members:
+   :protected-members:
 
 Context::Station
 ~~~~~~~~~~~~~~~~
-//.. doxygenclass:: Context::Station
-//   :members:
-//   :protected-members:
+.. doxygenclass:: Context::Station
+   :members:
+   :protected-members:

@@ -71,30 +71,54 @@ add_subdirectory(src/network/test)
 add_subdirectory(src/reach_algorithm/test)
 add_subdirectory(src/coordinate/test)
 
+#-------------------------------
+#Doxygen generation
+# check if Doxygen is installed
+find_package(Doxygen Require)
+if (DOXYGEN_FOUND)
+    # set input and output files
+    set(DOXYGEN_IN ${CMAKE_CURRENT_SOURCE_DIR}/documentation/doxygen/Doxyfile.in)
+    set(DOXYGEN_OUT ${CMAKE_CURRENT_SOURCE_DIR}/documentation/build/doxygen)
 
+    # request to configure the file
+    configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
+    message("Doxygen build started")
+
+    # note the option ALL which allows to build the docs together with the application
+    add_custom_target( doc_doxygen ALL
+        COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/documentation
+        COMMENT "Generating API documentation with Doxygen"
+        VERBATIM )
+else (DOXYGEN_FOUND)
+  message("Doxygen need to be installed to generate the doxygen documentation")
+endif (DOXYGEN_FOUND)
 
 
 #-------------------------------
-#Doxygen generation
-find_package(Doxygen REQUIRED)
+# Sphinx generation
+# check if Doxygen is installed
+#Look for an executable called sphinx-build
+find_program(SPHINX_EXECUTABLE
+             NAMES sphinx-build
+             DOC "Path to sphinx-build executable")
 
-# Find all the public headers
-get_target_property(ISOCHRONE_PUBLIC_HEADER_DIR Isochrone INTERFACE_INCLUDE_DIRECTORIES)
-file(GLOB_RECURSE ISOCHRONE_PUBLIC_HEADERS ${ISOCHRONE_PUBLIC_HEADER_DIR}/*.h)
+include(FindPackageHandleStandardArgs)
 
-set(DOXYGEN_INPUT_DIR ${PROJECT_SOURCE_DIR}/Isochrone)
-set(DOXYGEN_OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR}/documentation/build/doxygen)
-set(DOXYFILE_IN ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in)
-set(DOXYFILE_OUT ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
-
-#Replace variables inside @@ with the current values
-configure_file(${DOXYFILE_IN} ${DOXYFILE_OUT} @ONLY)
-
-file(MAKE_DIRECTORY ${DOXYGEN_OUTPUT_DIR}) #Doxygen won't create this for us
-add_custom_command(OUTPUT ${DOXYGEN_INDEX_FILE}
-                   DEPENDS ${CAT_CUTIFIER_PUBLIC_HEADERS}
-                   COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYFILE_OUT}
-                   MAIN_DEPENDENCY ${DOXYFILE_OUT} ${DOXYFILE_IN}
-                   COMMENT "Generating docs")
-
-add_custom_target(Doxygen ALL DEPENDS ${DOXYGEN_INDEX_FILE})
+#Handle standard arguments to find_package like REQUIRED and QUIET
+find_package_handle_standard_args(Sphinx
+                                  "Failed to find sphinx-build executable"
+                                  SPHINX_EXECUTABLE)
+find_package(Sphinx)
+if(Sphinx_FOUND)
+ 	FILE(GLOB SPHINX_DOC_MAIN "${CMAKE_CURRENT_SOURCE_DIR}/documentation/source/*.rst")
+	FILE(GLOB SPHINX_DOC_CODE "${CMAKE_CURRENT_SOURCE_DIR}/documentation/source/classes.rst")
+    add_sphinx_document(
+        Isochron_doc
+        CONF_FILE "${CMAKE_CURRENT_LIST_DIR}/documentation/source/conf.py"
+        ${SPHINX_DOC_MAIN}
+		${SPHINX_DOC_CODE})
+	add_dependencies(Isochron_doc doc_doxygen)
+else()
+    message(WARNING "No Sphinx found. Documentation target not available.")
+endif()
