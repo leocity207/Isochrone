@@ -15,6 +15,7 @@ Context::Station::Station(const Network::Station& station_to_link, const Reach_A
 {
 }
 
+
 Context::Station::Station(Station&& other) noexcept:
 	m_best_time(std::move(other.m_best_time)),
 	m_basic_time(std::move(other.m_basic_time)),

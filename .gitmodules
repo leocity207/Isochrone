@@ -4,3 +4,6 @@
 [submodule "submodule/rapidjson"]
 	path = submodule/rapidjson
 	url = https://github.com/Tencent/rapidjson.git
+[submodule "submodule/cmake-sphinx"]
+	path = submodule/cmake-sphinx
+	url = https://github.com/k0ekk0ek/cmake-sphinx.git

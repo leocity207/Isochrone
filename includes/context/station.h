@@ -36,7 +36,8 @@ namespace Context
 	public:
 		DELETE_DEFAULT_CTOR(Station);
 		DELETE_COPY(Station);
-		DEFAULT_MOVE(Station);
+		Station(Station&&) noexcept;
+		Station& operator=(Station&&) noexcept;
 
 		////////////////////////////////////////////////////
 		/// @brief Explicit constructor by move construction

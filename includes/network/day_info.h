@@ -88,6 +88,7 @@ namespace Network
 		// CTOR
 		public:
 			DELETE_DEFAULT_CTOR(DayTemplate);
+			DEFAULT_MOVE(DayTemplate);
 			DELETE_COPY(DayTemplate);
 
 			///////////////////////////////

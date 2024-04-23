@@ -10,6 +10,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 include_directories(${PROJECT_SOURCE_DIR})
 include_directories(${PROJECT_SOURCE_DIR}/includes)
+include(FindPackageHandleStandardArgs)
 
 #---------------------------------------
 #get the current commit hash for version
@@ -71,54 +72,5 @@ add_subdirectory(src/network/test)
 add_subdirectory(src/reach_algorithm/test)
 add_subdirectory(src/coordinate/test)
 
-#-------------------------------
-#Doxygen generation
-# check if Doxygen is installed
-find_package(Doxygen Require)
-if (DOXYGEN_FOUND)
-    # set input and output files
-    set(DOXYGEN_IN ${CMAKE_CURRENT_SOURCE_DIR}/documentation/doxygen/Doxyfile.in)
-    set(DOXYGEN_OUT ${CMAKE_CURRENT_SOURCE_DIR}/documentation/build/doxygen)
-
-    # request to configure the file
-    configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
-    message("Doxygen build started")
-
-    # note the option ALL which allows to build the docs together with the application
-    add_custom_target( doc_doxygen ALL
-        COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
-        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/documentation
-        COMMENT "Generating API documentation with Doxygen"
-        VERBATIM )
-else (DOXYGEN_FOUND)
-  message("Doxygen need to be installed to generate the doxygen documentation")
-endif (DOXYGEN_FOUND)
-
-
-#-------------------------------
-# Sphinx generation
-# check if Doxygen is installed
-#Look for an executable called sphinx-build
-find_program(SPHINX_EXECUTABLE
-             NAMES sphinx-build
-             DOC "Path to sphinx-build executable")
-
-include(FindPackageHandleStandardArgs)
-
-#Handle standard arguments to find_package like REQUIRED and QUIET
-find_package_handle_standard_args(Sphinx
-                                  "Failed to find sphinx-build executable"
-                                  SPHINX_EXECUTABLE)
-find_package(Sphinx)
-if(Sphinx_FOUND)
- 	FILE(GLOB SPHINX_DOC_MAIN "${CMAKE_CURRENT_SOURCE_DIR}/documentation/source/*.rst")
-	FILE(GLOB SPHINX_DOC_CODE "${CMAKE_CURRENT_SOURCE_DIR}/documentation/source/classes.rst")
-    add_sphinx_document(
-        Isochron_doc
-        CONF_FILE "${CMAKE_CURRENT_LIST_DIR}/documentation/source/conf.py"
-        ${SPHINX_DOC_MAIN}
-		${SPHINX_DOC_CODE})
-	add_dependencies(Isochron_doc doc_doxygen)
-else()
-    message(WARNING "No Sphinx found. Documentation target not available.")
-endif()
+#documentation
+add_subdirectory(documentation)

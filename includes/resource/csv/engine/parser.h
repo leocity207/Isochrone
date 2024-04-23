@@ -31,9 +31,9 @@ namespace CSV
 			//#####
 			// CTOR
 		public:
-			DELETE_DEFAULT_CTOR(File_Parser)
-			DELETE_COPY(File_Parser)
-			DEFAULT_MOVE(File_Parser)
+			DELETE_DEFAULT_CTOR(Parser);
+			DELETE_COPY(Parser);
+			DEFAULT_MOVE(Parser);
 
 			////////////////////////////////////////////////////
 			/// @brief Explicit constructor by move construction
