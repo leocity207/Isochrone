@@ -15,7 +15,7 @@ def Apply_Theme(filepath: str,themepath: str):
 		raise ValueError("expected dot file to only have one graphbut got : " + str(len(graphs)))
 	Parse_Graph(graphs[0],Parse_Theme(themepath))
 	graphs[0].write(filepath.rstrip('.dot')+"_themed.dot")
-   
+
 def Parse_Graph(graph: pydot.Graph, theme: dict):
 	edges = graph.get_edges()
 	nodes = graph.get_nodes()
@@ -26,7 +26,7 @@ def Parse_Graph(graph: pydot.Graph, theme: dict):
 			raise ValueError("expecte style to be inside the valide edge list but got: " + edge.get_style() + " for edge:" + edge.get_source() + "-" + edge.get_destination())
 		else:
 			raise ValueError("expect edge style not to be none for edge: " + str(edge.get_source()) + "-" + str(edge.get_destination()))
-		
+
 	for node in nodes:
 		if node.get_style() is not None and node.get_style() in VALIDE_NODE :
 			Node_Transform(node.get_style(),node,theme)

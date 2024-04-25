@@ -13,7 +13,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-/// @brief Network namesapce represent object inside a network it is mainly used for descriptive object 
+/// @brief Network namesapce represent object inside a network it is mainly used for descriptive object
 namespace Network
 {
 	///////////////////////////////////////////////////////////////////////////////
@@ -33,7 +33,9 @@ namespace Network
 		DEFAULT_MOVE(Station)
 
 		////////////////////////////////////////////////////
-		/// @brief Explicit constructor by move construction
+		/// @brief            Explicit constructor by move construction
+		/// @param coordinate The coordinat of the station
+		/// @param name       The name of the station
 		Station(Coordinate::Spherical&& coordinate, std::string&& name) noexcept;
 
 	//########

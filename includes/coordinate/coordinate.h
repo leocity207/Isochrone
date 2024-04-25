@@ -10,7 +10,7 @@
 #include "includes/utils/ctor.h"
 
 /////////////////////////////////////////////////////////////////////
-/// @brief Coodinate represent 2D coordinate mainly a pair of numbers 
+/// @brief Coodinate represent 2D coordinate mainly a pair of numbers
 namespace Coordinate
 {
 	//////////////////////////////////////////////
@@ -22,9 +22,10 @@ namespace Coordinate
 	///         move_constructible
 	///         move_asignable
 	template<class T>
-	class Base :public std::pair<T,T> 
+	class Base :public std::pair<T,T>
 	{
 		static_assert(std::is_scalar<T>::value,"coordinate should be made of scalar type");
+
 		//#####
 		// CTOR
 	public:
@@ -33,7 +34,9 @@ namespace Coordinate
 		DEFAULT_MOVE(Base)
 
 		///////////////////////////////
-		/// @brief Explicit constructor
+		/// @brief        Explicit constructor
+		/// @param first  The first coordinate
+		/// @param second The second coordinate
 		Base(T first,T second);
 
 		//########

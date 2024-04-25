@@ -8,9 +8,9 @@ Generals
 Daytimes
 --------
 .. doxygenclass:: DayTime
-   :members:
-   :undoc-members:
-   :protected-members:
+	:members:
+	:undoc-members:
+	:protected-members:
 
 excpetion_defs
 --------------

@@ -34,7 +34,9 @@ namespace Network
 		DEFAULT_MOVE(Line)
 
 		////////////////////////////////////////////////////
-		/// @brief Explicit constructor by move construction
+		/// @brief          Explicit constructor by move construction
+		/// @param Schedule List of station inside the line
+		/// @param name     name of the line
 		Line(std::vector<Station_CRef>&& Schedule,std::string&& name) noexcept;
 
 	//########
@@ -64,13 +66,13 @@ namespace Network
 		////////////////////////////////////////////////////////////
 		/// @brief                 Give the index of the station inside the schedule
 		/// @param station_to_find The station you want to find the index of
-		/// @return                An optional containing the index or not if the station could not be found 
+		/// @return                An optional containing the index or not if the station could not be found
 		std::optional<size_t> Get_Station_Index(const Station& station_to_find) const noexcept;
 
 		////////////////////////////////////////////////////////////
 		/// @brief         Give the iterator pointing to the station given in parameter inside the line
 		/// @param Station You want to find the iterator of
-		/// @return        An optional containing the index or not if the station could not be found 
+		/// @return        An optional containing the index or not if the station could not be found
 		std::vector<Station_CRef>::const_iterator From_Station(const Station& station) const noexcept;
 
 		//###########

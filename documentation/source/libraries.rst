@@ -43,5 +43,3 @@ reach_algorithm
 Context
 ^^^^^^^
 	Context are the working support on wich you are working on. you can se them as a crafting table where you put all the ingredients on. therefore context doesn't contain any inteligence but are rather the glue that stick everything together
-	
-

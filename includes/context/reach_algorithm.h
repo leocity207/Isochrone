@@ -32,8 +32,13 @@ namespace Context
 		DELETE_COPY(Reach_Algorithm);
 		DEFAULT_MOVE(Reach_Algorithm);
 
-		////////////////////////////////////////////////////
-		/// @brief Explicit constructor by move construction
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		/// @brief                     Explicit constructor by move construction
+		/// @param network             Network where to solve the reahc algorithm
+		/// @param start_time          The time at wich the agent begin its walk inside the network
+		/// @parma speed               The speed of the agen when he doesn't use transport
+		/// @param starting_coordinate The starting coordinate of the agen inside the networ
+		/// @param m_day_type          The kind of day where the reach algorithm is solved to know wich kind of timetbale to use
 		Reach_Algorithm(const Scheduled_Network& network, DayTime&& start_time, double speed, Coordinate::Spherical&& starting_coordinate, Network::Day&& m_day_type) noexcept;
 
 	//########
@@ -52,7 +57,7 @@ namespace Context
 		/// @brief getter for the starting coordinate
 		const Coordinate::Spherical Get_Starting_Coordinate() const noexcept;
 		//////////////////////////////////
-		/// @brief getter for the Day_Type 
+		/// @brief getter for the Day_Type
 		const Network::Day& Get_Day_Type() const noexcept;
 
 		///////////////////////////////////////////////////////////////////////////

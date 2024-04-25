@@ -63,9 +63,13 @@ namespace CSV
 					DELETE_MOVE(TimeTable_Error_Time)
 
 					///////////////////////////////
-					/// @brief Explicit constructor
+					/// @brief      Explicit constructor
+					/// @param i    The ith row of the timetable
+					/// @param j    The jth column  of the timetable
+					/// @param time The daytime that is not correct
+					/// @param name A string to identify the schedule
 					TimeTable_Error_Time(size_t i,size_t j,DayTime time,const std::string& name) noexcept;
-				
+
 				//########
 				// Methods
 				public:
@@ -76,13 +80,13 @@ namespace CSV
 					const size_t Get_i() const noexcept;
 
 					/////////////////////////////////////////////////////////////////
-					/// @brief Getter function i being the ith column  of the timetable
+					/// @brief Getter function j being the jth column  of the timetable
 					const size_t Get_j() const noexcept;
 
 					/////////////////////////////////////////////////////////////////
 					/// @brief Getter function giving the daytime that is not correct
 					const DayTime Get_Time() const noexcept;
-				
+
 				//###########
 				// ATTRIBUTES
 				private:
@@ -102,7 +106,11 @@ namespace CSV
 				DELETE_MOVE(TimeTable_Error_Size)
 
 				///////////////////////////////
-				/// @brief Explicit constructor
+				/// @brief              Explicit constructor
+				/// @param normal_size  Expected size of the comlumn
+				/// @param anormal_size Unexpected size of the comlumn
+				/// @param i            I being the ith row of the timetable
+				/// @param name         A string to identify the schedule
 				TimeTable_Error_Size(size_t normal_size, size_t anormal_size, size_t i, const std::string& name) noexcept;
 
 				//########

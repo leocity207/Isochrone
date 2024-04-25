@@ -13,7 +13,7 @@ pointer
 Exception
 ---------
 
-	* Exception Type are always in majuscule 
+	* Exception Type are always in majuscule
 	* All exception should inherit from 'Exception' (from Logger module)
 	* All exception should be written inside "includes/utils/excpetion_defs.h"
 
@@ -39,13 +39,13 @@ class
 			...
 		private:
 			...
-				
+
 	acceptable TAG shoudl apear in this order:
 
 		* CTOR : for constructor
-		* METHODS : for in class methods 
+		* METHODS : for in class methods
 		* STATIC_METHODS : for outter class methods
-		* ATTRIBUTES : for in class attributes 
+		* ATTRIBUTES : for in class attributes
 		* STATIC_ATTRIBUTES : for outter class attributes
 
 class constructor
@@ -57,16 +57,16 @@ class constructor
 comments
 --------
 
-	documentation about the function shoudld be written using 
+	documentation about the function shoudld be written using
 
 	.. code-block:: cpp
 
 		///////////////
-		/// @brief : 
+		/// @brief :
 		/// @param :
 		/// @return:
 		...
-	
+
 	this is mainly like the doxygene style documentation to identify parameters
 
 spacing
@@ -81,7 +81,7 @@ includes
 
 	.. code-block:: cpp
 
-		// STD 
+		// STD
 		#include <array>
 
 		// Coordinate

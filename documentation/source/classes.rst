@@ -2,4 +2,4 @@
 Classes
 =======
 
-.. graphviz:: graph/classes_themed.dot
+	 graphviz:: graph/classes_themed.dot

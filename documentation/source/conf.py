@@ -15,8 +15,8 @@ author = 'Léo Cluzel'
 
 extensions = [
 	'sphinx.ext.graphviz',
-    'sphinx.ext.autodoc',
-    'breathe'
+	'sphinx.ext.autodoc',
+	'breathe'
 ]
 pygments_style = 'sphinx'
 
@@ -38,7 +38,7 @@ graphviz_output_format = 'svg'
 
 
 breathe_projects = {
-     "Isochrone": "../build/doxygen/xml"
+	"Isochrone": "../build/doxygen/xml"
 }
 
 breathe_default_project = "Isochrone"

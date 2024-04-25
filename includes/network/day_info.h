@@ -13,7 +13,7 @@
 namespace Network
 {
 	/////////////////////////////////////////////////////////////////////////
-	/// @brief A day type designate typical running day of a transport network 
+	/// @brief A day type designate typical running day of a transport network
 	enum DAY_TYPE {
 		SCHOOL_DAYS,
 		VACATION_DAYS,
@@ -43,7 +43,9 @@ namespace Network
 
 			///////////////////////////////
 			/// @brief Explicit constructor
-			Day(const std::chrono::weekday, const DAY_TYPE) noexcept;
+			/// @param weekday the weekday to caracterize the day
+			/// @param the type of day as defined in "DAY_TYPE"
+			Day(const std::chrono::weekday weekday, const DAY_TYPE day_type) noexcept;
 
 		//########
 		// METHODS
@@ -61,7 +63,7 @@ namespace Network
 			const DAY_TYPE& GetDayType() const noexcept;
 
 			////////////////////////////////////////
-			/// @brief Readable description of the Day 
+			/// @brief Readable description of the Day
 			const std::string Description() const noexcept;
 
 		//###########
@@ -93,13 +95,15 @@ namespace Network
 
 			///////////////////////////////
 			/// @brief Explicit constructor
-			DayTemplate(const std::array<bool, WEEKDAY_COUNT>, const std::array<bool, DAY_TYPE_COUNT>) noexcept;
+			/// @param weekdays the list of supporte days by the template
+			/// @param types the types covered by the day template
+			DayTemplate(const std::array<bool, WEEKDAY_COUNT> weekdays, const std::array<bool, DAY_TYPE_COUNT> types) noexcept;
 
 		//########
 		// METHODS
 		public:
 			//////////////////////////////////////////////////////////
-			/// @brief     See if the day is a match for the day day 
+			/// @brief     See if the day is a match for the day day
 			/// @param day To see if contained by this day template
 			/// @return    Wether or not the day is contained by the day template
 			bool Match(const Day& day) const noexcept;

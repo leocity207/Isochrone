@@ -32,7 +32,7 @@ namespace Reach_Algorithm
 	public:
 		std::vector<Context::Station> Optimize(const Context::Reach_Algorithm& algorithm_context) override;
 	};
-	
+
 }; //Reach Algorithm
 
 

@@ -35,8 +35,10 @@ namespace CSV
 			DELETE_COPY(Parser);
 			DEFAULT_MOVE(Parser);
 
-			////////////////////////////////////////////////////
-			/// @brief Explicit constructor by move construction
+			//////////////////////////////////////////////////////////////
+			/// @brief          Explicit constructor by move construction
+			/// @param stream   A stream where to parse the CSV from
+			/// @pram delimiter The CSV delimiter character between input
 			Parser(Memory::Owned<std::istream>&& stream, const char delimiter);
 
 			//########

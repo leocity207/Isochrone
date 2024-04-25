@@ -20,15 +20,18 @@ namespace Context
 	///       move_asignable
 	class Scheduled_Network
 	{
+
 	//#####
 	// CTOR
 	public:
 		DELETE_DEFAULT_CTOR(Scheduled_Network);
 		DELETE_COPY(Scheduled_Network);
 		DEFAULT_MOVE(Scheduled_Network);
-		
+
 		////////////////////////////////////////////////////
 		/// @brief Explicit constructor by move construction
+		/// @param lines the list of scheduled lines inside the network
+		/// @param the list of station inside the network
 		Scheduled_Network(std::vector<Network::Scheduled_Line>&& lines, std::vector<Network::Station>&& stations) noexcept;
 
 	//########

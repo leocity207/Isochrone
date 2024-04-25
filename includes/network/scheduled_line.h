@@ -31,9 +31,11 @@ namespace Network
 		DELETE_DEFAULT_CTOR(Scheduled_Line)
 		DEFAULT_MOVE(Scheduled_Line)
 
-		////////////////////////////////////////////////////
-		/// @brief Explicit constructor by move construction
-		Scheduled_Line(std::vector<Schedule>&& Schedule, std::string&& name) noexcept;
+		////////////////////////////////////////////////////////////////
+		/// @brief          Explicit constructor by move construction
+		/// @param schedule A list of schedule that apply for this line
+		/// @param name     The name of the scheduled line
+		Scheduled_Line(std::vector<Schedule>&& schedule, std::string&& name) noexcept;
 
 		//########
 		// METHODS
@@ -41,7 +43,7 @@ namespace Network
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		/// @brief               Find the closest time to go from start to finish station knowing the curent daytime and the daytype
-		/// @param start_station The station you want to get on 
+		/// @param start_station The station you want to get on
 		/// @param end_station   The station you want to get out
 		/// @param day_template  A representation of the current day
 		/// @return              The arriving daytime at the end station. if no path were found it return an invalid daytime
@@ -74,11 +76,11 @@ namespace Network
 
 	//###############
 	// STATIC METHDOS
-	private: 
+	private:
 		/////////////////////////////////////////////////////////////////////////////
 		/// @brief           Given a list of schedult construct the list of station in the line
 		/// @param schedules List of schedules to extract station from
-		/// @return          List of ordered station representing the 
+		/// @return          List of ordered station representing the
 		std::vector<Station_CRef> Construct_Line_From_Schedules(const std::vector<Schedule>& schedules);
 
 		//###########

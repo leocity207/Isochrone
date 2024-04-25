@@ -28,7 +28,9 @@ namespace CSV
 			DEFAULT_MOVE(String_Parser);
 
 			////////////////////////////////////////////////////
-			/// @brief Explicit constructor by move construction
+			/// @brief           Explicit constructor by move construction
+			/// @param str       The string that contain a whole CSV readable data
+			/// @param delimiter The delimiter between all CSV data
 			String_Parser(std::string&& str, const char delimiter);
 		};
 

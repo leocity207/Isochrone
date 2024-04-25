@@ -29,3 +29,5 @@
   * Done
 * #17: coordinate
 * #18: documentation
+  * Done
+* #19: Better documentation

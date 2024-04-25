@@ -39,8 +39,12 @@ namespace Network
 		DEFAULT_MOVE(Schedule)
 
 		////////////////////////////////////////////////////
-		/// @brief Explicit constructor by move construction
-		Schedule(std::vector<Station_CRef>&& station_list, TimeTable&& schedule_tab, DayTemplate&& day_template,std::string&&) noexcept;
+		/// @brief              Explicit constructor by move construction
+		/// @param station_list List of station that schedule
+		/// @param schedule_tab The timetable of the schedule
+		/// @param day_template The type of day the scheedule is applied
+		/// @param name         The name of the schedule
+		Schedule(std::vector<Station_CRef>&& station_list, TimeTable&& schedule_tab, DayTemplate&& day_template,std::string&& name) noexcept;
 
 		//########
 		// METHODS
@@ -48,7 +52,7 @@ namespace Network
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		/// @brief               Find the closest time to go from start to finish station knowing the curent daytime and the daytype
-		/// @param start_station The station you want to get on 
+		/// @param start_station The station you want to get on
 		/// @param end_station   The station you want to get out
 		/// @param current_time  The time at wich you start waiting at the start station
 		/// @return              The arriving daytime at the end station. if no path were found it return an invalid daytime
