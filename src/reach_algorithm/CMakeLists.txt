@@ -4,17 +4,14 @@ file(GLOB ALGORITHM_SOURCE "./*.cpp")
 
 #////////
 # LIBRARY
-add_library(algorithm STATIC                       
+add_library(reach_algorithm STATIC                       
 	${ALGORITHM_SOURCE}
 )
 
 #//////////////
 # LIBRARY LINKS
-target_link_libraries(algorithm
-	log
-	utils
+target_link_libraries(reach_algorithm
 	network
-	context
 )
 
 

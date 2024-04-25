@@ -5,7 +5,7 @@
 
 
 Network::Scheduled_Line::Scheduled_Line(std::vector<Network::Schedule>&& Timetable, std::string&& name) noexcept :
-	Line(Scheduled_Line::Construct_Station_From_Schedules(m_schedule), std::move(name)),
+	Line(Scheduled_Line::Construct_Line_From_Schedules(Timetable), std::move(name)),
 	m_schedule(std::move(Timetable))
 {
 
@@ -48,7 +48,7 @@ bool Network::Scheduled_Line::Contain(const Network::Station& station, const Net
 	return std::any_of(temp.begin(), temp.end(), [station_ref](const Network::Schedule& schedule) {return schedule.Contain(station_ref); });
 }
 
-std::vector<Network::Station_CRef> Network::Scheduled_Line::Construct_Station_From_Schedules(const std::vector<Schedule>&)
+std::vector<Network::Station_CRef> Network::Scheduled_Line::Construct_Line_From_Schedules(const std::vector<Schedule>&)
 {
 	return std::vector<Station_CRef>();
 }

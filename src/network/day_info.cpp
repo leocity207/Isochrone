@@ -38,11 +38,6 @@ Network::DayTemplate::DayTemplate(const std::array<bool,WEEKDAY_COUNT> working_d
 
 }
 
-Network::DayTemplate::DayTemplate(DayTemplate&& template_to_move) noexcept : m_working_days(std::move(template_to_move.m_working_days)),m_working_types(std::move(template_to_move.m_working_types))
-{
-
-}
-
 bool Network::DayTemplate::Match(const Network::Day& day) const noexcept
 {
 	if(m_working_days[day.GetWeekday().c_encoding()] && m_working_types[day.GetDayType()])

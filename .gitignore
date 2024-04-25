@@ -1,4 +1,5 @@
 *.pyc
+*.venvpython*
 src/C++/build/*
 settings.json
 src/C++/.vs/*
@@ -9,3 +10,7 @@ src/C++/out/*
 # config file
 includes/config/config.h
 src/algorithm/test/config.h
+
+#documentation build
+documentation/build/*
+

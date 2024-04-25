@@ -70,3 +70,6 @@ add_subdirectory(src/resource/test)
 add_subdirectory(src/network/test)
 add_subdirectory(src/reach_algorithm/test)
 add_subdirectory(src/coordinate/test)
+
+#documentation
+add_subdirectory(documentation)

@@ -1,0 +1,37 @@
+{
+	"use":
+	{
+		"style" : "dotted",
+		"color" : "light gray"
+	},
+
+	"inherit":
+	{
+		"style" : "bold",
+		"color" : "red"
+	},
+
+	"contain":
+	{
+		"style": "bold",
+		"color" : "blue"
+	},
+
+	"interface":
+	{
+		"style" : "",
+		"shape" :"ellipse"
+	},
+
+	"plain":
+	{
+		"style" : "",
+		"shape" :"ellipse"
+	},
+
+	"namespace":
+	{
+		"style" : "",
+		"shape" :"ellipse"
+	}
+}

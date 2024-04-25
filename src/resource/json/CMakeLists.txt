@@ -11,6 +11,5 @@ add_library(json STATIC
 #//////////////
 # LIBRARY LINKS
 target_link_libraries(json
-	utils
-	log
+	network
 )

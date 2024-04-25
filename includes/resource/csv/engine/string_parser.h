@@ -4,16 +4,33 @@
 // Resource
 #include "parser.h"
 
+// Utils
+#include "includes/utils/ctor.h"
 
 namespace CSV
 {
 	namespace Engine
 	{
+		/////////////////////////////////////////////////////
+		/// @brief base class for parsing a CSV Stringstream
+		/// @note  default_constructible
+		///        not_copy_constructible
+		///        not_copy_assignable
+		///        move_constructible
+		///        move_asignable
 		class String_Parser : public Parser
 		{
-			////////
-			/// CTOR
+			//#####
+			// CTOR
 		public:
+			DELETE_DEFAULT_CTOR(String_Parser);
+			DELETE_COPY(String_Parser);
+			DEFAULT_MOVE(String_Parser);
+
+			////////////////////////////////////////////////////
+			/// @brief           Explicit constructor by move construction
+			/// @param str       The string that contain a whole CSV readable data
+			/// @param delimiter The delimiter between all CSV data
 			String_Parser(std::string&& str, const char delimiter);
 		};
 

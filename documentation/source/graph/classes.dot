@@ -1,0 +1,163 @@
+digraph {
+	Daytime [style=plain]
+	General [style=namespace]
+	
+	//Resource
+	Parser_CSV_Station [style=namespace]
+	parser_CSV_Timetable [style=namespace]
+	Parser_JSON [style=namespace]
+	validator_CSV [style=namespace]
+	validator_TimeTable_Error [style=interface]
+	validator_TimeTable_Error_Time [style=plain]
+	validator_TimeTable_Error_Size [style=plain]
+	engine_CSV_Parser [style=interface]
+	engine_CSV_Parser_File [style=plain]
+	engine_CSV_Parser_stream [style=plain]
+	archive_plain [style=namespace]
+	
+	//Coordinate
+	Coordinate_Base [style=interface]
+	Coordinate_Spherical [style=plain]
+	Coordinate_Planar [style=plain]
+	Coordinate_Projector_Base [style=interface]
+	Coordinate_Projector_Equirectangular [style=plain]
+	Coordinate_Projector_Ezimuthal_Equidistant [style=plain]
+	
+	//Network
+	Network_Station [style=plain]
+	Network_Line [style=plain]
+	Network_Schedule [style=plain]
+	Network_Scheduled_Line [style=plain]
+	Network_Day [style=plain]
+	Network_DayTemplate [style=plain]
+	
+	//Context
+	Context_Scheduled_Network [style=plain]
+	Context_Reache_Algorithm [style=plain]
+	Context_Station [style=plain]
+	
+	//Reache_Algorithm
+	Reache_Algorithm [style=interface]
+	Reache_Algorithm_Simple [style=plain]
+	Reache_Algorithm_Simple_Par [style=plain]
+	Reache_Algorithm_Dictionary [style=plain]
+	Reache_Algorithm_Dictionary_Par [style=plain]
+	
+	General -> Coordinate_Spherical [style=use]
+	Coordinate_Spherical -> Network_Station [style=contain]
+	Daytime -> Network_Schedule [style=contain]
+	
+	{Network_Scheduled_Line Network_Station} -> Context_Scheduled_Network [style=contain]
+	{Network_Station Daytime} -> Context_Station [style=contain]
+	{Context_Scheduled_Network Network_Day Coordinate_Spherical Daytime} -> Context_Reache_Algorithm [style=contain]
+	
+	Coordinate_Projector_Base -> Coordinate_Planar [style=use]
+	Context_Station -> Reache_Algorithm [style=use]
+	Network_DayTemplate -> Parser_JSON [style=use]
+	Daytime -> {parser_CSV_Timetable validator_CSV} [style=use]
+	{validator_CSV Parser_CSV_Station Parser_JSON parser_CSV_Timetable engine_CSV_Parser_File Network_Station Network_Scheduled_Line} -> archive_plain [style=use]
+	
+	subgraph cluster_Ressource {
+		label=Ressource
+		subgraph cluster_Validator {
+			label=Validator
+			validator_CSV
+			validator_TimeTable_Error
+			validator_TimeTable_Error_Time
+			validator_TimeTable_Error_Size
+			
+			//Relation
+			validator_TimeTable_Error -> {validator_TimeTable_Error_Time validator_TimeTable_Error_Size }[style=inherit]
+			{validator_TimeTable_Error validator_TimeTable_Error_Time validator_TimeTable_Error_Size} -> validator_CSV [style=use]
+		}
+		subgraph cluster_CSV {
+			label=CSV
+			subgraph cluster_Engine {
+				label=Engine
+				engine_CSV_Parser
+				engine_CSV_Parser_File
+				engine_CSV_Parser_stream
+				
+				//Relation
+				engine_CSV_Parser -> {engine_CSV_Parser_File engine_CSV_Parser_stream} [style=inherit]
+			}
+			subgraph cluster_Parser {
+				label=Parser
+				Parser_CSV_Station
+				parser_CSV_Timetable
+			}
+			
+			//Relation
+			engine_CSV_Parser -> {Parser_CSV_Station parser_CSV_Timetable} [style=use]
+		}
+		subgraph cluster_JSON {
+			label=JSON
+			Parser_JSON
+		}
+		subgraph cluster_Archive {
+			label=Archive
+			archive_plain
+		}
+	}
+	
+	subgraph cluster_Network {
+		label=Network
+		Network_Station
+		Network_Line
+		Network_Schedule
+		Network_Scheduled_Line
+		Network_Day
+		Network_DayTemplate
+		
+		//Relation
+		{Network_DayTemplate Network_Line} -> Network_Schedule  [style=inherit]
+		Network_Station -> Network_Line [style=contain]
+		Network_Schedule -> Network_Scheduled_Line [style=contain]
+		Network_Line -> Network_Scheduled_Line [style=inherit]
+	}
+	
+	subgraph cluster_Contexte {
+		label=Contexte
+		Context_Scheduled_Network
+		Context_Reache_Algorithm
+		Context_Station
+	}
+	
+	subgraph cluster_Reach_Algorihtm {
+		label=Reach_Algorihtm
+		Reache_Algorithm
+		Reache_Algorithm_Simple
+		Reache_Algorithm_Simple_Par
+		Reache_Algorithm_Dictionary
+		Reache_Algorithm_Dictionary_Par
+		
+		//Relation
+		Reache_Algorithm -> {Reache_Algorithm_Simple Reache_Algorithm_Simple_Par Reache_Algorithm_Dictionary Reache_Algorithm_Dictionary_Par} [style=inherit]
+	}
+	
+	subgraph cluster_Utils {
+		label=Utils
+		Daytime
+		General
+	}
+	
+	subgraph cluster_Coordinate {
+		label=Coordinate
+		Coordinate_Base
+		Coordinate_Spherical
+		Coordinate_Planar
+		
+		//Relation
+		Coordinate_Base ->{Coordinate_Spherical Coordinate_Planar}
+		
+		subgraph cluster_Projector {
+			label=Projector
+			Coordinate_Projector_Base
+			Coordinate_Projector_Equirectangular
+			Coordinate_Projector_Ezimuthal_Equidistant
+			
+			//Relation
+			Coordinate_Projector_Base -> {Coordinate_Projector_Ezimuthal_Equidistant Coordinate_Projector_Equirectangular}
+		}
+	}
+}

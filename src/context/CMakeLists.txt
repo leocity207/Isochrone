@@ -11,8 +11,7 @@ add_library(context STATIC
 #//////////////
 # LIBRARY LINKS
 target_link_libraries(context
-	log
 	network
-	algorithm
+	reach_algorithm
 )
 

@@ -11,8 +11,6 @@ add_library(archive STATIC
 #//////////////
 # LIBRARY LINKS
 target_link_libraries(archive
-	utils
-	log
 	csv
 	json
 )

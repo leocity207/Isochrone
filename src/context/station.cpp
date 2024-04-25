@@ -101,7 +101,7 @@ bool Context::Station::Try_Set_New_Best_Time_Base(std::optional<DayTime>& new_va
 }
 
 bool Context::Station::operator<(const  Context::Station& other_station) const noexcept
-{ 
+{
 	return m_ref_station.get() < other_station.m_ref_station.get();
 }
 
@@ -119,12 +119,12 @@ const Context::Station& Context::Station::Get_Station_By_Name(const std::vector<
 
 bool Context::Station::Has_Been_Reached_By_Transport() const noexcept
 {
-    return m_reach_by_transport;
+	return m_reach_by_transport;
 }
 
 bool Context::Station::Has_Been_Reached_Once_By_Transport() const noexcept
 {
-    return m_reach_by_transport_once;
+	return m_reach_by_transport_once;
 }
 
 void Context::Station::Set_Pos(std::list<Station>::iterator &pos)

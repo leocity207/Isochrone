@@ -11,9 +11,6 @@ add_library(network STATIC
 #//////////////
 # LIBRARY LINKS
 target_link_libraries(network
-	log
-	csv
-	json
 	coordinate
 )
 

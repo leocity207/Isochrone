@@ -15,6 +15,6 @@ add_library(csv STATIC
 #//////////////
 # LIBRARY LINKS
 target_link_libraries(csv
-	utils
+	network
 	log
 )

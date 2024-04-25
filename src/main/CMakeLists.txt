@@ -11,7 +11,7 @@ add_executable( main_app
 #//////////////
 # LIBRARY LINKS
 target_link_libraries(main_app
-	algorithm
+	reach_algorithm
 	network
 	context
 	utils
