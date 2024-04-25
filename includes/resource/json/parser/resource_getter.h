@@ -25,9 +25,12 @@ namespace JSON
             /// @param filesystem_path path to the config file wich indicate how too look for the station data 
             Resource_Getter(std::istream&& filesystem_path);
 
-            ///////////
-            /// getter
+            //////////////////////////////////////////////////
+            /// @brief give back the path to the station files
             std::filesystem::path&& Get_Station_File() noexcept;
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////
+            /// @brief give back the path to the timetables files and all the informations that are needed
             std::vector<std::pair<std::string, std::vector<std::pair<Network::DayTemplate, std::filesystem::path>>>>&& Get_Line_Files() noexcept;
         private:
             std::filesystem::path m_path_to_Station_File;

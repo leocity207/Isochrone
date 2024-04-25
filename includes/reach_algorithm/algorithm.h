@@ -51,6 +51,8 @@ namespace Reach_Algorithm
 		/// @param list List where to find the min elemnt and to place it at the end via swap
 		/// @param map  Map to also update due to the swapping
 		static void Place_Min_Reaching_Time_At_End(std::vector<Context::Station>& list);
+
+		/// @copydoc Place_Min_Reaching_Time_At_End()
 		static void Place_Min_Reaching_Time_At_End(std::vector<Context::Station>& list, std::map<Network::Station_CRef, Context::Station_CRef, std::less<const Network::Station>>& map);
 		
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

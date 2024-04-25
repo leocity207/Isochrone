@@ -10,8 +10,12 @@ namespace Generals
 {
 	////////////////////////////////////////////////////////////////////
 	/// @brief Trim spaces at the beginin and the end of a string
+	/// @param str the string to trim
 	/// @note If the string is void it return a void string.
 	std::string_view Trim_Space_Front_Back(const std::string_view& str);
+
+	////////////////////////////////////////////
+	/// @copydoc Generals::Trim_Space_Front_Back()
 	std::string&& Trim_Space_Front_Back(std::string&& str);
 
 	////////////////////////////////////////////////////

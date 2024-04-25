@@ -6,23 +6,31 @@
 Isochrone's documentation!
 ==========================
 	Welcome to the Isochrone documentation
-	This 
-	This 
+
 
 .. toctree::
 	:maxdepth: 2
-	:caption: Contents
+	:caption: Getting started
+
+	setup
+
+.. toctree::
+	:maxdepth: 2
+	:caption: Architecture
 
 	classes
 	libraries
 	guideline
-	setup
 
+.. toctree::
+	:maxdepth: 2
+	:caption: Code
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+	classes/context
+	classes/coordinate
+	classes/network
+	classes/reach_algorithm
+	classes/resource
+	classes/utils
+	classes/projector
+	classes/exceptions

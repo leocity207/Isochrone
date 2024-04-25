@@ -70,8 +70,17 @@ namespace CSV
 				// Methods
 				public:
 					std::string Get_Error_As_String() const noexcept override;
+
+					/////////////////////////////////////////////////////////////////
+					/// @brief Getter function i being the ith row of the timetable
 					const size_t Get_i() const noexcept;
+
+					/////////////////////////////////////////////////////////////////
+					/// @brief Getter function i being the ith column  of the timetable
 					const size_t Get_j() const noexcept;
+
+					/////////////////////////////////////////////////////////////////
+					/// @brief Getter function giving the daytime that is not correct
 					const DayTime Get_Time() const noexcept;
 				
 				//###########
@@ -100,8 +109,17 @@ namespace CSV
 				// Methods
 			public:
 				std::string Get_Error_As_String() const noexcept override;
+
+				/////////////////////////////////////////////////////////////////
+				/// @brief Getter function i being the ith row of the timetable
 				const size_t Get_i() const noexcept;
+
+				/////////////////////////////////////////////////////////////////
+				/// @brief Getter function that return the unexpected size value
 				const size_t Get_Anormal_Size() const noexcept;
+
+				/////////////////////////////////////////////////////////
+				/// @brief Getter function that return the expected size
 				const size_t Get_Normal_Size() const noexcept;
 
 				//###########

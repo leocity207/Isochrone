@@ -6,7 +6,7 @@ find_package(Sphinx REQUIRED breathe)
 set(DOXYGEN_GENERATE_HTML NO)
 set(DOXYGEN_GENERATE_XML YES)
 doxygen_add_docs(doxygen
-    ${PROJECT_SOURCE_DIR}
+    ${PROJECT_SOURCE_DIR}/includes
     COMMENT "Generate man pages")
 
 
